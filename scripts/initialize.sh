@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/ubuntu/maat-bab/server
+cd /home/ubuntu/Maat-Bab/server
 npm install
 npm install pm2@latest -g
 sudo apt-get update
