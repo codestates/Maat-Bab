@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/Maat-Bab
+    destination: /home/ubuntu/Maat-Bab/server/
 
 hooks:
   ApplicationStop:
