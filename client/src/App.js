@@ -4,7 +4,7 @@ import Nav from './Component/Nav';
 import AboutPage from './Pages/AboutPage';
 import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
-import MakeMeet from './Pages/MakeMeet';
+import MakeMeet from './Component/MakeMeet';
 import Mypage from './Pages/Mypage';
 import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
