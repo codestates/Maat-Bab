@@ -9,8 +9,8 @@ function EmailCheckPage() {
             
             <EmailCheck />
 
-            //이메일인증 성공하면 -> <SuccessModal />
-            //이메일인증 실패하면 -> <FailModal />
+            {/* //이메일인증 성공하면 -> <SuccessModal /> */}
+            {/* //이메일인증 실패하면 -> <FailModal /> */}
         </div>
     )
 }

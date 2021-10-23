@@ -6,12 +6,12 @@ import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Pages/MakeMeet';
 import Mypage from './Pages/Mypage';
-import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
 import MannerPage from './Pages/MannerPage';
 import PreferecePage from './Pages/PreferecePage'
 import Footer from './Component/Footer'
+import SignIn from './Component/SignIn'
 
 
 // path
@@ -40,12 +40,12 @@ function App() {
             <Mypage />
           </Route>
 
-        // 회원가입 시
+        {/* // 회원가입 시 */}
           <Route path='/emailcheck'>
             <EmailCheckPage />
           </Route>
 
-        // 최초 로그인 시
+        {/* // 최초 로그인 시 */}
           <Route path='/foodpreference'>
             <PreferecePage />
           </Route>
