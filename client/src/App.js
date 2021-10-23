@@ -22,13 +22,15 @@ import SignIn from './Component/SignIn'
 
 function App() {
   const history = useHistory();
+  const [isLogin, setIsLogin] = useState(false)
 
+  const logoutHandler = () => {
 
+  }
   return (
     <BrowserRouter>
     <div className="app">
-      <h3>안녕하세요</h3>
-      <Nav />
+      <Nav isLogin={isLogin} logoutHandler={logoutHandler}/>
         
       <Switch>     
       <Route path='/login'>
