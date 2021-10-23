@@ -5,7 +5,7 @@ import AboutPage from './Pages/AboutPage';
 import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Component/MakeMeet';
-import Mypage from './Pages/Mypage';
+import EditInfo from './Component/EditInfo';
 import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
 import MannerPage from './Pages/MannerPage';
@@ -36,8 +36,8 @@ function App() {
         <Route path='/signup'>
             <SignupPage />
           </Route>
-          <Route path='/mypage'>
-            <Mypage />
+          <Route path='/editinfo'>
+            <EditInfo />
           </Route>
 
         {/* // 회원가입 시 */}
