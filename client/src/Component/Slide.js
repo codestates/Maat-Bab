@@ -1,7 +1,7 @@
 import React from 'react';
 import './Slide.css';
 
-function Slide({currentSlide, className, index, text, imgsrc}) {
+function Slide({ currentSlide, className, index, text, imgsrc}) {
   return (
     currentSlide === index ?
     <div className={className} id={index}>

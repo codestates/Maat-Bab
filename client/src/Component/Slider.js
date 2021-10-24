@@ -1,18 +1,32 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './Slider.css';
 import Slide from './Slide';
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 
 function Slider({ slides }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
+  const TOTAL_SLIDES = slides.length -1;
 
-  const showSlide = (index) => {
-    setCurrentSlide(index);
+  const nextSlide = () => {
+    if (currentSlide >= TOTAL_SLIDES) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+  const prevSlide = () => {
+    if (currentSlide === 0) {
+      setCurrentSlide(TOTAL_SLIDES);
+    } else {
+      setCurrentSlide(currentSlide - 1);
+    }
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = 'all 2s ease-in-out';
-    slideRef.current.style.transform = `translateY(-${currentSlide-1}00%)`
+    slideRef.current.style.transition = 'all 0.5s ease-in-out';
+    // slideRef.current.style.transform = `translateY(-${currentSlide}00%)`
   }, [currentSlide])
   
   return (
@@ -20,20 +34,14 @@ function Slider({ slides }) {
       <div className='slides__container' ref={slideRef}>
         {slides.map((slide, index) => {
           return (
-          currentSlide === index ? 
-              <Slide currentSlide={currentSlide} className={'slide active'} index={index} text={slide.text} imgsrc={slide.image} />
-          :
-          <Slide currentSlide={currentSlide} className={'slide'} index={index} text={slide.text} imgsrc={slide.image}/>
+              <Slide currentSlide={currentSlide} className='slide active' index={index} text={slide.text} imgsrc={slide.image} />
           )
         })
       }
       </div>
       <div className='slide__button__container'>
-      {slides.map((_, index) => {
-          return (
-            <a className={index === currentSlide ? 'current__view' : 'view' } onClick={()=>showSlide(index)}>●</a>
-            )
-      })}
+        <FaAngleUp className='slide__button' onClick={prevSlide}/>
+        <FaAngleDown className='slide__button' onClick={nextSlide}/>
       </div>
     </div>
   )
