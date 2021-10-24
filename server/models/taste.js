@@ -20,7 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Taste.init(
     {
-      taste_id: { type: DataTypes.INTEGER, primaryKey: true },
+      taste_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: DataTypes.STRING,
     },
     {
