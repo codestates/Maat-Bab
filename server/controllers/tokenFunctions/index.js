@@ -17,7 +17,6 @@ module.exports = {
   },
   isAuthorized: (req) => {
     const accessToken = req.cookies.accessToken;
-
     if (accessToken) {
       try {
         return verify(accessToken, process.env.ACCESS_SECRET);
