@@ -11,7 +11,7 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken) => {},
   sendRefreshToken: (res, refreshToken) => {},
-  resendAccessToken: (res, accessToken) => {},
-  isAuthorized: (req) => {},
+  isAuthorized: (req) => {}, //=check access token, access token 검증 후 return 값 => 유효 : 유저 정보, 무효 : null?
   checkRefeshToken: (req) => {},
 };
+//쿠기만 관리

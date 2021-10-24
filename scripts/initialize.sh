@@ -1,8 +1,5 @@
 #!/bin/bash
 cd /home/ubuntu/Maat-Bab/server
-echo "hello, world"
-printf "hello, world"
-
 npm install
 npm install pm2@latest -g
 sudo apt-get update
