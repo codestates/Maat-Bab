@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color:#fffade;
+  margin: 0;
+  padding: 0;
+}
+
+.aboutpage {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__button__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__goto__main {
+  /* position: absolute; */
+  border-style: none;
+  width: 450px;
+  height: 65px;
+  color: white;
+  background-color: #ffb800;
+  font-size: 30px;
+  font-weight: 600;
+  border-radius: 10px;
+  border-color: #ffb800;
+  cursor: pointer;
+}
+
+.about__goto__main:hover {
+  background-color: white;
+  color: #ffa512;
+  border: 2.5px solid #ffa512;
+  transition : all 0.3s ease-in-out;
+}

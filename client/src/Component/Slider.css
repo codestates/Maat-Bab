@@ -1,0 +1,36 @@
+.slider {
+  display: flex;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.slides__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* height: 100vh; */
+}
+
+.slide__button__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+a .view {
+  width: 30px;
+  color: #c4c4c4;
+}
+
+a .view:hover {
+  transition: all 0.3s ease-in-out;
+  color: #ffa512;
+  cursor: pointer;
+}
+
+a .current__view {
+  width: 30px;
+  color: #ffa512;
+}
