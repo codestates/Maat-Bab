@@ -1,3 +1,5 @@
 module.exports = {
-  post: (req, res) => {},
+  post: (req, res) => {
+    console.log(req.body);
+  },
 };
