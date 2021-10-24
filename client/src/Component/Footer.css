@@ -1,0 +1,41 @@
+.footer {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f6f6f6;
+  bottom: 0;
+  height: 80px;
+}
+
+.footer__copyright {
+  color: #c4c4c4;
+  font-size: 18px;
+}
+
+.footer__developers {
+  display: flex;
+  padding: 10px;
+  
+}
+
+.fa-github {
+  width: 15px;
+  color: #424040;
+}
+
+.footer__developer {
+  padding: 5px;
+}
+
+.footer__developer__github {
+  width: 20px;
+  color:#6c6c6c;
+  padding: 5px;
+}
+
+.footer__developer__name {
+  color: #6c6c6c;
+  padding: 5px;
+}
