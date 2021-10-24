@@ -16,7 +16,7 @@ app.use(
 );
 app.use('/', router);
 
-const PORT = 80;
+const PORT = process.env.PORT || 80;
 server.listen(PORT, () =>
   console.log(`Dev-Child server is running at ${PORT} port`)
 );
