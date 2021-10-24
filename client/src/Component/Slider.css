@@ -36,3 +36,40 @@ a .current__view {
   width: 30px;
   color: #ffa512;
 }
+
+@media screen and (max-width: 768px) {
+  .slider {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow: hidden;
+    padding: 50px;
+    height: 600px;
+  }
+  
+  .slide__button__container {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+  }
+
+  a .view {
+    width: 50px;
+    color: #c4c4c4;
+    padding: 10px;
+  }
+
+  a .view:hover {
+    transition: all 0.3s ease-in-out;
+    color: #ffa512;
+    cursor: pointer;
+    padding: 10px;
+
+  }
+  
+  a .current__view {
+    width: 50px;
+    color: #ffa512;
+    padding: 10px;
+  }
+}
