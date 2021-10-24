@@ -10,32 +10,39 @@ module.exports = {
       },
       region: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       date: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       time: {
         type: Sequelize.STRING,
       },
       headcount: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 2,
       },
       restaurant_id: {
         type: Sequelize.INTEGER,
       },
       chat_title: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       chat_content: {
         type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: 'TIMESTAMP',
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: 'TIMESTAMP',
+        defaultValue: new Date(),
       },
     });
   },

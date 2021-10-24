@@ -10,9 +10,11 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       taste_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
     });
   },

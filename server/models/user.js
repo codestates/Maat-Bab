@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         through: 'User_card',
         foreignKey: 'user_id',
       });
+      this.hasMany(models.User_taste, {
+        foreignKey: 'user_id',
+      });
+      this.hasMany(models.User_card, {
+        foreignKey: 'user_id',
+      });
     }
   }
   User.init(
