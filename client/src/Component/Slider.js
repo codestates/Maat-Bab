@@ -5,14 +5,20 @@ import Slide from './Slide';
 function Slider({ slides }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
+  // const total_slides = slides.length;
 
   const showSlide = (index) => {
     setCurrentSlide(index);
+    // if (index >= total_slides) {
+    //   setCurrentSlide(0);
+    // } else {
+    //   setCurrentSlide(index);
+    // }
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateY(-${currentSlide}00%)`;
+    slideRef.current.style.transition = 'all 2s ease-in-out';
+    slideRef.current.style.transform = `translateY(-${currentSlide-1}00%)`
   }, [currentSlide])
   
   return (

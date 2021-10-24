@@ -11,6 +11,7 @@ body {
 .aboutpage {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .about__button__container {
@@ -20,7 +21,8 @@ body {
 }
 
 .about__goto__main {
-  /* position: absolute; */
+  position: absolute;
+  top: 80%;
   border-style: none;
   width: 450px;
   height: 65px;
