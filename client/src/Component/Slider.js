@@ -18,11 +18,15 @@ function Slider({ slides }) {
   return (
     <div className='slider'>
       <div className='slides__container' ref={slideRef}>
-        {slides.map((slide) => {
+        {slides.map((slide, index) => {
           return (
-            <Slide text={slide.text} imgsrc={slide.image}/>
+          currentSlide === index ? 
+              <Slide currentSlide={currentSlide} className={'slide active'} index={index} text={slide.text} imgsrc={slide.image} />
+          :
+          <Slide currentSlide={currentSlide} className={'slide'} index={index} text={slide.text} imgsrc={slide.image}/>
           )
-        })}
+        })
+      }
       </div>
       <div className='slide__button__container'>
       {slides.map((_, index) => {
