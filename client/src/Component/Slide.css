@@ -6,7 +6,7 @@
   /* opacity: 0; */
 }
 
-.slide .active {
+.active {
   display: flex;
   padding: 10px;
   width: 100%;
@@ -15,8 +15,11 @@
 }
 
 .slide__content__message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #ff7a00;
-  font-size: 34px;
+  font-size: 50px;
   font-weight: 600;
   width: 100%;
   white-space: pre-line;
@@ -24,5 +27,5 @@
 
 .slide__content__image {
   width: 100%;
-  /* object-fit: contain; */
+  object-fit: contain;
 }

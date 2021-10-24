@@ -1,7 +1,9 @@
 .slider {
   display: flex;
+  overflow-y: scroll;
   overflow: hidden;
   padding: 50px;
+  height: 600px;
 }
 
 .slides__container {

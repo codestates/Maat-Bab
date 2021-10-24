@@ -15,6 +15,7 @@ body {
 }
 
 .about__button__container {
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;

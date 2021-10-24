@@ -5,15 +5,9 @@ import Slide from './Slide';
 function Slider({ slides }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
-  // const total_slides = slides.length;
 
   const showSlide = (index) => {
     setCurrentSlide(index);
-    // if (index >= total_slides) {
-    //   setCurrentSlide(0);
-    // } else {
-    //   setCurrentSlide(index);
-    // }
   };
 
   useEffect(() => {
