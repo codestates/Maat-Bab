@@ -45,7 +45,11 @@ function FoodPreference() {
         //     })
 
         // 식사예절 페이지로 이동
-        history.push('/usermanner')
+
+        if (foodList.length !== 0) {
+            
+            history.push('/usermanner')
+        }
     }
 
     return (
