@@ -1,15 +1,49 @@
 const { User, Taste, User_taste } = require('../../models');
+const { isAuthorized, checkRefeshToken, generateAccessToken } = require('../tokenFunctions');
+const { isAuth } = require('../../functions');
 
-const {
-  isAuthorized,
-  checkRefeshToken,
-  generateAccessToken,
-} = require('../tokenFunctions');
 module.exports = {
   get: (req, res) => {
-    console.log('userinfo get');
+    if (isAuth(req, res)) {
+      const userinfo = isAuthorized(req);
+      return res.status(200).send(userinfo);
+    }
+
+    return res.status(400).send('failed to get userinfo');
   },
-  patch: (req, res) => {},
+  patch: async (req, res) => {
+    if (isAuth(req, res)) {
+      const { name, password } = req.body;
+      const { user_id } = req.params;
+
+      if (!name || !password) {
+        return res.status(400).send('Check name and password');
+      }
+
+      await User.update(
+        {
+          name,
+          password,
+        },
+        { where: { user_id } }
+      )
+        .then(async (data) => {
+          await User.findOne({
+            where: { user_id: data },
+          }).then((data) => {
+            delete data.dataValues.password;
+            const userinfo = data.dataValues;
+            return res.status(200).send(userinfo);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          return res.status(500).send('Internal Server Error');
+        });
+    } else {
+      return res.status(401).send('Invalid accessToken');
+    }
+  },
   delete: (req, res) => {},
   taste: {
     user_id: {

@@ -8,6 +8,6 @@ module.exports = {
       return res.status(200).send(userinfo);
     }
 
-    return res.status(400).send('failed to authenticate');
+    return res.status(401).send('failed to authenticate');
   },
 };
