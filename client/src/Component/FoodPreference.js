@@ -7,7 +7,7 @@ function FoodPreference() {
     // ? user_id 가져오기 (get /auth)
 
     // const [myFoodList, setMyFoodList] = useState([]);
-    const [myFoodList, setMyFoodList] = useState([{ 'taste_id': 9, 'name': '스시' }, { 'taste_id': 8, 'name': '마라탕' }, { 'taste_id': 16, 'name': '피자' }]);
+    const [myFoodList, setMyFoodList] = useState(['한식', '스시', '비건']);
 
     // ? 음식취향 전체 리스트 조회
     // const foodList = axios.get('http://localhost:4000/taste')
@@ -22,12 +22,20 @@ function FoodPreference() {
         {'taste_id': 16, 'name': '피자'}, {'taste_id': 17, 'name': '스테이크'}, {'taste_id': 18, 'name': '비건'}, {'taste_id': 19, 'name': '샐러드'}, {'taste_id': 20, 'name': '양꼬치'}
     ]
 
-    // useEffect(() => {
-
-    // }, [myFoodList])
+    useEffect(() => {
+        console.log(333, myFoodList);
+        
+    }, [myFoodList])
     
     const selectTaste = (food) => {
-        setMyFoodList([...myFoodList, food])
+        console.log(111, myFoodList)
+        if (!myFoodList.includes(food)) {
+            setMyFoodList([...myFoodList, food])
+            console.log(222, myFoodList)
+        } else {
+            myFoodList.pop();
+            console.log('click again: --delete--')
+        }
     }
 
     return (

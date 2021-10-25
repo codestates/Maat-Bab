@@ -25,7 +25,13 @@
   cursor: pointer;
 }
 
-.preference__food .selected {
+.preference__food.selected {
   background-color: #ffb800;
+  border-radius: 20px;
   color: white;
+  font-size: 26px;
+  font-weight: 600;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+  cursor: pointer;
 }
