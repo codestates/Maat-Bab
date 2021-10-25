@@ -1,5 +1,5 @@
 const { User, Taste, User_taste } = require('../../models');
-const { isAuthorized, checkRefeshToken, generateAccessToken } = require('../tokenFunctions');
+const { isAuthorized, checkRefeshToken, generateAccessToken, sendAccessToken } = require('../tokenFunctions');
 const { isAuth } = require('../../functions');
 
 module.exports = {
@@ -25,14 +25,16 @@ module.exports = {
           name,
           password,
         },
-        { where: { user_id } }
+        { where: { user_id }, include: Taste }
       )
         .then(async (data) => {
           await User.findOne({
-            where: { user_id: data },
+            where: { user_id },
           }).then((data) => {
             delete data.dataValues.password;
             const userinfo = data.dataValues;
+            const accessToken = generateAccessToken(userinfo);
+            sendAccessToken(res, accessToken);
             return res.status(200).send(userinfo);
           });
         })
@@ -44,7 +46,26 @@ module.exports = {
       return res.status(401).send('Invalid accessToken');
     }
   },
-  delete: (req, res) => {},
+  delete: async (req, res) => {
+    if (isAuth(req, res)) {
+      const userinfo = isAuthorized(req);
+      const { user_id } = req.params;
+      await User.destroy({
+        where: { user_id },
+      })
+        .then((data) => {
+          res.clearCookie('accessToken');
+          res.clearCookie('refreshToken');
+          return res.status(205).send(userinfo);
+        })
+        .catch((err) => {
+          console.log(err);
+          return res.status(500).send('Internal Server Error');
+        });
+    } else {
+      return res.status(401).send('Invalid accessToken');
+    }
+  },
   taste: {
     user_id: {
       get: (req, res) => {
