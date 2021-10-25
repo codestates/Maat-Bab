@@ -84,7 +84,7 @@
   background-color: #FBE300;
 }
 .kakao__logo{
-  background-image: url('../카카오톡로고.png');
+  background-image: url('../resource/카카오톡로고.png');
   background-size: 100%;
   width: 35px;
   height: 35px;
@@ -92,7 +92,7 @@
   margin-top: -5px;
 }
 .google__logo{
-  background-image: url('../구글로고.png');
+  background-image: url('../resource/구글로고.png');
   background-size: 100%;
   width: 35px;
   height: 35px;
