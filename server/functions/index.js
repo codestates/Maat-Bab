@@ -7,16 +7,15 @@ const {
 
 module.exports = {
   isAuth: (req, res) => {
-    const userinfo = checkRefeshToken(req);
+    const userinfo = isAuthorized(req);
     if (!userinfo) {
-      return false;
-    } else {
-      if (isAuthorized(req)) {
+      if (checkRefeshToken(req)) {
+        const accessToken = generateAccessToken(userinfo);
+        sendAccessToken(res, accessToken);
         return true;
       }
-      const accessToken = generateAccessToken(userinfo);
-      sendAccessToken(res, accessToken);
-      return true;
+      return false;
     }
+    return true;
   },
 };
