@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       restaurant_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       name: DataTypes.STRING,
       visit: DataTypes.INTEGER,

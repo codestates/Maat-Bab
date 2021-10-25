@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       user_card_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       card_id: {
         type: DataTypes.INTEGER,
