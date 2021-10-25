@@ -1,0 +1,124 @@
+.login__container{
+  background-color: #FFFAED;
+  height: 100vh;
+  padding: 5% 0 0 25%;
+}
+
+.signin__content__container{
+  width: 50vw;
+  height: 85vh;
+  border: 1px solid #FFA512;
+  align-items: center;
+  background-color: white;
+  border-radius: 30px;
+}
+.signin__title{
+  color: #FFA512;
+  margin-left: 45%;
+}
+.signin__content__container__ul{
+  list-style: none;
+  width: 70%;
+  height: 40%;
+  margin-left: 15%;
+}
+.signin__name{
+  font-weight: 500;
+  font-size: 30px;
+  color: gray;
+  margin-top: 5%;
+}
+.signin__input{
+  width: 30vw;
+  height: 5vh;
+  border-radius: 10px;
+  margin-top: 3%;
+  border: 1px solid gray;
+}
+.signin__input:focus{
+  outline: none;
+  border: 2px solid #FFA512;
+}
+.hide{
+  display: none;
+}
+.signin__email__message{
+  color: red;
+}
+.signin__link__signup{
+  margin-left: 45%;
+}
+.signin__button__container{
+  list-style: none;
+  width: 70%;
+  margin-left: 15%;
+}
+.signin__button__login,
+.signin__button__login__google,
+.signin__button__login__kakao{
+  border: none;
+  width: 30vw;
+  height: 5vh;
+  margin-top: 3%;
+  font-size: 20px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.signin__button__login{
+  background-color: #FFA512;
+  color: white;
+}
+.signin__button__login:hover{
+  color: black;
+  cursor: pointer;
+}
+.signin__button__login__google:hover,
+.signin__button__login__kakao:hover{
+  color: #FFA512;
+  cursor: pointer;
+}
+.signin__button__login__google{
+  background-color: #C4C4C4;
+}
+.signin__button__login__kakao{
+  background-color: #FBE300;
+}
+.kakao__logo{
+  background-image: url('../카카오톡로고.png');
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-top: -5px;
+}
+.google__logo{
+  background-image: url('../구글로고.png');
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-top: -5px;
+}
+@media screen and (max-width: 768px) {
+  .signin__content__container{
+    width: 100%;
+    height: 100%;
+  }
+  .login__container{
+    padding: 0;
+    position: fixed;
+    z-index: -1000;
+    width: 95vh;
+  }
+  .signin__input{
+    width: 60vw;
+  }
+  .signin__button__login,
+  .signin__button__login__google,
+  .signin__button__login__kakao{
+    width: 60vw;
+  }
+  .signin__content__container{
+    border-radius: 0;
+  }
+}
