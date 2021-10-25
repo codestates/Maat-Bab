@@ -35,20 +35,19 @@ function FoodPreference() {
         setFoodList(newList)
     }
 
+    // * userinfo 조회 => user_id 가져오기 (App.js에서 내리기)
+    const user_id = 1; // dummy data
     const selectDoneGoToManner = async () => {
-        // ? 음식취향 patch 요청보내기
-        // await axios.patch(`http://localhost:4000/userinfo/taste/${user_id}`, {
-        //     'taste_id': [...myFoodList]
-        // })
-        //     .then(data => {
-        //         console.log(data);
-        //     })
-
-        // 식사예절 페이지로 이동
-
+        const myFoodList = foodList.map(food => food.taste_id)
+        // ? 음식취향 patch 요청보내기        
         if (foodList.length !== 0) {
-            
-            history.push('/usermanner')
+            await axios.patch(`http://localhost:4000/userinfo/taste/${user_id}`, {
+                'taste_id': [...myFoodList]
+            })
+            .then(res => {
+                console.log(res.data);
+            })
+            history.push('/usermanner'); // 식사예절 페이지로 이동
         }
     }
 
