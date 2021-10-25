@@ -38,4 +38,3 @@ module.exports = {
     } else return null;
   },
 };
-//쿠기만 관리
