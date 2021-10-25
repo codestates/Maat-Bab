@@ -36,7 +36,7 @@ function FoodPreference() {
                 <div className='preference__title'>음식 취향을 선택해주세요
                 </div>
                 <div className='preference__list__container'>
-                    <FoodPreferenceList foodList={foodList} myFoodList={myFoodList} selectfunc={selectTaste} />
+                    <FoodPreferenceList foodList={foodList} myFoodList={myFoodList} selectTaste={selectTaste} />
                 </div>
                 <div className='preference__button__container'>
                     {myFoodList.length !== 0 ?
