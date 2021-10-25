@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FoodPreferenceList from './FoodPreferenceList';
 import './FoodPreference.css';
 
 function FoodPreference() {
+    const history = useHistory();
+
     // ? user_id 가져오기 (get /auth)
 
     // const [myFoodList, setMyFoodList] = useState([]);
@@ -38,6 +41,19 @@ function FoodPreference() {
         }
     }
 
+    const selectDoneGoToManner = async () => {
+        // ? 음식취향 patch 요청보내기
+        await axios.patch('http://localhost:4000/userinfo/taste/:user_id', {
+            'taste_id': [...myFoodList]
+        })
+            .then(data => {
+                console.log(data);
+            })
+
+        // 식사예절 페이지로 이동
+        history.push('/usermanner')
+    }
+
     return (
         <div className='foodPreference'>
             <div className='preference__container'>
@@ -48,7 +64,7 @@ function FoodPreference() {
                 </div>
                 <div className='preference__button__container'>
                     {myFoodList.length !== 0 ?
-                        <button className='preference__next'>완료</button>
+                        <button className='preference__next' onClick={() => selectDoneGoToManner()}>완료</button>
                         :
                         <button className='preference__next' disabled>완료</button>
                     }
