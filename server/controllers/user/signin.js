@@ -25,7 +25,7 @@ module.exports = {
         }
 
         delete data.dataValues.password;
-        delete data.dataValues.Tastes[0].dataValues.User_taste;
+        if (data.dataValues.Tastes.length) delete data.dataValues.Tastes[0].dataValues.User_taste;
 
         const userinfo = data.dataValues;
         const accessToken = generateAccessToken(userinfo);
