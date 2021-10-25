@@ -9,7 +9,7 @@ module.exports = {
       return res.status(200).send(userinfo);
     }
 
-    return res.status(400).send('failed to get userinfo');
+    return res.status(400).send('Failed to get userinfo');
   },
   patch: async (req, res) => {
     if (isAuth(req, res)) {
