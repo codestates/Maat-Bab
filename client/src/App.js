@@ -6,12 +6,12 @@ import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Component/MakeMeet';
 import EditInfo from './Component/EditInfo';
-import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
 import MannerPage from './Pages/MannerPage';
 import PreferecePage from './Pages/PreferecePage'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
+import SignUp from './Component/SignUp'
 
 
 // path
@@ -37,7 +37,7 @@ function App() {
           <SignIn />
         </Route>
         <Route path='/signup'>
-            <SignupPage />
+            <SignUp />
           </Route>
           <Route path='/editinfo'>
             <EditInfo />
