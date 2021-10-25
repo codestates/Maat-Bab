@@ -63,9 +63,31 @@ module.exports = {
   },
   etiquette: {
     user_id: {
-      get: (req, res) => {},
-      post: (req, res) => {},
-      patch: (req, res) => {},
+      get: (req, res) => {
+        const { user_id } = req.params;
+        User.findOne({ where: { user_id } }).then((data) => {
+          const etiquette = JSON.parse(data.etiquette);
+          return res.status(200).send({ etiquette });
+        });
+      },
+      patch: (req, res) => {
+        const { user_id } = req.params;
+        let etiquette;
+        if (!req.body.etiquette) {
+          etiquette = JSON.stringify([]);
+        } else {
+          etiquette = JSON.stringify(req.body.etiquette);
+        }
+        User.update({ etiquette }, { where: { user_id } })
+          .then((data) => {
+            etiquette = JSON.parse(etiquette);
+            return res.status(200).send({ etiquette });
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.status(500).send('Internal Server Error');
+          });
+      },
     },
   },
 };

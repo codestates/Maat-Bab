@@ -29,7 +29,6 @@ router.get('/taste', taste.get);
 router.get('/userinfo/taste/:user_id', userinfo.taste.user_id.get);
 router.patch('/userinfo/taste/:user_id', userinfo.taste.user_id.patch);
 router.get('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.get);
-router.post('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.post);
 router.patch('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.patch);
 
 // Card
