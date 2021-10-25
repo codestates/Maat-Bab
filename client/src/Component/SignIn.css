@@ -101,14 +101,14 @@
 }
 @media screen and (max-width: 768px) {
   .signin__content__container{
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
   .login__container{
     padding: 0;
-    position: fixed;
     z-index: -1000;
-    width: 95vh;
+    width: 90vh;
+    padding-top: 7%;
   }
   .signin__input{
     width: 60vw;
