@@ -43,7 +43,6 @@
 }
 
 
-/* button .preference__next { */
 button.preference__next {
   display: flex;
   all: unset;
@@ -60,7 +59,7 @@ button.preference__next {
   font-weight: 600;
 }
 
-button.preference__next:disabled {
+button:disabled {
   display: flex;
   all: unset;
 

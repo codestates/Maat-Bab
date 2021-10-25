@@ -1,21 +1,16 @@
 import React from 'react';
 import './FoodPreferenceList.css';
 
-function FoodPrefereceList({ foodList, myFoodList, selectTaste }) {
+function FoodPrefereceList({ foodList, selectTaste }) {
+    console.log(foodList.map(food => food.selected))
+    
     return (
         <div className='foodPreferenceList'>
-            {foodList.map((food, index) => myFoodList.includes(food.name)  ?
-                <div className='preference__food selected' onClick={() => selectTaste(food.name)} >{food.name}</div>
+            {foodList?.map(food => food.selected === true  ?
+                <div className='preference__food selected' onClick={() => selectTaste(food.taste_id)} >{food.name}</div>
                 :
-                <div className='preference__food' onClick={() => selectTaste(food.name)} >{food.name}</div>
-            )}
-
-
-            {/* {foodList.map(food => myFoodList.includes(food)  ?
-                <div className='preference__food selected' onClick={() => selectTaste(food)} >{food.name}</div>
-                :
-                <div className='preference__food' onClick={() => selectTaste(food)} >{food.name}</div>
-            )} */}
+                <div className='preference__food' onClick={() => selectTaste(food.taste_id)} >{food.name}</div>
+                )}
         </div>
     )
 }
