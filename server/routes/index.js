@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {
+  auth,
   signup,
   signin,
   signout,
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // User
+router.get('/auth', auth.get);
 router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
