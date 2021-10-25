@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User, Taste } = require('../../models');
 const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../tokenFunctions');
 
 module.exports = {
@@ -9,7 +9,10 @@ module.exports = {
       return res.status(400).send('Check password and name');
     }
 
-    User.findOne({ where: { email: reqEmail } })
+    User.findOne({
+      where: { email: reqEmail },
+      include: Taste,
+    })
       .then((data) => {
         if (!data) {
           return res.status(404).send('No exists');
