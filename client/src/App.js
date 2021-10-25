@@ -72,10 +72,11 @@ function App() {
         </Route>
 
           
-      <Footer />
           
 
-      </Switch>
+        </Switch>
+        
+      <Footer />
       </div>
       </BrowserRouter>
   );

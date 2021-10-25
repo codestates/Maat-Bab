@@ -21,8 +21,9 @@ a:hover{
 
 .navigation__menu__list{
   display: flex;
+  justify-content: space-around;
   list-style: none;
-  padding-left: 0;
+  padding-left: 5px;
 }
 .navigation__menu__list li{
   padding: 8px 12px;
