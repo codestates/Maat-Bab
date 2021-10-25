@@ -6,6 +6,8 @@ module.exports = {
   signout: require('./user/signout'),
   oauth: require('./user/oauth'),
   userinfo: require('./user/userinfo'),
+  // Taste
+  taste: require('./taste'),
   // Card
   card: require('./card'),
   // Chat
