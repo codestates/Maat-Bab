@@ -1,0 +1,20 @@
+.foodPreferenceList {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  padding: 20px 20px 40px 40px;
+}
+
+.preference__food {
+  background-color: white;
+  border: 2px solid #ffb800;
+  border-radius: 20px;
+  font-size: 26px;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+}
+
+.preference__food .selected {
+  background-color: #ffb800;
+  color: white;
+}

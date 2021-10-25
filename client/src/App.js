@@ -9,7 +9,7 @@ import EditInfo from './Component/EditInfo';
 import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
 import MannerPage from './Pages/MannerPage';
-import PreferecePage from './Pages/PreferecePage'
+import FoodPreference from './Component/FoodPreference'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
 
@@ -50,7 +50,7 @@ function App() {
 
         {/* // 최초 로그인 시 */}
           <Route path='/foodpreference'>
-            <PreferecePage />
+            <FoodPreference />
           </Route>
 
           <Route path='/usermanner'>

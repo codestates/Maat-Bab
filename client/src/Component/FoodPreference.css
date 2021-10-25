@@ -1,0 +1,94 @@
+.foodPreference {
+  /* background-image: url('https://i.imgur.com/9ueRwbv.png');
+  z-index: 1; */
+  background-color: #FFFAED;
+  height: 100vh;
+  padding: 40px 0 40px 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+.preference__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  width: 50vw;
+  height: 85vh;
+  border: 1px solid #FFA512;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.preference__title {
+  color: #FFA512;
+  font-size: 36px;
+  font-weight: 500;
+  padding: 20px 0 20px 0;
+}
+
+.preference__list__container {
+  display: flex;
+  padding: 40px 0 40px 0;
+}
+
+.preference__button__container {
+  display: flex;
+  padding: 20px 0 20px 0;
+  text-align: center;
+}
+
+
+/* button .preference__next { */
+button.preference__next {
+  display: flex;
+  all: unset;
+
+  background-color: white;
+  border: 4px solid #ffb800;
+  color: #FFA512;
+  font-size: 24px;
+  padding : 15px;
+
+  width: 70px;
+  border-radius: 20px;
+
+  font-weight: 600;
+}
+
+button.preference__next:disabled {
+  display: flex;
+  all: unset;
+
+  background-color: white;
+  border: 4px solid #a4a0a0;
+  color: #a4a0a0;
+  font-size: 24px;
+  padding : 15px;
+
+  width: 70px;
+  border-radius: 20px;
+
+  font-weight: 600;
+}
+
+button.preference__next:hover{
+  display: flex;
+  all: unset;
+
+  background-color: #ffb800;
+  border: 4px solid white;
+  color: white;
+  font-size: 24px;
+  padding : 15px;
+
+  width: 70px;
+  border-radius: 20px;
+
+  font-weight: 600;
+  cursor: pointer;
+}
