@@ -6,6 +6,7 @@ const {
   signout,
   oauth,
   userinfo,
+  taste,
   card,
   chat,
 } = require('../controllers');
@@ -24,7 +25,7 @@ router.post('/oauth', oauth.post);
 router.get('/userinfo/:user_id', userinfo.get);
 router.patch('/userinfo/:user_id', userinfo.patch);
 router.delete('/userinfo/:user_id', userinfo.delete);
-router.get('/userinfo/taste', userinfo.taste.get);
+router.get('/taste', taste.get);
 router.get('/userinfo/taste/:user_id', userinfo.taste.user_id.get);
 router.patch('/userinfo/taste/:user_id', userinfo.taste.user_id.patch);
 router.get('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.get);
