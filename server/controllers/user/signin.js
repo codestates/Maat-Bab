@@ -1,4 +1,4 @@
-const { User, Taste } = require('../../models');
+const { User, Taste, User_taste } = require('../../models');
 const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../tokenFunctions');
 
 module.exports = {
@@ -25,6 +25,8 @@ module.exports = {
         }
 
         delete data.dataValues.password;
+        delete data.dataValues.Tastes[0].dataValues.User_taste;
+
         const userinfo = data.dataValues;
         const accessToken = generateAccessToken(userinfo);
         const refreshToken = generateRefreshToken(userinfo);
