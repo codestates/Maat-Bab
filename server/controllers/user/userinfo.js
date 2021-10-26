@@ -1,15 +1,22 @@
 const { User, Taste, User_taste } = require('../../models');
-const { isAuthorized, checkRefeshToken, generateAccessToken, sendAccessToken } = require('../tokenFunctions');
+const {
+  isAuthorized,
+  checkRefeshToken,
+  generateAccessToken,
+  sendAccessToken,
+  generateRefreshToken,
+  sendRefreshToken,
+} = require('../tokenFunctions');
 const { isAuth } = require('../../functions');
 
 module.exports = {
   get: (req, res) => {
-    if (isAuth(req, res)) {
-      const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
+    if (userinfo) {
       return res.status(200).send(userinfo);
     }
 
-    return res.status(400).send('failed to get userinfo');
+    return res.status(400).send('Failed to get userinfo');
   },
   patch: async (req, res) => {
     if (isAuth(req, res)) {
@@ -25,7 +32,7 @@ module.exports = {
           name,
           password,
         },
-        { where: { user_id }, include: Taste }
+        { where: { user_id } }
       )
         .then(async (data) => {
           await User.findOne({
@@ -33,8 +40,14 @@ module.exports = {
           }).then((data) => {
             delete data.dataValues.password;
             const userinfo = data.dataValues;
+            res.clearCookie('accessToken');
+            res.clearCookie('refreshToken');
             const accessToken = generateAccessToken(userinfo);
+            const refreshToken = generateRefreshToken(userinfo);
+            generateAccessToken(userinfo);
+            generateRefreshToken(userinfo);
             sendAccessToken(res, accessToken);
+            sendRefreshToken(res, refreshToken);
             return res.status(200).send(userinfo);
           });
         })
@@ -47,8 +60,8 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    if (isAuth(req, res)) {
-      const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
+    if (userinfo) {
       const { user_id } = req.params;
       await User.destroy({
         where: { user_id },

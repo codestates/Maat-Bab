@@ -11,7 +11,6 @@ module.exports = {
 
     User.findOne({
       where: { email: reqEmail },
-      include: Taste,
     })
       .then((data) => {
         if (!data) {
@@ -25,7 +24,6 @@ module.exports = {
         }
 
         delete data.dataValues.password;
-        if (data.dataValues.Tastes.length) delete data.dataValues.Tastes[0].dataValues.User_taste;
 
         const userinfo = data.dataValues;
         const accessToken = generateAccessToken(userinfo);
