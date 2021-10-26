@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Card, {
-        foreignKey: 'restaurant_id',
+        foreignKey: 'restaurant_name',
       });
     }
   }
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: DataTypes.STRING,
+      restaurant_name: DataTypes.STRING,
       visit: DataTypes.INTEGER,
     },
     {

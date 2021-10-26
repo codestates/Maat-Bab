@@ -24,6 +24,7 @@ module.exports = {
         }
 
         delete data.dataValues.password;
+        data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
 
         const userinfo = data.dataValues;
         const accessToken = generateAccessToken(userinfo);

@@ -3,8 +3,8 @@ const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: (req, res) => {
-    if (isAuth(req, res)) {
-      const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
+    if (userinfo) {
       return res.status(200).send(userinfo);
     }
 
