@@ -4,7 +4,7 @@ import axios from 'axios';
 import FoodPreferenceList from './FoodPreferenceList';
 import './FoodPreference.css';
 
-function FoodPreference() {
+function FoodPreference({ userInfo }) {
     const history = useHistory();
     const [foodList, setFoodList] = useState([]);
     
@@ -35,11 +35,10 @@ function FoodPreference() {
         setFoodList(newList)
     }
 
-    // * userinfo 조회 => user_id 가져오기 (App.js에서 내리기)
-    const user_id = 1; // dummy data
+    // const user_id = 1; //dummy data
+    const { user_id } = userInfo;
     const selectDoneGoToManner = async () => {
         const myFoodList = foodList.map(food => food.taste_id)
-        // ? 음식취향 patch 요청보내기        
         if (foodList.length !== 0) {
             await axios.patch(`http://localhost:4000/userinfo/taste/${user_id}`, {
                 'taste_id': [...myFoodList]

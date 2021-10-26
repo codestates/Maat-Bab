@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, BrowserRouter, Route, useHistory } from 'react-router-dom';
+import { Switch, BrowserRouter, Route, Redirect, useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Nav from './Component/Nav';
 import AboutPage from './Pages/AboutPage';
 import MainPage from './Pages/MainPage';
@@ -13,20 +14,37 @@ import FoodPreference from './Component/FoodPreference'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
 
-
-// path
-// 맞밥 약속 참여하기(Main = '/main'), 나의 약속 목록보기(Chat = '/chat'), 약속 만들러가기(MakeMeet = '/makemeet') 
-// login, signup, mypage
-// 최초 로그인 시 취향 선택, 식사예절 선택
-
-
 function App() {
   const history = useHistory();
   const [isLogin, setIsLogin] = useState(false)
+  
+  // const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({
+    user_id: '',
+    email: '',
+    name: '',
+    etiquette: null,
+  })
 
+  const isAuthenticated = async () => {
+    try {
+      await axios.get('http://localhost:4000/auth')
+        .then(res => {
+          if (res.data) setUserInfo(res.data);
+          console.log('isAuthenticated func runned')
+        })
+      .catch(err => console.log('authenticate failed'))
+    } catch (err) { console.log(err) }
+  }
+
+  useEffect(() => {
+    isAuthenticated();
+  }, [])
+  
   const logoutHandler = () => {
 
   }
+
   return (
     <BrowserRouter>
     <div className="app">
@@ -43,30 +61,32 @@ function App() {
             <EditInfo />
           </Route>
 
-        {/* // 회원가입 시 */}
+        {/* 회원가입 시 */}
           <Route path='/emailcheck'>
             <EmailCheckPage />
           </Route>
 
-        {/* // 최초 로그인 시 */}
           <Route path='/foodpreference'>
-            <FoodPreference />
+            <FoodPreference userInfo={userInfo}/>
           </Route>
 
           <Route path='/usermanner'>
-            <MannerPage />
+            <MannerPage userInfo={userInfo}/>
           </Route>
           
+          {/* exact 해제 for redirection */}
+          <Route path='/'>
+            {!userInfo.etiquette ? <Redirect to='/foodpreference' /> : <AboutPage />}
+          </Route>
 
-        <Route exact path='/'>
-          <AboutPage />
-        </Route>
         <Route path='/main'>
         <MainPage />
           </Route>
+
         <Route path='/chat'>
         <ChatPage />
           </Route>
+          
         <Route path='/makemeet'>
         <MakeMeet />
         </Route>
