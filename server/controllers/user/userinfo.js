@@ -9,8 +9,8 @@ const { isAuth } = require('../../functions');
 
 module.exports = {
   get: (req, res) => {
-    if (isAuth(req, res)) {
-      const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
+    if (userinfo) {
       return res.status(200).send(userinfo);
     }
 
@@ -30,7 +30,7 @@ module.exports = {
           name,
           password,
         },
-        { where: { user_id }, include: Taste }
+        { where: { user_id } }
       )
         .then(async (data) => {
           await User.findOne({
@@ -52,8 +52,8 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    if (isAuth(req, res)) {
-      const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
+    if (userinfo) {
       const { user_id } = req.params;
       await User.destroy({
         where: { user_id },
