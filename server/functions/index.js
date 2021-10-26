@@ -7,9 +7,13 @@ const {
 
 module.exports = {
   isAuth: (req, res) => {
-    const userinfo = isAuthorized(req);
+    let userinfo = isAuthorized(req);
     if (!userinfo) {
       if (checkRefeshToken(req)) {
+        userinfo = checkRefeshToken(req);
+        res.clearCookie('accessToken');
+        const accesstoken = generateAccessToken(userinfo);
+        sendAccessToken(res, accesstoken);
         return userinfo;
       }
       return null;
