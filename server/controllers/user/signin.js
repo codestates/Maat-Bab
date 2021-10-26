@@ -24,6 +24,7 @@ module.exports = {
         }
 
         delete data.dataValues.password;
+        console.log('🚀 ~ file: signin.js ~ line 27 ~ .then ~ data.dataValues', data.dataValues.etiquette);
 
         const userinfo = data.dataValues;
         const accessToken = generateAccessToken(userinfo);
