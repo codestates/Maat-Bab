@@ -1,12 +1,12 @@
 .footer {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #f6f6f6;
   bottom: 0;
-  height: 80px;
+  height: 60px;
 }
 
 .footer__copyright {

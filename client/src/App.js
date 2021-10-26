@@ -7,16 +7,12 @@ import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Component/MakeMeet';
 import EditInfo from './Component/EditInfo';
-<<<<<<< HEAD
-import SignupPage from './Pages/SignupPage';
-import EmailCheckPage from './Pages/EmailCheckPage'
-import MannerPage from './Pages/MannerPage';
-=======
 import UserManner from './Component/UserManner';
->>>>>>> 04593dd... UserManner 작성
 import FoodPreference from './Component/FoodPreference'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
+import SignUp from './Component/SignUp'
+import EmailCheck from './Component/EmailCheck'
 
 function App() {
   const history = useHistory();
@@ -59,7 +55,7 @@ function App() {
           <SignIn />
         </Route>
         <Route path='/signup'>
-            <SignupPage />
+            <SignUp />
           </Route>
           <Route path='/editinfo'>
             <EditInfo />
@@ -67,7 +63,7 @@ function App() {
 
         {/* 회원가입 시 */}
           <Route path='/emailcheck'>
-            <EmailCheckPage />
+            <EmailCheck />
           </Route>
 
           <Route path='/foodpreference'>

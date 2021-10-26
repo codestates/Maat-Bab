@@ -3,15 +3,16 @@
 }
 
 body {
-  background-color:#fffade;
   margin: 0;
   padding: 0;
 }
 
 .aboutpage {
+  background-color:#fffade;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 800px;
 }
 
 .about__button__container {
@@ -44,6 +45,14 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .aboutpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 900px;
+  }
+
   .about__goto__main {
     position: absolute;
     top: 80%;
