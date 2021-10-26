@@ -11,8 +11,11 @@ ul.userMannerList {
   align-items: center;
 }
 
-li.manner {
+li {
   list-style: none;
+}
+
+li.manner {
   background-color: white;
   border: 3px solid #a4a0a0;
   border-radius: 40px;
@@ -24,7 +27,6 @@ li.manner {
 }
 
 li.manner:hover {
-  list-style: none;
   background-color: white;
   border: 3px solid #ffb800;
   border-radius: 40px;
@@ -38,7 +40,6 @@ li.manner:hover {
 }
 
 li.selected {
-  list-style: none;
   background-color: white;
   border: 4px solid #ffb800;
   border-radius: 40px;
@@ -52,7 +53,6 @@ li.selected {
 }
 
 li.selected:hover {
-  list-style: none;
   background-color: white;
   border: 4px solid #a4a0a0;
   border-radius: 40px;
@@ -62,6 +62,46 @@ li.selected:hover {
   padding: 10px 20px 10px 20px;
   margin: 5px 5px 10px 10px;
   width: 100%;
+  cursor: pointer;
+}
+
+li.manner__input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  background-color: white;
+  border: 3px solid #a4a0a0;
+  border-radius: 40px;
+  color: #d1c8c8;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #d1c8c8;
+  opacity: 1;
+}
+
+
+input:focus {
+  outline: none;
+  border: 3px solid #ffa512;
+}
+
+.manner__add__button {
+  font-size: 30px;
+  color: #c4c4c4;
+}
+
+.manner__add__button:hover {
+  transition: all 0.2s ease-in-out;
+  color: #ffa512;
   cursor: pointer;
 }
 
