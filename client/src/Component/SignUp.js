@@ -8,7 +8,7 @@ function SignUp() {
 
     const [passWord, setPassWord] = useState('')
     const [ChPassWord, setChPassWord] = useState('')
-    const [modal,setModal] = useState('')
+    const [modal,setModal] = useState('success')
 
     const onChange1 = (e) =>{
         setPassWord(e.target.value)
