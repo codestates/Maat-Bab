@@ -1,7 +1,7 @@
-const { isAuthorized } = require('../tokenFunctions');
+const { isAuth } = require('../../functions');
 module.exports = {
   post: (req, res) => {
-    const userinfo = isAuthorized(req);
+    const userinfo = isAuth(req, res);
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
     return res.status(205).send(userinfo);
