@@ -142,10 +142,15 @@ module.exports = {
           return res.status(401).send('Invalid accessToken');
         }
         const { user_id } = req.params;
-        User.findOne({ where: { user_id } }).then((data) => {
-          const etiquette = JSON.parse(data.etiquette);
-          return res.status(200).send({ etiquette });
-        });
+        User.findOne({ where: { user_id } })
+          .then((data) => {
+            const etiquette = JSON.parse(data.etiquette);
+            return res.status(200).send({ etiquette });
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.status(500).send('Internal Server Error');
+          });
       },
       patch: (req, res) => {
         if (!isAuth(req, res)) {
