@@ -22,6 +22,8 @@ module.exports = {
       sendAccessToken(res, accesstoken);
       return userinfo;
     }
+    delete userinfo.iat;
+    delete userinfo.exp;
     return userinfo;
   },
 };

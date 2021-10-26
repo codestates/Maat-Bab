@@ -168,8 +168,6 @@ module.exports = {
         User.update({ etiquette }, { where: { user_id } })
           .then((data) => {
             etiquette = JSON.parse(etiquette);
-            delete userinfo.iat;
-            delete userinfo.exp;
             userinfo.etiquette = etiquette;
             res.clearCookie('accessToken');
             res.clearCookie('refreshToken');
