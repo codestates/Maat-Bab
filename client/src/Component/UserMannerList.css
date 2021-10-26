@@ -1,0 +1,98 @@
+.userMannerList {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 20px 10px;
+}
+
+ul.userMannerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.manner {
+  list-style: none;
+  background-color: white;
+  border: 3px solid #a4a0a0;
+  border-radius: 40px;
+  color: #a4a0a0;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+}
+
+li.manner:hover {
+  list-style: none;
+  background-color: white;
+  border: 3px solid #ffb800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected {
+  list-style: none;
+  background-color: white;
+  border: 4px solid #ffb800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected:hover {
+  list-style: none;
+  background-color: white;
+  border: 4px solid #a4a0a0;
+  border-radius: 40px;
+  color: #a4a0a0;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .userMannerList {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px 10px 5px;
+  }
+  
+  ul.userMannerList {
+  }
+  
+  li.manner {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+  
+  li.manner:hover {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+  
+  li.selected {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+}

@@ -7,9 +7,13 @@ import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Component/MakeMeet';
 import EditInfo from './Component/EditInfo';
+<<<<<<< HEAD
 import SignupPage from './Pages/SignupPage';
 import EmailCheckPage from './Pages/EmailCheckPage'
 import MannerPage from './Pages/MannerPage';
+=======
+import UserManner from './Component/UserManner';
+>>>>>>> 04593dd... UserManner 작성
 import FoodPreference from './Component/FoodPreference'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
@@ -71,7 +75,7 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <MannerPage userInfo={userInfo}/>
+            <UserManner userInfo={userInfo}/>
           </Route>
           
           {/* exact 해제 for redirection */}
