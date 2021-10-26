@@ -10,10 +10,10 @@ module.exports = {
     const userinfo = isAuthorized(req);
     if (!userinfo) {
       if (checkRefeshToken(req)) {
-        return true;
+        return userinfo;
       }
-      return false;
+      return null;
     }
-    return true;
+    return userinfo;
   },
 };
