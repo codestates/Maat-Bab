@@ -1,4 +1,3 @@
-const { isAuth } = require('../../functions');
 module.exports = {
   post: (req, res) => {
     res.clearCookie('accessToken');
