@@ -8,7 +8,7 @@ import { MannerData } from '../resource/MannerData';
 function UserManner({ userInfo }) {
     const history = useHistory();
     const [mannerList, setMannerList] = useState(MannerData);
-
+    
     const selectManner = (id) => {
         const newList = mannerList.map(manner => {
             if (manner.manner_id === id) {
@@ -23,11 +23,14 @@ function UserManner({ userInfo }) {
         setMannerList(newList);
     }
 
+    const { user_id } = userInfo;
+    // const user_id = 1; //dummy data;
+    
     const selectDoneRedirect = async () => {
         // 식사 예절 patch 요청
         const myMannerList = mannerList.map(manner => manner.text)
         if (mannerList.length !== 0) {
-            await axios.patch(`http://localhost:4000/userinfo/etiquette`, {
+            await axios.patch(`http://localhost:4000/userinfo/etiquette/${user_id}`, {
                 'etiquette': [...myMannerList]
             })
             .then(res => {
