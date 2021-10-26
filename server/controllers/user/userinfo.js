@@ -4,6 +4,8 @@ const {
   checkRefeshToken,
   generateAccessToken,
   sendAccessToken,
+  generateRefreshToken,
+  sendRefreshToken,
 } = require('../tokenFunctions');
 const { isAuth } = require('../../functions');
 
@@ -38,8 +40,14 @@ module.exports = {
           }).then((data) => {
             delete data.dataValues.password;
             const userinfo = data.dataValues;
+            res.clearCookie('accessToken');
+            res.clearCookie('refreshToken');
             const accessToken = generateAccessToken(userinfo);
+            const refreshToken = generateRefreshToken(userinfo);
+            generateAccessToken(userinfo);
+            generateRefreshToken(userinfo);
             sendAccessToken(res, accessToken);
+            sendRefreshToken(res, refreshToken);
             return res.status(200).send(userinfo);
           });
         })
