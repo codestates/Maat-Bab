@@ -15,33 +15,28 @@ function UserManner({ userInfo }) {
 
     const selectManner = (id, text) => {
         if (!mannerList[id]) {
-            console.log(1111);
             mannerList.push({
                 manner_id: id,
                 text: text,
             })
-            console.log(2222);
         }
-        // } else {
-            console.log(3333);
-            const newList = mannerList.map(manner => {
-                if (manner.manner_id === id) {
-                    console.log(4444);
-                    return {
-                        ...manner,
-                        selected: !manner.selected,
-                    };
-                } else {
-                    console.log(5555);
-                    return manner;
-                }
-            })
-            setMannerList(newList);
-        // }
+        const newList = mannerList.map(manner => {
+            if (manner.manner_id === id) {
+                console.log(4444);
+                return {
+                    ...manner,
+                    selected: !manner.selected,
+                };
+            } else {
+                console.log(5555);
+                return manner;
+            }
+        })
+        setMannerList(newList);
     }
 
-    // const { user_id } = userInfo;
-    const user_id = 1; //dummy data;
+    const { user_id } = userInfo;
+    // const user_id = 1; //dummy data;
     
     const selectDoneRedirect = async () => {
         // 식사 예절 patch 요청

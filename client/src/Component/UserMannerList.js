@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UserMannerList.css';
 import { FaPlusCircle } from "react-icons/fa";
 
@@ -9,12 +9,17 @@ function UserMannerList({ mannerList, selectManner }) {
     const [addedIndex, setaddedIndex] = useState(mannerList.length);
 
     const addManner =  (e) => {
-        if (e.target.value) {
+        if (e.target.value !== null && e.target.value !== '') {
             console.log(addedText);
-             setaddedText(e.target.value);
+            setaddedText(e.target.value);
             console.log(addedText);
         }
     };
+
+    useEffect(() => {
+        setaddedText(null);
+        setaddedIndex(mannerList.length);
+    }, [mannerList])
 
     return (
             <div className='userMannerList'>
@@ -29,8 +34,6 @@ function UserMannerList({ mannerList, selectManner }) {
                     <input type='text' placeholder='추가할 식사 예절을 입력해 주세요' onChange={addManner} value={addedText}></input>
                 </li>
             </ul>
-            {/* input 1줄 +버튼 position: absolute (w. parent relative) : + 버튼 클릭 시 div화 되고 selected 되어야 함, => 그리고 input 한 줄 더 .. or 여기서부터는 + 버튼만 렌더
-                or + 버튼 => 클릭시 input open  : */}
         </div>
     )
 }
