@@ -39,6 +39,7 @@ module.exports = {
             where: { user_id },
           }).then((data) => {
             delete data.dataValues.password;
+            data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
             const userinfo = data.dataValues;
             res.clearCookie('accessToken');
             res.clearCookie('refreshToken');
