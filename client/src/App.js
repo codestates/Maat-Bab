@@ -7,7 +7,7 @@ import MainPage from './Pages/MainPage';
 import ChatPage from './Pages/ChatPage';
 import MakeMeet from './Component/MakeMeet';
 import EditInfo from './Component/EditInfo';
-import MannerPage from './Pages/MannerPage';
+import UserManner from './Component/UserManner';
 import FoodPreference from './Component/FoodPreference'
 import Footer from './Component/Footer'
 import SignIn from './Component/SignIn'
@@ -71,11 +71,10 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <MannerPage userInfo={userInfo}/>
+            <UserManner userInfo={userInfo}/>
           </Route>
           
-          {/* exact 해제 for redirection */}
-          <Route path='/'>
+          <Route exact path='/'>
             {!userInfo.etiquette ? <Redirect to='/foodpreference' /> : <AboutPage />}
           </Route>
 
