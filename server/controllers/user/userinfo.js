@@ -153,9 +153,11 @@ module.exports = {
           });
       },
       patch: (req, res) => {
-        if (!isAuth(req, res)) {
+        const userinfo = isAuth(req, res);
+        if (!userinfo) {
           return res.status(401).send('Invalid accessToken');
         }
+
         const { user_id } = req.params;
         let etiquette;
         if (!req.body.etiquette) {
@@ -166,6 +168,15 @@ module.exports = {
         User.update({ etiquette }, { where: { user_id } })
           .then((data) => {
             etiquette = JSON.parse(etiquette);
+            delete userinfo.iat;
+            delete userinfo.exp;
+            userinfo.etiquette = etiquette;
+            res.clearCookie('accessToken');
+            res.clearCookie('refreshToken');
+            const accessToken = generateAccessToken(userinfo);
+            const refreshToken = generateRefreshToken(userinfo);
+            sendAccessToken(res, accessToken);
+            sendRefreshToken(res, refreshToken);
             return res.status(200).send({ etiquette });
           })
           .catch((err) => {
