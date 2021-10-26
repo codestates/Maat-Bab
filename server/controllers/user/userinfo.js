@@ -1,7 +1,5 @@
 const { User, Taste, User_taste } = require('../../models');
 const {
-  isAuthorized,
-  checkRefeshToken,
   generateAccessToken,
   sendAccessToken,
   generateRefreshToken,

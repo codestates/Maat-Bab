@@ -128,7 +128,7 @@ module.exports = {
         if (!created) {
           return res.status(409).send('Already user exists in card');
         }
-        return res.status(201).send(result);
+        return res.status(200).send(result);
       });
     },
   },
