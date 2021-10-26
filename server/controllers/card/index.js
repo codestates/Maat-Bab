@@ -1,9 +1,124 @@
-const { Restaurant, Card, User } = require('../../models');
+const { Restaurant, Card, User_card } = require('../../models');
 module.exports = {
-  get: (req, res) => {},
-  post: (req, res) => {},
+  get: async (req, res) => {
+    const { region, date } = req.query;
+    if (!region && !date) {
+      const cards = await Card.findAll();
+      if (!cards.length) {
+        return res.status(404).send('No Contents');
+      }
+      return res.status(200).send(cards);
+    } else if (region && date) {
+      const cards = await Card.findAll({ where: { region, date } });
+      if (!cards.length) {
+        return res.status(404).send('No Contents');
+      }
+      return res.status(200).send(cards);
+    } else if (region) {
+      const cards = await Card.findAll({ where: { region } });
+      if (!cards.length) {
+        return res.status(404).send('No Contents');
+      }
+      return res.status(200).send(cards);
+    } else {
+      const cards = await Card.findAll({ where: { date } });
+      if (!cards.length) {
+        return res.status(404).send('No Contents');
+      }
+      return res.status(200).send(cards);
+    }
+  },
+  post: async (req, res) => {
+    // accessToken에서 user_id 받아와서 User_card에 추가 host는 true 33번째 user_id는 수정
+    const user_id = 1;
+    const {
+      region,
+      date,
+      time,
+      headcount,
+      restaurant_name,
+      chat_title,
+      chat_content,
+    } = req.body;
+    if (!region || !date || !headcount || !chat_title) {
+      return res
+        .status(400)
+        .send('Check region or date or headcount or chat_title');
+    }
+
+    if (restaurant_name) {
+      Restaurant.findOrCreate({
+        where: { restaurant_name },
+        defaults: {
+          restaurant_name,
+          visit: 0,
+        },
+      })
+        .then(([result, created]) => {
+          if (!created) {
+            const { visit } = result;
+            Restaurant.update(
+              { visit: visit + 1 },
+              { where: { restaurant_name } }
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          return res.status(500).send('Internal Server Error');
+        });
+    }
+
+    const { card_id } = await Card.create({
+      region,
+      date,
+      time,
+      headcount,
+      restaurant_name,
+      chat_title,
+      chat_content,
+    }).catch((err) => {
+      console.log(err);
+      return res.status(500).send('Internal Server Error');
+    });
+
+    await User_card.create({ card_id, user_id, host: true }).catch((err) => {
+      console.log(err);
+      return res.status(500).send('Internal Server Error');
+    });
+
+    const card = await Card.findOne({ where: { card_id } }).catch((err) => {
+      console.log(err);
+      return res.status(500).send('Internal Server Error');
+    });
+    return res.status(201).send(card);
+  },
   user_id: {
-    get: (req, res) => {},
-    post: (req, res) => {},
+    get: async (req, res) => {
+      // access 확인
+      const { user_id } = req.params;
+      const cards = await User_card.findAll({
+        where: { user_id },
+        include: { model: Card },
+      });
+      if (!cards.length) {
+        return res.status(404).send('No contents');
+      }
+      return res.status(200).send(cards);
+    },
+    post: (req, res) => {
+      // access 확인
+      const { user_id } = req.params;
+      const { card_id } = req.body;
+      User_card.findOrCreate({
+        where: { user_id, card_id },
+        defaults: { user_id, card_id, host: false },
+      }).then(([result, created]) => {
+        if (!created) {
+          return res.status(409).send('Already user exists in card');
+        }
+        return res.status(201).send(result);
+      });
+    },
   },
 };

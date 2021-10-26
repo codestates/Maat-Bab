@@ -24,8 +24,8 @@ module.exports = {
         allowNull: false,
         defaultValue: 2,
       },
-      restaurant_id: {
-        type: Sequelize.INTEGER,
+      restaurant_name: {
+        type: Sequelize.STRING,
       },
       chat_title: {
         type: Sequelize.STRING,

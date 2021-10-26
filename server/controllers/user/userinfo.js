@@ -1,5 +1,10 @@
 const { User, Taste, User_taste } = require('../../models');
-const { isAuthorized, checkRefeshToken, generateAccessToken, sendAccessToken } = require('../tokenFunctions');
+const {
+  isAuthorized,
+  checkRefeshToken,
+  generateAccessToken,
+  sendAccessToken,
+} = require('../tokenFunctions');
 const { isAuth } = require('../../functions');
 
 module.exports = {
@@ -69,6 +74,7 @@ module.exports = {
   taste: {
     user_id: {
       get: (req, res) => {
+        // access 확인
         const { user_id } = req.params;
         User_taste.findAll({
           where: { user_id },
@@ -87,6 +93,7 @@ module.exports = {
           });
       },
       patch: async (req, res) => {
+        // access 확인
         const { user_id } = req.params;
         await User_taste.destroy({ where: { user_id } }).catch((err) => {
           console.log(err);
@@ -119,6 +126,7 @@ module.exports = {
   etiquette: {
     user_id: {
       get: (req, res) => {
+        // access 확인
         const { user_id } = req.params;
         User.findOne({ where: { user_id } }).then((data) => {
           const etiquette = JSON.parse(data.etiquette);
@@ -126,6 +134,7 @@ module.exports = {
         });
       },
       patch: (req, res) => {
+        // access 확인
         const { user_id } = req.params;
         let etiquette;
         if (!req.body.etiquette) {

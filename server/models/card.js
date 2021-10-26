@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'card_id',
       });
       this.belongsTo(models.Restaurant, {
-        foreignKey: 'restaurant_id',
+        foreignKey: 'restaurant_name',
       });
     }
   }
@@ -32,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
       date: DataTypes.STRING,
       time: DataTypes.STRING,
       headcount: DataTypes.INTEGER,
-      restaurant_id: DataTypes.INTEGER,
+      restaurant_name: {
+        type: DataTypes.STRING,
+        references: {
+          model: 'Restaurant',
+          key: 'restaurant_name',
+        },
+      },
       chat_title: DataTypes.STRING,
       chat_content: DataTypes.STRING,
     },
