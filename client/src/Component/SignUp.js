@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './SignUp.css';
 import FailModal from '../Modal/FailModal';
 import SuccessModal from '../Modal/SuccessModal';
 
 
 function SignUp() {
-
+    const history = useHistory()
     const [passWord, setPassWord] = useState('')
     const [ChPassWord, setChPassWord] = useState('')
     const [modal,setModal] = useState('')
@@ -16,7 +17,9 @@ function SignUp() {
     const onChange2 = (e) => {
         setChPassWord(e.target.value)
     }
-
+    const pathChange = () => {
+        history.push('/emailcheck')
+    }
 
     return (
         <div className='signup__background'>
@@ -44,7 +47,7 @@ function SignUp() {
                     </div>
                 </div>
                 <div className='signup__button__container'>
-                    <button className='signup__button'>회원 가입</button>
+                    <button className='signup__button' onClick={pathChange}>회원 가입</button>
                 </div>
             </div>
         </div>
