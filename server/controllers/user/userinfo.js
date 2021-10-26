@@ -82,7 +82,9 @@ module.exports = {
   taste: {
     user_id: {
       get: (req, res) => {
-        // access 확인
+        if (!isAuth(req, res)) {
+          return res.status(401).send('Invalid accessToken');
+        }
         const { user_id } = req.params;
         User_taste.findAll({
           where: { user_id },
@@ -101,7 +103,9 @@ module.exports = {
           });
       },
       patch: async (req, res) => {
-        // access 확인
+        if (!isAuth(req, res)) {
+          return res.status(401).send('Invalid accessToken');
+        }
         const { user_id } = req.params;
         await User_taste.destroy({ where: { user_id } }).catch((err) => {
           console.log(err);
@@ -134,7 +138,9 @@ module.exports = {
   etiquette: {
     user_id: {
       get: (req, res) => {
-        // access 확인
+        if (!isAuth(req, res)) {
+          return res.status(401).send('Invalid accessToken');
+        }
         const { user_id } = req.params;
         User.findOne({ where: { user_id } }).then((data) => {
           const etiquette = JSON.parse(data.etiquette);
@@ -142,7 +148,9 @@ module.exports = {
         });
       },
       patch: (req, res) => {
-        // access 확인
+        if (!isAuth(req, res)) {
+          return res.status(401).send('Invalid accessToken');
+        }
         const { user_id } = req.params;
         let etiquette;
         if (!req.body.etiquette) {

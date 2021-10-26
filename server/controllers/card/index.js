@@ -1,4 +1,5 @@
 const { Restaurant, Card, User_card } = require('../../models');
+const { isAuth } = require('../../functions');
 module.exports = {
   get: async (req, res) => {
     const { region, date } = req.query;
@@ -29,8 +30,12 @@ module.exports = {
     }
   },
   post: async (req, res) => {
-    // accessToken에서 user_id 받아와서 User_card에 추가 host는 true 33번째 user_id는 수정
-    const user_id = 1;
+    const data = isAuth(req, res);
+    if (!data) {
+      return res.status(401).send('Invalid accessToken');
+    }
+    const { user_id } = data;
+    console.log('user_id', user_id);
     const {
       region,
       date,
@@ -95,7 +100,10 @@ module.exports = {
   },
   user_id: {
     get: async (req, res) => {
-      // access 확인
+      if (!isAuth(req, res)) {
+        return res.status(401).send('Invalid accessToken');
+      }
+
       const { user_id } = req.params;
       const cards = await User_card.findAll({
         where: { user_id },
@@ -107,7 +115,10 @@ module.exports = {
       return res.status(200).send(cards);
     },
     post: (req, res) => {
-      // access 확인
+      if (!isAuth(req, res)) {
+        return res.status(401).send('Invalid accessToken');
+      }
+
       const { user_id } = req.params;
       const { card_id } = req.body;
       User_card.findOrCreate({
