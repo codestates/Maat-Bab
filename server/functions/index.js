@@ -9,14 +9,18 @@ module.exports = {
   isAuth: (req, res) => {
     let userinfo = isAuthorized(req);
     if (!userinfo) {
+      res.clearCookie('accessToken');
       userinfo = checkRefeshToken(req);
-      if (userinfo) {
-        res.clearCookie('accessToken');
-        const accesstoken = generateAccessToken(userinfo);
-        sendAccessToken(res, accesstoken);
-        return userinfo;
+      console.log(userinfo);
+      if (!userinfo) {
+        res.clearCookie('refreshToken');
+        return null;
       }
-      return null;
+      delete userinfo.iat;
+      delete userinfo.exp;
+      const accesstoken = generateAccessToken(userinfo);
+      sendAccessToken(res, accesstoken);
+      return userinfo;
     }
     return userinfo;
   },
