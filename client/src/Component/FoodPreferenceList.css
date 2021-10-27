@@ -1,0 +1,77 @@
+.foodPreferenceList {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  padding: 20px 20px 40px 40px;
+}
+
+.preference__food {
+  background-color: white;
+  border: 3px solid #ffa512;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+}
+
+.preference__food:hover {
+  background-color: #ffb800;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+  cursor: pointer;
+}
+
+.preference__food.selected {
+  background-color: #ffb800;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .foodPreferenceList {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    padding: 10px 10px 20px 20px;
+  }
+
+  .preference__food {
+    background-color: white;
+    border: 3px solid #ffa512;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+  }
+  
+  .preference__food:hover {
+    background-color: #ffb800;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    cursor: pointer;
+  }
+  
+  .preference__food.selected {
+    background-color: #ffb800;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    cursor: pointer;
+  }
+}
