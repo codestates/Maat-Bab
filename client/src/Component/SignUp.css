@@ -23,7 +23,6 @@
   font-size: 25px;
   font-weight: 700;
 }
-.signup__email,
 .signup__password,
 .signup__passwordcheck,
 .signup__username{
@@ -31,6 +30,14 @@
   width: 80%;
   height: 35%;
   border: 1px solid gray;
+  color: black;
+}
+.signup__email{
+  border-radius: 10px;
+  width: 60%;
+  height: 35%;
+  border: 1px solid gray;
+  color: black;
 }
 .signup__errormessage{
   color: red;
@@ -67,6 +74,19 @@
   padding-top: 3%;
   width: 99vw;
   margin-top: -2%;
+}
+.signup__check__email{
+  background-color: #FFA512;
+  border: none;
+  border-radius: 20px;
+  width: 20%;
+  height: 30%;
+  font-size: 15px;
+  font-weight: 700;
+}
+.signup__check__email:hover{
+  border: 2px solid black;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px){
   .signup__background{

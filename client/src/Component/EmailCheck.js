@@ -1,10 +1,33 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import './EmailCheck.css';
+import FailModal from '../Modal/FailModal';
+import SuccessModal from '../Modal/SuccessModal';
+import axios from 'axios';
 
 
-function EmailCheck() {
+function EmailCheck({certificationCode, email}) {
+
+    const [value, setValue] = useState('')
+    const [modal,setModal] = useState('')
+
+    const onchange = (e) => {
+        setValue(e.target.value)
+    }
+
+    const checkCode = async() => {
+        if(value === certificationCode){
+            axios.patch(`http://localhost:80/certification/${email}`)
+            setModal('success')
+        }else{
+            alert('인증번호가 일치하지 않습니다')
+        }
+    }
+    const reSend = () => {
+        //한번 더 보내는 요청
+    }
     return (
         <div className='emailcheck__background'>
+            {modal === 'success' ? <SuccessModal/ > : null}
             <div className='emailcheck__content__container'>
                 <h2 className='emailcheck__title'>이메일 인증</h2>
                 <ul className='emailcheck__messages__cocntainer'>
@@ -13,9 +36,9 @@ function EmailCheck() {
                     메일을 확인해주세요 :)</li>
                 </ul>
                 <div className='emailcheck__button__container'>
-                    <span className='emailcheck__button__name'>E-Mail</span><span className='emailcheck__button__message'>※ 이메일을 받지 못하셨나요?</span>
-                    <div className='emailcheck__button__email__input__div'><input type='email' className='emailcheck__button__email__input' value='example@example.com'></input></div>
-                    <button className='emailcheck__button__send__button'>인증메일 다시 보내기</button>
+                    <div className='emailcheck__button__email__input__div'><input onchange={(e) => onchange(e)} type='text' placeholder='인증번호를 입력해주세요' className='emailcheck__button__email__input'></input></div>
+                    <div className='emailcheck__send__button__div'><button onClick={checkCode} className='emailcheck__send__button'>확인</button></div>
+                    <button onClick={reSend} className='emailcheck__button__send__button'>인증메일 다시 보내기</button>
                 </div>
             </div>
         </div>

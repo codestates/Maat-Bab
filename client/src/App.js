@@ -17,6 +17,8 @@ import EmailCheck from './Component/EmailCheck'
 function App() {
   const history = useHistory();
   const [isLogin, setIsLogin] = useState(false)
+  const [certificationCode,setCertificationCode] = useState('')
+  const [email, setEamil] = useState('')
   
   // const [userInfo, setUserInfo] = useState(null);
   const [userInfo, setUserInfo] = useState({
@@ -55,7 +57,7 @@ function App() {
           <SignIn />
         </Route>
         <Route path='/signup'>
-            <SignUp />
+            <SignUp setEamil={setEamil} email={email} certificationCode={certificationCode} setCertificationCode={setCertificationCode}/>
           </Route>
           <Route path='/editinfo'>
             <EditInfo />
@@ -63,7 +65,7 @@ function App() {
 
         {/* 회원가입 시 */}
           <Route path='/emailcheck'>
-            <EmailCheck />
+            <EmailCheck email={email} certificationCode={certificationCode}/>
           </Route>
 
           <Route path='/foodpreference'>

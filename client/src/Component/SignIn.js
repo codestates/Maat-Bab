@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './SignIn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
+import axios from 'axios';
 
 function SignIn() {
     const [isErr, setIsErr] = useState(false)
@@ -24,7 +25,8 @@ function SignIn() {
         setPasswordValue(e.target.value)
     }
     const loginHandler = () => {
-
+        axios.post('http://localhost4000/signin',{email:emailValue, password: passwordValue})
+        .then((res) => console.log(res))
         // dispatch(setLoginStatus(true))
     }
     return (
