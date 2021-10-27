@@ -6,6 +6,8 @@ module.exports = {
   signout: require('./user/signout'),
   kakao: require('./oauth/kakao'),
   userinfo: require('./user/userinfo'),
+  mail: require('./user/mail'),
+  certification: require('./user/certification'),
   sameEmail: require('./user/sameEmail'),
   // Taste
   taste: require('./taste'),
