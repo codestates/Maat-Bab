@@ -1,15 +1,5 @@
 const router = require('express').Router();
-const {
-  auth,
-  signup,
-  signin,
-  signout,
-  oauth,
-  userinfo,
-  taste,
-  card,
-  chat,
-} = require('../controllers');
+const { auth, signup, signin, signout, kakao, userinfo, taste, card, chat, sameEmail } = require('../controllers');
 
 // Basic
 router.get('/', (req, res) => {
@@ -21,7 +11,8 @@ router.get('/auth', auth.get);
 router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
-router.post('/oauth', oauth.post);
+router.post('/oauth/kakao', kakao.post);
+router.post('/sameEmail', sameEmail.post);
 router.get('/userinfo/:user_id', userinfo.get);
 router.patch('/userinfo/:user_id', userinfo.patch);
 router.delete('/userinfo/:user_id', userinfo.delete);

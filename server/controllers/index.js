@@ -4,8 +4,9 @@ module.exports = {
   signup: require('./user/signup'),
   signin: require('./user/signin'),
   signout: require('./user/signout'),
-  oauth: require('./user/oauth'),
+  kakao: require('./oauth/kakao'),
   userinfo: require('./user/userinfo'),
+  sameEmail: require('./sameEmail'),
   // Taste
   taste: require('./taste'),
   // Card
