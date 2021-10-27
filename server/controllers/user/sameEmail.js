@@ -2,11 +2,11 @@ const { User } = require('../../models');
 
 module.exports = {
   post: (req, res) => {
-    const email = req.body.email;
-    if (!email) {
+    const reqEmail = req.body.email;
+    if (!reqEmail) {
       return res.status(400).send('Enter your email');
     } else {
-      User.findOne({ where: { email: email } }).then((data) => {
+      User.findOne({ where: { email: reqEmail } }).then((data) => {
         if (data) {
           return res.status(200).send('Unavailable email');
         }
