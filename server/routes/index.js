@@ -12,7 +12,7 @@ router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
 router.post('/oauth/kakao', kakao.post);
-router.post('/sameEmail', sameEmail.post);
+router.post('/same-email', sameEmail.post);
 router.get('/userinfo/:user_id', userinfo.get);
 router.patch('/userinfo/:user_id', userinfo.patch);
 router.delete('/userinfo/:user_id', userinfo.delete);
