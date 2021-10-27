@@ -15,6 +15,7 @@ module.exports = {
 
       const { email } = req.params;
       const { certificationCode } = req.body;
+      console.log(certificationCode)
       if (!email || !certificationCode) {
         return res.status(400).send('Check email or certificationCode');
       }

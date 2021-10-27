@@ -4,7 +4,7 @@ import './SignUp.css';
 import axios from 'axios';
 
 
-function SignUp({setCertificationCode,certificationCode, email, setEamil}) {
+function SignUp({certificationCode, email, setEamil}) {
     const history = useHistory()
     const [userName, setUserName] = useState('')
     const [passWord, setPassWord] = useState('')
@@ -12,16 +12,6 @@ function SignUp({setCertificationCode,certificationCode, email, setEamil}) {
     const [overlap, setOverlap] = useState(false)
     
 
-    const generateCertificationCode = () => {
-        const el = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-        const string_length = 20;
-        let result = '';
-        for (let i = 0; i < string_length; i++) {
-          const rnum = Math.floor(Math.random() * el.length);
-          result += el.substring(rnum, rnum + 1); 
-       }
-       return setCertificationCode(result); 
-   };
 
     const onChange1 = (e) =>{
         setPassWord(e.target.value)
@@ -43,7 +33,7 @@ function SignUp({setCertificationCode,certificationCode, email, setEamil}) {
         return /(?=.*[~`!@#$%\^&*()-+=]{1,50})/.test(character)
     }
     const pathChange = async() => {
-        if(email === '' || passWord === '' || ChPassWord ==='' || userName === '' || passWord !== ChPassWord || !email.includes('@')){
+        if(email === '' || passWord === '' || ChPassWord ==='' || userName === '' || passWord !== ChPassWord){
             return
         }else if(!validatePassword(passWord)){
             return alert('비밀번호는 특수문자 하나이상을 포함해야합니다')
@@ -52,8 +42,8 @@ function SignUp({setCertificationCode,certificationCode, email, setEamil}) {
            }else{
             let res = await axios.post('http://localhost:80/signup',{email:email,name:userName,password:passWord})
             if(res.status === 201){
-            await generateCertificationCode()
-            axios.post(`http://localhost:80/email/${email}`,{certificationCode})
+            axios.post(`http://localhost:80/mail/${email}`,{certificationCode:certificationCode})
+            
             history.push('/emailcheck')
            }
         }

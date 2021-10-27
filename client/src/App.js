@@ -27,6 +27,17 @@ function App() {
     name: '',
     etiquette: null,
   })
+  const generateCertificationCode = () => {
+    const el = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+    const string_length = 20;
+    let result = '';
+    for (let i = 0; i < string_length; i++) {
+      const rnum = Math.floor(Math.random() * el.length);
+      result += el.substring(rnum, rnum + 1); 
+   }
+   
+   return result
+};
 
   const isAuthenticated = async () => {
     try {
@@ -57,7 +68,7 @@ function App() {
           <SignIn />
         </Route>
         <Route path='/signup'>
-            <SignUp setEamil={setEamil} email={email} certificationCode={certificationCode} setCertificationCode={setCertificationCode}/>
+            <SignUp setEamil={setEamil} email={email} setCertificationCode={setCertificationCode} certificationCode={certificationCode}/>
           </Route>
           <Route path='/editinfo'>
             <EditInfo />
@@ -65,7 +76,7 @@ function App() {
 
         {/* 회원가입 시 */}
           <Route path='/emailcheck'>
-            <EmailCheck email={email} certificationCode={certificationCode}/>
+            <EmailCheck email={email} certificationCode={certificationCode} />
           </Route>
 
           <Route path='/foodpreference'>
