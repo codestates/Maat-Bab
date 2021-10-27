@@ -1,0 +1,8 @@
+.successmodal__background{
+  width: 99vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  top: 0;
+}
