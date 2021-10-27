@@ -9,6 +9,8 @@ const {
   taste,
   card,
   chat,
+  mail,
+  certification,
 } = require('../controllers');
 
 // Basic
@@ -30,6 +32,8 @@ router.get('/userinfo/taste/:user_id', userinfo.taste.user_id.get);
 router.patch('/userinfo/taste/:user_id', userinfo.taste.user_id.patch);
 router.get('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.get);
 router.patch('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.patch);
+router.post('/mail/:email', mail.email.post);
+router.patch('/certification/:email', certification.email.patch);
 
 // Card
 router.get('/card', card.get);

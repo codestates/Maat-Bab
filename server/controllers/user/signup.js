@@ -13,6 +13,7 @@ module.exports = {
         password,
         name,
         oauth: false,
+        certification: false,
       },
     })
       .then(([result, created]) => {

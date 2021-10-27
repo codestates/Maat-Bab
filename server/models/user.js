@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       etiquette: DataTypes.STRING,
       oauth: DataTypes.BOOLEAN,
+      certification: DataTypes.BOOLEAN,
     },
     {
       sequelize,
