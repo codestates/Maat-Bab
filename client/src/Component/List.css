@@ -1,0 +1,28 @@
+.list {
+  width: 28%;
+  /* padding: 20px; */
+  background-color: white;
+  border: 4px solid lightpink;
+}
+
+.list__header {
+  height: 15%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.list__header__title {
+  font-size: 26px;
+  color: #ffa512;
+
+}
+
+.list__header__text {
+  font-size: 18px;
+  color: #a4a0a0;
+  font-weight: 500;
+}

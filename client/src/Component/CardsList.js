@@ -1,10 +1,16 @@
 import React from 'react';
-import Card from './Card'
+import Card from './Card';
+import './CardsList.css';
+
 function CardsList() {
     return (
         <div className='cardslist'>
             
-            <Card />
+            <Card className='card__section'/>
+            <Card className='card__section'/>
+            <Card className='card__section'/>
+            <Card className='card__section'/>
+            <Card className='card__section'/>
 
         </div>
     )
