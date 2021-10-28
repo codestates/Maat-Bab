@@ -22,6 +22,8 @@ import EmailCheck from './Component/EmailCheck';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 
+axios.defaults.withCredentials = true;
+
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -92,7 +94,7 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <UserManner />
+            <UserManner userInfo={initial.userInfo}/>
           </Route>
 
           <Route exact path='/'>
