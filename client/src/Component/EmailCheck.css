@@ -44,22 +44,13 @@
   margin-top: 15%;
   height: 30%;
 }
-.emailcheck__button__name{
-  font-size: 30px;
-  font-weight: 700;
-}
-.emailcheck__button__message{
-  font-size: 27px;
-  color: red;
-  margin-left: 3%;
-}
 .emailcheck__button__email__input{
   width: 100%;
   height: 100%;
   border-radius: 20px;
   border: none;
-  background-color: lightgray;
-  color: gray;
+  background-color: rgb(235, 231, 231);
+  color: black;
   text-align: center;
   font-size: 20px;
 }
@@ -82,7 +73,24 @@
 .emailcheck__button__send__button:hover{
   color: white;
 }
-
+.emailcheck__send__button__div{
+  height: 25%;
+  margin-top: 3%;
+  align-items: center;
+}
+.emailcheck__send__button{
+  border: none;
+  background-color: #FF7A00;
+  width: 90%;
+  height: 100%;
+  border-radius: 30px;
+  font-size: 25px;
+  font-weight: 700;
+}
+.emailcheck__send__button:hover{
+  border: 2px solid black;
+  color: white;
+}
 @media screen and (max-width: 768px){
   .emailcheck__background{
     background-image: none;

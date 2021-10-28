@@ -3,9 +3,13 @@ import './Nav.css';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginStatus, setUserInfo } from '../actions';
 
-function Nav({isLogin, logoutHandler}) {
+function Nav({logoutHandler}) {
     const history = useHistory();
+    const dispatch = useDispatch();
+    const initail = useSelector(state => state.userReducer);
 
     const [toggle, setToggle] = useState(false)
 
@@ -43,9 +47,9 @@ function Nav({isLogin, logoutHandler}) {
                     </li>
                 </ul>
                 <ul className={toggle ? 'navigation__bar__buttons action' : 'navigation__bar__buttons'}>
-                    {isLogin ? <li><button className='navigation__button' onClick={MoveEditInfo}>마이페이지</button></li> :
+                    {initail.isLogin ? <li><button className='navigation__button' onClick={MoveEditInfo}>마이페이지</button></li> :
                     <li><button className='navigation__button' onClick={MoveSignUp}>회원가입</button></li>}
-                    {isLogin ? <li><button className='navigation__button' onClick={logoutHandler}>로그아웃</button></li> :
+                    {initail.isLogin ? <li><button className='navigation__button' onClick={logoutHandler}>로그아웃</button></li> :
                    <li><button className='navigation__button' onClick={MoveLogin}>로그인</button></li>}
                 </ul>
 
