@@ -3,13 +3,15 @@ import './SignIn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function SignIn() {
+    const history = useHistory();
     const [isErr, setIsErr] = useState(false)
     const [emailValue, setEmailValue] = useState('')
     const [passwordValue, setPasswordValue] = useState('')
     const dispatch = useDispatch();
-    const loginState = useSelector(state => state.userReducer);
+    const initail = useSelector(state => state.userReducer);
 
 
     const emailInput = (e) => {
@@ -25,9 +27,15 @@ function SignIn() {
         setPasswordValue(e.target.value)
     }
     const loginHandler = () => {
-        axios.post('http://localhost4000/signin',{email:emailValue, password: passwordValue})
-        .then((res) => console.log(res))
-        // dispatch(setLoginStatus(true))
+        axios.post('http://localhost:80/signin',{email:emailValue, password: passwordValue})
+        .then((res) => {
+            if(res.status === 200){
+                let data = res.data
+                dispatch(setLoginStatus(true))
+                dispatch(setUserInfo(data.email, data.name, data.etiqette, data.oauth, data.certification))
+                history.push('/main')
+            }
+        })
     }
     return (
         <div>
