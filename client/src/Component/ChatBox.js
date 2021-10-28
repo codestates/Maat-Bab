@@ -1,9 +1,10 @@
 import React from 'react';
+import './ChatBox.css';
 
 function ChatBox() {
     return (
-        <div>
-            
+        <div className='chatbox'>
+            <h3>ChatBox Component</h3>
         </div>
     )
 }
