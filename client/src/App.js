@@ -20,7 +20,7 @@ import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoginStatus, deleteUserInfo } from './actions';
+import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 
 function App() {
   const history = useHistory();
@@ -29,25 +29,27 @@ function App() {
   const [certificationCode, setCertificationCode] = useState('');
   const [email, setEamil] = useState('');
 
-  // const [userInfo, setUserInfo] = useState(null);
+  const isAuthenticated = async () => {
+    try {
+      await axios
+        .get('http://localhost:80/auth')
+        .then((res) => {
+          if (res.data) {
+            console.log('res.data: ', res.data);
+            const { email, name, etiquette, oauth, certification } = res.data;
+            dispatch(setUserInfo(email, name, etiquette, oauth, certification))
 
-  // const isAuthenticated = async () => {
-  //   try {
-  //     await axios
-  //       .get('http://localhost:80/auth')
-  //       .then((res) => {
-  //         if (res.data) setUserInfo(res.data);
-  //         console.log('isAuthenticated func runned');
-  //       })
-  //       .catch((err) => console.log('authenticate failed'));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+            console.log('isAuthenticated func runned');}
+        })
+        .catch((err) => console.log('authenticate failed'));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  // useEffect(() => {
-  //   isAuthenticated();
-  // }, []);
+  useEffect(() => {
+    isAuthenticated();
+  }, []);
 
   const logoutHandler = () => {
     dispatch(setLoginStatus(false))
@@ -94,11 +96,11 @@ function App() {
           </Route>
 
           <Route exact path='/'>
-            {/* {!userInfo.etiquette ? (
-              <Redirect to='/foodpreference' />
-            ) : (
+            {initial.userInfo.certification ? (
               <AboutPage />
-            )} */}
+            ) : (
+              <Redirect to='/foodpreference' />
+            )}
           </Route>
 
           <Route path='/main'>
