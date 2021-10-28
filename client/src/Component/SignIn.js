@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import './SignIn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function SignIn() {
+    const history = useHistory();
     const [isErr, setIsErr] = useState(false)
     const [emailValue, setEmailValue] = useState('')
     const [passwordValue, setPasswordValue] = useState('')
     const dispatch = useDispatch();
-    const loginState = useSelector(state => state.userReducer);
-
+    const initail = useSelector(state => state.userReducer);
+    const REDIRECT_URI = 'http://localhost:3000/oauth'
+    const KAKAO_KEY = 'd855a9d956eb43b89b0fbd2614002ee9'
+    const PATH = "https://kauth.kakao.com/oauth/authorize"
+    const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
     const emailInput = (e) => {
         setEmailValue(e.target.value)
@@ -24,8 +30,18 @@ function SignIn() {
         setPasswordValue(e.target.value)
     }
     const loginHandler = () => {
-
-        // dispatch(setLoginStatus(true))
+        axios.post('http://localhost:80/signin',{email:emailValue, password: passwordValue})
+        .then((res) => {
+            if(res.status === 200){
+                let data = res.data
+                dispatch(setLoginStatus(true))
+                dispatch(setUserInfo(data.user_id, data.email, data.name, data.etiqette, data.oauth, data.certification))
+                history.push('/')
+            }
+        })
+    }
+    const kakaoLogin = () => {
+        window.location.href=URL
     }
     return (
         <div>
@@ -47,7 +63,7 @@ function SignIn() {
                     <ul className='signin__button__container'>
                         <li><button onClick={loginHandler} className='signin__button__login'>로그인</button></li>
                         <li><button className='signin__button__login__google'><div className='google__logo'></div>구글 로그인</button></li>
-                        <li><button className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
+                        <li><button onClick={kakaoLogin} className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
                     </ul>
                 </div>
             </div>            
