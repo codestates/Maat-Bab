@@ -92,14 +92,14 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <UserManner/>
+            <UserManner />
           </Route>
 
           <Route exact path='/'>
-            {initial.userInfo.certification ? (
-              <AboutPage />
-            ) : (
+            {initial.userInfo.certification && !initial.userInfo.etiquette ? (
               <Redirect to='/foodpreference' />
+              ) : (
+              <AboutPage />
             )}
           </Route>
 
