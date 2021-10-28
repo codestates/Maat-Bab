@@ -32,7 +32,7 @@ function SignIn() {
             if(res.status === 200){
                 let data = res.data
                 dispatch(setLoginStatus(true))
-                dispatch(setUserInfo(data.email, data.name, data.etiqette, data.oauth, data.certification))
+                dispatch(setUserInfo(data.user_id, data.email, data.name, data.etiqette, data.oauth, data.certification))
                 history.push('/main')
             }
         })

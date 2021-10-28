@@ -12,6 +12,7 @@ const userReducer = (state = initialState, action) => {
     case SET_USERINFO:
       return Object.assign({}, state, {
         userInfo: {
+          user_id: action.payload.user_id,
           email: action.payload.email,
           name: action.payload.name,
           etiquette: action.payload.etiquette,

@@ -17,10 +17,11 @@ export const setLoginStatus =  (status) => {
     }
 }
 
-export const setUserInfo = (email, name, etiquette, oauth, certification) => {
+export const setUserInfo = (user_id, email, name, etiquette, oauth, certification) => {
     return {
         type: SET_USERINFO,
         payload:{
+            user_id,
             email,
             name,
             etiquette,

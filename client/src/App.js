@@ -36,8 +36,8 @@ function App() {
         .then((res) => {
           if (res.data) {
             console.log('res.data: ', res.data);
-            const { email, name, etiquette, oauth, certification } = res.data;
-            dispatch(setUserInfo(email, name, etiquette, oauth, certification))
+            const { user_id, email, name, etiquette, oauth, certification } = res.data;
+            dispatch(setUserInfo(user_id, email, name, etiquette, oauth, certification))
 
             console.log('isAuthenticated func runned');}
         })
@@ -88,7 +88,7 @@ function App() {
           </Route>
 
           <Route path='/foodpreference'>
-            <FoodPreference/>
+            <FoodPreference userInfo={initial.userInfo} />
           </Route>
 
           <Route path='/usermanner'>
