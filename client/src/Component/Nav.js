@@ -9,7 +9,7 @@ import { setLoginStatus, setUserInfo } from '../actions';
 function Nav({logoutHandler}) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const initail = useSelector(state => state.userReducer);
+    const initial = useSelector(state => state.userReducer);
 
     const [toggle, setToggle] = useState(false)
 
@@ -47,9 +47,9 @@ function Nav({logoutHandler}) {
                     </li>
                 </ul>
                 <ul className={toggle ? 'navigation__bar__buttons action' : 'navigation__bar__buttons'}>
-                    {initail.isLogin ? <li><button className='navigation__button' onClick={MoveEditInfo}>마이페이지</button></li> :
+                    {initial.isLogin ? <li><button className='navigation__button' onClick={MoveEditInfo}>마이페이지</button></li> :
                     <li><button className='navigation__button' onClick={MoveSignUp}>회원가입</button></li>}
-                    {initail.isLogin ? <li><button className='navigation__button' onClick={logoutHandler}>로그아웃</button></li> :
+                    {initial.isLogin ? <li><button className='navigation__button' onClick={logoutHandler}>로그아웃</button></li> :
                    <li><button className='navigation__button' onClick={MoveLogin}>로그인</button></li>}
                 </ul>
 

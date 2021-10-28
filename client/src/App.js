@@ -19,35 +19,40 @@ import Footer from './Component/Footer';
 import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
+import Oauth from './Component/Oauth'
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoginStatus, deleteUserInfo } from './actions';
+import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
+
+axios.defaults.withCredentials = true;
 
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const initail = useSelector(state => state.userReducer);
+  const initial = useSelector(state => state.userReducer);
   const [certificationCode, setCertificationCode] = useState('');
   const [email, setEamil] = useState('');
 
-  // const [userInfo, setUserInfo] = useState(null);
+  const isAuthenticated = async () => {
+    try {
+      await axios
+        .get('http://localhost:80/auth')
+        .then((res) => {
+          if (res.data) {
+            console.log('res.data: ', res.data);
+            const { user_id, email, name, etiquette, oauth, certification } = res.data;
+            dispatch(setUserInfo(user_id, email, name, etiquette, oauth, certification))
 
-  // const isAuthenticated = async () => {
-  //   try {
-  //     await axios
-  //       .get('http://localhost:80/auth')
-  //       .then((res) => {
-  //         if (res.data) setUserInfo(res.data);
-  //         console.log('isAuthenticated func runned');
-  //       })
-  //       .catch((err) => console.log('authenticate failed'));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+            console.log('isAuthenticated func runned');}
+        })
+        .catch((err) => console.log('authenticate failed'));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  // useEffect(() => {
-  //   isAuthenticated();
-  // }, []);
+  useEffect(() => {
+    isAuthenticated();
+  }, []);
 
   const logoutHandler = () => {
     dispatch(setLoginStatus(false))
@@ -86,19 +91,19 @@ function App() {
           </Route>
 
           <Route path='/foodpreference'>
-            <FoodPreference/>
+            <FoodPreference userInfo={initial.userInfo} />
           </Route>
 
           <Route path='/usermanner'>
-            <UserManner/>
+            <UserManner userInfo={initial.userInfo}/>
           </Route>
 
           <Route exact path='/'>
-            {/* {!userInfo.etiquette ? (
+            {initial.userInfo.certification && !initial.userInfo.etiquette ? (
               <Redirect to='/foodpreference' />
-            ) : (
+              ) : (
               <AboutPage />
-            )} */}
+            )}
           </Route>
 
           <Route path='/main'>
@@ -107,6 +112,10 @@ function App() {
 
           <Route path='/chat'>
             <ChatPage />
+          </Route>
+
+          <Route path='/oauth'>
+            <Oauth />
           </Route>
 
           <Route path='/makemeet'>
