@@ -62,7 +62,8 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
       });
       if (res.status === 201) {
         const certificationCode = generateCertificationCode();
-        axios.post(`http://localhost:80/mail/${email}`, {
+        axios.post(`http://localhost:80/mail`, {
+          email,
           certificationCode,
         });
         certificationCodeHandler(certificationCode);
