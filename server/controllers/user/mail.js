@@ -1,42 +1,39 @@
 require('dotenv').config();
 
 module.exports = {
-  email: {
-    post: (req, res) => {
-      const nodemailer = require('nodemailer');
+  post: (req, res) => {
+    const nodemailer = require('nodemailer');
 
-      const transporter = {
-        service: 'Gmail',
-        auth: {
-          user: process.env.NODEMAILER_USER,
-          pass: process.env.NODEMAILER_PASS,
-        },
-      };
+    const transporter = {
+      service: 'Gmail',
+      auth: {
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASS,
+      },
+    };
 
-      const { email, certificationCode } = req.body;
-      if (!email || !certificationCode) {
-        return res.status(400).send();
-      }
+    const { email, certificationCode } = req.body;
+    if (!email || !certificationCode) {
+      return res.status(400).send();
+    }
 
-      const send = async (content) => {
-        nodemailer
-          .createTransport(transporter)
-          .sendMail(content, (err, info) => {
-            if (err) {
-              console.log(err);
-              return res.status(500).send();
-            }
-            console.log(info);
-            return res.status(200).send({ email, certificationCode });
-          });
-      };
+    const send = async (content) => {
+      nodemailer.createTransport(transporter).sendMail(content, (err, info) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send();
+        }
+        console.log(info);
+        return res.status(200).send({ email, certificationCode });
+      });
+    };
 
-      const content = {
-        from: 'devchild5787@gmail.com',
-        to: email,
-        subject: '[ Maat-Bab ] 인증 메일입니다.',
-        text: '',
-        html: `<table
+    const content = {
+      from: 'devchild5787@gmail.com',
+      to: email,
+      subject: '[ Maat-Bab ] 인증 메일입니다.',
+      text: '',
+      html: `<table
         style="background-color: white; border: 1px solid #c7c7c7"
         width="600px"
         height="80%"
@@ -159,9 +156,8 @@ module.exports = {
           <td rowspan="100" width="50px"></td>
         </tr>
       </table>`,
-      };
+    };
 
-      return send(content);
-    },
+    return send(content);
   },
 };

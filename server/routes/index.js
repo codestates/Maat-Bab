@@ -34,8 +34,8 @@ router.get('/userinfo/taste', userinfo.taste.get);
 router.patch('/userinfo/taste', userinfo.taste.patch);
 router.get('/userinfo/etiquette', userinfo.etiquette.get);
 router.patch('/userinfo/etiquette', userinfo.etiquette.patch);
-router.post('/mail', mail.email.post);
-router.patch('/certification', certification.email.patch);
+router.post('/mail', mail.post);
+router.patch('/certification', certification.patch);
 
 // Card
 router.get('/card', card.get);
