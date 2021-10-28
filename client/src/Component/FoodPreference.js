@@ -3,14 +3,17 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FoodPreferenceList from './FoodPreferenceList';
 import './FoodPreference.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 function FoodPreference({ userInfo }) {
     const history = useHistory();
     const [foodList, setFoodList] = useState([]);
+    const dispatch = useDispatch();
+    // const initial = useSelector(state => state.userReducer);
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
-        await axios.get('http://localhost:4000/taste')
+        await axios.get('http://localhost:80/taste')
         .then(res => {
             const data = res.data;
             const list = data.map(el => ({
@@ -35,18 +38,21 @@ function FoodPreference({ userInfo }) {
         setFoodList(newList)
     }
 
-    // const user_id = 1; //dummy data
-    const { user_id } = userInfo;
     const selectDoneGoToManner = async () => {
-        const myFoodList = foodList.map(food => food.taste_id)
+        const pickedList = foodList.filter(food => food.selected);
+        const myFoodList = pickedList.map(food => food.taste_id);
+        console.log(myFoodList);
+
         if (foodList.length !== 0) {
-            await axios.patch(`http://localhost:4000/userinfo/taste/${user_id}`, {
-                'taste_id': [...myFoodList]
-            })
-            .then(res => {
-                console.log(res.data);
-            })
-            history.push('/usermanner'); // 식사예절 페이지로 이동
+            await axios.patch('http://localhost:80/userinfo/taste', {
+                'taste_id': myFoodList
+            }, { withCredentials: true })
+                .then(res => {
+                    console.log(res.data);
+                    // setState 리듀서
+                    history.push('/usermanner'); // 식사예절 페이지로 이동
+                })
+            .catch(err => console.log(err))
         }
     }
 
