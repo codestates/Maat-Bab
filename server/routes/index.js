@@ -16,7 +16,7 @@ const {
 
 // Basic
 router.get('/', (req, res) => {
-  res.status(200).send('hello maat-bab');
+  res.status(200).send('<img src="/logo1.png">');
 });
 
 // User

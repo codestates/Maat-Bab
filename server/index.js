@@ -21,6 +21,7 @@ const PORT = options ? process.env.HTTPS_PORT || 443 : process.env.HTTP_PORT || 
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static('public'));
 app.use(
   cors({
     origin: true,
