@@ -6,14 +6,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const https = require('https');
 const fs = require('fs');
-const options =
-  process.env.NODE_ENV === 'production'
-    ? {
-        key: fs.readFileSync(__dirname + '/key.pem'),
-        cert: fs.readFileSync(__dirname + '/cert.pem'),
-        // ca: fs.readFileSync(__dirname + '/인증서경로/ca-chain-bundle.pem'),
-      }
-    : undefined;
+// const options =
+//   process.env.NODE_ENV === 'production'
+//     ? {
+//         key: fs.readFileSync(__dirname + '/key.pem'),
+//         cert: fs.readFileSync(__dirname + '/cert.pem'),
+//         // ca: fs.readFileSync(__dirname + '/인증서경로/ca-chain-bundle.pem'),
+//       }
+//     : undefined;
+const options = undefined;
 
 const server = options ? require('https').createServer(options, app) : require('http').createServer(app);
 const PORT = options ? process.env.HTTPS_PORT || 443 : process.env.HTTP_PORT || 80;
