@@ -43,7 +43,7 @@ function UserManner({ userInfo }) {
         // 식사 예절 patch 요청
         const myMannerList = mannerList.map(manner => manner.text)
         if (mannerList.length !== 0) {
-            await axios.patch(`http://localhost:4000/userinfo/etiquette`, {
+            await axios.patch(`http://localhost:80/userinfo/etiquette`, {
                 'etiquette': [...myMannerList]
             })
             .then(res => {
