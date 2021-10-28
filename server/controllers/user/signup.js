@@ -12,6 +12,7 @@ module.exports = {
         email,
         password,
         name,
+        etiquette: null,
         oauth: false,
         certification: false,
       },
