@@ -1,10 +1,5 @@
 const { User, Taste, User_taste } = require('../../models');
-const {
-  generateAccessToken,
-  sendAccessToken,
-  generateRefreshToken,
-  sendRefreshToken,
-} = require('../tokenFunctions');
+const { generateAccessToken, sendAccessToken, generateRefreshToken, sendRefreshToken } = require('../tokenFunctions');
 const { isAuth } = require('../../functions');
 
 module.exports = {
@@ -17,9 +12,11 @@ module.exports = {
     return res.status(400).send('Failed to get userinfo');
   },
   patch: async (req, res) => {
-    if (isAuth(req, res)) {
+    const userinfo = isAuth(req, res);
+    const user_id = userinfo.user_id;
+
+    if (userinfo) {
       const { name, password } = req.body;
-      const { user_id } = req.params;
 
       if (!name || !password) {
         return res.status(400).send('Check name and password');
@@ -38,16 +35,16 @@ module.exports = {
           }).then((data) => {
             delete data.dataValues.password;
             data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
-            const userinfo = data.dataValues;
+            const newUserinfo = data.dataValues;
             res.clearCookie('accessToken');
             res.clearCookie('refreshToken');
-            const accessToken = generateAccessToken(userinfo);
-            const refreshToken = generateRefreshToken(userinfo);
-            generateAccessToken(userinfo);
-            generateRefreshToken(userinfo);
+            const accessToken = generateAccessToken(newUserinfo);
+            const refreshToken = generateRefreshToken(newUserinfo);
+            generateAccessToken(newUserinfo);
+            generateRefreshToken(newUserinfo);
             sendAccessToken(res, accessToken);
             sendRefreshToken(res, refreshToken);
-            return res.status(200).send(userinfo);
+            return res.status(200).send(newUserinfo);
           });
         })
         .catch((err) => {
@@ -60,8 +57,8 @@ module.exports = {
   },
   delete: async (req, res) => {
     const userinfo = isAuth(req, res);
+    const user_id = userinfo.user_id;
     if (userinfo) {
-      const { user_id } = req.params;
       await User.destroy({
         where: { user_id },
       })
