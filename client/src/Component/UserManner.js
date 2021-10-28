@@ -9,40 +9,41 @@ function UserManner({ userInfo }) {
     const history = useHistory();
     const [mannerList, setMannerList] = useState(MannerData);
     
+    const { user_id, etiquette } = userInfo;
+
     useEffect(() => {
         setMannerList(mannerList)
     }, [mannerList])
 
-    const selectManner = (id, text) => {
-        if (!mannerList[id]) {
-            mannerList.push({
-                manner_id: id,
-                text: text,
-            })
-        }
-        const newList = mannerList.map(manner => {
-            if (manner.manner_id === id) {
-                console.log(4444);
-                return {
-                    ...manner,
-                    selected: !manner.selected,
-                };
-            } else {
-                console.log(5555);
-                return manner;
-            }
-        })
-        setMannerList(newList);
-    }
 
-    const { user_id } = userInfo;
-    // const user_id = 1; //dummy data;
+    function selectMannerHandler (id, text) {
+        if (text !== null && text !== '' && text !== '추가할 식사 예절을 입력해 주세요' && text.length > 1) {
+            if (mannerList.every(manner => manner.manner_id !== id && manner.text !== text)) {
+                mannerList.push({
+                    manner_id: mannerList.length,
+                    text: text,
+                    // selected: true
+                })
+            }
+            const newList = mannerList.map(manner => {
+                if (manner.manner_id === id || manner.text === text) {
+                    return {
+                        ...manner,
+                        selected: !manner.selected,
+                    };
+                } else {
+                    return manner;
+                }
+            })
+            setMannerList(newList);
+        }
+    }
     
     const selectDoneRedirect = async () => {
         // 식사 예절 patch 요청
         const myMannerList = mannerList.map(manner => manner.text)
         if (mannerList.length !== 0) {
-            await axios.patch(`http://localhost:4000/userinfo/etiquette/${user_id}`, {
+            await axios.patch(`http://localhost:4000/userinfo/etiquette`, {
                 'etiquette': [...myMannerList]
             })
             .then(res => {
@@ -59,7 +60,7 @@ function UserManner({ userInfo }) {
                 지향하는 테이블 매너를 선택해 주세요
                 </div>
                 <div className='tablemanner__list__container'>
-                    <UserMannerList mannerList={mannerList} selectManner={selectManner}/>
+                    <UserMannerList mannerList={mannerList} selectHandler={selectMannerHandler} addHandler={selectMannerHandler}/>
                 </div>
                 <div className='tablemanner__button__container'>
                 {mannerList.every(manner => !manner.selected) ?
