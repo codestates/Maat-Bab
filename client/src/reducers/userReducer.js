@@ -1,7 +1,7 @@
-import { SET_LOGINSTATUS,SET_USERINFO,SET_TASTE } from "../actions/index";
+import { SET_LOGINSTATUS,SET_USERINFO,SET_TASTE, DELETE_USERINFO } from "../actions/index";
 import { initialState } from "./initialState";
 
-const userREducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_LOGINSTATUS:
@@ -25,9 +25,20 @@ const userREducer = (state = initialState, action) => {
           taste: action.payload.taste
         }
       })
+      case DELETE_USERINFO:
+        return Object.assign({}, state, {
+          userInfo:{
+            email:null,
+            name:null,
+            etiquette:null,
+            oauth:false,
+            certification:false,
+            taste:null
+          }
+        })
     default:
       return state;
   }
 }
 
-export default userREducer;
+export default userReducer;
