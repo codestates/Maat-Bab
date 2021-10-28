@@ -12,7 +12,10 @@ function SignIn() {
     const [passwordValue, setPasswordValue] = useState('')
     const dispatch = useDispatch();
     const initail = useSelector(state => state.userReducer);
-
+    const REDIRECT_URI = 'http://localhost:3000/oauth'
+    const KAKAO_KEY = 'd855a9d956eb43b89b0fbd2614002ee9'
+    const PATH = "https://kauth.kakao.com/oauth/authorize"
+    const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
     const emailInput = (e) => {
         setEmailValue(e.target.value)
@@ -37,6 +40,9 @@ function SignIn() {
             }
         })
     }
+    const kakaoLogin = () => {
+        window.location.href=URL
+    }
     return (
         <div>
             <div className='login__container'>
@@ -57,7 +63,7 @@ function SignIn() {
                     <ul className='signin__button__container'>
                         <li><button onClick={loginHandler} className='signin__button__login'>로그인</button></li>
                         <li><button className='signin__button__login__google'><div className='google__logo'></div>구글 로그인</button></li>
-                        <li><button className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
+                        <li><button onClick={kakaoLogin} className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
                     </ul>
                 </div>
             </div>            

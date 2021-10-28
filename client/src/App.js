@@ -19,6 +19,7 @@ import Footer from './Component/Footer';
 import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
+import Oauth from './Component/oauth'
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, deleteUserInfo } from './actions';
 
@@ -107,6 +108,10 @@ function App() {
 
           <Route path='/chat'>
             <ChatPage />
+          </Route>
+
+          <Route path='/oauth'>
+            <Oauth />
           </Route>
 
           <Route path='/makemeet'>
