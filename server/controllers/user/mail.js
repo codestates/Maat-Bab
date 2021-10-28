@@ -13,10 +13,9 @@ module.exports = {
         },
       };
 
-      const { email } = req.params;
-      const { certificationCode } = req.body;
+      const { email, certificationCode } = req.body;
       if (!email || !certificationCode) {
-        return res.status(400).send('Check email or certificationCode');
+        return res.status(400).send();
       }
 
       const send = async (content) => {
@@ -25,7 +24,7 @@ module.exports = {
           .sendMail(content, (err, info) => {
             if (err) {
               console.log(err);
-              return res.status(500).send('Internal Server Error');
+              return res.status(500).send();
             }
             console.log(info);
             return res.status(200).send({ email, certificationCode });

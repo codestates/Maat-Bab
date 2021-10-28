@@ -6,25 +6,25 @@ module.exports = {
     if (!region && !date) {
       const cards = await Card.findAll();
       if (!cards.length) {
-        return res.status(404).send('No Contents');
+        return res.status(404).send();
       }
       return res.status(200).send(cards);
     } else if (region && date) {
       const cards = await Card.findAll({ where: { region, date } });
       if (!cards.length) {
-        return res.status(404).send('No Contents');
+        return res.status(404).send();
       }
       return res.status(200).send(cards);
     } else if (region) {
       const cards = await Card.findAll({ where: { region } });
       if (!cards.length) {
-        return res.status(404).send('No Contents');
+        return res.status(404).send();
       }
       return res.status(200).send(cards);
     } else {
       const cards = await Card.findAll({ where: { date } });
       if (!cards.length) {
-        return res.status(404).send('No Contents');
+        return res.status(404).send();
       }
       return res.status(200).send(cards);
     }
@@ -32,7 +32,7 @@ module.exports = {
   post: async (req, res) => {
     const data = isAuth(req, res);
     if (!data) {
-      return res.status(401).send('Invalid accessToken');
+      return res.status(401).send();
     }
     const { user_id } = data;
     console.log('user_id', user_id);
@@ -46,9 +46,7 @@ module.exports = {
       chat_content,
     } = req.body;
     if (!region || !date || !headcount || !chat_title) {
-      return res
-        .status(400)
-        .send('Check region or date or headcount or chat_title');
+      return res.status(400).send();
     }
 
     if (restaurant_name) {
@@ -70,7 +68,7 @@ module.exports = {
         })
         .catch((err) => {
           console.log(err);
-          return res.status(500).send('Internal Server Error');
+          return res.status(500).send();
         });
     }
 
@@ -84,24 +82,24 @@ module.exports = {
       chat_content,
     }).catch((err) => {
       console.log(err);
-      return res.status(500).send('Internal Server Error');
+      return res.status(500).send();
     });
 
     await User_card.create({ card_id, user_id, host: true }).catch((err) => {
       console.log(err);
-      return res.status(500).send('Internal Server Error');
+      return res.status(500).send();
     });
 
     const card = await Card.findOne({ where: { card_id } }).catch((err) => {
       console.log(err);
-      return res.status(500).send('Internal Server Error');
+      return res.status(500).send();
     });
     return res.status(201).send(card);
   },
   user_id: {
     get: async (req, res) => {
       if (!isAuth(req, res)) {
-        return res.status(401).send('Invalid accessToken');
+        return res.status(401).send();
       }
 
       const { user_id } = req.params;
@@ -110,13 +108,13 @@ module.exports = {
         include: { model: Card },
       });
       if (!cards.length) {
-        return res.status(404).send('No contents');
+        return res.status(404).send();
       }
       return res.status(200).send(cards);
     },
     post: (req, res) => {
       if (!isAuth(req, res)) {
-        return res.status(401).send('Invalid accessToken');
+        return res.status(401).send();
       }
 
       const { user_id } = req.params;
@@ -126,7 +124,7 @@ module.exports = {
         defaults: { user_id, card_id, host: false },
       }).then(([result, created]) => {
         if (!created) {
-          return res.status(409).send('Already user exists in card');
+          return res.status(409).send();
         }
         return res.status(200).send(result);
       });
