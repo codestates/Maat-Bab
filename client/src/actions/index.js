@@ -2,6 +2,7 @@
 export const SET_LOGINSTATUS = 'SET_LOGINSTATUS'
 export const SET_USERINFO = 'SET_USERINFO'
 export const SET_TASTE = 'SET_TASTE'
+export const SET_CARDLIST = 'SET_CARDLIST'
 
 //actions create functions
 
@@ -30,6 +31,21 @@ export const setTaste = (taste) => {
         type: SET_TASTE,
         payload:{
             taste
+        }
+    }
+}
+
+export const setCardList = (region, date, time, headcount, restaurant_name, chat_title, chat_content) => {
+    return {
+        type: SET_CARDLIST,
+        payload:{
+            region,
+            date,
+            time,
+            headcount,
+            restaurant_name,
+            chat_title,
+            chat_content
         }
     }
 }
