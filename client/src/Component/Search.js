@@ -78,12 +78,12 @@ function Search({ searchCardHandler }) {
 
                     <span className='searchbar__date'>    
                         <span className='searchbar__title'>맞밥 날짜</span>
-                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={startDate} onChange={(date) => setStartDate(getFormatDate1(date))}popperPlacement="bottom" minDate={new Date()} /></span>
+                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={startDate} onChange={(date) => setStartDate(date)}popperPlacement="bottom" minDate={new Date()} /></span>
                     </span>             
                 </div>
 
                 <div className='searchbar__button__container'>
-                    <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate)}>조회하기</button>
+                    <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, startDate)}>조회하기</button>
                     <button className='search__make__button'>약속 만들기</button>
                 </div>
 

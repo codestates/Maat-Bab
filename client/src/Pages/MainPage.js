@@ -18,7 +18,8 @@ function MainPage() {
 
   
   const searchCardHandler = async (region, date) => {
-    const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${date}`)
+    const formatedDate = getFormatDate1(date);
+    const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${formatedDate}`)
       .then(res => {
         console.log(res.data)
         return res.data;

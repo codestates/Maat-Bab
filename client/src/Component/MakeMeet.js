@@ -20,10 +20,6 @@ function MakeMeet() {
     const [curPlace, setCurnPlace] = useState('찾기 버튼을 눌러주세요')
     const [roomName, setRoomName] = useState('')
 
-    async function getDate (date) {
-        setStartDate(date);
-    }
-
     const changeFind = () => {
         if(city !== '' && city2 !== ''){
             setIsFind(!isFind)
@@ -98,7 +94,7 @@ function MakeMeet() {
                     </div>
                     <div className='make__card__info__row__date'>
                         <span className='make__card__info__item__date'>맞밥 날짜</span>
-                        <span className='change'><DatePicker selected={startDate} onChange={(date) => getDate(date)} popperPlacement="bottom" minDate={new Date()}/></span>
+                        <span className='change'><DatePicker selected={startDate} onChange={(date) => setStartDate(date)} popperPlacement="bottom" minDate={new Date()}/></span>
                     </div>
                     <div className='make__card__info__row'>
                         <span className='make__card__info__item'>맞밥 시간</span>
