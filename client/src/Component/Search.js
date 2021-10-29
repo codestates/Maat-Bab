@@ -73,7 +73,7 @@ function Search({ searchCardHandler }) {
                         </span>
 
                         <span className='searchbar__region__second__container'>
-                            <input type='text' onChange={(e) => changeValue(e)} value={curPlace} placeholder='지역을 선택하고 음식점을 검색해 보세요'></input>
+                            <input className='searchbar__restaurant__search' type='text' onChange={(e) => changeValue(e)} value={curPlace} placeholder='음식점을 검색해 보세요'></input>
                             <button onClick={changeplace}><FaSearch className='search__icon' /></button>
                         </span>
                     </span>
