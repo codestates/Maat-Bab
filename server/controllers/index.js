@@ -13,6 +13,4 @@ module.exports = {
   taste: require('./taste'),
   // Card
   card: require('./card'),
-  // Chat
-  chat: require('./chat'),
 };
