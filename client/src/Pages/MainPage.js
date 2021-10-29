@@ -8,7 +8,7 @@ import './MainPage.css';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 
-function MainPage() {
+function MainPage({ isLogin }) {
   
   const [searchingRegion, setRegion] = useState('용산구')
   const [searchingDate, setDate] = useState(getFormatDate1(new Date()))
