@@ -1,0 +1,8 @@
+.chatpage {
+  background-color:#fffade;
+  display: flex;
+
+  width: 100%;
+  height: 800px;
+  margin-top: 40px;
+}
