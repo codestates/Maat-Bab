@@ -40,6 +40,15 @@ const express = require('express');
 
 const app = express();
 app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: true,
+    methods: ['GET', 'POST', 'OPTIONS', 'PATCH', 'DELETE'],
+    credentials: true,
+  })
+);
 
 // const key = fs.readFileSync(__dirname + '/key.pem', 'utf8');
 // const cert = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
