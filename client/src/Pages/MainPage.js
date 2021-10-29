@@ -10,14 +10,14 @@ import { getFormatDate1 } from '../functions/module';
 
 function MainPage({ isLogin }) {
 
-  const [curnPlace, setCurnPlace] = useState(null);
+  const [curnPlace, setCurnPlace] = useState('');
 
   const [cardData, setCardData] = useState(null)
   const [message, setMessage] = useState(null)
   
   const searchCardHandler = async (region, date, place) => {
     const formatedDate = getFormatDate1(date);
-    const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${formatedDate}`)
+    const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${formatedDate}&place=${decodeURIComponent(place)}`)
       .then(res => {
         return res.data;
       })
@@ -27,7 +27,7 @@ function MainPage({ isLogin }) {
       } else {
         setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
       }
-    setCurnPlace(null);
+    // setCurnPlace(null);
   }
 
   return (

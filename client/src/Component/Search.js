@@ -9,7 +9,7 @@ import { regionData } from '../resource/regionData';
 
 function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     
-    const [searchingRegion, setRegion] = useState(null)
+    const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
     
     const [isInserted, setIsInserted] = useState(false);
@@ -19,14 +19,19 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     const [placeInputValue, setPlaceInputValue] = useState('')
     const [searchingPlace, setSearchingPlace] = useState('')
 
-    const placeInputHandler = (event) =>{
-        setPlaceInputValue(event.target.value)
+
+    const placeInputHandler = (e) =>{
+        setPlaceInputValue(e.target.value);
+        console.log('e.target.value: ', e.target.value)
+        console.log('curnPlace: ', curnPlace)
+        console.log('placeInputValue: ',placeInputValue)
     }
 
     const changeplace = () => {
         if (city && city !== '' && district && district !== '') {
             setIsInserted(!isInserted)
-            setSearchingPlace(placeInputValue)
+            setSearchingPlace(placeInputValue);
+            console.log('searchingPlace: ', searchingPlace);
         } else {
             alert('지역을 선택해주세요')
         }
@@ -65,7 +70,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
                         </span>
 
                         <span className='searchbar__region__second__container'>
-                            <input className='searchbar__restaurant__search' type='text' onChange={placeInputHandler} value={curnPlace} placeholder='음식점을 검색해 보세요'></input>
+                            <input className='searchbar__restaurant__search' type='text' onChange={ placeInputHandler} value={placeInputValue} placeholder='음식점을 검색해 보세요'></input>
                             <button onClick={changeplace}><FaSearch className='search__icon' /></button>
                         </span>
                     </span>
