@@ -2,35 +2,53 @@ const { Restaurant, Card, User_card } = require('../../models');
 const { isAuth } = require('../../functions');
 module.exports = {
   get: async (req, res) => {
-    const { region, date, place } = req.query;
-    if (!region && !date) {
+    const { region, date, restaurant_name } = req.query;
+    if (!region && !date && !restaurant_name) {
       const cards = await Card.findAll();
       if (!cards.length) {
         return res.status(404).send();
       }
       return res.status(200).send(cards);
-    }
-    else if (region && date && place) {
-      const cards = await Card.findAll({where: {restaurant_name : place}});
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    }
-      else if (region && date) {
-      const cards = await Card.findAll({ where: { region, date } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region) {
+    } else if (region && !date && !restaurant_name) {
       const cards = await Card.findAll({ where: { region } });
       if (!cards.length) {
         return res.status(404).send();
       }
       return res.status(200).send(cards);
-    } else {
+    } else if (!region && date && !restaurant_name) {
       const cards = await Card.findAll({ where: { date } });
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    } else if (!region && !date && restaurant_name) {
+      const cards = await Card.findAll({ where: { restaurant_name } });
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    } else if (region && date && !restaurant_name) {
+      const cards = await Card.findAll({ where: { region, date } });
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    } else if (!region && date && restaurant_name) {
+      const cards = await Card.findAll({ where: { date, restaurant_name } });
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    } else if (region && !date && restaurant_name) {
+      const cards = await Card.findAll({ where: { region, restaurant_name } });
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    } else {
+      const cards = await Card.findAll({
+        where: { region, date, restaurant_name },
+      });
       if (!cards.length) {
         return res.status(404).send();
       }
