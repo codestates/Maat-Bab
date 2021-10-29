@@ -6,9 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { getFormatDate1 } from '../functions/module';
 
 function MakeMeet() {
     const region = ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
+
     const [startDate, setStartDate] = useState(new Date());
     const [isFind, setIsFind] = useState(false);
     const [time, setTime] = useState('')
@@ -44,7 +46,7 @@ function MakeMeet() {
         if(curPlace !== '' && roomName !== ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             restaurant_name:curPlace,
@@ -53,7 +55,7 @@ function MakeMeet() {
         }else if(curPlace !== '' && roomName === ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             restaurant_name:curPlace,
@@ -62,7 +64,7 @@ function MakeMeet() {
         }else if(curPlace === '' && roomName !== ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             chat_title:roomName
