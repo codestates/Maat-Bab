@@ -2,14 +2,22 @@ const { Restaurant, Card, User_card } = require('../../models');
 const { isAuth } = require('../../functions');
 module.exports = {
   get: async (req, res) => {
-    const { region, date } = req.query;
+    const { region, date, place } = req.query;
     if (!region && !date) {
       const cards = await Card.findAll();
       if (!cards.length) {
         return res.status(404).send();
       }
       return res.status(200).send(cards);
-    } else if (region && date) {
+    }
+    else if (region && date && place) {
+      const cards = await Card.findAll({where: {restaurant_name : place}});
+      if (!cards.length) {
+        return res.status(404).send();
+      }
+      return res.status(200).send(cards);
+    }
+      else if (region && date) {
       const cards = await Card.findAll({ where: { region, date } });
       if (!cards.length) {
         return res.status(404).send();
