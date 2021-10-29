@@ -6,7 +6,8 @@ import './Search.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
-import Kakao from '../Component/KakaoMap'
+import Kakao from '../Component/KakaoMap';
+import { getFormatDate1 } from '../functions/module';
 
 function Search({ searchCardHandler }) {
 
@@ -77,7 +78,7 @@ function Search({ searchCardHandler }) {
 
                     <span className='searchbar__date'>    
                         <span className='searchbar__title'>맞밥 날짜</span>
-                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={startDate} onChange={(date) => setStartDate(date)}popperPlacement="bottom" minDate={new Date()} /></span>
+                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={startDate} onChange={(date) => setStartDate(getFormatDate1(date))}popperPlacement="bottom" minDate={new Date()} /></span>
                     </span>             
                 </div>
 

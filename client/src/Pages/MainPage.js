@@ -6,23 +6,18 @@ import LoginModal from '../Modal/LogInModal';
 import JoinModal from '../Modal/JoinModal';
 import './MainPage.css';
 import axios from 'axios';
+import { getFormatDate1 } from '../functions/module';
 
 function MainPage() {
   
   const [searchingRegion, setRegion] = useState('용산구')
-  const [searchingDate, setDate] = useState('카드를 클릭하여 맞밥 약속에 참여해보세요!')
+  const [searchingDate, setDate] = useState(getFormatDate1(new Date()))
 
   const [cardData, setCardData] = useState(null)
   const [message, setMessage] = useState(null)
 
   
   const searchCardHandler = async (region, date) => {
-    // console.log('region: ', region)
-    // const encodedRegion = encodeURIComponent(region);
-    // const decodedRegion = decodeURIComponent(region);
-    // console.log('encoded: ', encodedRegion)
-    // console.log('decoded: ', decodedRegion)
-    // const result = await axios.get(`http://localhost:80/card?region=${decodedRegion}&date=${date}`)
     const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${date}`)
       .then(res => {
         console.log(res.data)
@@ -30,7 +25,7 @@ function MainPage() {
       })
       .catch(err => console.log(err));
     
-    // const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent('용산구')}&date=`)
+    // const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent('중구')}&date=2021-11-14T04:05:04.000Z`)
     //   .then(res => {
     //     console.log(res.data)
     //     return res.data;

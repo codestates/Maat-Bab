@@ -6,9 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { getFormatDate1 } from '../functions/module';
 
 function MakeMeet() {
     const region = ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
+
     const [startDate, setStartDate] = useState(new Date());
     const [isFind, setIsFind] = useState(false);
     const [time, setTime] = useState('')
@@ -17,6 +19,10 @@ function MakeMeet() {
     const [countPeople,setCounPeople] = useState('0')
     const [curPlace, setCurnPlace] = useState('찾기 버튼을 눌러주세요')
     const [roomName, setRoomName] = useState('')
+
+    async function getDate (date) {
+        setStartDate(date);
+    }
 
     const changeFind = () => {
         if(city !== '' && city2 !== ''){
@@ -44,7 +50,7 @@ function MakeMeet() {
         if(curPlace !== '' && roomName !== ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             restaurant_name:curPlace,
@@ -53,7 +59,7 @@ function MakeMeet() {
         }else if(curPlace !== '' && roomName === ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             restaurant_name:curPlace,
@@ -62,7 +68,7 @@ function MakeMeet() {
         }else if(curPlace === '' && roomName !== ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
-            date:startDate,
+            date:getFormatDate1(startDate),
             time:time,
             headcount:countPeople,
             chat_title:roomName
@@ -92,7 +98,7 @@ function MakeMeet() {
                     </div>
                     <div className='make__card__info__row__date'>
                         <span className='make__card__info__item__date'>맞밥 날짜</span>
-                        <span className='change'><DatePicker selected={startDate} onChange={(date) => setStartDate(date)} popperPlacement="bottom" minDate={new Date()}/></span>
+                        <span className='change'><DatePicker selected={startDate} onChange={(date) => getDate(date)} popperPlacement="bottom" minDate={new Date()}/></span>
                     </div>
                     <div className='make__card__info__row'>
                         <span className='make__card__info__item'>맞밥 시간</span>
