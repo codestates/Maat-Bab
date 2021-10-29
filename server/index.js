@@ -41,12 +41,12 @@ app.use(
 );
 app.use('/', router);
 
-http_server.listen(PORT, () => {
-  console.log(`Dev-Child server is running at ${PORT} port`);
+http_server.listen(HTTP_PORT, () => {
+  console.log(`Dev-Child server is running at ${HTTP_PORT} port`);
 });
 
-https_server.listen(PORT, () => {
-  console.log(`Dev-Child server is running at ${PORT} port`);
+https_server.listen(HTTPS_PORT, () => {
+  console.log(`Dev-Child server is running at ${HTTPS_PORT} port`);
 });
 
 // const fs = require('fs');
