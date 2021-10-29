@@ -14,4 +14,3 @@ export DATABASE_PRODUCTION_PASSWORD=$(aws ssm get-parameters --region ap-northea
 export DATABASE_PRODUCTION_HOST=$(aws ssm get-parameters --region ap-northeast-2 --names DATABASE_PRODUCTION_HOST --query Parameters[0].Value | sed 's/"//g')
 export DATABASE_PRODUCTION_PORT=$(aws ssm get-parameters --region ap-northeast-2 --names DATABASE_PRODUCTION_PORT --query Parameters[0].Value | sed 's/"//g')
 export TEST=$(aws ssm get-parameters --region ap-northeast-2 --names TEST --query Parameters[0].Value | sed 's/"//g')
-
