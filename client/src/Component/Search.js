@@ -12,7 +12,7 @@ function Search() {
 
         <SearchMap className='search__serachmap'/>
         
-            <KaKaoMap {city, city2, searchPlace, setCurnPlace}/>
+            {/* <KaKaoMap {city, city2, searchPlace, setCurnPlace}/> */}
         </div>
     )
 }
