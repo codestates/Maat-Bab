@@ -10,7 +10,7 @@ import { getFormatDate1 } from '../functions/module';
 
 function Search({ searchCardHandler }) {
 
-    const [searchingRegion, setRegion] = useState('용산구')
+    const [searchingRegion, setRegion] = useState(null)
     const [searchingDate, setDate] = useState(new Date())
 
     const [startDate, setStartDate] = useState(new Date());
@@ -20,17 +20,19 @@ function Search({ searchCardHandler }) {
     const [isFind, setIsFind] = useState(false);
     const [city, setCity] = useState('')
     const [city2, setCity2] = useState('')
-    const [curPlace, setCurnPlace] = useState('')
+    const [curPlace, setCurnPlace] = useState(null);
 
-    const [searchValue, setSearchValue] =useState('')
+    const [searchValue, setSearchValue] = useState('')
     const [searchPlace, setSearchPlace] = useState('')
 
     const changeValue = (event) =>{
-        setSearchValue(event.target.value)
+        console.log(event.target.value);
+        // setSearchValue(event.target.value)
+        setCurnPlace(curPlace)
     }
     const changeplace = () => {
         // setSearchPlace(searchValue)
-        if (city !== '' && city2 !== '') {
+        if (city && city !== '' && city2 && city2 !== '') {
             setIsFind(!isFind)
             setSearchPlace(searchValue)
         } else {
@@ -73,7 +75,7 @@ function Search({ searchCardHandler }) {
                         </span>
 
                         <span className='searchbar__region__second__container'>
-                            <input className='searchbar__restaurant__search' type='text' onChange={(e) => changeValue(e)} value={curPlace} placeholder='음식점을 검색해 보세요'></input>
+                            <input className='searchbar__restaurant__search' type='text' onChange={changeValue} value={curPlace} placeholder='음식점을 검색해 보세요'></input>
                             <button onClick={changeplace}><FaSearch className='search__icon' /></button>
                         </span>
                     </span>

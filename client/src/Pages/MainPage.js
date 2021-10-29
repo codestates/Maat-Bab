@@ -21,24 +21,14 @@ function MainPage({ isLogin }) {
     const formatedDate = getFormatDate1(date);
     const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${formatedDate}`)
       .then(res => {
-        console.log(res.data)
         return res.data;
       })
       .catch(err => console.log(err));
-    
-    // const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent('중구')}&date=2021-11-14T04:05:04.000Z`)
-    //   .then(res => {
-    //     console.log(res.data)
-    //     return res.data;
-    //   })
-    //   .catch(err => console.log(err));
-
-    if (result) {
-      setCardData(result);
-      console.log(result);
-    } else {
-      setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
-      console.log(222)
+      if (result) {
+        setCardData(result);
+        console.log(result);
+      } else {
+        setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
     }
   }
 
