@@ -2,11 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Search.css';
-// import KakaoMap from './KakaoMap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
-import Kakao from '../Component/KakaoMap';
+import KakaoMap from '../Component/KakaoMap';
 import { getFormatDate1 } from '../functions/module';
 
 function Search({ searchCardHandler }) {
@@ -38,15 +37,18 @@ function Search({ searchCardHandler }) {
             alert('지역을 선택해주세요')
         }
     }
-
+    
     const changecity = (event) => {
         setCity(event.target.value)
+        console.log('city: ', city);
     }
     const changeregion = (event) => {
         setCity2(event.target.value)
         console.log(event.target.value)
+        console.log('city2: ', city2);
         setRegion(event.target.value)
     }
+
 
     return (
         <div className='search'>
@@ -89,8 +91,8 @@ function Search({ searchCardHandler }) {
 
         </section>
             <section className='searchmap'>
-            {isFind? <Kakao city={city} city2={city2} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
-        : <Kakao city={'서울특별시'} city2={'용산구'} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
+            {isFind? <KakaoMap className='main__search__kakaomap' city={city} city2={city2} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
+        : <KakaoMap className='main__search__kakaomap' city={'서울특별시'} city2={'용산구'} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
         }
             </section>
 
