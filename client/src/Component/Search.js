@@ -2,6 +2,7 @@ import React from 'react'
 import SearchBar from './SearchBar';
 import SearchMap from './SearchMap';
 import './Search.css';
+import KakaoMap from './KakaoMap';
 
 function Search() {
     return (
@@ -11,6 +12,7 @@ function Search() {
 
         <SearchMap className='search__serachmap'/>
         
+            <KaKaoMap {city, city2, searchPlace, setCurnPlace}/>
         </div>
     )
 }

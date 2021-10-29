@@ -6,6 +6,7 @@ import JoinModal from '../Modal/JoinModal';
 import './MainPage.css';
 
 function MainPage() {
+  
   return (
     <div className='mainpage'>
       
