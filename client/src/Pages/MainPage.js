@@ -17,11 +17,32 @@ function MainPage() {
 
   
   const searchCardHandler = async (region, date) => {
-    const result = await axios.get(`http://localhost:80/card?region=${region}&date=${date}`)
-    if (!result) {
-      setMessage('whghl');
-    } else {
+    // console.log('region: ', region)
+    // const encodedRegion = encodeURIComponent(region);
+    // const decodedRegion = decodeURIComponent(region);
+    // console.log('encoded: ', encodedRegion)
+    // console.log('decoded: ', decodedRegion)
+    // const result = await axios.get(`http://localhost:80/card?region=${decodedRegion}&date=${date}`)
+    const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${date}`)
+      .then(res => {
+        console.log(res.data)
+        return res.data;
+      })
+      .catch(err => console.log(err));
+    
+    // const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent('용산구')}&date=`)
+    //   .then(res => {
+    //     console.log(res.data)
+    //     return res.data;
+    //   })
+    //   .catch(err => console.log(err));
+
+    if (result) {
       setCardData(result);
+      console.log(result);
+    } else {
+      setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
+      console.log(222)
     }
   }
 

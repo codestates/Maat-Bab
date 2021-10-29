@@ -5,3 +5,52 @@
 h3 {
   text-align: center;
 }
+
+.searchbar {
+  display: flex;
+  width: 100%;
+}
+
+.searchbar__region__date {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchbar__title {
+
+}
+
+.searchbar__datepicker__wrapper {
+  all: unset;
+  display: flex;
+}
+
+.react-datepicker__input-container {
+  all: unset;
+  display: flex;
+}
+
+.searchbar__datepicker {
+  all: unset;
+  color: #7a7a7a;
+  font-size: 18px;
+  background-color: white;
+  border: 2px solid #a4a0a0;
+  border-radius: 20px;
+}
+
+.searchbar__button__container {
+  display: flex;
+}
+
+.search__card__button {
+
+}
+
+.search__make__button {
+
+}
+
+.searchmap {
+
+}
