@@ -19,8 +19,7 @@
   height: 70%;
 }
 .make__card__info__row{
-  /* border-bottom: 1px solid black; */
-  height: 17%;
+  height: 14%;
   margin-top: 1.2%;
   padding-top: 2%;
 }
@@ -62,7 +61,7 @@
 }
 .make__card__info__row__date{
   display: flex;
-  height: 17%;
+  height: 14%;
   align-items: center;
 }
 .make__card__info__item__date{
@@ -122,6 +121,12 @@
   font-size: 15px;
   font-weight: 700;
   margin-left: 7%;
+}
+.make__card__room__name{
+  width: 40%;
+  height: 35px;
+  margin-left: 10%;
+  color: black;
 }
 @media screen and (max-width: 768px){
   .make__content__container{

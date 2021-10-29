@@ -13,7 +13,6 @@ function EmailCheck({ certificationCode, email }) {
   };
 
   const checkCode = async () => {
-    console.log(certificationCode);
     if (value === certificationCode) {
       axios.patch(`http://localhost:80/certification`,{email});
       setModal('success');
