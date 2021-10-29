@@ -9,15 +9,13 @@ import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 
 function MainPage({ isLogin }) {
-  
-  const [searchingRegion, setRegion] = useState('용산구')
-  const [searchingDate, setDate] = useState(getFormatDate1(new Date()))
+
+  const [curnPlace, setCurnPlace] = useState(null);
 
   const [cardData, setCardData] = useState(null)
   const [message, setMessage] = useState(null)
-
   
-  const searchCardHandler = async (region, date) => {
+  const searchCardHandler = async (region, date, place) => {
     const formatedDate = getFormatDate1(date);
     const result = await axios.get(`http://localhost:80/card?region=${decodeURIComponent(region)}&date=${formatedDate}`)
       .then(res => {
@@ -26,16 +24,21 @@ function MainPage({ isLogin }) {
       .catch(err => console.log(err));
       if (result) {
         setCardData(result);
-        console.log(result);
       } else {
         setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
-    }
+      }
+    setCurnPlace(null);
   }
 
   return (
     <div className='mainpage'>
       
-      <Search className='mainpage__search__component' searchCardHandler={searchCardHandler} searchingRegion={searchingRegion} searchingDate={searchingDate}/>
+      <Search className='mainpage__search__component'
+        searchCardHandler={searchCardHandler}
+        setCurnPlace={setCurnPlace}
+        curnPlace={curnPlace}
+      />
+      
       {/* 조회된 전체 약속카드 목록 */}
       <List className='mainpage__list__component' title={'맞밥 약속 목록'} cardData={cardData} message={message}/>
 

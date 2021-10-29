@@ -1,40 +1,32 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import './Search.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
 import KakaoMap from '../Component/KakaoMap';
-import { getFormatDate1 } from '../functions/module';
+import { regionData } from '../resource/regionData';
 
-function Search({ searchCardHandler }) {
-
-    const [searchingRegion, setRegion] = useState(null)
-    const [searchingDate, setDate] = useState(new Date())
-
-    const [startDate, setStartDate] = useState(new Date());
+function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     
-    const region = ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
-
-    const [isFind, setIsFind] = useState(false);
+    const [searchingRegion, setRegion] = useState(null)
+    const [searchingDate, setSearchingDate] = useState(new Date());
+    
+    const [isInserted, setIsInserted] = useState(false);
     const [city, setCity] = useState('')
-    const [city2, setCity2] = useState('')
-    const [curPlace, setCurnPlace] = useState(null);
+    const [district, setDistrict] = useState('')
 
-    const [searchValue, setSearchValue] = useState('')
-    const [searchPlace, setSearchPlace] = useState('')
+    const [placeInputValue, setPlaceInputValue] = useState('')
+    const [searchingPlace, setSearchingPlace] = useState('')
 
-    const changeValue = (event) =>{
-        console.log(event.target.value);
-        // setSearchValue(event.target.value)
-        setCurnPlace(curPlace)
+    const placeInputHandler = (event) =>{
+        setPlaceInputValue(event.target.value)
     }
+
     const changeplace = () => {
-        // setSearchPlace(searchValue)
-        if (city && city !== '' && city2 && city2 !== '') {
-            setIsFind(!isFind)
-            setSearchPlace(searchValue)
+        if (city && city !== '' && district && district !== '') {
+            setIsInserted(!isInserted)
+            setSearchingPlace(placeInputValue)
         } else {
             alert('지역을 선택해주세요')
         }
@@ -42,12 +34,10 @@ function Search({ searchCardHandler }) {
     
     const changecity = (event) => {
         setCity(event.target.value)
-        console.log('city: ', city);
     }
     const changeregion = (event) => {
-        setCity2(event.target.value)
+        setDistrict(event.target.value)
         console.log(event.target.value)
-        console.log('city2: ', city2);
         setRegion(event.target.value)
     }
 
@@ -66,35 +56,38 @@ function Search({ searchCardHandler }) {
                                 <option value=''>지역선택</option>
                                 <option value='서울특별시'>서울특별시</option>
                                 </select>
-                                <select onChange={(e) => changeregion(e)} name='city2' className='make__card__info__region__district'>
+                                <select onChange={(e) => changeregion(e)} name='district' className='make__card__info__region__district'>
                                 <option value=''>지역구</option>
-                                {region.map((el, idx) => {
+                                {regionData.map((el, idx) => {
                                 return <option key={idx} value={el}>{el}</option>
                             })}
                             </select>    
                         </span>
 
                         <span className='searchbar__region__second__container'>
-                            <input className='searchbar__restaurant__search' type='text' onChange={changeValue} value={curPlace} placeholder='음식점을 검색해 보세요'></input>
+                            <input className='searchbar__restaurant__search' type='text' onChange={placeInputHandler} value={curnPlace} placeholder='음식점을 검색해 보세요'></input>
                             <button onClick={changeplace}><FaSearch className='search__icon' /></button>
                         </span>
                     </span>
 
                     <span className='searchbar__date'>    
                         <span className='searchbar__title'>맞밥 날짜</span>
-                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={startDate} onChange={(date) => setStartDate(date)}popperPlacement="bottom" minDate={new Date()} /></span>
+                        <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={searchingDate} onChange={(date) => setSearchingDate(date)} popperPlacement="bottom" minDate={new Date()} /></span>
                     </span>             
                 </div>
 
                 <div className='searchbar__button__container'>
-                    <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, startDate)}>조회하기</button>
+                    <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate, curnPlace)}>조회하기</button>
                     <button className='search__make__button'>약속 만들기</button>
                 </div>
 
         </section>
             <section className='searchmap'>
-            {isFind? <KakaoMap className='main__search__kakaomap' city={city} city2={city2} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
-        : <KakaoMap className='main__search__kakaomap' city={'서울특별시'} city2={'용산구'} searchPlace={searchPlace} setCurnPlace={setCurnPlace}/>
+                {isInserted ? (
+                        <KakaoMap className='main__search__kakaomap' city={city} district={district} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
+                    ) : (
+                        <KakaoMap className='main__search__kakaomap' city={'서울특별시'} district={'용산구'} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
+                    )
         }
             </section>
 
