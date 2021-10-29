@@ -6,10 +6,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 
+const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
+const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/fullchain.pem', 'utf8');
+
 const credentials = {
-  key: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8'),
+  key: key,
+  cert: cert,
+  ca: ca,
 };
 
 const https_server = require('https').createServer(credentials, app);
@@ -31,6 +36,9 @@ app.use('/', router);
 
 http_server.listen(HTTP_PORT, () => {
   console.log(`Dev-Child server is running at ${HTTP_PORT} port`);
+  console.log(`ca : ${ca}`);
+  console.log(`cert : ${cert}`);
+  console.log(`key : ${key}`);
 });
 
 https_server.listen(HTTPS_PORT, () => {
