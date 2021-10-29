@@ -55,9 +55,14 @@ function App() {
   }, []);
 
   const logoutHandler = () => {
-    dispatch(setLoginStatus(false))
-    dispatch(deleteUserInfo())
-
+    axios.post(`http://localhost:80/signout`)
+    .then((res) => {
+      if(res.status === 205){
+        dispatch(setLoginStatus(false))
+        dispatch(deleteUserInfo())
+      } 
+    })
+    .catch((err) => console.log(err))
   };
 
   const certificationCodeHandler = (code) => {

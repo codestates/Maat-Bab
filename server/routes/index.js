@@ -1,5 +1,18 @@
 const router = require('express').Router();
-const { auth, signup, signin, signout, kakao, userinfo, taste, card, chat, sameEmail } = require('../controllers');
+const {
+  auth,
+  signup,
+  signin,
+  signout,
+  kakao,
+  userinfo,
+  taste,
+  card,
+  chat,
+  sameEmail,
+  mail,
+  certification,
+} = require('../controllers');
 
 // Basic
 router.get('/', (req, res) => {
@@ -12,15 +25,17 @@ router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
 router.post('/oauth/kakao', kakao.post);
-router.post('/sameEmail', sameEmail.post);
-router.get('/userinfo/:user_id', userinfo.get);
-router.patch('/userinfo/:user_id', userinfo.patch);
-router.delete('/userinfo/:user_id', userinfo.delete);
+router.post('/same-email', sameEmail.post);
+router.get('/userinfo', userinfo.get);
+router.patch('/userinfo', userinfo.patch);
+router.delete('/userinfo', userinfo.delete);
 router.get('/taste', taste.get);
-router.get('/userinfo/taste/:user_id', userinfo.taste.user_id.get);
-router.patch('/userinfo/taste/:user_id', userinfo.taste.user_id.patch);
-router.get('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.get);
-router.patch('/userinfo/etiquette/:user_id', userinfo.etiquette.user_id.patch);
+router.get('/userinfo/taste', userinfo.taste.get);
+router.patch('/userinfo/taste', userinfo.taste.patch);
+router.get('/userinfo/etiquette', userinfo.etiquette.get);
+router.patch('/userinfo/etiquette', userinfo.etiquette.patch);
+router.post('/mail', mail.post);
+router.patch('/certification', certification.patch);
 
 // Card
 router.get('/card', card.get);
