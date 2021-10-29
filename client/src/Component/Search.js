@@ -6,12 +6,12 @@ import './Search.css';
 function Search() {
     return (
         <div className='search'>
-        Search Component</div>
-        // {/* <SearchBar className='search__searchbar'/>
+        <h3>Search Component</h3>
+        <SearchBar className='search__searchbar'/>
 
-        // <SearchMap className='search__serachmap'/>
+        <SearchMap className='search__serachmap'/>
         
-        // </div> */}
+        </div>
     )
 }
 

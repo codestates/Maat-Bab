@@ -1,10 +1,10 @@
-import { SET_CARDLIST } from "../actions/index";
+import { SET_CARD_INFO } from "../actions/index";
 import { initialState } from "./initialState";
 
 const userREducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case SET_CARDLIST:
+    case SET_CARD_INFO:
       return Object.assign({}, state, {
         cardInfo: {
           region: action.payload.region,
