@@ -27,7 +27,7 @@ function UserMannerList({ mannerList, selectHandler, addHandler }) {
                 )}
                 <li key='input' className='manner__input'>
                     <FaPlusCircle className='manner__custom__button' onClick={() => addHandler(mannerList.length, customText)}/>
-                    <input type='text' placeholder={placeholderText} onChange={inputHandler} value={customText}></input>
+                    <input className='manner__custom__input' type='text' placeholder={placeholderText} onChange={inputHandler} value={customText}></input>
                 </li>
             </ul>
         </div>

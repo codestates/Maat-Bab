@@ -44,7 +44,7 @@
   text-align: center;
 }
 
-button.tablemanner__done {
+.tablemanner__done {
   display: flex;
   all: unset;
 
@@ -60,7 +60,7 @@ button.tablemanner__done {
   font-weight: 600;
 }
 
-button:disabled {
+.disabled:disabled {
   display: flex;
   all: unset;
 
@@ -76,7 +76,7 @@ button:disabled {
   font-weight: 600;
 }
 
-button.tablemanner__done:hover{
+.tablemanner__done:hover{
   display: flex;
   all: unset;
 
@@ -122,7 +122,7 @@ button.tablemanner__done:hover{
 
   } */
   
-  button.tablemanner__done {
+  .tablemanner__done {
     font-size: 18px;
     padding : 10px;
   
@@ -132,7 +132,7 @@ button.tablemanner__done:hover{
     font-weight: 500;
   }
   
-  button:disabled {
+  .disabled:disabled {
     font-size: 18px;
     padding : 10px;
   
@@ -142,7 +142,7 @@ button.tablemanner__done:hover{
     font-weight: 500;
   }
   
-  button.tablemanner__done:hover{
+  .tablemanner__done:hover{
     font-size: 18px;
     padding : 10px;
   
