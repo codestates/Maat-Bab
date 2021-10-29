@@ -9,8 +9,9 @@ import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 
 function MainPage({ isLogin }) {
-
+  
   const [curnPlace, setCurnPlace] = useState('');
+  console.log('after click pinmarker state curnPlace in MainPage is: ', curnPlace )
 
   const [cardData, setCardData] = useState(null)
   const [message, setMessage] = useState(null)
@@ -27,7 +28,6 @@ function MainPage({ isLogin }) {
       } else {
         setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
       }
-    // setCurnPlace(null);
   }
 
   return (
@@ -35,8 +35,10 @@ function MainPage({ isLogin }) {
       
       <Search className='mainpage__search__component'
         searchCardHandler={searchCardHandler}
+
         setCurnPlace={setCurnPlace}
         curnPlace={curnPlace}
+
       />
       
       {/* 조회된 전체 약속카드 목록 */}
