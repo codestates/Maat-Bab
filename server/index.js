@@ -40,14 +40,16 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
-const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
-const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
+const key = fs.readFileSync(__dirname + '/key.pem', 'utf8');
+const cert = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
+// const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
+// const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
 
 const credentials = {
   key: key,
   cert: cert,
-  ca: ca,
+  // ca: ca,
 };
 
 app.use((req, res) => {
