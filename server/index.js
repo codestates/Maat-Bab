@@ -6,18 +6,18 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 
-// const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
-// const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
-// // const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/fullchain.pem', 'utf8');
+const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
+const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/fullchain.pem', 'utf8');
 
-// const credentials = {
-//   key: key,
-//   cert: cert,
-//   ca: ca,
-// };
+const credentials = {
+  key: key,
+  cert: cert,
+  ca: ca,
+};
 
-// const https_server = require('https').createServer(credentials, app);
+const https_server = require('https').createServer(credentials, app);
 const http_server = require('http').createServer(app);
 const HTTPS_PORT = process.env.HTTPS_PORT || 443;
 const HTTP_PORT = process.env.HTTP_PORT || 80;
@@ -38,9 +38,9 @@ http_server.listen(HTTP_PORT, () => {
   console.log(`Dev-Child server is running at ${HTTP_PORT} port`);
 });
 
-// https_server.listen(HTTPS_PORT, () => {
-//   console.log(`Dev-Child server is running at ${HTTPS_PORT} port`);
-// });
+https_server.listen(HTTPS_PORT, () => {
+  console.log(`Dev-Child server is running at ${HTTPS_PORT} port`);
+});
 
 // const fs = require('fs');
 // const http = require('http');
