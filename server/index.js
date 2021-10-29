@@ -6,17 +6,28 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const https = require('https');
 const fs = require('fs');
-const credentials =
-  process.env.NODE_ENV === 'production'
-    ? {
-        key: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8'),
-        ca: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8'),
-      }
-    : undefined;
+// const credentials =
+//   process.env.NODE_ENV === 'production'
+//     ? {
+//         key: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8'),
+//         cert: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8'),
+//         ca: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8'),
+//       }
+//     : undefined;
 
-const server = credentials ? https.createServer(credentials, app) : require('http').createServer(app);
-const PORT = credentials ? process.env.HTTPS_PORT || 443 : process.env.HTTP_PORT || 80;
+// const server = credentials ? https.createServer(credentials, app) : require('http').createServer(app);
+// const PORT = credentials ? process.env.HTTPS_PORT || 443 : process.env.HTTP_PORT || 80;
+
+const credentials = {
+  key: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8'),
+};
+
+const https_server = https.createServer(credentials, app);
+const http_server = require('http').createServer(app);
+const HTTPS_PORT = process.env.HTTPS_PORT || 443;
+const HTTP_PORT = process.env.HTTP_PORT || 80;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -30,7 +41,11 @@ app.use(
 );
 app.use('/', router);
 
-server.listen(PORT, () => {
+http_server.listen(PORT, () => {
+  console.log(`Dev-Child server is running at ${PORT} port`);
+});
+
+https_server.listen(PORT, () => {
   console.log(`Dev-Child server is running at ${PORT} port`);
 });
 
