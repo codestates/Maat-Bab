@@ -51,17 +51,17 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
         <div className='search'>
         <h3>Search Component</h3>
 
-            <section className='searchbar'>
+            <div className='searchbar'>
                 <div className='searchbar__region__date'>
                 
                     <span className='searchbar__region'>
                         <span className='searchbar__title'>맞밥 지역</span>
                         <span className='searchbar__region__first__container'>
-                            <select onChange={(e) => changecity(e)} name='city1' className='make__card__info__region__city'>
+                            <select onChange={(e) => changecity(e)} name='city1' className='search__select__region__city'>
                                 <option value=''>지역선택</option>
                                 <option value='서울특별시'>서울특별시</option>
                                 </select>
-                                <select onChange={(e) => changeregion(e)} name='district' className='make__card__info__region__district'>
+                                <select onChange={(e) => changeregion(e)} name='district' className='search__select__region__district'>
                                 <option value=''>지역구</option>
                                 {regionData.map((el, idx) => {
                                 return <option key={idx} value={el}>{el}</option>
@@ -86,15 +86,15 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
                     <button className='search__make__button'>약속 만들기</button>
                 </div>
 
-        </section>
-            <section className='searchmap'>
+        </div>
+            <div className='searchmap'>
                 {isInserted ? (
                         <KakaoMap className='main__search__kakaomap' city={city} district={district} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
                     ) : (
                         <KakaoMap className='main__search__kakaomap' city={'서울특별시'} district={'용산구'} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
                     )
         }
-            </section>
+            </div>
 
         </div>
     )

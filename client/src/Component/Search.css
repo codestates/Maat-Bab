@@ -9,35 +9,109 @@ h3 {
 .searchbar {
   display: flex;
   width: 100%;
+  padding: 5px 10px 5px 10px;
+  justify-content: space-evenly;
+  align-items: center;
+  /* text-align: center; */
+}
+
+.searchbar__title {
+  font-size: 22px;
+  font-weight: 800;
+  color:#ffa512;
+  width: 100%;
+  padding: 5px;
 }
 
 .searchbar__region__date {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+  font-size: 19px;
 }
 
-.searchbar__title {
+.searchbar__region__first__container {
+  display: flex;
+  justify-content: space-around;
+}
 
+.searchbar__region__second__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search__select__region__city {
+  /* all: unset; */
+  margin: 0;
+  padding: 2px 4px 2px 4px;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.search__select__region__district {
+  margin: 0;
+  padding: 2px 4px 2px 4px;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-y: auto;
+}
+
+.searchbar__restaurant__search {
+  all: unset !important;
+  font-size: 17px;
+}
+
+.search__icon {
+  cursor: pointer;
+
+}
+
+.searchbar__region {
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchbar__date {
+  display: flex;
+  justify-content: space-around;
 }
 
 .searchbar__datepicker__wrapper {
-  all: unset;
   display: flex;
+  flex-direction: end;
+  /* margin-left: 20px; */
+
 }
 
 .react-datepicker__input-container {
-  all: unset;
+  /* all: unset; */
   display: flex;
+  /* margin-left: 20px; */
+
 }
 
 .searchbar__datepicker {
-  all: unset;
+  /* all: unset; */
   color: #7a7a7a;
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: 500;
   background-color: white;
-  border: 2px solid #a4a0a0;
+  border: 3px solid #a4a0a0;
   border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
 }
+
+.react-datepicker-popper {
+  z-index: 300 !important
+}
+
+
 
 .searchbar__button__container {
   display: flex;
@@ -45,21 +119,45 @@ h3 {
 
 .search__card__button {
 
+  background-color: white;
+  border: none;
+
+  border-radius: 20px;
+  color: #FFB800;
+  font-size: 21px;
+  font-weight: 800;
+
+  cursor: pointer;
+
 }
 
 .search__make__button {
 
+  background-color: #FFB800;
+  border: none;
+
+  border-radius: 20px;
+  color: white;
+  font-size: 21px;
+  font-weight: 800;
+
+  cursor: pointer;
+
 }
 
 .searchmap {
-  width: 100%;
+  width: 850px;
   height: 650px;
   background-color: violet;
+  padding: 20px;
+  margin: 20px;
 }
 
 .main__search__kakaomap {
   /* width: 100%;
   height: 100%; */
-  width: 100%;
+  width: 80%;
   height: 650px;
+  padding: 20px;
+  margin: 20px;
 }
