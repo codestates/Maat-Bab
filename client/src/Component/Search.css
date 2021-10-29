@@ -52,12 +52,14 @@ h3 {
 }
 
 .searchmap {
-
+  width: 100%;
+  height: 650px;
+  background-color: violet;
 }
 
 .main__search__kakaomap {
   /* width: 100%;
   height: 100%; */
   width: 100%;
-  height: 600px;
+  height: 650px;
 }
