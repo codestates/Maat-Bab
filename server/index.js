@@ -34,6 +34,7 @@
 //   console.log(`Dev-Child server is running at ${PORT} port`);
 // });
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 const express = require('express');
 
@@ -44,6 +45,7 @@ const key = fs.readFileSync(__dirname + '/key.pem', 'utf8');
 const cert = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
 // const key = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/privkey.pem', 'utf8');
 // const cert = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/fullchain.pem', 'utf8');
 // const ca = fs.readFileSync('/etc/letsencrypt/live/server.maat-bab.com/chain.pem', 'utf8');
 
 const credentials = {
@@ -55,9 +57,10 @@ const credentials = {
 app.use((req, res) => {
   res.send('Hello there !');
 });
-
+const httpserver = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
+httpserver.listen(3000);
 httpsServer.listen(443, () => {
   console.log('HTTPS Server running on port 443');
 });
