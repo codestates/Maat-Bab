@@ -5,7 +5,7 @@ import './Card.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCardList } from '../actions/index';
 
-function Card() {
+function Card({ region, date, time, headCount, restaurant, title}) {
     const dispatch = useDispatch();
     const initial = useSelector(state => state.cardReducer);
 
@@ -16,15 +16,15 @@ function Card() {
         <div className='card'>
             <div className='card__container'>
                 <div className='card__first__container'>
-                <div className='card__title'>La Cruda</div>
+                <div className='card__title'>{title}</div>
                 </div>
                 <div className='card__second__container'>
-                <span className='card__region'>서울시 용산구</span>
-                <span className='card__date'>2021.10.29</span>
+                <span className='card__region'>서울시 {region}</span>
+                    <span className='card__date'>{date}</span>
                 </div>
                 <div className='card__third__container'>
-                <span className='card__time'>저녁</span>
-                <span className='card__headcount'>1/2명</span>
+                <span className='card__time'>{time}</span>
+                    <span className='card__headcount'>{headCount}</span>
             {/* <div className='card__hover__message'>채팅하기</div> */}
             {/* <div className='card__hover__message joined'>채팅방 나가기</div> */}
                 </div>
