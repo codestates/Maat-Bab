@@ -13,7 +13,7 @@ function CardsList({ cardData }) {
                         />
                     )
                 })) : (
-                    <div className='loader__box__ifnull'>텅~ 비었어요 ... 🍂</div>
+                    <div className='loader__box__ifnull'> 맞밥 약속을 조회해 보세요!</div>
                 ) 
             }
         </div>

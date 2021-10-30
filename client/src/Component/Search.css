@@ -72,6 +72,7 @@
   
   text-align: center;
 }
+
 .search__select__region__district {
   border-radius: 20px;
   font-size: 17px;
@@ -83,6 +84,22 @@
   margin: 0px 5px 0px 5px;
 
   text-align: center;
+}
+
+.search__select__region__city:focus,
+.search__select__region__district:focus {
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-y: auto;
+  height: 40px;
+
+  padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+
+  text-align: center;
+  border: 2px solid #ffa512;
+
 }
 
 .searchbar__restaurant__search {

@@ -24,10 +24,10 @@ function Card({ region, date, time, headCount, restaurant, title}) {
                 </div>
                 <div className='card__third__container'>
                 <span className='card__time'>{time}</span>
-                    <span className='card__headcount'>{headCount}명</span>
-            {/* <div className='card__hover__message'>채팅하기</div> */}
+                <span className='card__headcount'>{headCount}명</span>
             {/* <div className='card__hover__message joined'>채팅방 나가기</div> */}
                 </div>
+            <div className='card__hover__message'>채팅하기</div>
             </div>
         </div>
     )
