@@ -146,11 +146,15 @@ h3 {
 }
 
 .searchmap {
-  width: 850px;
+  /* width: 850px; */
   height: 650px;
-  background-color: violet;
+  background-color: #FFB800;
   padding: 20px;
   margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 }
 
 .main__search__kakaomap {
@@ -160,4 +164,22 @@ h3 {
   height: 650px;
   padding: 20px;
   margin: 20px;
+  border-radius: 20px;
+}
+
+.modal__map__location.main {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: inherit;
+  top: 10%;
+  left: 10%;
+  z-index: 200;
+  font-size: 20px;
+  font-weight: 800;
+  background-color: #FFB800;
+  border-radius: 20px;
+  color: white;
+  width: 20%;
+  height: 30px;
 }
