@@ -243,13 +243,24 @@ h3 {
   .search {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     padding-top: 56px;
+    margin-bottom: 20px;
   }
+
+  .search__component__title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #FFa512;
+    font-size: 30px;
+    padding: 56px 0px 5px 0px;
+  }  
   
   .searchbar {
     display: flex;
-    /* flex-direction: column; */
+    justify-content: space-evenly;
 
     width: 100%;
     
@@ -299,5 +310,11 @@ h3 {
 
   .search__make__button {
     width: 125px;
+  }
+
+  .searchmap {
+    display: flex;
+
+    width: 85%;
   }
 }

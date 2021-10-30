@@ -49,7 +49,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
     return (
         <div className='search'>
-        <h3>Search Component</h3>
+        <h3 className='search__component__title'>맞밥 약속 조회하기</h3>
 
             <div className='searchbar'>
                 <div className='searchbar__region__date'>
