@@ -1,5 +1,9 @@
 .search {
   width: 72%;
+  /* display:flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h3 {
@@ -107,6 +111,10 @@ h3 {
   justify-content: space-around;
 }
 
+.searchbar__region__container {
+  display: flex;
+}
+
 .searchbar__date {
   display: flex;
   justify-content: space-around;
@@ -201,12 +209,13 @@ h3 {
 }
 
 .searchmap {
-  /* width: 850px; */
-  height: 650px;
+  width: 90%;
+  height: 600px;
   background-color: #FFB800;
   padding: 20px;
   margin: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 20px;

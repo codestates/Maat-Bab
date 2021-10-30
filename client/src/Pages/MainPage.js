@@ -27,6 +27,7 @@ function MainPage({ isLogin }) {
         setCardData(result);
       } else {
         setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
+        setCardData(null);
       }
   }
 
