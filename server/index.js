@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
     socketID : ${socket.id}`);
 
   socket.on('join_room', (data) => {
+    if (!data) return;
     socket.join(data);
     console.log(`join_room//
     socketID : ${socket.id}
@@ -41,6 +42,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('leave_room', (data) => {
+    if (!data) return;
     socket.leave(data);
     console.log(`leave_room//
     socketID : ${socket.id}
@@ -49,6 +51,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('req_messages', async (data) => {
+    if (!data) return;
     const { chat_content } = await Card.findOne({ where: { card_id: data } });
     console.log(`req_messages//
     socketID : ${socket.id}
@@ -61,6 +64,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send_message', async (data) => {
+    if (!data) return;
     const { card_id, user_id, name, message, time } = data;
 
     const { chat_content } = await Card.findOne({ where: { card_id } });
