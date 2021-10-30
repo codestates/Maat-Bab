@@ -46,10 +46,14 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
         setRegion(event.target.value)
     }
 
+    const makeCardHandler = () => {
+        //
+    }
+
 
     return (
         <div className='search'>
-        <h3 className='search__component__title'>맞밥 약속 조회하기</h3>
+        <h3 className='search__component__title'> 맞밥 약속 조회하기 🍳</h3>
 
             <div className='searchbar'>
                 <div className='searchbar__region__date'>
@@ -85,7 +89,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
                 <div className='searchbar__button__container'>
                     <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate, curnPlace)}>조회하기</button>
-                    <button className='search__make__button'>약속 만들기</button>
+                    <button className='search__make__button' onClick={makeCardHandler}>약속 만들기</button>
                 </div>
 
         </div>

@@ -6,17 +6,23 @@
   align-items: center;
 }
 
-h3 {
+.search__component__title {
+  display: flex;
+  justify-content: center;
   text-align: center;
-}
+  color: #FFa512;
+  font-size: 30px;
+  padding: 0px 5px 0px 5px;
+}  
 
 .searchbar {
   display: flex;
-  width: 100%;
+  width: 90%;
   padding: 5px 10px 5px 10px;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  margin: 0px 0px 0px 60px;
 }
 
 .searchbar__title {
@@ -37,6 +43,8 @@ h3 {
   align-items: center;
   padding: 10px;
   font-size: 19px;
+
+  width: 100%;
 }
 
 .searchbar__region__first__container {
@@ -213,12 +221,12 @@ h3 {
   height: 600px;
   background-color: #FFB800;
   padding: 20px;
-  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  margin: 0px 0px 0px 60px;
 }
 
 .main__search__kakaomap {
@@ -255,7 +263,7 @@ h3 {
     align-items: center;
     width: 100%;
     padding-top: 56px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 
   .search__component__title {
@@ -269,14 +277,16 @@ h3 {
   
   .searchbar {
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-evenly;
 
     width: 100%;
     
-    padding: 5px 10px 5px 10px;
-    
+    padding: 5px 40px 5px 0px;
+
     align-items: center;
     text-align: center;
+    margin: 0;
   }
 
   .searchbar__region__date {
@@ -325,6 +335,8 @@ h3 {
     display: flex;
 
     width: 85%;
+    margin: 0;
+
   }
 
   .modal__map__location.main {
