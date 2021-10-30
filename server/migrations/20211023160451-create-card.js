@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false,
       },
       chat_content: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
       },
       createdAt: {
         allowNull: false,
