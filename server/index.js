@@ -16,7 +16,7 @@ const credentials = {
   ca: ca,
 };
 
-const https_server = require('https').createServer(credentials, app);
+// const https_server = require('https').createServer(credentials, app);
 const http_server = require('http').createServer(app);
 const HTTPS_PORT = process.env.HTTPS_PORT || 443;
 const HTTP_PORT = process.env.HTTP_PORT || 80;
@@ -37,6 +37,6 @@ http_server.listen(HTTP_PORT, () => {
   console.log(`Dev-Child server is running at ${HTTP_PORT} port`);
 });
 
-https_server.listen(HTTPS_PORT, () => {
-  console.log(`Dev-Child server is running at ${HTTPS_PORT} port`);
-});
+// https_server.listen(HTTPS_PORT, () => {
+//   console.log(`Dev-Child server is running at ${HTTPS_PORT} port`);
+// });
