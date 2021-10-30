@@ -317,4 +317,11 @@ h3 {
 
     width: 85%;
   }
+
+  .modal__map__location.main {
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+  }
 }
