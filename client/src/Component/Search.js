@@ -1,13 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Search.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
 import KakaoMap from '../Component/KakaoMap';
 import { regionData } from '../resource/regionData';
+import { FaPlusCircle } from "react-icons/fa";
+
 
 function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
+    const history = useHistory();
     
     const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
@@ -47,9 +51,8 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     }
 
     const makeCardHandler = () => {
-        //
+        history.push('/makemeet')
     }
-
 
     return (
         <div className='search'>
@@ -82,14 +85,14 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
                     </span>
 
                     <span className='searchbar__date'>    
-                        <span className='searchbar__title'>맞밥 날짜</span>
+                        <span className='searchbar__title title__date'>맞밥 날짜</span>
                         <span className='searchbar__datepicker__wrapper'><DatePicker className='searchbar__datepicker' selected={searchingDate} onChange={(date) => setSearchingDate(date)} popperPlacement="bottom" minDate={new Date()} /></span>
                     </span>             
                 </div>
 
                 <div className='searchbar__button__container'>
                     <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate, curnPlace)}>조회하기</button>
-                    <button className='search__make__button' onClick={makeCardHandler}>약속 만들기</button>
+                    <button className='search__make__button' onClick={makeCardHandler}><FaPlusCircle className='search__makemeet__icon'/> 약속 만들기</button>
                 </div>
 
         </div>
