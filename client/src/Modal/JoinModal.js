@@ -6,7 +6,7 @@ function JoinModal() {
     const history = useHistory();
     const joinHandler = () => {
         console.log('join button clicked');
-        history.push('/chatpage')
+        history.push('/chat')
     }
 
     return (
