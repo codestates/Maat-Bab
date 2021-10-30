@@ -1,0 +1,155 @@
+.card {
+  font-size: 24px;
+  padding: 10px 0px 0px 0px;
+  margin: 5px 0px;
+  /* margin: */
+  /* border: 2px solid blue; */
+
+}
+
+.card__container {
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* background-color: #ffb800; */
+  /* background: linear-gradient(to bottom, #ffa512, #ffb800); */
+  background: linear-gradient(to top, #ffdc6a, #ffb800);
+
+  margin: 0px 15px;
+  padding: 5px 10px;
+
+  /* border: 2px solid blue; */
+}
+
+.card__container:hover {
+  filter: opacity(0.7);
+  cursor: pointer;
+}
+
+.card__container.joined:hover {
+  
+}
+
+.card__container.flipped {
+  background-color: #ffa512;
+  filter: opacity(0.7);
+
+  transform-style: preserve-3d;
+  transform: rotateX(180deg);
+
+  backface-visibility: hidden;
+  transition: -webkit-transform ease 500ms;
+  transition: transform ease 500ms;
+  z-index: 2;
+
+}
+
+
+.card__hover__message {
+  opacity: 0;
+}
+
+/* .card__hover__message:hover {
+  opacity: 1;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+} */
+
+.card__hover__message.joined:hover {
+
+}
+
+.card__first__container {
+  display: flex;
+  width: 100%;
+  padding: 5px 0px;
+}
+
+.card__title {
+  color: white;
+  font-weight: 800;
+  margin: 5px 15px;
+
+}
+
+.card__second__container {
+  display: flex;
+  /* justify-content: space-around; */
+  width: 100%;
+  padding: 5px 0px;
+
+}
+
+.card__region {
+  display: flex;
+  border: 3px solid #ffa512;
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: #ffb800;
+  padding: 5px 10px;
+  align-items: center;
+  text-align: center;
+  /* width: 38%; */
+  margin: 10px 10px;
+  justify-content: center;
+}
+
+.card__date {
+  display: flex;
+  font-size: 19px;
+  font-weight: 500;
+  color: #424040;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 5px 10px;
+
+}
+
+.card__third__container {
+  display: flex;
+  width: 100%;
+  padding: 5px 0px;
+
+}
+
+.card__time {
+  display: flex;
+  /* border: 3px solid #ffa512; */
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffa512;
+  background-color: white;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  width: 24%;
+  margin: 5px 13px;
+  /* padding: 0px 10px; */
+
+}
+
+.card__headcount {
+  display: flex;
+  padding: 5px 0px;
+  font-size: 22px;
+  color: white;
+  opacity: 70%;
+  /* -webkit-text-stroke: black; */
+  align-items: center;
+  text-align: center;
+
+  margin: 5px 10px;
+}

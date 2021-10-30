@@ -1,0 +1,63 @@
+.edit__background{
+  background-color: #FFFAED;
+  width: 99vw;
+  height: 100vh;
+  padding-top: 1%
+}
+.edit__content{
+  border: 1px solid #FFA512;
+  border-radius: 20px;
+  background-color: white;
+  width: 50%;
+  height: 95%;
+  margin-left: 25%;
+  text-align: center;
+}
+.edit__title{
+  color: #FFA512;
+}
+.edit__title__user{
+  color: #FFA512;
+  font-size: 25px;
+  font-weight: 600;
+}
+.edit__user__box{
+  border: 1px solid black;
+  height: 30%;
+  text-align: center;
+}
+.edit__user__input__name{
+  color: gray;
+}
+.edit__user__input{
+  width: 50%;
+  height: 15%;
+  background-color: lightgray;
+  color: gray;
+  border-radius: 20px;
+  margin-left: 7%;
+}
+.edit__password__input,
+.edit__password__check__input,
+.edit__username__input{
+  width: 50%;
+  height: 15%;
+  border-radius: 15px;
+  margin-top: 0.5%;
+  padding: 0;
+}
+.edit__password__input{
+  margin-left: 6%;
+}
+.edit__username__input{
+  margin-left: 3%;
+}
+.edit__password__input:focus,
+.edit__password__check__input:focus,
+.edit__username__input:focus{
+  border: 2px solid #FFA512;
+}
+.edit__user__err{
+  color: red;
+  margin-bottom: -2%;
+}

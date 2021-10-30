@@ -1,0 +1,105 @@
+.signup__content__container{
+  background-color: white;
+  border-radius: 20px;
+  width: 60%;
+  height: 85%;
+  margin-left: 27% ;
+}
+.signup__title{
+  color: #FFA512;
+  margin-left: 40%;
+}
+.signup__container{
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+}
+.signup__container__row{
+  width: 80%;
+  height: 22%;
+  margin: 2% 0 0 20%;
+}
+.signup__item{
+  font-size: 25px;
+  font-weight: 700;
+}
+.signup__password,
+.signup__passwordcheck,
+.signup__username{
+  border-radius: 10px;
+  width: 80%;
+  height: 35%;
+  border: 1px solid gray;
+  color: black;
+}
+.signup__email{
+  border-radius: 10px;
+  width: 60%;
+  height: 35%;
+  border: 1px solid gray;
+  color: black;
+}
+.signup__errormessage{
+  color: red;
+}
+.signup__button__container{
+  margin-left: 20%;
+  width: 60%;
+  height: 7%;
+}
+.signup__button{
+  border: none;
+  background-color: #FFAC24;
+  border-radius: 20px;
+  width: 70%;
+  height: 90%;
+  margin: 0 0 0 17%;
+  font-size: 20px;
+  font-weight: 700;
+}
+.signup__button:hover{
+  color: white;
+}
+.signup__email:focus,
+.signup__password:focus,
+.signup__passwordcheck:focus,
+.signup__username:focus{
+  outline: none;
+  border: 2px solid #FFA512;
+}
+.signup__background{
+  background-image: url(../resource/회원가입.png);
+  background-size: 100%;
+  height: 100vh;
+  padding-top: 3%;
+  width: 99vw;
+  margin-top: -2%;
+}
+.signup__check__email{
+  background-color: #FFA512;
+  border: none;
+  border-radius: 20px;
+  width: 20%;
+  height: 30%;
+  font-size: 15px;
+  font-weight: 700;
+}
+.signup__check__email:hover{
+  border: 2px solid black;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px){
+  .signup__background{
+    background-image: none;
+    margin: 0;
+    padding-top: 7%;
+    height: 88vh;
+    width: 100vw;
+  }
+  .signup__content__container{
+    height: 100%;
+    width: 100%;
+    margin: 0% 0 0 0;
+
+  }
+}

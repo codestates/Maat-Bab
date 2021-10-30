@@ -1,0 +1,138 @@
+.userMannerList {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 20px 10px;
+}
+
+ul.userMannerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}
+
+li.manner {
+  background-color: white;
+  border: 3px solid #a4a0a0;
+  border-radius: 40px;
+  color: #a4a0a0;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+}
+
+li.manner:hover {
+  background-color: white;
+  border: 3px solid #ffb800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected {
+  background-color: white;
+  border: 4px solid #ffb800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected:hover {
+  background-color: white;
+  border: 4px solid #a4a0a0;
+  border-radius: 40px;
+  color: #a4a0a0;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.manner__input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.manner__custom__input {
+  background-color: white;
+  border: 3px solid #d1c8c8;
+  border-radius: 40px;
+  color: #d1c8c8;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 5px 10px 10px;
+  width: 100%;
+}
+
+.manner__custom__input::placeholder {
+  color: #d1c8c8;
+  opacity: 1;
+}
+
+
+.manner__custom__input:focus {
+  outline: none;
+  border: 3px solid #ffa512;
+}
+
+.manner__add__button {
+  font-size: 30px;
+  color: #c4c4c4;
+}
+
+.manner__add__button:hover {
+  transition: all 0.2s ease-in-out;
+  color: #ffa512;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .userMannerList {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px 10px 5px;
+  }
+  
+  ul.userMannerList {
+  }
+  
+  li.manner {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+  
+  li.manner:hover {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+  
+  li.selected {
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    
+  }
+}
