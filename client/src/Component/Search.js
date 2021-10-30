@@ -49,29 +49,31 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
     return (
         <div className='search'>
-        <h3>Search Component</h3>
+        <h3 className='search__component__title'>맞밥 약속 조회하기</h3>
 
             <div className='searchbar'>
                 <div className='searchbar__region__date'>
                 
                     <span className='searchbar__region'>
-                        <span className='searchbar__title'>맞밥 지역</span>
-                        <span className='searchbar__region__first__container'>
-                            <select onChange={(e) => changecity(e)} name='city1' className='search__select__region__city'>
-                                <option value=''>지역선택</option>
-                                <option value='서울특별시'>서울특별시</option>
-                                </select>
-                                <select onChange={(e) => changeregion(e)} name='district' className='search__select__region__district'>
-                                <option value=''>지역구</option>
-                                {regionData.map((el, idx) => {
-                                return <option key={idx} value={el}>{el}</option>
-                            })}
-                            </select>    
-                        </span>
+                        <span className='searchbar__title region'>맞밥 지역</span>
+                        <span className='searchbar__region__container'>
+                            <span className='searchbar__region__first__container'>
+                                <select onChange={(e) => changecity(e)} name='city1' className='search__select__region__city'>
+                                    <option value=''>지역선택</option>
+                                    <option value='서울특별시'>서울특별시</option>
+                                    </select>
+                                    <select onChange={(e) => changeregion(e)} name='district' className='search__select__region__district'>
+                                    <option value=''>지역구</option>
+                                    {regionData.map((el, idx) => {
+                                    return <option key={idx} value={el}>{el}</option>
+                                })}
+                                </select>    
+                            </span>
 
-                        <span className='searchbar__region__second__container'>
-                            <input className='searchbar__restaurant__search' type='text' onChange={ placeInputHandler} value={placeInputValue} placeholder='음식점을 검색해 보세요'></input>
-                            <button onClick={changeplace}><FaSearch className='search__icon' /></button>
+                            <span className='searchbar__region__second__container'>
+                                <input className='searchbar__restaurant__search' type='text' onChange={ placeInputHandler} value={placeInputValue} placeholder='음식점을 검색해 보세요'></input>
+                                <button className='search__icon' onClick={changeplace}><FaSearch className='search__icon' size='20' color='orange' /></button>
+                            </span>
                         </span>
                     </span>
 

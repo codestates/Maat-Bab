@@ -19,3 +19,17 @@
   background: linear-gradient(to bottom, #ffa512, #ffb800); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   
 }
+
+.loader__box__ifnull {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 100%;
+  font-size: 26px;
+  font-weight: 600;
+  color: #a4a0a0;
+
+}

@@ -42,7 +42,7 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     display: flex;
     flex-direction: column;
