@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       chat_title: DataTypes.STRING,
-      chat_content: DataTypes.STRING,
+      chat_content: DataTypes.TEXT('long'),
     },
     {
       sequelize,
