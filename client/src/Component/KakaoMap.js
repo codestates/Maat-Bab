@@ -63,7 +63,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
         width: '100%', 
         height: '100%'
     }}>
-      <div className='modal__map__location'>{city} ▶︎ {district}</div>
+      <div className='modal__map__location main'>{city} ▶︎ {district}</div>
     </div>
   );
 }
