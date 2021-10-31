@@ -1,4 +1,11 @@
 module.exports = {
+  get: (req, res) => {
+    console.log(`
+    get kakao
+    params : ${req.params}
+    req : ${req}`);
+    res.status(200).send(`get kakao`);
+  },
   post: (req, res) => {},
   signin: {
     get: (req, res) => {},
