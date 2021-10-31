@@ -4,7 +4,11 @@ module.exports = {
     get kakao
     params : ${req.params}
     req : ${req}`);
-    res.status(200).send(`get kakao`);
+    let data = `
+    get kakao
+    params : ${req.params}
+    req : ${req}`;
+    res.status(200).send(`get kakao ${data}`);
   },
   post: (req, res) => {},
   signin: {
