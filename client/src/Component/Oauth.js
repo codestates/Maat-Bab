@@ -19,7 +19,7 @@ const Oauth = () => {
         alert("카카오에서 코드를 받는데 실패했습니다");
         return;
     } else {
-      axios.post('http://locallhost:80/oauth/kakao',{code:code})
+      axios.post('http://localhost:80/oauth/kakao',{code:code})
       .then((res) => console.log(res.data))
       
     }
