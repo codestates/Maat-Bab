@@ -7,7 +7,7 @@ import './MainPage.css';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 
-function MainPage({ isLogin }) {
+function MainPage({ isLogin, userInfo }) {
   
   const [curnPlace, setCurnPlace] = useState('');
   console.log('after click pinmarker state curnPlace in MainPage is: ', curnPlace )
@@ -31,19 +31,25 @@ function MainPage({ isLogin }) {
   }
 
   const [isCardClicked, setCardClicked] = useState(false);
+  const [clickedCardId, setClickedCardId] = useState(null);
 
-  const cardClickinMainHandler = () => {
+  const cardClickinMainHandler = (id) => {
     console.log('card clicked');
     // 모달 -> 거기서 참여하기 클릭 시 
     // : 나의 약속에 추가하기
     // 그런 다음 '/chatpage' 리디렉션
+    setClickedCardId(id);
     setCardClicked(true);
-    console.log(isCardClicked);
+    console.log(`clickedCardId : ${clickedCardId} isCardClicked ? ${isCardClicked}`);
   }
+
+  useEffect(() => {
+    console.log(`clickedCardId is ${clickedCardId}`)
+  }, [clickedCardId])
   
   return (
     <div className='mainpage'>
-      {isCardClicked ? <JoinModal /> : null}
+      {isCardClicked ? <JoinModal user_id={userInfo.user_id} card_id={clickedCardId}/> : null}
       <Search className='mainpage__search__component'
         searchCardHandler={searchCardHandler}
         setCurnPlace={setCurnPlace}

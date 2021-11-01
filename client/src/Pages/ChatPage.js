@@ -9,7 +9,7 @@ import ChatBoxJoin from '../Modal/ChatBoxJoin'
 import InitialChatBox from '../Component/InitialChatBox';
 import LogInModal from '../Modal/LogInModal';
 
-function ChatPage() {
+function ChatPage({ card_id }) {
   const initial = useSelector(state => state.userReducer);
   const [myCardList, setMyCardList] = useState([])
   const [curCard, setCurCard] = useState({})
@@ -23,6 +23,10 @@ function ChatPage() {
     
     console.log('initial.isLogin: ',initial.isLogin)
     console.log('initial.userInfo.user_id: ',initial.userInfo.user_id)
+
+    console.log('clicked card_id in Chatpage', card_id)
+
+
   },[])
 
 

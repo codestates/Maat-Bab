@@ -1,11 +1,19 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import '../Modal/JoinModal.css';
 
-function JoinModal() {
+
+function JoinModal({ user_id, card_id }) {
     const history = useHistory();
-    const joinHandler = () => {
+    const joinHandler = async (card_id) => {
         console.log('join button clicked');
+        console.log('card_id: ', card_id);
+        await axios.post(`http://localhost:80/card/${user_id}`, { card_id })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        
+        console.log(`clicked card_id in Main: ${card_id} 번 카드 post 처리됨`)
         history.push('/chat')
     }
 
@@ -17,7 +25,7 @@ function JoinModal() {
                     <div className='modalview__count__massage join'>{`'참여하기'를 누르면
                         나의 약속 및 채팅 페이지로
                         이동합니다 🏃🏼‍♀️💨`} </div>
-                    <button className='modalview__button join' onClick={joinHandler}>참여하기</button>
+                    <button className='modalview__button join' onClick={() => joinHandler(card_id)}>참여하기</button>
                 </div>
             </div>
         </div>

@@ -9,7 +9,10 @@ function CardsList({ cardData, cardClickinMainHandler}) {
             {cardData ? (
                 cardData.map(card => {
                     return (
-                        <Card className='card__section' region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name} title={card.chat_title}
+                        <Card className='card__section'
+                            card_id={card.card_id}
+                            title={card.chat_title}
+                            region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name}
                         cardClickinMainHandler={cardClickinMainHandler}
                         />
                     )
