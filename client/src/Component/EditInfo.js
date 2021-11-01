@@ -146,6 +146,13 @@ function EditInfo() {
         const filtered = sumManner.filter(el => el.selected === true)
         const texts = filtered.map(el => el.text)
         axios.patch(`http://localhost:80/userinfo/etiquette`,{etiquette:texts})
+        .then(res => {
+            if(res.status === 200){
+                alert('수정이 완료되었습니다')
+            }else{
+                alert('잠시 후 다시 시도해주세요')
+            }
+        })
     }
 
     const addMannerBtn = () => {
