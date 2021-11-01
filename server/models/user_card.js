@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       host: DataTypes.BOOLEAN,
+      chat_content_idx: DataTypes.INTEGER,
     },
     {
       sequelize,

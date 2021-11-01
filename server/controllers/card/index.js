@@ -1,5 +1,6 @@
-const { Restaurant, Card, User_card } = require('../../models');
+const { Restaurant, Card, User_card, User } = require('../../models');
 const { isAuth } = require('../../functions');
+
 module.exports = {
   get: async (req, res) => {
     const { region, date, restaurant_name } = req.query;
@@ -60,8 +61,8 @@ module.exports = {
     if (!data) {
       return res.status(401).send();
     }
+
     const { user_id } = data;
-    console.log('user_id', user_id);
     const {
       region,
       date,
@@ -111,7 +112,12 @@ module.exports = {
       return res.status(500).send();
     });
 
-    await User_card.create({ card_id, user_id, host: true }).catch((err) => {
+    await User_card.create({
+      card_id,
+      user_id,
+      host: true,
+      chat_content_idx: 0,
+    }).catch((err) => {
       console.log(err);
       return res.status(500).send();
     });
@@ -138,22 +144,70 @@ module.exports = {
       }
       return res.status(200).send(cards);
     },
-    post: (req, res) => {
+    post: async (req, res) => {
       if (!isAuth(req, res)) {
         return res.status(401).send();
       }
 
       const { user_id } = req.params;
       const { card_id } = req.body;
-      User_card.findOrCreate({
-        where: { user_id, card_id },
-        defaults: { user_id, card_id, host: false },
-      }).then(([result, created]) => {
-        if (!created) {
-          return res.status(409).send();
-        }
-        return res.status(200).send(result);
+
+      let { chat_content } = await Card.findOne({
+        attributes: ['chat_content'],
+        where: { card_id },
       });
+
+      if (chat_content === null) {
+        chat_content = [];
+      } else {
+        chat_content = JSON.parse(chat_content);
+      }
+      const chat_content_idx = chat_content.length;
+
+      await User_card.findOrCreate({
+        where: { user_id, card_id },
+        defaults: { user_id, card_id, host: false, chat_content_idx },
+      })
+        .then(async ([result, created]) => {
+          if (!created) {
+            return res.status(409).send();
+          }
+
+          const { name } = await User.findOne({
+            attributes: ['name'],
+            where: { user_id },
+          }).catch((err) => {
+            console.log(err);
+            return res.status(500).send();
+          });
+
+          const message = {
+            card_id,
+            user_id: 0,
+            type: 'message',
+            message: `${name}님이 방에 참여하셨습니다`,
+            date: new Date(Date.now()).toLocaleDateString(),
+            time: `${new Date(Date.now()).getHours()}:${new Date(
+              Date.now()
+            ).getMinutes()}`,
+          };
+
+          chat_content = JSON.stringify(chat_content.concat(message));
+
+          await Card.update({ chat_content }, { where: { card_id } }).catch(
+            (err) => {
+              console.log(err);
+              return res.status(500).send();
+            }
+          );
+          req.app.get('io').to(card_id).emit('new_user', message);
+
+          return res.status(200).send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+          return res.status(500).send();
+        });
     },
   },
 };
