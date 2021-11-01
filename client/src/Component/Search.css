@@ -1,71 +1,135 @@
 .search {
   width: 72%;
+  /* display:flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-h3 {
+.search__component__title {
+  display: flex;
+  justify-content: center;
   text-align: center;
-}
+  color: #FFa512;
+  font-size: 30px;
+  padding: 0px 5px 0px 5px;
+}  
 
 .searchbar {
   display: flex;
-  width: 100%;
+  width: 90%;
   padding: 5px 10px 5px 10px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  /* text-align: center; */
+  text-align: center;
+  margin: 0px 0px 0px 60px;
 }
 
 .searchbar__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   font-size: 22px;
   font-weight: 800;
   color:#ffa512;
-  width: 100%;
+  width: 120px;
   padding: 5px;
 }
 
 .searchbar__region__date {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
   font-size: 19px;
+
+  width: 100%;
 }
 
 .searchbar__region__first__container {
   display: flex;
   justify-content: space-around;
+  padding: 5px;
 }
 
 .searchbar__region__second__container {
   display: flex;
   justify-content: space-around;
+  padding: 5px;
+
 }
 
 .search__select__region__city {
   /* all: unset; */
-  margin: 0;
-  padding: 2px 4px 2px 4px;
   border-radius: 20px;
   font-size: 17px;
   font-weight: 700;
-}
-.search__select__region__district {
-  margin: 0;
+  height: 40px;
+
   padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+  
+  text-align: center;
+}
+
+.search__select__region__district {
   border-radius: 20px;
   font-size: 17px;
   font-weight: 700;
   overflow-y: auto;
+  height: 40px;
+
+  padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+
+  text-align: center;
+}
+
+.search__select__region__city:focus,
+.search__select__region__district:focus {
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-y: auto;
+  height: 40px;
+
+  padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+
+  text-align: center;
+  border: 2px solid #ffa512;
+
 }
 
 .searchbar__restaurant__search {
-  all: unset !important;
+  /* all: unset !important; */
+  all: unset;
+  background-color: white;
+  border: 2px solid #a4a0a0;
+  border-radius: 20px;
   font-size: 17px;
+  width: 120%;
+  height: 25px;
+  padding: 5px 5px 5px 15px;
+  /* margin: 0px 10px 0px 20px; */
+  margin-right: -15%;
+
+  text-align: start;
+}
+.searchbar__restaurant__search:focus{
+  border: 2px solid #ffa512;
 }
 
 .search__icon {
+  all: unset !important;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffa512;
   cursor: pointer;
-
+  
 }
 
 .searchbar__region {
@@ -74,9 +138,14 @@ h3 {
   justify-content: space-around;
 }
 
+.searchbar__region__container {
+  display: flex;
+}
+
 .searchbar__date {
   display: flex;
   justify-content: space-around;
+  margin: 0px 0px 0px 20px;
 }
 
 .searchbar__datepicker__wrapper {
@@ -111,46 +180,78 @@ h3 {
   z-index: 300 !important
 }
 
-
+.search__makemeet__icon {
+  font-size: 26px;
+  color: #ffa512;
+}
 
 .searchbar__button__container {
   display: flex;
+  justify-content: space-around;
 }
 
+.search__card__button:hover {
+  background-color: white;
+  border: 3px solid white;
+  color: #FFB800;
+  transition: all ease-in-out 0.1s;
+}
 .search__card__button {
 
-  background-color: white;
-  border: none;
-
-  border-radius: 20px;
-  color: #FFB800;
-  font-size: 21px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-}
-
-.search__make__button {
-
   background-color: #FFB800;
-  border: none;
+  border: 3px solid white;
 
   border-radius: 20px;
   color: white;
+  font-size: 22px;
+  font-weight: 800;
+
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 0px 5px;
+  
+  width: 124px;
+
+  cursor: pointer;
+}
+
+.search__make__button:hover {
+  background-color: #FFB800;
+  border: 3px solid #FFB800;
+  transition: all ease-in-out 0.1s;
+  color: white;
+}
+.search__make__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align:center;
+  background-color: white;
+  border: 3px solid #FFB800;
+
+  border-radius: 20px;
+  color: #ffa512;
   font-size: 21px;
   font-weight: 800;
 
-  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 0px 5px;
 
+  width: 160px;
+
+  cursor: pointer;
 }
 
 .searchmap {
-  width: 850px;
-  height: 650px;
-  background-color: violet;
+  width: 90%;
+  height: 600px;
+  background-color: #FFB800;
   padding: 20px;
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 20px 0px 0px 60px;
 }
 
 .main__search__kakaomap {
@@ -160,4 +261,126 @@ h3 {
   height: 650px;
   padding: 20px;
   margin: 20px;
+  border-radius: 20px;
+}
+
+.modal__map__location.main {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: inherit;
+  top: 10%;
+  left: 10%;
+  z-index: 200;
+  font-size: 20px;
+  font-weight: 800;
+  background-color: #FFB800;
+  border-radius: 20px;
+  color: white;
+  width: 20%;
+  height: 30px;
+}
+
+@media screen and (max-width: 768px){
+  .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 56px;
+    margin-bottom: 40px;
+  }
+
+  .search__component__title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #FFa512;
+    font-size: 30px;
+    padding: 30px 0px 25px 0px;
+  }  
+  
+  .searchbar {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+
+    width: 100%;
+    
+    padding: 5px 40px 20px 0px;
+
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+
+  .searchbar__title.title__date {
+    padding: 5px 0 5px 15px;
+  }
+
+  .searchbar__region__date {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 0;
+  }
+
+  .searchbar__region {
+    display: flex;
+    padding: 5px 0px 5px 0px;
+  }
+
+  .searchbar__restaurant__search {
+    margin: 0px 10px 0px 20px;
+  }
+
+  .searchbar__datepicker {
+    margin-left: 20px;
+  }
+
+  .searchbar__date{
+    padding: 5px 0px 5px 0px;
+    margin: 0px 0px 0px -20px;
+  }
+
+  .searchbar__region__first__container {
+    margin-left: 15px;
+  }
+
+  .searchbar__region__container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchbar__button__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+  }
+
+  .search__card__button,
+  .search__make__button {
+    margin: 5px 10px 5px 0px;
+  }
+
+  .search__make__button {
+    width: 155px;
+  }
+
+  .searchmap {
+    display: flex;
+
+    width: 85%;
+    margin: 20px 0px 40px 0px;
+
+  }
+
+  .modal__map__location.main {
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+  }
 }
