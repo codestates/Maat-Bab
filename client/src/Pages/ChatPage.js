@@ -28,6 +28,16 @@ function ChatPage({ card_id }) {
 
   },[])
 
+  useEffect(() => {
+    console.log(`Now in ChatPage, state curCard is ${curCard} in useEffect`)
+  }, [curCard])
+
+  const cardClickinChatHandler = (id) => {
+    console.log('joined card clicked');
+    
+    setCurCard(id);
+    console.log(`Now in ChatPage, curCard : ${curCard} in handler`);
+  }
 
   return (
     <div className='chatpage'>
@@ -35,12 +45,17 @@ function ChatPage({ card_id }) {
 
       {isModal ? <ChatBoxJoin setIsModal={setIsModal} setIsFirst={setIsFirst} />:null}
       {/* 나의 약속 카드 목록 */}
-      <List title={'나의 맞밥 약속'} className='chatpage__list__container' 
+      <List title={'나의 맞밥 약속'} className='chatpage__list__container'
         myCardList={myCardList}
         curCard={curCard} setCurCard={setCurCard}
-        setIsModal={setIsModal} />
+        setIsModal={setIsModal}
+        cardClickinChatHandler={cardClickinChatHandler}
+      />
       {isFirst ? <InitialChatBox /> :
-      <ChatBox className='chatpage__chat__container' /> }
+        <ChatBox className='chatpage__chat__container'
+        curCard={curCard} setCurCard={setCurCard}
+        setIsModal={setIsModal}
+          cardClickinChatHandler={cardClickinChatHandler}/> }
 
       <MateList className='chatpage__mate__container' />
 

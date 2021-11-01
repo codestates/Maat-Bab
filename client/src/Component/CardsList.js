@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import './CardsList.css';
 
-function CardsList({ cardData, cardClickinMainHandler,  myCardList, curCard, setCurCard}) {
+function CardsList({ cardData, cardClickinMainHandler, cardClickinChatHandler,  myCardList, curCard, setCurCard}) {
     console.log('cardData: ', cardData);
     console.log('myCardList: ', myCardList);
 
@@ -16,7 +16,7 @@ function CardsList({ cardData, cardClickinMainHandler,  myCardList, curCard, set
                                 card_id={myCard.Card.card_id}
                                 title={myCard.Card.chat_title}
                                 region={myCard.Card.region} date={myCard.Card.date.slice(0, 10)} time={myCard.Card.time} headCount={myCard.Card.headcount} restaurant={myCard.Card.restaurant_name}
-                            cardClickinMainHandler={cardClickinMainHandler}
+                            cardClickinChatHandler={cardClickinChatHandler}
                             />
                         )
                     })
