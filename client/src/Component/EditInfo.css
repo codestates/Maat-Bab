@@ -23,7 +23,6 @@
   display: flex;
 }
 .edit__user__box{
-  border: 1px solid black;
   height: 17%;
   text-align: center;
 }
