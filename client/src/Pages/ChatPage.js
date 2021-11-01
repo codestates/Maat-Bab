@@ -16,16 +16,15 @@ function ChatPage({ card_id }) {
   const [isFirst, setIsFirst] = useState(true)
   const [isModal, setIsModal] = useState(false)
 
-  useEffect(() => {
-
-    axios.get(`http://localhost:80/card/${initial.userInfo.user_id}`)
-    .then(res => setMyCardList([...myCardList,...res.data]))
-    
+  useEffect( async () => {
     console.log('initial.isLogin: ',initial.isLogin)
     console.log('initial.userInfo.user_id: ',initial.userInfo.user_id)
 
-    console.log('clicked card_id in Chatpage', card_id)
-
+    await axios.get(`http://localhost:80/card/${initial.userInfo.user_id}`)
+    .then(res => {
+      setMyCardList([...myCardList, ...res.data])
+      setIsFirst(false);
+    })
 
   },[])
 
@@ -36,7 +35,10 @@ function ChatPage({ card_id }) {
 
       {isModal ? <ChatBoxJoin setIsModal={setIsModal} setIsFirst={setIsFirst} />:null}
       {/* 나의 약속 카드 목록 */}
-      <List title={'나의 맞밥 약속'} className='chatpage__list__container' curCard={curCard} setCurCard={setCurCard} setIsModal={setIsModal}/>
+      <List title={'나의 맞밥 약속'} className='chatpage__list__container' 
+        myCardList={myCardList}
+        curCard={curCard} setCurCard={setCurCard}
+        setIsModal={setIsModal} />
       {isFirst ? <InitialChatBox /> :
       <ChatBox className='chatpage__chat__container' /> }
 
