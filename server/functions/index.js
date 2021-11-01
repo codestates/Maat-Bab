@@ -11,7 +11,6 @@ module.exports = {
     if (!userinfo) {
       res.clearCookie('accessToken');
       userinfo = checkRefeshToken(req);
-      console.log(userinfo);
       if (!userinfo) {
         res.clearCookie('refreshToken');
         return null;

@@ -20,6 +20,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      chat_content_idx: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
