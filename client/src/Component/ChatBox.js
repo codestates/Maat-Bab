@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
 import './ChatBox.css';
 import io from 'socket.io-client';
-function ChatBox({isModal, setIsModal}) {
+function ChatBox({ isModal, setIsModal, curCard, setCurCard }) {
+    // curCard = 현재 클릭한 카드 아이디
+
     // const socket = io.connect(`http://localhost:80`)
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
@@ -18,7 +20,6 @@ const sendMessage = () => {
 //함수
     return (
         <div className='chatbox'>
-            <h3>ChatBox Component</h3>
             <div className='chatroom_title'>
                 맞밥 채팅방
             </div>

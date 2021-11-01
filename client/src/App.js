@@ -112,7 +112,7 @@ function App() {
           </Route>
 
           <Route path='/main'>
-            <MainPage isLogin={initial.isLogin} />
+            <MainPage isLogin={initial.isLogin} userInfo={initial.userInfo} />
           </Route>
 
           <Route path='/chat'>
