@@ -1,7 +1,7 @@
 .edit__background{
   background-color: #FFFAED;
   width: 99vw;
-  height: 100vh;
+  height: 150vh;
   padding-top: 1%
 }
 .edit__content{
@@ -16,14 +16,15 @@
 .edit__title{
   color: #FFA512;
 }
-.edit__title__user{
+.edit__title__content{
   color: #FFA512;
   font-size: 25px;
   font-weight: 600;
+  display: flex;
 }
 .edit__user__box{
   border: 1px solid black;
-  height: 30%;
+  height: 17%;
   text-align: center;
 }
 .edit__user__input__name{
@@ -31,7 +32,7 @@
 }
 .edit__user__input{
   width: 50%;
-  height: 15%;
+  height: 20%;
   background-color: lightgray;
   color: gray;
   border-radius: 20px;
@@ -41,16 +42,20 @@
 .edit__password__check__input,
 .edit__username__input{
   width: 50%;
-  height: 15%;
+  height: 20%;
   border-radius: 15px;
   margin-top: 0.5%;
   padding: 0;
+  font-size: 15px;
 }
 .edit__password__input{
   margin-left: 6%;
 }
 .edit__username__input{
   margin-left: 3%;
+}
+.edit__password__check__input{
+  margin-left: 1.5%;
 }
 .edit__password__input:focus,
 .edit__password__check__input:focus,
@@ -60,4 +65,127 @@
 .edit__user__err{
   color: red;
   margin-bottom: -2%;
+}
+.edit__preferece__box{
+  border: 1px solid #ffa512;
+  border-radius: 20px;
+  height: 20%;
+  text-align: center;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  display: flex;
+}
+.edit__preferece__box::-webkit-scrollbar{
+  display: none;
+}
+.edit__food{
+  background-color: white;
+  border: 3px solid #ffa512;
+  border-radius: 20px;
+  font-size: 90%;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+  width: 22%;
+  font-weight: 700;
+}
+.edit__food__seleted{
+  background-color: #ffa512;
+  border: 3px solid #ffa512;
+  border-radius: 20px;
+  font-size: 90%;
+  padding: 10px;
+  margin: 5px 5px 10px 10px;
+  width: 22%;
+  color: white;
+  font-weight: 700;
+}
+.edit__food__seleted:hover,
+.edit__food:hover{
+  border: 2px solid black;
+  cursor: pointer;
+}
+.edit__button__done{
+  background-color: white;
+  border: 2px solid #FF7A00;
+  border-radius: 20px;
+  width: 30%;
+  height: 3%;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 2%;
+}
+.edit__button__done:hover
+{
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: #FFA512;
+}
+.edit__tablemanner__box{
+  border: 1px solid #ffa512;
+  border-radius: 20px;
+  height: 20%;
+  text-align: center;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  display: flex;
+}
+.edit__tablemanner__box::-webkit-scrollbar{
+  display: none;
+}
+.edit__manner{
+  border: 2px solid #FFA512;
+  width: 80%;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 20px;
+  height: 20%;
+  padding: 10px;
+  margin:2% 0 0 10%;
+  color: black;
+  background-color: white;
+}
+.edit__manner__selected{
+  border: 2px solid #FFA512;
+  width: 80%;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 20px;
+  height: 20%;
+  padding: 10px;
+  margin:2% 0 0 10%;
+  background-color: #FFA512;
+  color: white;
+}
+.edit__manner:hover,
+.edit__manner__selected:hover{
+  border: 2px solid black;
+}
+.edit__custom__manner__input{
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 60%;
+  height: 80%;
+  font-size: 15px;
+}
+.edit__custom__manner__input:focus{
+  border: 2px solid #FFA512;
+  outline: none;
+}
+.edit__custom__add{
+  background-color: #FFA512;
+  width: 10%;
+  border: none;
+  height: 90%;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-left: 1%;
+}
+.edit__custom__add:hover{
+  border: 2px solid black;
+  cursor: pointer;
+}
+.edit__add__button{
+  height: 4%;
+  margin-top: 1%;
 }

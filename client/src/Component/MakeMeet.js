@@ -52,6 +52,13 @@ function MakeMeet() {
             restaurant_name:curPlace,
             chat_title:roomName
         })
+        .then(res => {
+            if(res.status === 201){
+                alert('카드가 생성되었습니다')
+            }else{
+                alert('잠시 후 다시 시도해주세요')
+            }
+        })
         }else if(curPlace !== '' && roomName === ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
@@ -61,6 +68,13 @@ function MakeMeet() {
             restaurant_name:curPlace,
             chat_title:curPlace
         })
+        .then(res => {
+            if(res.status === 201){
+                alert('카드가 생성되었습니다')
+            }else{
+                alert('잠시 후 다시 시도해주세요')
+            }
+        })
         }else if(curPlace === '' && roomName !== ''){
             axios.post(`http://localhost:80/card`,{
             region:city2,
@@ -69,8 +83,14 @@ function MakeMeet() {
             headcount:countPeople,
             chat_title:roomName
         })
+        .then(res => {
+            if(res.status === 201){
+                alert('카드가 생성되었습니다')
+            }else{
+                alert('잠시 후 다시 시도해주세요')
+            }
+        })
         }
-        return console.log(curPlace)
     }
     return (
         <div className='make__background'>
