@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import ChatBoxJoin from '../Modal/ChatBoxJoin'
 import InitialChatBox from '../Component/InitialChatBox';
-import LogInModal from '../Modal/LogInModal';
 
 function ChatPage() {
   const initial = useSelector(state => state.userReducer);
@@ -15,21 +14,16 @@ function ChatPage() {
   const [curCard, setCurCard] = useState({})
   const [isFirst, setIsFirst] = useState(true)
   const [isModal, setIsModal] = useState(false)
-
+ 
   useEffect(() => {
 
     axios.get(`http://localhost:80/card/${initial.userInfo.user_id}`)
     .then(res => setMyCardList([...myCardList,...res.data]))
-    
-    console.log('initial.isLogin: ',initial.isLogin)
-    console.log('initial.userInfo.user_id: ',initial.userInfo.user_id)
   },[])
 
 
   return (
     <div className='chatpage'>
-      {!initial.userInfo.user_id ? <LogInModal /> : null}
-
       {isModal ? <ChatBoxJoin setIsModal={setIsModal} setIsFirst={setIsFirst} />:null}
       {/* 나의 약속 카드 목록 */}
       <List title={'나의 맞밥 약속'} className='chatpage__list__container' curCard={curCard} setCurCard={setCurCard} setIsModal={setIsModal}/>

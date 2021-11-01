@@ -11,22 +11,22 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         unique: true,
-        allowNull: true,
+        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       etiquette: {
         type: Sequelize.STRING,
       },
       oauth: {
-        type: Sequelize.STRING,
-        allowNull: true,
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       certification: {
         type: Sequelize.BOOLEAN,

@@ -5,7 +5,7 @@ import { setLoginStatus, setUserInfo } from '../actions';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-function SignIn({ isSiginInModal }) {
+function SignIn() {
     const history = useHistory();
     const [isErr, setIsErr] = useState(false)
     const [emailValue, setEmailValue] = useState('')
@@ -45,20 +45,18 @@ function SignIn({ isSiginInModal }) {
     }
     return (
         <div>
-            {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
-            {!isSiginInModal ?
-            <div className='login__container' >
+            <div className='login__container'>
                 <div className='signin__content__container'>
                     <h1 className='signin__title'>로그인</h1>
                     <ul className='signin__content__container__ul'>
                         <li className='signin__container__li__input'>
                             <div className='signin__name'>E-mail</div>
-                            <input className='signin__input email' placeholder='이메일을 입력해주세요' type='email' onKeyUp={(e) => emailInput(e)} />
+                            <input className='signin__input email' placeholder='이메일을 입력해주세요' type='email' onKeyUp={(e) => emailInput(e)}/>
                             <div className={`signin__email__message ${isErr ? null : 'hide'}`}>※ 올바른 이메일 형식을 입력해주세요</div>
                         </li>
                         <li className='signin__container__li__input'>
                             <div className='signin__name'>비밀번호</div>
-                            <input className='signin__input password' placeholder='비밀번호를 입력해주세요' type='password' onKeyUp={(e) => passwordInput(e)} />
+                            <input className='signin__input password' placeholder='비밀번호를 입력해주세요' type='password' onKeyUp={(e) => passwordInput(e)}/>
                         </li>
                     </ul>
                     <a href='/signup' className='signin__link__signup'>회원이 아니신가요?</a>
@@ -68,32 +66,7 @@ function SignIn({ isSiginInModal }) {
                         <li><button onClick={kakaoLogin} className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
                     </ul>
                 </div>
-            </div>
-            :
-            <div className='login__container loginModal' >
-            {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
-                <div className='signin__content__container loginModal'>
-                    <h1 className='signin__title loginModal'>로그인</h1>
-                    <ul className='signin__content__container__ul loginModal'>
-                        <li className='signin__container__li__input loginModal'>
-                            <div className='signin__name loginModal'>E-mail</div>
-                            <input className='signin__input email loginModal' placeholder='이메일을 입력해주세요' type='email' onKeyUp={(e) => emailInput(e)} />
-                            <div className={`signin__email__message loginModal ${isErr ? null : 'hide'}`}>※ 올바른 이메일 형식을 입력해주세요</div>
-                        </li>
-                        <li className='signin__container__li__input loginModal'>
-                            <div className='signin__name loginModal'>비밀번호</div>
-                            <input className='signin__input password loginModal' placeholder='비밀번호를 입력해주세요' type='password' onKeyUp={(e) => passwordInput(e)} />
-                        </li>
-                    </ul>
-                    <a href='/signup' className='signin__link__signup loginModal'>회원이 아니신가요?</a>
-                    <ul className='signin__button__container loginModal'>
-                        <li><button onClick={loginHandler} className='signin__button__login loginModal'>로그인</button></li>
-                        <li><button className='signin__button__login__google loginModal'><div className='google__logo'></div>구글 로그인</button></li>
-                        <li><button onClick={kakaoLogin} className='signin__button__login__kakao loginModal'><div className='kakao__logo loginModal'></div>카카오톡 로그인</button></li>
-                    </ul>
-                </div>
-                </div>
-            }
+            </div>            
         </div>
     )
 }
