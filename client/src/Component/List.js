@@ -2,7 +2,7 @@ import React from 'react';
 import CardsList from './CardsList';
 import './List.css';
 
-function List({ title, cardData, message, cardClickHandler }) {
+function List({ title, cardData, message, cardClickinMainHandler }) {
     return (
         <div className='list'>
             <div className='list__header'>
@@ -10,7 +10,7 @@ function List({ title, cardData, message, cardClickHandler }) {
                 <div className='list__header__text'>{message}</div>
             </div>
             <section className='card__list__section'>
-                <CardsList cardData={cardData} cardClickHandler={cardClickHandler}/>
+                <CardsList cardData={cardData} cardClickinMainHandler={cardClickinMainHandler}/>
             </section>
         </div>
     )

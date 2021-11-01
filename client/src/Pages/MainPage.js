@@ -32,7 +32,7 @@ function MainPage({ isLogin }) {
 
   const [isCardClicked, setCardClicked] = useState(false);
 
-  const cardClickHandler = () => {
+  const cardClickinMainHandler = () => {
     console.log('card clicked');
     // 모달 -> 거기서 참여하기 클릭 시 
     // : 나의 약속에 추가하기
@@ -50,7 +50,7 @@ function MainPage({ isLogin }) {
         curnPlace={curnPlace}
       />     
       {/* 조회된 전체 약속카드 목록 */}
-      <List className='mainpage__list__component' title={'맞밥 약속 목록'} cardData={cardData} message={message} cardClickHandler={cardClickHandler}/>
+      <List className='mainpage__list__component' title={'맞밥 약속 목록'} cardData={cardData} message={message} cardClickinMainHandler={cardClickinMainHandler}/>
     </div>
   )
 }

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './Card.css';
 
-function Card({ region, date, time, headCount, restaurant, title, cardClickHandler}) {
+function Card({ region, date, time, headCount, title, cardClickinMainHandler}) {
 
 // state join 여부, flip 여부
 // props title, region, date, time, headcount(:현재 참여자.. => card 테이블에서 필드 추가?)
@@ -22,7 +21,7 @@ function Card({ region, date, time, headCount, restaurant, title, cardClickHandl
                 <span className='card__headcount'>{headCount}명</span>
             {/* <div className='card__hover__message joined'>채팅방 나가기</div> */}
                 </div>
-            <div className='card__hover__message' onClick={cardClickHandler}>채팅하기</div>
+            <div className='card__hover__message' onClick={cardClickinMainHandler}>채팅하기</div>
             </div>
             
         </div>
