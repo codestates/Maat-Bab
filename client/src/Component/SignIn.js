@@ -64,8 +64,8 @@ function SignIn({ isSiginInModal }) {
                     <a href='/signup' className='signin__link__signup'>회원이 아니신가요?</a>
                     <ul className='signin__button__container'>
                         <li><button onClick={loginHandler} className='signin__button__login'>로그인</button></li>
-                        <li><button className='signin__button__login__google'><div className='google__logo'></div>구글 로그인</button></li>
-                        <li><button onClick={kakaoLogin} className='signin__button__login__kakao'><div className='kakao__logo'></div>카카오톡 로그인</button></li>
+                        <li><button className='signin__button__login__google'></button></li>
+                        <li><button onClick={kakaoLogin} className='signin__button__login__kakao'></button></li>
                     </ul>
                 </div>
             </div>
