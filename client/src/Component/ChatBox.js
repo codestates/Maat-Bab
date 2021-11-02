@@ -4,60 +4,62 @@ import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ isModal, setIsModal, selectedCard, curCard, setCurCard, previousSelected_id }) {
-    const initial = useSelector(state => state.userReducer);
-    const { user_id, name } = initial.userInfo;
-
+function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
     const socket = io.connect(`http://localhost:80`)
 
-    const changeMessage = (event) => {
-        setSendingText(event.target.value)
-    }
-
+    const initial = useSelector(state => state.userReducer);
+    const { user_id, name } = initial.userInfo;
     const { card_id, chat_title } = selectedCard;
-    const [sendingText, setSendingText] = useState('');
-    const [chatMessages, setChatMessages] = useState([]);
-    // 전체 메세지
+
+    const [sendingText, setSendingText] = useState(''); // 지금 보내는 메세지
+    const [chatMessages, setChatMessages] = useState([]); // 누적된 전체 메세지
 
     useEffect(() => {
-        console.log('selectedCard: ', selectedCard);
-        if (selectedCard && !previousSelected_id) {
-            socket.emit('join_room', selectedCard.card_id);
-            socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
-            socket.on('res_messages', (data) => {
-                // data는 [messageInfo,messageInfo,messageInfo] 입니다.
-                setChatMessages(data);
-            });
-        } else if (selectedCard && previousSelected_id) {
-            socket.emit('leave_room', previousSelected_id);
-            socket.emit('join_room', selectedCard.card_id);
+        if (selectedCard) {
             socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
             socket.on('res_messages', (data) => {
                 // data는 [messageInfo,messageInfo,messageInfo] 입니다.
                 setChatMessages(data);
             });
         }
-    }, [socket, selectedCard, user_id, previousSelected_id]);
-
+        }, [socket, selectedCard, user_id]);
+    
     useEffect(() => {
-        socket.on('receive_message', (data) => {
-            // data는 messageInfo 입니다.
-            if (data[0].card_id === selectedCard.card_id) {
-                setChatMessages([
-                    ...chatMessages,
-                    ...data
-                ]);
-            }
-        });
-        socket.on('new_user', (data) => {
-            if (data.card_id === selectedCard.card_id) {
-                setChatMessages([
-                    ...chatMessages,
-                    data
-                ]);
-            }
-        });
-    }, [socket, chatMessages, selectedCard]);
+    socket.on('receive_message', (data) => {
+        // data는 messageInfo 입니다.
+        if (data[0].card_id === selectedCard.card_id) {
+        setChatMessages([...chatMessages, ...data]);
+        }
+    });
+    socket.on('new_user', (data) => {
+        if (data.card_id === selectedCard.card_id) {
+        setChatMessages([...chatMessages, data]);
+        }
+    });
+    // }, [socket, chatMessages, selectedCard]);
+    }, [ chatMessages, selectedCard]);
+    
+
+    // useEffect(() => {
+    //     console.log('selectedCard: ', selectedCard);
+    //     if (selectedCard && !previousSelected_id) {
+    //         socket.emit('join_room', selectedCard.card_id);
+    //         socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
+    //         socket.on('res_messages', (data) => {
+    //             // data는 [messageInfo,messageInfo,messageInfo] 입니다.
+    //             setChatMessages(data);
+    //         });
+    //     } else if (selectedCard && previousSelected_id) {
+    //         socket.emit('leave_room', previousSelected_id);
+    //         socket.emit('join_room', selectedCard.card_id);
+    //         socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
+    //         socket.on('res_messages', (data) => {
+    //             // data는 [messageInfo,messageInfo,messageInfo] 입니다.
+    //             setChatMessages(data);
+    //         });
+    //     }
+    // }, [socket, selectedCard, user_id, previousSelected_id]);
+
 
     const sendMessage = () => {
         if (sendingText !== '') {
@@ -70,7 +72,8 @@ function ChatBox({ isModal, setIsModal, selectedCard, curCard, setCurCard, previ
                 time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
             };
             document
-                .querySelector('.write-message')
+                // .querySelector('.write-message')
+                .querySelector('.chat__content__input')
                 .value = '';
             socket.emit('send_message', messageInfo);
             setSendingText('');
@@ -158,26 +161,13 @@ function ChatBox({ isModal, setIsModal, selectedCard, curCard, setCurCard, previ
                 );
                 })}
             </ScrollToBottom>
-            </div>
-            <div className='chat-footer'>
-            <input
-                className='write-message'
-                type='text'
-                placeholder='보낼 메세지'
-                onChange={(e) => {
-                setSendingText(e.target.value);
-                }}
-            ></input>
-            <button className='chatBtn' onClick={() => sendMessage()}>
-                전송
-            </button>
-            </div>
-            </div>
+                </div>
+            </div>            
             <div className='chat__send__conatiner'>
-                <textarea onChange={(e) => changeMessage(e)} className='chat__content__input'></textarea>
-                <button onClick={sendMessage} className='chat__send__button'>전송</button>
+                <input onChange={(e) => setSendingText(e.target.value)} className='chat__content__input' placeholder='메세지를 입력하세요'></input>
+                {/* <textarea onChange={(e) => changeMessage(e)} className='chat__content__input' placeholder='메세지를 입력하세요'></textarea> */}
+                <button onClick={() => sendMessage()} className='chat__send__button'>전송</button>
             </div>
-
         </div>
     )
 }

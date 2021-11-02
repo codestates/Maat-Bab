@@ -3,14 +3,14 @@ import List from '../Component/List';
 import ChatBox from '../Component/ChatBox';
 import MateList from '../Component/MateList';
 import './ChatPage.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import ChatBoxJoin from '../Modal/ChatBoxJoin'
 import InitialChatBox from '../Component/InitialChatBox';
 import LogInModal from '../Modal/LogInModal';
 import io from 'socket.io-client';
 
-function ChatPage({ card_id }) {
+function ChatPage() {
   const initial = useSelector(state => state.userReducer);
 
   const [isFirst, setIsFirst] = useState(true);
@@ -20,8 +20,6 @@ function ChatPage({ card_id }) {
   const [previousSelected_id, setPreviousSelected_id] = useState('');
   const [selectedCard, setSelectedCard] = useState('');
   // 선택한 카드 객체?
-  const [curCard_Id, setCurCard_Id] = useState(null);
-    // curCard_Id = 현재 클릭한 카드 아이디
 
   const socket = io.connect(`http://localhost:80`)
 
@@ -31,14 +29,19 @@ function ChatPage({ card_id }) {
       setMyCardList([...myCardList, ...res.data])
       setIsFirst(false);
     })
+    console.log(`Now in ChatPage, state selectedCard Id is ${selectedCard.card_id} in useEffect`)
 
-    console.log(`Now in ChatPage, state curCard is ${curCard_Id} in useEffect`)
-  },[curCard_Id])
+    myCardList.forEach((user_card) => {
+      socket.emit('leave_room', user_card.card_id);
+    });
+    if (selectedCard) {
+      socket.emit('join_room', selectedCard.card_id);
+    }
 
-  // useEffect(() => {
-  //   console.log(`Now in ChatPage, state curCard_Id is ${curCard_Id} in useEffect`)
-  // }, [curCard_Id])
 
+  }, [myCardList, selectedCard])
+
+  
 
   // * chatbox
   const leaveRoom = (data) => {
@@ -51,17 +54,18 @@ function ChatPage({ card_id }) {
   const cardClickinChatHandler = async (user_card) => {
     console.log('one of my joined card clicked');
     
-    setSelectedCard(user_card);
+    let newUser_card = Object.assign({}, user_card);
+    setSelectedCard(newUser_card);
     // 선택한 카드로 상태를 바꾸며, 바뀐 카드의 이전 메세지들을 요청합니다.
-    if (!selectedCard) {
-      let newUser_card = Object.assign({}, user_card);
-      await setSelectedCard(newUser_card);
-    } else {
-      const previous = selectedCard.card_id;
-      await setPreviousSelected_id(previous);
-      let newUser_card = Object.assign({}, user_card);
-      await setSelectedCard(newUser_card);
-    }
+    // if (!selectedCard) {
+    //   let newUser_card = Object.assign({}, user_card);
+    //   await setSelectedCard(newUser_card);
+    // } else {
+    //   const previous = selectedCard.card_id;
+    //   await setPreviousSelected_id(previous);
+    //   let newUser_card = Object.assign({}, user_card);
+    //   await setSelectedCard(newUser_card);
+    // }
   }
 
   return (
@@ -72,13 +76,12 @@ function ChatPage({ card_id }) {
       {/* 나의 약속 카드 목록 */}
       <List title={'나의 맞밥 약속'} className='chatpage__list__container'
         myCardList={myCardList}
-        curCard_Id={curCard_Id} setCurCard_Id={setCurCard_Id}
         setIsModal={setIsModal}
         cardClickinChatHandler={cardClickinChatHandler}
       />
       {isFirst ? <InitialChatBox /> :
         <ChatBox className='chatpage__chat__container'
-        curCard_Id={curCard_Id} setCurCard_Id={setCurCard_Id} selectedCard={selectedCard}
+        selectedCard={selectedCard}
         setIsModal={setIsModal}
           /> }
 
