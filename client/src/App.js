@@ -49,6 +49,9 @@ function App() {
       console.log(err);
     }
   };
+  const moveAbout = () => {
+    document.location.href='/'
+  }
 
   useEffect(() => {
     isAuthenticated();
@@ -60,6 +63,7 @@ function App() {
       if(res.status === 205){
         dispatch(setLoginStatus(false))
         dispatch(deleteUserInfo())
+        moveAbout()
       } 
     })
     .catch((err) => console.log(err))
