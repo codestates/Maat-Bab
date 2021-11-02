@@ -1,7 +1,5 @@
 #!/bin/bash
 cd /home/ubuntu/Maat-Bab/server
-sudo rm -rf node_modules
-sudo rm package-lock.json
 sudo npm install
 sudo npm install pm2@latest -g
 sudo apt-get update
