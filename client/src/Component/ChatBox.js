@@ -8,7 +8,7 @@ function ChatBox({ selectedCard, socket }) {
 
     const initial = useSelector(state => state.userReducer);
     const { user_id, name } = initial.userInfo;
-    const { card_id, chat_title } = selectedCard;
+    const { card_id, chat_title, chat_content } = selectedCard;
 
     const [sendingText, setSendingText] = useState(''); // 지금 보내는 메세지
     const [chatMessages, setChatMessages] = useState([]); // 누적된 전체 메세지
@@ -21,6 +21,9 @@ function ChatBox({ selectedCard, socket }) {
                 setChatMessages(data);
             });
         }
+
+        console.log(111, chatMessages);
+        
     }, [socket, selectedCard, user_id]);
     
     useEffect(() => {
@@ -30,6 +33,8 @@ function ChatBox({ selectedCard, socket }) {
             setChatMessages([...chatMessages, ...data]);
             }
         });
+        console.log(222, chatMessages);
+
         socket.on('new_user', (data) => {
             if (data.card_id === selectedCard.card_id) {
             setChatMessages([...chatMessages, data]);

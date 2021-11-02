@@ -13,8 +13,6 @@ import io from 'socket.io-client';
 function ChatPage() {
   const initial = useSelector(state => state.userReducer);
 
-  const [isFirst, setIsFirst] = useState(true);
-
   const [myCardList, setMyCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState('');
   const socket = io.connect(`http://localhost:80`)
@@ -34,10 +32,6 @@ function ChatPage() {
     setMyCardList(data);
     
     data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-    
-    if (data) {
-      setIsFirst(false);
-    }
 
     console.log(`Now in ChatPage, state selectedCard Id is ${selectedCard.card_id} in useEffect`)
 
@@ -50,8 +44,9 @@ function ChatPage() {
   };
 
   const cardClickinChatHandler = async (user_card) => {
-    console.log(`selectedCard id : no.${selectedCard.card_id} yet`)
-    console.log(`user_card id : no.${user_card} clicked`);
+    console.log(`selectedCard id : no.${selectedCard.card_id} yet`);
+    console.log(user_card);
+    console.log(`user_card id : no.${user_card.card_id} clicked`);
 
     let newUser_card = Object.assign({}, user_card);
     setSelectedCard(newUser_card);
@@ -66,9 +61,10 @@ function ChatPage() {
       <List title={'나의 맞밥 약속'} className='chatpage__list__container'
         myCardList={myCardList}
         cardClickinChatHandler={cardClickinChatHandler}
+        leaveRoom={leaveRoom}
       />
 
-      {isFirst ? <InitialChatBox /> :
+      {!selectedCard ? <InitialChatBox /> :
         <ChatBox className='chatpage__chat__container'
           selectedCard={selectedCard}
           socket={socket}
