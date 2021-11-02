@@ -19,7 +19,9 @@ const Oauth = () => {
   }, [])
 
 
-  
+  const moveAbout = () => {
+    document.location.href='/'
+  }
   
   const main = () => {
     if (code === null || code === "") {
@@ -32,7 +34,7 @@ const Oauth = () => {
         if(res.status === 200){
           dispatch(setUserInfo(data.user_id, data.email, data.etiqette, data.oauth, data.certification))
           dispatch(setLoginStatus(true))
-          history.push('/')
+          moveAbout()
         }
       })
       
