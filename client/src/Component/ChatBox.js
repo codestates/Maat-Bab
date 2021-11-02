@@ -4,8 +4,7 @@ import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
-    const socket = io.connect(`http://localhost:80`)
+function ChatBox({ selectedCard, socket }) {
 
     const initial = useSelector(state => state.userReducer);
     const { user_id, name } = initial.userInfo;
@@ -18,48 +17,25 @@ function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
         if (selectedCard) {
             socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
             socket.on('res_messages', (data) => {
-                // data는 [messageInfo,messageInfo,messageInfo] 입니다.
+                // data는 [messageInfo,messageInfo,messageInfo] 형태
                 setChatMessages(data);
             });
         }
-        }, [socket, selectedCard, user_id]);
+    }, [socket, selectedCard, user_id]);
     
     useEffect(() => {
-    socket.on('receive_message', (data) => {
-        // data는 messageInfo 입니다.
-        if (data[0].card_id === selectedCard.card_id) {
-        setChatMessages([...chatMessages, ...data]);
-        }
-    });
-    socket.on('new_user', (data) => {
-        if (data.card_id === selectedCard.card_id) {
-        setChatMessages([...chatMessages, data]);
-        }
-    });
-    // }, [socket, chatMessages, selectedCard]);
-    }, [ chatMessages, selectedCard]);
-    
-
-    // useEffect(() => {
-    //     console.log('selectedCard: ', selectedCard);
-    //     if (selectedCard && !previousSelected_id) {
-    //         socket.emit('join_room', selectedCard.card_id);
-    //         socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
-    //         socket.on('res_messages', (data) => {
-    //             // data는 [messageInfo,messageInfo,messageInfo] 입니다.
-    //             setChatMessages(data);
-    //         });
-    //     } else if (selectedCard && previousSelected_id) {
-    //         socket.emit('leave_room', previousSelected_id);
-    //         socket.emit('join_room', selectedCard.card_id);
-    //         socket.emit('req_messages', {user_id, card_id: selectedCard.card_id});
-    //         socket.on('res_messages', (data) => {
-    //             // data는 [messageInfo,messageInfo,messageInfo] 입니다.
-    //             setChatMessages(data);
-    //         });
-    //     }
-    // }, [socket, selectedCard, user_id, previousSelected_id]);
-
+        socket.on('receive_message', (data) => {
+            // data는 messageInfo
+            if (data[0].card_id === selectedCard.card_id) {
+            setChatMessages([...chatMessages, ...data]);
+            }
+        });
+        socket.on('new_user', (data) => {
+            if (data.card_id === selectedCard.card_id) {
+            setChatMessages([...chatMessages, data]);
+            }
+        });
+    }, [socket, chatMessages, selectedCard]);
 
     const sendMessage = () => {
         if (sendingText !== '') {
@@ -72,12 +48,10 @@ function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
                 time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
             };
             document
-                // .querySelector('.write-message')
                 .querySelector('.chat__content__input')
                 .value = '';
             socket.emit('send_message', messageInfo);
             setSendingText('');
-            // messagesHandler([...sendingText, messageInfo]);
         }
     };
 
@@ -91,21 +65,15 @@ function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
             <ScrollToBottom className='message-body'>
                 {chatMessages.map((messageInfo, idx) => {
                 const { user_id, type, name, message, date, time } = messageInfo;
-                if (idx === 0) {
-                    // 페이지네이션 대비
+                if (idx === 0) { // 페이지네이션 대비
                     // 첫 요소에 날짜가 없을 때
                     const dateArr = date.split('.');
-                    if (user_id === 0) {
-                    // user_id === 0 일 때는 관리자 메세지
+                    if (user_id === 0) { // 관리자 메세지
                     if (type === 'message') {
                         return (
                         <div>
                             <div className='admin-date'>{`${
-                            dateArr[0]
-                            }년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
-                            0,
-                            3
-                            )}일`}</div>
+                            dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
                             <div className='admin-message'>{message}</div>
                         </div>
                         );
@@ -120,11 +88,7 @@ function ChatBox({ isModal, setIsModal, selectedCard, previousSelected_id }) {
                     return (
                     <div>
                         <div className='admin-date'>{`${
-                        dateArr[0]
-                        }년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
-                        0,
-                        3
-                        )}일`}</div>
+                        dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0,3)}일`}</div>
                         <div>{message}</div>
                         <div>
                         <span>{name}</span> <span>{time}</span>
