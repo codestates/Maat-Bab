@@ -1,7 +1,9 @@
 #!/bin/bash
 cd /home/ubuntu/Maat-Bab/server
-npm install
-npm install pm2@latest -g
+sudo rm -rf node_modules
+sudo rm package-lock.json
+sudo npm install
+sudo npm install pm2@latest -g
 sudo apt-get update
 sudo apt-get install authbind
 sudo touch /etc/authbind/byport/80
