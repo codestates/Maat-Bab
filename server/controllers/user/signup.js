@@ -1,10 +1,9 @@
 const { User } = require('../../models');
 module.exports = {
   post: (req, res) => {
-    console.log(req.body);
     const { email, password, name } = req.body;
     if (!email || !password || !name) {
-      return res.status(400).send('Check email or password or name');
+      return res.status(400).send();
     }
     User.findOrCreate({
       where: { email },
@@ -19,14 +18,14 @@ module.exports = {
     })
       .then(([result, created]) => {
         if (!created) {
-          return res.status(409).send('Email exists');
+          return res.status(409).send();
         }
         delete result.dataValues.password;
         return res.status(201).send(result);
       })
       .catch((err) => {
         console.log(err);
-        return res.status(500).send('Internal Server Error');
+        return res.status(500).send();
       });
   },
 };
