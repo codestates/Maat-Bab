@@ -159,6 +159,7 @@
 .edit__manner:hover,
 .edit__manner__selected:hover{
   border: 2px solid black;
+  cursor: pointer;
 }
 .edit__custom__manner__input{
   border: 1px solid black;

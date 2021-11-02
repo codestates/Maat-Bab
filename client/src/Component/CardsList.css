@@ -12,6 +12,9 @@
   overflow-y: scroll;
   
 }
+.cardslist::-webkit-scrollbar{
+  display: none;
+}
 
 .card__section {
   /* background: #ffb800;  fallback for old browsers */

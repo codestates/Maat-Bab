@@ -29,6 +29,7 @@ const userReducer = (state = initialState, action) => {
       case DELETE_USERINFO:
         return Object.assign({}, state, {
           userInfo:{
+            user_id:null,
             email:null,
             name:null,
             etiquette:null,
