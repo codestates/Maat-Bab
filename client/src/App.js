@@ -68,7 +68,6 @@ function App() {
   const certificationCodeHandler = (code) => {
     setCertificationCode(code);
   };
-
   return (
     <BrowserRouter>
       <div className='app'>
