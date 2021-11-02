@@ -42,5 +42,6 @@ router.get('/card', card.get);
 router.post('/card', card.post);
 router.get('/card/:user_id', card.user_id.get);
 router.post('/card/:user_id', card.user_id.post);
+router.delete('/card/:user_id', card.user_id.delete);
 
 module.exports = router;

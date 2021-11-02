@@ -1,5 +1,10 @@
 const { Restaurant, Card, User_card, User } = require('../../models');
-const { isAuth } = require('../../functions');
+const {
+  isAuth,
+  generateJoinMessage,
+  generateLeaveMessage,
+  generateDateMessage,
+} = require('../../functions');
 
 module.exports = {
   get: async (req, res) => {
@@ -126,6 +131,7 @@ module.exports = {
       console.log(err);
       return res.status(500).send();
     });
+
     return res.status(201).send(card);
   },
   user_id: {
@@ -134,27 +140,43 @@ module.exports = {
         return res.status(401).send();
       }
 
-      const { user_id } = req.params;
+      let { user_id } = req.params;
+      user_id = Number(user_id);
+
       const cards = await User_card.findAll({
         where: { user_id },
         include: { model: Card },
+      }).catch((err) => {
+        console.log(err);
+        return res.status(500).send();
       });
+
       if (!cards.length) {
         return res.status(404).send();
       }
       return res.status(200).send(cards);
     },
     post: async (req, res) => {
-      if (!isAuth(req, res)) {
+      const data = isAuth(req, res);
+      if (!data) {
         return res.status(401).send();
       }
 
-      const { user_id } = req.params;
+      const { name } = data;
+      let { user_id } = req.params;
+      user_id = Number(user_id);
       const { card_id } = req.body;
+
+      if (!card_id) {
+        return res.status(400).send();
+      }
 
       let { chat_content } = await Card.findOne({
         attributes: ['chat_content'],
         where: { card_id },
+      }).catch((err) => {
+        console.log(err);
+        return res.status(500).send();
       });
 
       if (chat_content === null) {
@@ -173,33 +195,10 @@ module.exports = {
             return res.status(409).send();
           }
 
-          const { name } = await User.findOne({
-            attributes: ['name'],
-            where: { user_id },
-          }).catch((err) => {
-            console.log(err);
-            return res.status(500).send();
-          });
-
-          const message = {
-            card_id,
-            user_id: 0,
-            type: 'message',
-            message: `${name}님이 방에 참여하셨습니다`,
-            date: new Date(Date.now()).toLocaleDateString(),
-            time: `${new Date(Date.now()).getHours()}:${new Date(
-              Date.now()
-            ).getMinutes()}`,
-          };
-
+          const message = generateJoinMessage(card_id, name);
           chat_content = JSON.stringify(chat_content.concat(message));
 
-          await Card.update({ chat_content }, { where: { card_id } }).catch(
-            (err) => {
-              console.log(err);
-              return res.status(500).send();
-            }
-          );
+          await Card.update({ chat_content }, { where: { card_id } });
           req.app.get('io').to(card_id).emit('new_user', message);
 
           return res.status(200).send(result);
@@ -208,6 +207,85 @@ module.exports = {
           console.log(err);
           return res.status(500).send();
         });
+    },
+    delete: async (req, res) => {
+      const data = isAuth(req, res);
+      if (!data) {
+        return res.status(401).send();
+      }
+
+      const { name } = data;
+      let { user_id } = req.params;
+      user_id = Number(user_id);
+      const { card_id } = req.body;
+      if (!card_id) {
+        return res.status(400).send();
+      }
+
+      let messages;
+      const message = generateLeaveMessage(card_id, name);
+      const dateMessage = generateDateMessage(card_id, message.date);
+
+      const userList = await User_card.findAll({ where: { card_id } }).catch(
+        (err) => {
+          console.log(err);
+          return res.status(500).send();
+        }
+      );
+
+      if (userList.length === 1) {
+        await Card.destroy({ where: { card_id } });
+        await User_card.destroy({ where: { user_id, card_id } });
+      } else {
+        const { host } = userList.filter((user_card) => {
+          return user_card.user_id === user_id;
+        })[0];
+
+        if (host) {
+          const otherUserinfo = userList.filter((userinfo) => {
+            return userinfo.user_id !== user_id;
+          })[0];
+
+          await User_card.update(
+            { host: true },
+            { where: { card_id, user_id: otherUserinfo.user_id } }
+          );
+        }
+
+        let { chat_content } = await Card.findOne({ where: { card_id } });
+        if (chat_content === null) {
+          messages = [dateMessage, message];
+
+          await Card.update(
+            {
+              chat_content: JSON.stringify(messages),
+            },
+            { where: { card_id } }
+          );
+        } else {
+          chat_content = JSON.parse(chat_content);
+
+          if (chat_content[chat_content.length - 1].date < message.date) {
+            messages = [dateMessage, message];
+          } else {
+            messages = [message];
+          }
+
+          await Card.update(
+            { chat_content: JSON.stringify([...chat_content, ...messages]) },
+            { where: { card_id } }
+          );
+        }
+
+        await User_card.destroy({ where: { user_id, card_id } });
+        const io = req.app.get('io');
+        await io.to(card_id).emit('receive_message', messages);
+      }
+      const user_card = userList.filter((user_card) => {
+        return user_card.user_id === user_id;
+      })[0];
+
+      return res.status(205).send(user_card);
     },
   },
 };

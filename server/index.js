@@ -5,6 +5,7 @@ const server = require('http').createServer(app);
 const router = require('./routes');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const { generateDateMessage } = require('./functions');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -83,20 +84,7 @@ io.on('connection', (socket) => {
     let { chat_content } = await Card.findOne({ where: { card_id } });
 
     let messages;
-    const dateArr = date.split('.');
-    let dateMessage = {
-      card_id,
-      user_id: 0,
-      type: 'date',
-      message: `${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
-        0,
-        3
-      )}일`,
-      date: new Date(Date.now()).toLocaleDateString(),
-      time: `${new Date(Date.now()).getHours()}:${new Date(
-        Date.now()
-      ).getMinutes()}`,
-    };
+    const dateMessage = generateDateMessage(card_id, date);
 
     if (chat_content === null) {
       messages = [dateMessage, data];
