@@ -98,7 +98,7 @@
   border: 2px solid #FFA512;
   border-radius: 20px;
   width: 10%;
-  height: 50%;
+  height: 70%;
   font-size: 15px;
   font-weight: 700;
   margin-left: 5%;
@@ -116,7 +116,7 @@
   background-color: lightgray;
   color: black;
   width: 25%;
-  height: 50%;
+  height: 70%;
   text-align: center;
   font-size: 15px;
   font-weight: 700;
@@ -127,7 +127,34 @@
   height: 35px;
   margin-left: 10%;
   color: black;
+  border-radius: 10px;
+  font-size: 15px;
 }
+.make__card__room__name:focus{
+  outline: none;
+  border: 2px solid #FFA512;
+}
+.makemeet__datePicker{
+  all:unset
+}
+.react-datepicker__input-container{
+  border: 2px solid gray;
+  border-radius: 10px;
+  height: 25px;
+  width: 150px;
+  font-size: 15px;
+}
+.react-datepicker__input-container:hover{
+  border: 2px solid #FFA512;
+  cursor: pointer;
+}
+.saturday{
+  color: blue;
+}
+.sunday{
+  color: red;
+}
+
 @media screen and (max-width: 768px){
   .make__content__container{
     width: 100%;

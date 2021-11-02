@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
+import { ko } from 'date-fns/esm/locale'
 
 function MakeMeet() {
     const region = ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
@@ -92,6 +93,13 @@ function MakeMeet() {
         })
         }
     }
+    const getDayName = (date) => {
+         return date.toLocaleDateString('ko-KR', { weekday: 'long', }).substr(0, 1); 
+    }
+    const createDate = (date) => {
+             return new Date(new Date(date.getFullYear() , date.getMonth() , date.getDate() , 0 , 0 , 0)); 
+    }
+   
     return (
         <div className='make__background'>
             {isFind ? <MapSearchModal changeFind={changeFind} city={city} city2={city2} setCurnPlace={setCurnPlace} /> : null}
@@ -114,7 +122,9 @@ function MakeMeet() {
                     </div>
                     <div className='make__card__info__row__date'>
                         <span className='make__card__info__item__date'>맞밥 날짜</span>
-                        <span className='change'><DatePicker selected={startDate} onChange={(date) => setStartDate(date)} popperPlacement="bottom" minDate={new Date()}/></span>
+                        <span className='change'><DatePicker locale={ko} dateFormat='yyyy년 MM월 dd일' selected={startDate} className='makemeet__datePicker' onChange={(date) => setStartDate(date)}
+                         popperPlacement="bottom" minDate={new Date()} dayClassName={date => getDayName(createDate(date)) === '토' ? 'saturday' :
+                         getDayName(createDate(date)) === '일' ? 'sunday' : undefined}/></span>
                     </div>
                     <div className='make__card__info__row'>
                         <span className='make__card__info__item'>맞밥 시간</span>
@@ -132,7 +142,7 @@ function MakeMeet() {
                     <div className='make__card__info__row'>
                         <span className='make__card__info__item'>모집 장소</span>
                         <input type='text' className='make__card__search__input' disabled='disabled' value={curPlace}></input>
-                        <button onClick={changeFind} className='make__card__search__place'><FontAwesomeIcon icon={faMapMarker}/>찾기</button>
+                        <button onClick={changeFind} className='make__card__search__place'><FontAwesomeIcon icon={faMapMarker}/>   찾기</button>
                     </div>
                     <div className='make__card__info__row'>
                         <span className='make__card__info__item'>방 제목</span>
