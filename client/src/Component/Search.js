@@ -16,7 +16,6 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
     
-    const [isInserted, setIsInserted] = useState(false);
     const [city, setCity] = useState('')
     const [district, setDistrict] = useState('')
 
@@ -33,7 +32,6 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
     const changeplace = () => {
         if (city && city !== '' && district && district !== '') {
-            setIsInserted(!isInserted)
             setSearchingPlace(placeInputValue);
             console.log('searchingPlace: ', searchingPlace);
         } else {
@@ -97,12 +95,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
         </div>
             <div className='searchmap'>
-                {isInserted ? (
                         <KakaoMap className='main__search__kakaomap' city={city} district={district} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
-                    ) : (
-                        <KakaoMap className='main__search__kakaomap' city={'서울특별시'} district={'용산구'} searchingPlace={searchingPlace} setCurnPlace={setCurnPlace} />
-                    )
-        }
             </div>
 
         </div>
