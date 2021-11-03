@@ -34,6 +34,7 @@ function ChatBox({ selectedCard, socket }) {
                     setChatMessages([...chatMessages, ...data]);
                 }
             });
+            console.log(selectedCard)
             console.log(555, chatMessages);
 
             socket.on('new_user', (data) => {
@@ -42,7 +43,7 @@ function ChatBox({ selectedCard, socket }) {
                 }
             });
         }
-    }, [socket, chatMessages, selectedCard]);
+    }, [socket, chatMessages, selectedCard, chat_content]);
 
     const sendMessage = () => {
         if (sendingText !== '') {
