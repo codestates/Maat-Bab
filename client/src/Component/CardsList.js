@@ -2,9 +2,7 @@ import React from 'react';
 import Card from './Card';
 import './CardsList.css';
 
-function CardsList({ user_id, cardData, cardClickinMainHandler, cardClickinChatHandler, myCardList, setMyCardList, selectedCard, setSelectedCard, leaveRoom, socket, deleteCardHandler,
-    curCard_Id, setCurCard_Id, }) {
-    // console.log('cardData: ', cardData);
+function CardsList({ cardData, myCardList, cardClickinMainHandler, cardClickinChatHandler, deleteCardModalHandler }) {
 
     return (
         <div className='cardslist'>
@@ -17,11 +15,6 @@ function CardsList({ user_id, cardData, cardClickinMainHandler, cardClickinChatH
                             title={card.chat_title}
                             region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name}
                             cardClickinMainHandler={cardClickinMainHandler}
-                            // setMyCardList={setMyCardList} myCardList={myCardList}
-                            // setSelectedCard={setSelectedCard} selectedCard={selectedCard}
-                            // leaveRoom={leaveRoom}
-                            // socket={socket}
-                            // deleteCardHandler={deleteCardHandler}
                         /> 
                     )
                 })
@@ -31,16 +24,10 @@ function CardsList({ user_id, cardData, cardClickinMainHandler, cardClickinChatH
                 myCardList.map(myCard => {
                     return (
                         <Card className='card__section'
-                            card_id={myCard.Card.card_id}
-                            title={myCard.Card.chat_title}
-                            region={myCard.Card.region} date={myCard.Card.date.slice(0, 10)} time={myCard.Card.time} headCount={myCard.Card.headcount} restaurant={myCard.Card.restaurant_name}
+                            card_id={myCard.Card.card_id} title={myCard.Card.chat_title} region={myCard.Card.region} date={myCard.Card.date.slice(0, 10)} time={myCard.Card.time} headCount={myCard.Card.headcount} restaurant={myCard.Card.restaurant_name}
                             myCard={myCard}
                             cardClickinChatHandler={cardClickinChatHandler}
-                            setMyCardList={setMyCardList} myCardList={myCardList}
-                            setSelectedCard={setSelectedCard} selectedCard={selectedCard}
-                            leaveRoom={leaveRoom}
-                            socket={socket}
-                            deleteCardHandler={deleteCardHandler}
+                            deleteCardModalHandler={deleteCardModalHandler}
                         />
                     )
                 })

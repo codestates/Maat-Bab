@@ -1,12 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import './Card.css';
 import { MdExitToApp } from 'react-icons/md';
 
-function Card({ user_id, card_id, title, region, date, time, headCount, cardClickinMainHandler, cardClickinChatHandler, myCard, setMyCardList, setSelectedCard, selectedCard, leaveRoom, socket, deleteCardHandler}) {
-
-// state join 여부, flip 여부
-// props title, region, date, time, headcount(:현재 참여자.. => card 테이블에서 필드 추가?)
+function Card({
+    card_id, title, region, date, time, headCount, myCard,
+    cardClickinMainHandler, cardClickinChatHandler, deleteCardModalHandler }) {
 
     return (
         <div className='card'>
@@ -29,7 +27,7 @@ function Card({ user_id, card_id, title, region, date, time, headCount, cardClic
             <div className='card__container'>
             <div className='card__first__container'>
                 <div className='card__title'>{title}</div>
-                        <MdExitToApp className='chat__exit__button' onClick={() => deleteCardHandler(card_id)}/>
+                        <MdExitToApp className='chat__exit__button' onClick={()=>deleteCardModalHandler()}/>
             </div>
             <div className='card__second__container'>
             <span className='card__region'>서울시 {region}</span>
