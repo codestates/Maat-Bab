@@ -19,7 +19,7 @@ import Footer from './Component/Footer';
 import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
-import Oauth from './Component/Oauth';
+import OauthKakao from './Component/OauthKakao';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 
@@ -127,8 +127,8 @@ function App() {
             <ChatPage />
           </Route>
 
-          <Route path='/oauth'>
-            <Oauth />
+          <Route path='/kakao'>
+            <OauthKakao />
           </Route>
 
           <Route path='/makemeet'>

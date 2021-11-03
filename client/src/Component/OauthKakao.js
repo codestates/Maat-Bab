@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
 import { useHistory } from 'react-router-dom';
 
-const Oauth = () => {
+const OauthKakao = () => {
   // 카카오에서 준 인증코드
   const code = window.location.search.substr(1).split('=')[1];
   const dispatch = useDispatch();
@@ -59,4 +59,4 @@ const Oauth = () => {
   );
 };
 
-export default Oauth;
+export default OauthKakao;
