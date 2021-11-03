@@ -59,7 +59,7 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
     return (
         <div className='chatbox'>
             <div className='chatroom_title'>
-            {selectedCard.chat_title? selectedCard.chat_title : '맞밥 채팅방 '}
+            {selectedCard?.chat_title? selectedCard.chat_title : '맞밥 채팅방 '}
             </div>
             {!selectedCard ?
                 <div className='chat__contents'>
@@ -139,7 +139,6 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
             }
             <div className='chat__send__conatiner'>
                 <input onChange={(e) => setWriteMessage(e.target.value)} className='chat__content__input' placeholder='메세지를 입력하세요 💬'></input>
-                {/* <textarea onChange={(e) => changeMessage(e)} className='chat__content__input' placeholder='메세지를 입력하세요'></textarea> */}
                 <button onClick={() => sendMessage()} className='chat__send__button'>전송</button>
             </div>
         </div>

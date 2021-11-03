@@ -89,7 +89,8 @@ function ChatPage() {
           socket={socket}
         />)
         :
-        'no contents'
+        (<ChatBox className='chatpage__chat__container nonselected'
+        />)
       }
       <MateList className='chatpage__mate__container' />
     </div>
