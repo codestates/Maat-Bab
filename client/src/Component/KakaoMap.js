@@ -5,27 +5,27 @@ const { kakao } = window;
 
 const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
 
-  useEffect(() => {
-    const container = document.getElementById('myMap');
-    const options = {
-    center: new kakao.maps.LatLng(37.566826, 126.9786567),
-    level: 3
-    };
-    const map = new kakao.maps.Map(container, options);
-    const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(district, function (result, status) {
-      if (status === kakao.maps.services.Status.OK) { // 정상적으로 검색 완료 시
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        map.setCenter(coords); // 지도의 중심을 결과값으로 받은 위치로 이동
-      }
-    })
-  }, []);
+  // useEffect(() => {
+  //   const container = document.getElementById('myMap');
+  //   const options = {
+  //   center: new kakao.maps.LatLng(37.566826, 126.9786567),
+  //   level: 2
+  //   };
+  //   const map = new kakao.maps.Map(container, options);
+  //   const geocoder = new kakao.maps.services.Geocoder();
+  //   geocoder.addressSearch(district, function (result, status) {
+  //     if (status === kakao.maps.services.Status.OK) { // 정상적으로 검색 완료 시
+  //       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+  //       map.setCenter(coords); // 지도의 중심을 결과값으로 받은 위치로 이동
+  //     }
+  //   })
+  // }, []);
 
   useEffect(() => {
     var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
     const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new kakao.maps.LatLng(37.566826, 126.570667),
       level: 3,
     }
     const map = new kakao.maps.Map(container, options);

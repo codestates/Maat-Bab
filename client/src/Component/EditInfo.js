@@ -112,7 +112,7 @@ function EditInfo() {
                 }
             }
         })
-        setManner(changeManner)
+        setSumManner(changeManner)
     }
 
     const infoCorrection = () => {

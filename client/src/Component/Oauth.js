@@ -1,9 +1,16 @@
 import React,{ useEffect } from 'react'
 import axios from 'axios'
 import Loading from '../Component/Loading'
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginStatus, setUserInfo } from '../actions';
+import { useHistory } from 'react-router-dom';
+
 const Oauth = () => {
   // 카카오에서 준 인증코드
   const code = window.location.search.substr(1).split('=')[1]
+  const dispatch = useDispatch();
+  const initail = useSelector(state => state.userReducer);
+  const history = useHistory();
   
 
   useEffect(() => {
@@ -12,7 +19,9 @@ const Oauth = () => {
   }, [])
 
 
-  
+  const moveAbout = () => {
+    document.location.href='/'
+  }
   
   const main = () => {
     if (code === null || code === "") {
@@ -20,12 +29,18 @@ const Oauth = () => {
         return;
     } else {
       axios.post('http://localhost:80/oauth/kakao',{code:code})
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        const data = res.data
+        if(res.status === 200){
+          dispatch(setUserInfo(data.user_id, data.email, data.etiqette, data.oauth, data.certification))
+          dispatch(setLoginStatus(true))
+          moveAbout()
+        }
+      })
       
     }
   }
   
-
   return (
     <>
        <Loading />
