@@ -14,14 +14,10 @@ function ChatPage() {
   const initial = useSelector(state => state.userReducer);
   const { user_id, name } = initial.userInfo;
   const [myCardList, setMyCardList] = useState([]);
-  const [selectedCard, setSelectedCard] = useState('');
-  // 선택한 카드 객체?
+  const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
-    // const getUserCardList = async () => {
-      // const data =
         axios.get(`http://localhost:80/card/${user_id}`)
         .then(res => {
           if (!res.data.length) {
@@ -35,23 +31,8 @@ function ChatPage() {
           console.log(err);
         });
       
-        // if (!data.length) {
-        //   setMyCardList(data);
-        // } else {
-        //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-        //   setMyCardList(data);
-        // }
-
-        // if (data) {
-        //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-        // }
-        // setMyCardList(data);
-      
-    // }
-    // getUserCardList();
     console.log('myCardList: ', myCardList);
   }, [])
-  // }, [socket, user_id])
 
   // * chatbox
   const leaveRoom = (data) => {
@@ -61,21 +42,43 @@ function ChatPage() {
 
   const cardClickinChatHandler = async (user_card) => {    
     console.log('user_card: ',user_card);
-    // await setSelectedCard(user_card.Card)
     await setSelectedCard(user_card)
-
-    // let newUser_card = Object.assign({}, user_card);
-    // await setSelectedCard(newUser_card.Card);
   }
+
+  const deleteCardHandler = async (card_id) => {
+    if (selectedCard?.card_id === card_id) {
+      setSelectedCard('');
+    }
+    leaveRoom(card_id);
+    await axios.delete(`http://localhost:80/card/${user_id}`, {
+    data: { card_id },
+    });
+    const data = await axios
+      .get(`http://localhost:80/card/${user_id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return [];
+      });
+    if (!data.length) {
+      setMyCardList(data);
+    } else {
+      data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
+      setMyCardList(data);
+    }  
+  };
 
   return (
     <div className='chatpage'>
       {!user_id ? <LogInModal /> : null}
 
       <List title={'나의 맞밥 약속'} className='chatpage__list__container'
-        myCardList={myCardList}
+        myCardList={myCardList} setMyCardList={setMyCardList}
         cardClickinChatHandler={cardClickinChatHandler}
-        leaveRoom={leaveRoom}
+        leaveRoom={leaveRoom} socket={socket} user_id={user_id}
+        selectedCard={selectedCard} setSelectedCard={setSelectedCard}
+        deleteCardHandler={deleteCardHandler}
       />
 
       {selectedCard ?

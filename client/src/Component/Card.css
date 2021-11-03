@@ -54,26 +54,9 @@
   font-weight: 600;
 }
 
-.card__container.flipped {
-  background-color: #ffa512;
-  filter: opacity(0.7);
-
-  transform-style: preserve-3d;
-  transform: rotateX(180deg);
-
-  backface-visibility: hidden;
-  transition: -webkit-transform ease 500ms;
-  transition: transform ease 500ms;
-  z-index: 2;
-
-}
-
-.card__hover__message.joined:hover {
-
-}
-
 .card__first__container {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   padding: 5px 0px;
 }
@@ -82,7 +65,6 @@
   color: white;
   font-weight: 800;
   margin: 5px 15px;
-
 }
 
 .card__second__container {
@@ -160,3 +142,16 @@
 
   margin: 5px 10px;
 }
+
+
+.chat__exit__button{
+  width: 30px;
+
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+
+  z-index: 500;
+}
+
+
