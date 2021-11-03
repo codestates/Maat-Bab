@@ -40,6 +40,8 @@
   background-color: white;
   font-size: 17px;
   margin-left: -50px;
+  border: none;
+  border-radius: 20px;
 }
 .main__select__region__search:hover{
   background-color: black;
