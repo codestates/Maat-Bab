@@ -55,17 +55,23 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
     } else if (overlap === false) {
       alert('중복검사를 먼저 해주세요');
     } else {
-      let res = await axios.post('http://localhost:80/signup', {
-        email: email,
-        name: userName,
-        password: passWord,
-      });
+      let res = await axios.post(
+        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/signup`,
+        {
+          email: email,
+          name: userName,
+          password: passWord,
+        }
+      );
       if (res.status === 201) {
         const certificationCode = generateCertificationCode();
-        axios.post(`http://localhost:80/mail`, {
-          email,
-          certificationCode,
-        });
+        axios.post(
+          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/mail`,
+          {
+            email,
+            certificationCode,
+          }
+        );
         certificationCodeHandler(certificationCode);
         setTimeout(() => {
           history.push('/emailcheck');
@@ -78,7 +84,12 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
       alert('올바른 이메일형식이 아닙니다');
     } else {
       axios
-        .post('http://localhost:80/same-email', { email: email })
+        .post(
+          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/same-email`,
+          {
+            email: email,
+          }
+        )
         .then((res) => {
           if (res.status === 204) {
             alert('사용가능한 이메일입니다');

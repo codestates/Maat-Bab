@@ -19,7 +19,7 @@ import Footer from './Component/Footer';
 import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
-import Oauth from './Component/Oauth'
+import Oauth from './Component/Oauth';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 
@@ -28,21 +28,25 @@ axios.defaults.withCredentials = true;
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const initial = useSelector(state => state.userReducer);
+  const initial = useSelector((state) => state.userReducer);
   const [certificationCode, setCertificationCode] = useState('');
   const [email, setEamil] = useState('');
 
   const isAuthenticated = async () => {
     try {
       await axios
-        .get('http://localhost:80/auth')
+        .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth`)
         .then((res) => {
           if (res.data) {
             console.log('res.data: ', res.data);
-            const { user_id, email, name, etiquette, oauth, certification } = res.data;
-            dispatch(setUserInfo(user_id, email, name, etiquette, oauth, certification))
+            const { user_id, email, name, etiquette, oauth, certification } =
+              res.data;
+            dispatch(
+              setUserInfo(user_id, email, name, etiquette, oauth, certification)
+            );
 
-            console.log('isAuthenticated func runned');}
+            console.log('isAuthenticated func runned');
+          }
         })
         .catch((err) => console.log('authenticate failed'));
     } catch (err) {
@@ -50,23 +54,24 @@ function App() {
     }
   };
   const moveAbout = () => {
-    document.location.href='/'
-  }
+    document.location.href = '/';
+  };
 
   useEffect(() => {
     isAuthenticated();
   }, []);
 
   const logoutHandler = () => {
-    axios.post(`http://localhost:80/signout`)
-    .then((res) => {
-      if(res.status === 205){
-        dispatch(setLoginStatus(false))
-        dispatch(deleteUserInfo())
-        moveAbout()
-      } 
-    })
-    .catch((err) => console.log(err))
+    axios
+      .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/signout`)
+      .then((res) => {
+        if (res.status === 205) {
+          dispatch(setLoginStatus(false));
+          dispatch(deleteUserInfo());
+          moveAbout();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   const certificationCodeHandler = (code) => {
@@ -103,13 +108,13 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <UserManner userInfo={initial.userInfo}/>
+            <UserManner userInfo={initial.userInfo} />
           </Route>
 
           <Route exact path='/'>
             {initial.userInfo.certification && !initial.userInfo.etiquette ? (
               <Redirect to='/foodpreference' />
-              ) : (
+            ) : (
               <AboutPage />
             )}
           </Route>

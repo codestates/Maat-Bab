@@ -14,14 +14,19 @@ function EmailCheck({ certificationCode, email }) {
 
   const checkCode = async () => {
     if (value === certificationCode) {
-      axios.patch(`http://localhost:80/certification`,{email});
+      axios.patch(
+        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/certification`,
+        {
+          email,
+        }
+      );
       setModal('success');
     } else {
       alert('인증번호가 일치하지 않습니다');
     }
   };
   const reSend = () => {
-    axios.post(`http://localhost:80/mail`, {
+    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/mail`, {
       email,
       certificationCode,
     });

@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import List from '../Component/List';
 import ChatBox from '../Component/ChatBox';
 import MateList from '../Component/MateList';
@@ -9,10 +9,12 @@ import LogInModal from '../Modal/LogInModal';
 import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
 
-const socket = io.connect(`http://localhost:80`);
+const socket = io.connect(
+  `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
+);
 
 function ChatPage() {
-  const initial = useSelector(state => state.userReducer);
+  const initial = useSelector((state) => state.userReducer);
   const { user_id, name } = initial.userInfo;
   const [myCardList, setMyCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
@@ -35,6 +37,7 @@ function ChatPage() {
       
     console.log('myCardList: ', myCardList);
   }, [])
+
 
   // * chatbox
   const leaveRoom = (data) => {
@@ -91,8 +94,8 @@ function ChatPage() {
       {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
       /> : null}
       
-      {selectedCard ?
-        (<ChatBox className='chatpage__chat__container'
+      {selectedCard ? (
+        <ChatBox className='chatpage__chat__container'
           user_id={user_id}
           name={name}
           selectedCard={selectedCard}
@@ -107,7 +110,7 @@ function ChatPage() {
       <MateList className='chatpage__mate__container' />
   
     </div>
-  )
+  );
 }
 
-export default ChatPage
+export default ChatPage;

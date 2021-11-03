@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './MapSearchModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
-import Kakao from '../Component/KakaoMap'
+import Kakao from '../Component/ModalKakao'
 
 
 function MapSearchModal({changeFind, city, city2, setCurnPlace}) {
