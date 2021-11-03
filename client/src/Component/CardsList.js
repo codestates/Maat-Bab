@@ -3,8 +3,7 @@ import Card from './Card';
 import './CardsList.css';
 
 function CardsList({ cardData, cardClickinMainHandler, cardClickinChatHandler,  myCardList, curCard_Id, setCurCard_Id, selectedCard}) {
-    console.log('cardData: ', cardData);
-    console.log('myCardList: ', myCardList);
+    // console.log('cardData: ', cardData);
 
     return (
         <div className='cardslist'>

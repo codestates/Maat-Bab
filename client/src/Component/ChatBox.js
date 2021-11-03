@@ -22,24 +22,26 @@ function ChatBox({ selectedCard, socket }) {
             });
         }
 
-        console.log(111, chatMessages);
+        console.log(444, chatMessages);
         
     }, [socket, selectedCard, user_id]);
     
     useEffect(() => {
-        socket.on('receive_message', (data) => {
-            // data는 messageInfo
-            if (data[0].card_id === selectedCard.card_id) {
-            setChatMessages([...chatMessages, ...data]);
-            }
-        });
-        console.log(222, chatMessages);
+        if (selectedCard) {
+            socket.on('receive_message', (data) => {
+                // data는 messageInfo
+                if (data[0].card_id === selectedCard.card_id) {
+                    setChatMessages([...chatMessages, ...data]);
+                }
+            });
+            console.log(555, chatMessages);
 
-        socket.on('new_user', (data) => {
-            if (data.card_id === selectedCard.card_id) {
-            setChatMessages([...chatMessages, data]);
-            }
-        });
+            socket.on('new_user', (data) => {
+                if (data.card_id === selectedCard.card_id) {
+                    setChatMessages([...chatMessages, data]);
+                }
+            });
+        }
     }, [socket, chatMessages, selectedCard]);
 
     const sendMessage = () => {
@@ -63,77 +65,86 @@ function ChatBox({ selectedCard, socket }) {
     return (
         <div className='chatbox'>
             <div className='chatroom_title'>
-            {chat_title? chat_title : '맞밥 채팅방'}
+            {chat_title? chat_title : '맞밥 채팅방 '}
             </div>
-            <div className='chat__contents'> {/*div태그로 하거나 or 컴포넌트로  */}    
-            <div className='chat-body'>
-            <ScrollToBottom className='message-body'>
-                {chatMessages.map((messageInfo, idx) => {
-                const { user_id, type, name, message, date, time } = messageInfo;
-                if (idx === 0) { // 페이지네이션 대비
-                    // 첫 요소에 날짜가 없을 때
-                    const dateArr = date.split('.');
-                    if (user_id === 0) { // 관리자 메세지
-                    if (type === 'message') {
-                        return (
-                        <div>
-                            <div className='admin-date'>{`${
-                            dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
-                            <div className='admin-message'>{message}</div>
-                        </div>
-                        );
-                    } else if (type === 'date') {
-                        return (
-                        <div>
-                            <div className='admin-date'>{message}</div>
-                        </div>
-                        );
-                    }
-                    }
-                    return (
-                    <div>
-                        <div className='admin-date'>{`${
-                        dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0,3)}일`}</div>
-                        <div>{message}</div>
-                        <div>
-                        <span>{name}</span> <span>{time}</span>
-                        </div>
-                        <div>{message}</div>
-                        <div>
-                        <span>{name}</span> <span>{time}</span>
-                        </div>
+            {!selectedCard ?
+                <div className='chat__contents'>
+                    <div className='chat-body'>
+                        <ScrollToBottom className='message-body'>
+                            선택된 약속카드가 없습니다
+                        </ScrollToBottom>
                     </div>
-                    );
-                }
-                if (user_id === 0) {
-                    if (type === 'message') {
-                    return (
-                        <div>
-                        <div className='admin-message'>{message}</div>
-                        </div>
-                    );
-                    } else if (type === 'date') {
-                    return (
-                        <div>
-                        <div className='admin-date'>{message}</div>
-                        </div>
-                    );
-                    }
-                }
-                return (
-                    <div>
-                    <div>{message}</div>
-                    <div>
-                        <span>{name}</span> <span>{time}</span>
-                    </div>
-                    </div>
-                );
-                })}
-            </ScrollToBottom>
                 </div>
-            </div>            
+                :
+                <div className='chat__contents'>
+                    {/* div태그로 하거나 or 컴포넌트로  */}
+                    <div className='chat-body'>
+                        <ScrollToBottom className='message-body'>
+                            {chatMessages.map((messageInfo, idx) => {
+                                const { user_id, type, name, message, date, time } = messageInfo;
+                                if (idx === 0) { // 페이지네이션 대비
+                                    // 첫 요소에 날짜가 없을 때
+                                    const dateArr = date.split('.');
+                                    if (user_id === 0) { // 관리자 메세지
+                                        if (type === 'message') {
+                                            return (
+                                                <div>
+                                                    <div className='admin-date'>{`${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
+                                                    <div className='admin-message'>{message}</div>
+                                                </div>
+                                            );
+                                        } else if (type === 'date') {
+                                            return (
+                                                <div>
+                                                    <div className='admin-date'>{message}</div>
+                                                </div>
+                                            );
+                                        }
+                                    }
+                                    return (
+                                        <div>
+                                            <div className='admin-date'>{`${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
+                                            <div>{message}</div>
+                                            <div>
+                                                <span>{name}</span> <span>{time}</span>
+                                            </div>
+                                            {/* <div>{message}</div>
+                        <div>
+                        <span>{name}</span> <span>{time}</span>
+                        </div> */}
+                                        </div>
+                                    );
+                                }
+                                if (user_id === 0) {
+                                    if (type === 'message') {
+                                        return (
+                                            <div>
+                                                <div className='admin-message'>{message}</div>
+                                            </div>
+                                        );
+                                    } else if (type === 'date') {
+                                        return (
+                                            <div>
+                                                <div className='admin-date'>{message}</div>
+                                            </div>
+                                        );
+                                    }
+                                }
+                                return (
+                                    <div>
+                                        <div>{message}</div>
+                                        <div>
+                                            <span>{name}</span> <span>{time}</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </ScrollToBottom>
+                    </div>
+                </div>
+            }
             <div className='chat__send__conatiner'>
-                <input onChange={(e) => setSendingText(e.target.value)} className='chat__content__input' placeholder='메세지를 입력하세요'></input>
+                <input onChange={(e) => setSendingText(e.target.value)} className='chat__content__input' placeholder='메세지를 입력하세요 💬'></input>
                 {/* <textarea onChange={(e) => changeMessage(e)} className='chat__content__input' placeholder='메세지를 입력하세요'></textarea> */}
                 <button onClick={() => sendMessage()} className='chat__send__button'>전송</button>
             </div>
