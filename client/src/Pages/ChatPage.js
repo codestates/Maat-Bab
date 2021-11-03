@@ -3,62 +3,92 @@ import List from '../Component/List';
 import ChatBox from '../Component/ChatBox';
 import MateList from '../Component/MateList';
 import './ChatPage.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import ChatBoxJoin from '../Modal/ChatBoxJoin'
-import InitialChatBox from '../Component/InitialChatBox';
 import LogInModal from '../Modal/LogInModal';
+import io from 'socket.io-client';
 
-function ChatPage({ card_id }) {
+const socket = io.connect(`http://localhost:80`);
+
+function ChatPage() {
   const initial = useSelector(state => state.userReducer);
-  const [myCardList, setMyCardList] = useState([])
-  const [curCard, setCurCard] = useState({})
-  const [isFirst, setIsFirst] = useState(true)
-  const [isModal, setIsModal] = useState(false)
+  const { user_id, name } = initial.userInfo;
+  const [myCardList, setMyCardList] = useState([]);
+  const [selectedCard, setSelectedCard] = useState('');
+  // 선택한 카드 객체?
 
-  useEffect( async () => {
-    console.log('initial.isLogin: ',initial.isLogin)
-    console.log('initial.userInfo.user_id: ',initial.userInfo.user_id)
-
-    await axios.get(`http://localhost:80/card/${initial.userInfo.user_id}`)
-    .then(res => {
-      setMyCardList([...myCardList, ...res.data])
-      setIsFirst(false);
-    })
-
-  },[])
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   useEffect(() => {
-    console.log(`Now in ChatPage, state curCard is ${curCard} in useEffect`)
-  }, [curCard])
+    // const getUserCardList = async () => {
+      // const data =
+        axios.get(`http://localhost:80/card/${user_id}`)
+        .then(res => {
+          if (!res.data.length) {
+            setMyCardList(res.data);
+          } else {
+            res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
+            setMyCardList(res.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      
+        // if (!data.length) {
+        //   setMyCardList(data);
+        // } else {
+        //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
+        //   setMyCardList(data);
+        // }
 
-  const cardClickinChatHandler = (id) => {
-    console.log('joined card clicked');
-    
-    setCurCard(id);
-    console.log(`Now in ChatPage, curCard : ${curCard} in handler`);
+        // if (data) {
+        //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
+        // }
+        // setMyCardList(data);
+      
+    // }
+    // getUserCardList();
+    console.log('myCardList: ', myCardList);
+  }, [])
+  // }, [socket, user_id])
+
+  // * chatbox
+  const leaveRoom = (data) => {
+    socket.emit('leave_room', data);
+    // data 는 selectedCard.card_id
+  };
+
+  const cardClickinChatHandler = async (user_card) => {    
+    console.log('user_card: ',user_card);
+    // await setSelectedCard(user_card.Card)
+    await setSelectedCard(user_card)
+
+    // let newUser_card = Object.assign({}, user_card);
+    // await setSelectedCard(newUser_card.Card);
   }
 
   return (
     <div className='chatpage'>
-      {!initial.userInfo.user_id ? <LogInModal /> : null}
+      {!user_id ? <LogInModal /> : null}
 
-      {isModal ? <ChatBoxJoin setIsModal={setIsModal} setIsFirst={setIsFirst} />:null}
-      {/* 나의 약속 카드 목록 */}
       <List title={'나의 맞밥 약속'} className='chatpage__list__container'
         myCardList={myCardList}
-        curCard={curCard} setCurCard={setCurCard}
-        setIsModal={setIsModal}
         cardClickinChatHandler={cardClickinChatHandler}
+        leaveRoom={leaveRoom}
       />
-      {isFirst ? <InitialChatBox /> :
-        <ChatBox className='chatpage__chat__container'
-        curCard={curCard} setCurCard={setCurCard}
-        setIsModal={setIsModal}
-          cardClickinChatHandler={cardClickinChatHandler}/> }
 
+      {selectedCard ?
+        (<ChatBox className='chatpage__chat__container'
+          user_id={user_id}
+          name={name}
+          selectedCard={selectedCard}
+          socket={socket}
+        />)
+        :
+        'no contents'
+      }
       <MateList className='chatpage__mate__container' />
-
     </div>
   )
 }

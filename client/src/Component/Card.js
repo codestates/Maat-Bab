@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-function Card({ card_id, title, region, date, time, headCount, cardClickinMainHandler, cardClickinChatHandler}) {
+function Card({ card_id, title, region, date, time, headCount, cardClickinMainHandler, cardClickinChatHandler, myCard}) {
 
 // state join 여부, flip 여부
 // props title, region, date, time, headcount(:현재 참여자.. => card 테이블에서 필드 추가?)
@@ -36,7 +36,7 @@ function Card({ card_id, title, region, date, time, headCount, cardClickinMainHa
             <span className='card__time'>{time}</span>
             <span className='card__headcount'>{headCount}명</span>
             </div>
-        <div className='card__hover__message joined' onClick={() => cardClickinChatHandler(card_id)}>채팅하기</div>
+        <div className='card__hover__message joined' onClick={() => cardClickinChatHandler(myCard)}>채팅하기</div>
         </div>        
         }
         </div>

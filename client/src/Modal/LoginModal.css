@@ -2,18 +2,18 @@
   width: 100vw;
   height: 100vh;
   z-index: 300;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
 }
 
-.modalbackdrop.loginModal{
+.modalbackdrop.loginModal {
   width: 0;
   height: 0;
   margin: 5% 0 0 25%;
   background-color: white;
   position: fixed;
-  border-radius: 20px; 
+  border-radius: 20px;
   text-align: center;
   z-index: 400;
 }
@@ -22,19 +22,18 @@
   height: 0;
   width: 0;
   padding: 0;
-
 }
 
 .signin__content__container.loginModal {
   width: 60vw;
   height: 85vh;
-  border: 1px solid #FFA512;
+  border: 1px solid #ffa512;
   align-items: center;
   background-color: white;
   border-radius: 30px;
 }
 .signin__title.loginModal {
-  color: #FFA512;
+  color: #ffa512;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -67,9 +66,9 @@
   padding-left: 10px;
   margin-right: 5px;
 }
-.signin__input.loginModal :focus{
+.signin__input.loginModal :focus {
   outline: none;
-  border: 2px solid #FFA512;
+  border: 2px solid #ffa512;
   font-size: 20px;
   color: black;
   font-weight: 400;
@@ -88,7 +87,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #FFA512;
+  color: #ffa512;
   font-size: 24px;
   font-weight: 600;
 }
@@ -97,8 +96,8 @@
   width: 70%;
   margin-left: 12%;
 }
-.signin__button__login.loginModal ,
-.signin__button__login__google.loginModal ,
+.signin__button__login.loginModal,
+.signin__button__login__google.loginModal,
 .signin__button__login__kakao.loginModal {
   border: none;
   width: 40vw;
@@ -109,26 +108,26 @@
   font-weight: 700;
 }
 .signin__button__login.loginModal {
-  background-color: #FFA512;
+  background-color: #ffa512;
   color: white;
 }
-.signin__button__login.loginModal :hover{
+.signin__button__login.loginModal :hover {
   color: black;
   cursor: pointer;
 }
 .signin__button__login__google.loginModal :hover,
-.signin__button__login__kakao.loginModal :hover{
-  color: #FFA512;
+.signin__button__login__kakao.loginModal :hover {
+  color: #ffa512;
   cursor: pointer;
 }
 .signin__button__login__google.loginModal {
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
 }
 .signin__button__login__kakao.loginModal {
-  background-color: #FBE300;
+  background-color: #fbe300;
 }
 .kakao__logo.loginModal {
-  background-image: url('../resource/카카오톡로고.png');
+  background-image: url('../resource/kakaotalk-logo.png');
   background-size: 100%;
   width: 35px;
   height: 35px;
@@ -136,7 +135,7 @@
   margin-top: -5px;
 }
 .google__logo.loginModal {
-  background-image: url('../resource/구글로고.png');
+  background-image: url('../resource/google-logo.png');
   background-size: 100%;
   width: 35px;
   height: 35px;
@@ -144,5 +143,4 @@
   margin-top: -5px;
 }
 @media screen and (max-width: 768px) {
-  
 }
