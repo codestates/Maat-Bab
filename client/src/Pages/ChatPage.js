@@ -6,6 +6,7 @@ import './ChatPage.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import LogInModal from '../Modal/LogInModal';
+import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
 
 const socket = io.connect(
@@ -16,89 +17,98 @@ function ChatPage() {
   const initial = useSelector((state) => state.userReducer);
   const { user_id, name } = initial.userInfo;
   const [myCardList, setMyCardList] = useState([]);
-  const [selectedCard, setSelectedCard] = useState('');
-  // 선택한 카드 객체?
+  const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
+  const [isDeleteClicked, setIsDeleteClicked] = useState(false);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
-    // const getUserCardList = async () => {
-    // const data =
-    axios
-      .get(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`
-      )
-      .then((res) => {
-        if (!res.data.length) {
-          setMyCardList(res.data);
-        } else {
-          res.data.forEach((user_card) =>
-            socket.emit('join_room', user_card.card_id)
-          );
-          setMyCardList(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // if (!data.length) {
-    //   setMyCardList(data);
-    // } else {
-    //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-    //   setMyCardList(data);
-    // }
-
-    // if (data) {
-    //   data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-    // }
-    // setMyCardList(data);
-
-    // }
-    // getUserCardList();
+        axios.get(`http://localhost:80/card/${user_id}`)
+        .then(res => {
+          if (!res.data.length) {
+            setMyCardList(res.data);
+          } else {
+            res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
+            setMyCardList(res.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      
     console.log('myCardList: ', myCardList);
-  }, []);
-  // }, [socket, user_id])
+  }, [])
+
 
   // * chatbox
   const leaveRoom = (data) => {
-    socket.emit('leave_room', data);
-    // data 는 selectedCard.card_id
+    socket.emit('leave_room', data); // data 는 selectedCard.card_id
   };
 
-  const cardClickinChatHandler = async (user_card) => {
-    console.log('user_card: ', user_card);
-    // await setSelectedCard(user_card.Card)
-    await setSelectedCard(user_card);
+  const cardClickinChatHandler = async (user_card) => {    
+    console.log('user_card: ',user_card);
+    await setSelectedCard(user_card)
+  }
 
-    // let newUser_card = Object.assign({}, user_card);
-    // await setSelectedCard(newUser_card.Card);
+  const deleteCardModalHandler = async () => {
+    await setIsDeleteClicked(true);
+  }
+
+  const deleteCardHandler = async (card_id) => {
+    setIsDeleteClicked(false);
+
+    if (selectedCard?.card_id === card_id) {
+      setSelectedCard('');
+    }
+    leaveRoom(card_id);
+    await axios.delete(`http://localhost:80/card/${user_id}`, {
+    data: { card_id },
+    });
+    const data = await axios
+      .get(`http://localhost:80/card/${user_id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return [];
+      });
+    if (!data.length) {
+      setMyCardList(data);
+    } else {
+      data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
+      setMyCardList(data);
+    }
   };
 
   return (
     <div className='chatpage'>
       {!user_id ? <LogInModal /> : null}
 
-      <List
+      <List className='chatpage__list__container'
         title={'나의 맞밥 약속'}
-        className='chatpage__list__container'
-        myCardList={myCardList}
+        myCardList={myCardList} setMyCardList={setMyCardList}
+        selectedCard={selectedCard} setSelectedCard={setSelectedCard}
         cardClickinChatHandler={cardClickinChatHandler}
-        leaveRoom={leaveRoom}
+        deleteCardModalHandler={deleteCardModalHandler}
       />
 
+      {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
+      /> : null}
+      
       {selectedCard ? (
-        <ChatBox
-          className='chatpage__chat__container'
+        <ChatBox className='chatpage__chat__container'
           user_id={user_id}
           name={name}
           selectedCard={selectedCard}
           socket={socket}
-        />
-      ) : (
-        'no contents'
-      )}
+          isDeleteClicked={isDeleteClicked}
+        />)
+        :
+        (<ChatBox className='chatpage__chat__container nonselected'
+        />)
+      }
+
       <MateList className='chatpage__mate__container' />
+  
     </div>
   );
 }
