@@ -3,12 +3,11 @@ import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 function ChatBox({ selectedCard, socket, user_id, name }) {
-
-const { card_id, chat_title } = selectedCard.Card;
+    // const { card_id, chat_title } = selectedCard.Card;
     const [writeMessage, setWriteMessage] = useState('');
     const [messages, setMessages] = useState([]);
     // 전체 메세지
-
+    
     useEffect(() => {
         if (selectedCard) {
             socket.emit('req_messages', { user_id, card_id: selectedCard.card_id });
@@ -20,8 +19,11 @@ const { card_id, chat_title } = selectedCard.Card;
     }, [socket, selectedCard, user_id]);
 
     useEffect(() => {
+        console.log(222)
         if (selectedCard) {
-        socket.on('receive_message', (data) => {
+            console.log(333, selectedCard)
+            socket.on('receive_message', (data) => {
+            console.log(111,data)
         // data는 messageInfo 입니다.
             if (data[0].card_id === selectedCard.card_id) {
                 setMessages([...messages, ...data]);
@@ -38,7 +40,7 @@ const { card_id, chat_title } = selectedCard.Card;
     const sendMessage = () => {
         if (writeMessage !== '') {
         const messageInfo = {
-            card_id,
+            card_id: selectedCard.card_id,
             user_id,
             name,
             message: writeMessage,
@@ -57,7 +59,7 @@ const { card_id, chat_title } = selectedCard.Card;
     return (
         <div className='chatbox'>
             <div className='chatroom_title'>
-            {chat_title? chat_title : '맞밥 채팅방 '}
+            {selectedCard.chat_title? selectedCard.chat_title : '맞밥 채팅방 '}
             </div>
             {!selectedCard ?
                 <div className='chat__contents'>
@@ -100,10 +102,10 @@ const { card_id, chat_title } = selectedCard.Card;
                                             <div>
                                                 <span>{name}</span> <span>{time}</span>
                                             </div>
-                                            {/* <div>{message}</div>
-                        <div>
-                        <span>{name}</span> <span>{time}</span>
-                        </div> */}
+                                            <div>{message}</div>
+                                            <div>
+                                                <span>{name}</span> <span>{time}</span>
+                                            </div>
                                         </div>
                                     );
                                 }
