@@ -3,7 +3,7 @@ import './KakaoMap.css';
 
 const { kakao } = window;
 
-const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
+const ModalKakao = ({city, city2, searchPlace, setCurnPlace}) => {
 
   useEffect(() => {
     const container = document.getElementById('myMap');
@@ -13,7 +13,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
     };
     const map = new kakao.maps.Map(container, options);
     const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(district, function (result, status) {
+    geocoder.addressSearch(city2, function (result, status) {
       if (status === kakao.maps.services.Status.OK) { // 정상적으로 검색 완료 시
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         map.setCenter(coords); // 지도의 중심을 결과값으로 받은 위치로 이동
@@ -30,7 +30,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
     }
     const map = new kakao.maps.Map(container, options);
     const ps = new kakao.maps.services.Places(); 
-    ps.keywordSearch(district + searchingPlace, placesSearchCB); // 주변 포함 검색
+    ps.keywordSearch(city2 + searchPlace, placesSearchCB); // 주변 포함 검색
 
     function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {
@@ -56,16 +56,16 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
       setCurnPlace(place.place_name); // 핀 클릭 시 현재 장소 값으로 저장
     })
   }
-},[district, searchingPlace])
+},[searchPlace])
 
   return (
     <div id='myMap' style={{
         width: '100%', 
         height: '100%'
     }}>
-      <div className='modal__map__location main'>{city} ▶︎ {district}</div>
+      <div className='modal__map__location main'>{city} ▶︎ {city2}</div>
     </div>
   );
 }
 
-export default KakaoMap; 
+export default ModalKakao; 

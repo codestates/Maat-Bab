@@ -1,50 +1,49 @@
-.emailcheck__background{
-  background-image: url('../resource/이메일인증.png');
+.emailcheck__background {
+  background-image: url('../resource/emailconfirm.png');
   background-size: 100%;
   width: 99vw;
   height: 100vh;
   margin-top: -1%;
   padding-top: 5%;
-
 }
-.emailcheck__content__container{
-  border: 1px solid #FFA512;
+.emailcheck__content__container {
+  border: 1px solid #ffa512;
   border-radius: 20px;
   background-color: white;
   width: 55%;
   height: 90%;
   margin-left: 25%;
 }
-.emailcheck__messages__cocntainer{
+.emailcheck__messages__cocntainer {
   height: 30%;
   list-style: none;
   margin-top: 5%;
   text-align: center;
 }
-.emailcheck__messages__cocntainer__message1{
+.emailcheck__messages__cocntainer__message1 {
   width: 80%;
   margin-top: 5%;
   font-size: 25px;
-  text-align: center;  
+  text-align: center;
 }
-.emailcheck__messages__cocntainer__message2{
+.emailcheck__messages__cocntainer__message2 {
   width: 90%;
   margin-top: 5%;
   color: gray;
   font-size: 23px;
-  text-align: center; 
-}
-.emailcheck__title{
   text-align: center;
-  color: #FFA512;
+}
+.emailcheck__title {
+  text-align: center;
+  color: #ffa512;
   margin-top: 5%;
 }
-.emailcheck__button__container{
+.emailcheck__button__container {
   text-align: center;
   margin-top: 15%;
   height: 30%;
 }
-.emailcheck__button__email__input{
+.emailcheck__button__email__input {
   width: 100%;
   height: 100%;
   border-radius: 20px;
@@ -54,15 +53,15 @@
   text-align: center;
   font-size: 20px;
 }
-.emailcheck__button__email__input__div{
+.emailcheck__button__email__input__div {
   width: 90%;
   height: 25%;
   margin: 3% 0 0 5%;
 }
-.emailcheck__button__send__button{
+.emailcheck__button__send__button {
   border: none;
   border-radius: 20px;
-  background-color: #FFAC24;
+  background-color: #ffac24;
   margin-top: 3%;
   width: 90%;
   height: 25%;
@@ -70,33 +69,33 @@
   font-weight: 700;
   box-shadow: 5px 5px 5px gray;
 }
-.emailcheck__button__send__button:hover{
+.emailcheck__button__send__button:hover {
   color: white;
 }
-.emailcheck__send__button__div{
+.emailcheck__send__button__div {
   height: 25%;
   margin-top: 3%;
   align-items: center;
 }
-.emailcheck__send__button{
+.emailcheck__send__button {
   border: none;
-  background-color: #FF7A00;
+  background-color: #ff7a00;
   width: 90%;
   height: 100%;
   border-radius: 30px;
   font-size: 25px;
   font-weight: 700;
 }
-.emailcheck__send__button:hover{
+.emailcheck__send__button:hover {
   border: 2px solid black;
   color: white;
 }
-@media screen and (max-width: 768px){
-  .emailcheck__background{
+@media screen and (max-width: 768px) {
+  .emailcheck__background {
     background-image: none;
     height: 95vh;
   }
-  .emailcheck__content__container{
+  .emailcheck__content__container {
     width: 100%;
     height: 100%;
     margin: 0;

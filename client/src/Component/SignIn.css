@@ -56,8 +56,8 @@
 }
 .signin__button__login{
   border: none;
-  width: 16.5vw;
-  height: 6.5vh;
+  width: 235px;
+  height: 51px;
   margin-top: 3%;
   font-size: 20px;
   border-radius: 20px;
@@ -69,8 +69,8 @@
   margin-left: 20%;
   background-image: url('../resource/google_signin_buttons/web/2x/btn_google_signin_dark_normal_web@2x.png');
   background-size: 100%;
-  width: 16.5vw;
-  height: 6.5vh;
+  width: 235px;
+  height: 51px;
   margin-top: 3%;
   border: none;
 }
@@ -81,8 +81,8 @@
   margin-left: 20%;
   background-image: url('../resource/kakao_sync_login/complete/ko/kakao_login_medium_narrow.png');
   background-size: 100%;
-  width: 16.5vw;
-  height: 6.5vh;
+  width: 235px;
+  height: 51px;
   margin-top: 3%;
   border: none;
 }
@@ -126,7 +126,8 @@
   .signin__button__login,
   .signin__button__login__google,
   .signin__button__login__kakao{
-    width: 60vw;
+    width: 200px;
+    height: 43px;
   }
   .signin__content__container{
     border-radius: 0;

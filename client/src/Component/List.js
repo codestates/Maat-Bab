@@ -2,7 +2,8 @@ import React from 'react';
 import CardsList from './CardsList';
 import './List.css';
 
-function List({ title, cardData, message, cardClickinMainHandler, myCardList, curCard, setCurCard, setIsModal }) {
+function List({ title, cardData, message, cardClickinMainHandler, cardClickinChatHandler, myCardList, setMyCardList, setSelectedCard, selectedCard, deleteCardModalHandler
+}) {
     return (
         <div className='list'>
             <div className='list__header'>
@@ -10,10 +11,10 @@ function List({ title, cardData, message, cardClickinMainHandler, myCardList, cu
                 <div className='list__header__text'>{message}</div>
             </div>
             <section className='card__list__section'>
-                <CardsList cardData={cardData}
-                    cardClickinMainHandler={cardClickinMainHandler}
-                    myCardList={myCardList}
-                    curCard={curCard} setCurCard={setCurCard}/>
+                <CardsList
+                    cardData={cardData} myCardList={myCardList} setMyCardList={setMyCardList} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
+                    cardClickinMainHandler={cardClickinMainHandler} cardClickinChatHandler={cardClickinChatHandler} deleteCardModalHandler={deleteCardModalHandler}
+                />
             </section>
         </div>
     )
