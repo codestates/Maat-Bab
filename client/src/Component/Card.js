@@ -14,15 +14,12 @@ function Card({
         cardClickHandler = cardClickinMainHandler
     }
 
-    let isjoined = '';
-    if (selectedCard.card_id === card_id) {
-        isjoined = 'joined';
-    }
+    const isJoined = () => selectedCard.card_id === card_id && selectedCard ? true : false
 
     return (
         <div className='card'>
 
-            <div className='card__container'>
+            <div className={isJoined() ? 'card__container joined' : 'card__container'}>
                 <div className='card__first__container'>
                     <div className='card__title'>{title}</div>
                     {cardClickinChatHandler ? (selectedCard.card_id===card_id ? <MdExitToApp className='chat__exit__button joined' onClick={() => deleteCardModalHandler()} />

@@ -12,16 +12,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* background-color: #ffb800; */
-  /* background: linear-gradient(to bottom, #ffa512, #ffb800); */
   background: linear-gradient(to top, #ffdc6a, #ffb800);
 
   margin: 0px 15px;
   padding: 5px 10px;
-
-  /* border: 2px solid blue; */
 }
 
+.card__container.joined {
+  border: 4px solid #ff6912;
+}
+
+.card__container.joined:hover {
+  filter:brightness(0.85);
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
 .card__container:hover {
   filter: opacity(0.5);
   transition: all ease-in-out 0.3s;
