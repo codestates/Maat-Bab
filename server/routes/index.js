@@ -25,7 +25,7 @@ router.get('/auth', auth.get);
 router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
-router.post('/oauth/kakao', kakao.post);
+router.post('/kakao', kakao.post);
 router.post('/google', google.post);
 router.post('/same-email', sameEmail.post);
 router.get('/userinfo', userinfo.get);
