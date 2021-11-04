@@ -4,7 +4,7 @@ import Profile from './Profile';
 
 function ProfileList() {
     return (
-        <div className='profile'>            
+        <div className='profilelist'>            
             <Profile className='profile__section' />
         </div>
     )

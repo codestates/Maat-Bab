@@ -1,4 +1,4 @@
-.profile {
+.profilelist {
   display: flex;
   flex-direction: column;
   height: 650px;
@@ -7,10 +7,9 @@
   margin: 0px 20px;
   overflow-y: scroll;
 }
-.profile::-webkit-scrollbar{
+.profilelist::-webkit-scrollbar{
   display: none;
 }
 
 .profile__section {
-  /* border: 4px solid mediumturquoise; */
 }
