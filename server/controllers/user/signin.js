@@ -1,5 +1,11 @@
-const { User, Taste, User_taste } = require('../../models');
-const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../tokenFunctions');
+const { User } = require('../../models');
+const {
+  generateAccessToken,
+  generateRefreshToken,
+  sendAccessToken,
+  sendRefreshToken,
+} = require('../tokenFunctions');
+const { generateHashData } = require('../../functions');
 
 module.exports = {
   post: (req, res) => {
@@ -17,13 +23,15 @@ module.exports = {
           return res.status(404).send('No exists');
         }
 
-        const { password } = data;
+        const { password, salt } = data;
+        const hashPassword = generateHashData(salt + reqPassword);
 
-        if (reqPassword !== password) {
+        if (hashPassword !== password) {
           return res.status(422).send('Failed to login');
         }
 
         delete data.dataValues.password;
+        delete data.dataValues.salt;
         data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
 
         const userinfo = data.dataValues;
