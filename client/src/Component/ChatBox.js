@@ -2,19 +2,19 @@ import React,{ useState, useEffect } from 'react';
 import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ selectedCard, socket, user_id, name }) {
+function ChatBox({ selectedCard, socket, my_user_id, name }) {
     // const { card_id, chat_title } = selectedCard;
     const [writeMessage, setWriteMessage] = useState('');
     const [messages, setMessages] = useState([]); // 전체 메세지
     
     useEffect(() => {
         if (selectedCard) {
-            socket.emit('req_messages', { user_id, card_id: selectedCard.card_id });
+            socket.emit('req_messages', { user_id: my_user_id, card_id: selectedCard.card_id });
             socket.on('res_messages', (data) => { // data는 [messageInfo,messageInfo,messageInfo]
             setMessages(data);
             });
         }
-    }, [socket, selectedCard, user_id]);
+    }, [socket, selectedCard, my_user_id]);
 
     useEffect(() => {
         if (selectedCard) {
@@ -35,7 +35,7 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
         if (writeMessage !== '') {
         const messageInfo = {
             card_id: selectedCard.card_id,
-            user_id,
+            user_id: my_user_id,
             name,
             message: writeMessage,
             date: new Date(Date.now()).toLocaleDateString(),
@@ -64,7 +64,6 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
                 </div>
                 :
                 <div className='chat__contents'>
-                    {/* div태그로 하거나 or 컴포넌트로  */}
                     <div className='chat-body'>
                         <ScrollToBottom className='message-body'>
                             {messages.map((messageInfo, idx) => {
@@ -88,16 +87,41 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
                                             );
                                         }
                                     }
+
+                                    if (user_id === my_user_id) {
+                                        <div>
+                                            <div className='admin-date'>{`${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
+                                            <div id='user1' className='chatbox__chat__container'>
+                                            <div id='user1' className='chatbox__chat__message'>{message}</div>
+                                            <div id='user1' className='chatbox__chat__nameandtime'>
+                                                <span id='user1' className='chatbox__chat__name'>{name}</span> <span id='user1' className='chatbox__chat__time'>{time}</span>
+                                            </div>
+                                            </div>
+
+                                            <div id='user1' className='chatbox__chat__container'>
+                                            <div id='user1' className='chatbox__chat__message'>{message}</div>
+                                            <div id='user1' className='chatbox__chat__nameandtime'>
+                                                <span id='user1' className='chatbox__chat__name'>{name}</span> <span id='user1' className='chatbox__chat__time'>{time}</span><span id='user1' className='chatbox__chat__name'>{name}</span> <span id='user1'className='chatbox__chat__time' >{time}</span>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    }
+
                                     return (
                                         <div>
                                             <div className='admin-date'>{`${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(0, 3)}일`}</div>
-                                            <div>{message}</div>
-                                            <div>
-                                                <span>{name}</span> <span>{time}</span>
+                                            <div id='user2' className='chatbox__chat__container'>
+                                            <div id='user2' className='chatbox__chat__message'>{message}</div>
+                                            <div id='user2' className='chatbox__chat__nameandtime'>
+                                                <span id='user2' className='chatbox__chat__name'>{name}</span> <span id='user2' className='chatbox__chat__time'>{time}</span>
+                                                </div>
                                             </div>
-                                            <div>{message}</div>
-                                            <div>
-                                                <span>{name}</span> <span>{time}</span>
+                                            
+                                            <div id='user2' className='chatbox__chat__container'>
+                                            <div id='user2' className='chatbox__chat__message'>{message}</div>
+                                            <div id='user2' className='chatbox__chat__nameandtime'>
+                                                <span id='user2' className='chatbox__chat__name'>{name}</span> <span id='user2' className='chatbox__chat__time'>{time}</span><span id='user2' className='chatbox__chat__name'>{name}</span> <span id='user2'className='chatbox__chat__time' >{time}</span>
+                                            </div>
                                             </div>
                                         </div>
                                     );
@@ -117,12 +141,24 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
                                         );
                                     }
                                 }
-                                return (
-                                    <div>
-                                        <div>{message}</div>
-                                        <div>
-                                            <span>{name}</span> <span>{time}</span>
+                                if (user_id === my_user_id) {
+                                    return (
+                                        <div id='user1' className='chatbox__chat__container'>
+                                            <div id='user1' className='chatbox__chat__message'>{message}</div>
+                                                <div id='user1' className='chatbox__chat__nameandtime'>
+                                                    <span id='user1' className='chatbox__chat__name'>{name}</span>
+                                                    <span id='user1' className='chatbox__chat__time'>{time}</span>
+                                                </div>
                                         </div>
+                                    );
+                                }
+                                return (
+                                    <div id='user2' className='chatbox__chat__container'>
+                                        <div id='user2' className='chatbox__chat__message'>{message}</div>
+                                            <div id='user2' className='chatbox__chat__nameandtime'>
+                                                <span id='user2' className='chatbox__chat__name'>{name}</span>
+                                                <span id='user2' className='chatbox__chat__time'>{time}</span>
+                                            </div>
                                     </div>
                                 );
                             })}
