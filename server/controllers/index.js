@@ -5,6 +5,7 @@ module.exports = {
   signin: require('./user/signin'),
   signout: require('./user/signout'),
   kakao: require('./oauth/kakao'),
+  google: require('./oauth/google'),
   userinfo: require('./user/userinfo'),
   mail: require('./user/mail'),
   certification: require('./user/certification'),
