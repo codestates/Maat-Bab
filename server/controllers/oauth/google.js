@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { User } = require('../../models');
-const { Op } = require('sequelize');
 const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../tokenFunctions');
 
 module.exports = {
@@ -10,9 +9,9 @@ module.exports = {
     const { googleId, email, name } = req.body.data.profileObj;
 
     await User.findOrCreate({
-      where: { [Op.or]: [{ oauth: googleId }, { email: email }] },
+      where: { oauth: googleId },
       defaults: {
-        email: email,
+        email: null,
         password: null,
         name,
         etiquette: null,
