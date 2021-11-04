@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       etiquette: DataTypes.STRING,
       oauth: DataTypes.BOOLEAN,
       certification: DataTypes.BOOLEAN,
+      salt: DataTypes.STRING,
     },
     {
       sequelize,
