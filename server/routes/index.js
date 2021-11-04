@@ -5,6 +5,7 @@ const {
   signin,
   signout,
   kakao,
+  google,
   userinfo,
   taste,
   card,
@@ -25,6 +26,7 @@ router.post('/signup', signup.post);
 router.post('/signin', signin.post);
 router.post('/signout', signout.post);
 router.post('/oauth/kakao', kakao.post);
+router.post('/google', google.post);
 router.post('/same-email', sameEmail.post);
 router.get('/userinfo', userinfo.get);
 router.patch('/userinfo', userinfo.patch);
