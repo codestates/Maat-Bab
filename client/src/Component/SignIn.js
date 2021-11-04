@@ -57,7 +57,22 @@ function SignIn({ isSiginInModal }) {
     window.location.href = URL;
   };
   const responseGoogle = (response) => {
-    console.log(response)
+    axios.post(`http://localhost:80/google`,{data:response})
+    .then(res => {
+      if(res.status === 200){
+        let data = res.data;
+        dispatch(setLoginStatus(true))
+        dispatch(setUserInfo(
+          data.user_id,
+          data.email,
+          data.name,
+          data.etiqette,
+          data.oauth,
+          data.certification
+        ))
+        history.push('/main')
+      }
+    })
   }
   return (
     <div>
