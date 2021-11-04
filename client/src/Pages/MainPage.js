@@ -44,12 +44,12 @@ function MainPage({ isLogin, userInfo }) {
   const [isCardClicked, setCardClicked] = useState(false);
   const [clickedCardId, setClickedCardId] = useState(null);
 
-  const cardClickinMainHandler = (id) => {
+  const cardClickinMainHandler = (card) => {
     console.log('card clicked');
     // 모달 -> 거기서 참여하기 클릭 시
     // : 나의 약속에 추가하기
     // 그런 다음 '/chatpage' 리디렉션
-    setClickedCardId(id);
+    setClickedCardId(card.card_id);
     setCardClicked(true);
     console.log(
       `clickedCardId : ${clickedCardId} isCardClicked ? ${isCardClicked}`
