@@ -98,7 +98,7 @@ module.exports = {
         include: { model: Taste },
       })
         .then((data) => {
-          if (!data.length) return res.status(404).send();
+          if (!data.length) return res.status(204).send(null);
           const tastes = data.map((user_taste) => {
             return user_taste.Taste;
           });
