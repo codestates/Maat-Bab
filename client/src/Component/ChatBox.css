@@ -61,7 +61,6 @@ h3 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
   margin: 10px 10px 20px 10px;
 }
 
@@ -165,15 +164,18 @@ h3 {
   top: -15%; */
   margin: 0px 0px 0px 20px;
   border: none;
-  background-color: #FFA512;
   border-radius: 30px;
+  background-color: #FFA512;
+  color: white;
   width: 13%;
   height: 50%;
   font-size: 20px;
   font-weight: 700;
-  color: white;
 }
+
 .chat__send__button:hover{
-  border: 2px solid black;
-  color: black;
+
+  border: 3px solid #ffA512;
+  color: #ffA512;
+  background-color: white;
 }
