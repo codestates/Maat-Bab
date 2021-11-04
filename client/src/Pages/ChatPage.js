@@ -60,11 +60,11 @@ function ChatPage() {
       setSelectedCard('');
     }
     leaveRoom(card_id);
-    await axios.delete(`http://localhost:80/card/${user_id}`, {
+    await axios.delete(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`, {
     data: { card_id : selectedCard.card_id },
     });
     const data = await axios
-      .get(`http://localhost:80/card/${user_id}`)
+      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
       .then((res) => {
         return res.data;
       })
