@@ -42,6 +42,20 @@
 }
 
 .card__hover__message:hover {
+  color: black;
+  opacity: 1;
+  height: 100%;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+.card__hover__message.joined:hover {
+  color: red !important;
   opacity: 1;
   height: 100%;
   z-index: 500;
@@ -144,11 +158,20 @@
 }
 
 
+.chat__exit__button{
+  width: 30px;
+
+  color: grey;
+  font-size: 26px;
+  font-weight: 600;
+
+  z-index: 200;
+}
 .chat__exit__button.joined{
   width: 30px;
 
   color: white;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 600;
 
   z-index: 200;
