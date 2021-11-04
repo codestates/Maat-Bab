@@ -22,20 +22,21 @@ function ChatPage() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
-        axios.get(`http://localhost:80/card/${user_id}`)
-        .then(res => {
-          if (!res.data.length) {
-            setMyCardList(res.data);
-          } else {
-            res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
-            setMyCardList(res.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
+    .then(res => {
+      if (!res.data.length) {
+        console.log('res.data', res.data)
+        setMyCardList(res.data);
+      } else {
+        console.log('res.data2', res.data)
+        res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
+        setMyCardList(res.data);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
       
-    console.log('myCardList: ', myCardList);
   }, [])
 
 
@@ -69,7 +70,7 @@ function ChatPage() {
         return res.data;
       })
       .catch((err) => {
-        return [];
+        console.log(err)
       });
     if (!data.length) {
       setMyCardList(data);
@@ -83,13 +84,13 @@ function ChatPage() {
     <div className='chatpage'>
       {!user_id ? <LogInModal /> : null}
 
-      <List className='chatpage__list__container'
+      {myCardList? <List className='chatpage__list__container'
         title={'나의 맞밥 약속'}
         myCardList={myCardList} setMyCardList={setMyCardList}
         selectedCard={selectedCard} setSelectedCard={setSelectedCard}
         cardClickinChatHandler={cardClickinChatHandler}
         deleteCardModalHandler={deleteCardModalHandler}
-      />
+      /> : null}
 
       {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
       /> : null}

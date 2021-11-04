@@ -11,10 +11,14 @@ function List({ title, cardData, message, cardClickinMainHandler, cardClickinCha
                 <div className='list__header__text'>{message}</div>
             </div>
             <section className='card__list__section'>
-                <CardsList
-                    cardData={cardData} myCardList={myCardList} setMyCardList={setMyCardList} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
+                {!myCardList ? <CardsList
+                    cardData={cardData} setMyCardList={setMyCardList} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
                     cardClickinMainHandler={cardClickinMainHandler} cardClickinChatHandler={cardClickinChatHandler} deleteCardModalHandler={deleteCardModalHandler}
-                />
+                /> :
+                <CardsList
+                    myCardList={myCardList} setMyCardList={setMyCardList} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
+                    cardClickinMainHandler={cardClickinMainHandler} cardClickinChatHandler={cardClickinChatHandler} deleteCardModalHandler={deleteCardModalHandler}
+                />}
             </section>
         </div>
     )
