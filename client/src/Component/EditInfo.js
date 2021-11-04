@@ -76,6 +76,15 @@ function EditInfo() {
       )
       .then((res) => {
         const myManner = res.data.etiquette;
+        if(myManner === null){
+          const arr = manner.map(el => {
+            return {
+              ...el,
+              selected: false,
+            }
+          })
+          setSumManner(arr)
+        }else{
         const selectManner = manner.map((el) => {
           if (myManner.some((ele, idx) => el.text === ele)) {
             return {
@@ -89,6 +98,7 @@ function EditInfo() {
           }
         });
         setSumManner(selectManner);
+      }
       });
   }, [foodLists, manner]);
 

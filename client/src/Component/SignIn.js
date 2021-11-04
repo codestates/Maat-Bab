@@ -57,7 +57,7 @@ function SignIn({ isSiginInModal }) {
     window.location.href = URL;
   };
   const responseGoogle = (response) => {
-    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/google`,{data:response})
+    console.log(response)
   }
   return (
     <div>
@@ -103,12 +103,16 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li>
+              <li className='signin__button__google'>
                 <GoogleLogin
                  clientId={GOOGLE_KEY}
                  onSuccess={responseGoogle}
                  onFailure={responseGoogle}
-                 cookiePolicy={'single_host_origin'}/>
+                 cookiePolicy={'single_host_origin'}
+                 render={renderProps => (
+                   <button onClick={renderProps.onClick} className='signin__button__google__login'/>
+                 )}
+                 />
               </li>
               <li>
                 <button
