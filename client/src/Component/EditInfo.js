@@ -51,6 +51,9 @@ function EditInfo() {
         `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`
       )
       .then((res) => {
+        if(res.status === 204){
+          setSumLists(foodLists)
+        }else{
         const myData = res.data;
         const selectedList = foodLists.map((food) => {
           if (
@@ -69,6 +72,7 @@ function EditInfo() {
           }
         });
         setSumLists(selectedList);
+      }
       });
     axios
       .get(
