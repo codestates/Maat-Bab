@@ -4,6 +4,7 @@ const {
   generateAccessToken,
   sendAccessToken,
 } = require('../controllers/tokenFunctions');
+const crypto = require('crypto');
 
 module.exports = {
   isAuth: (req, res) => {
@@ -67,5 +68,11 @@ module.exports = {
       ).getMinutes()}`,
     };
     return message;
+  },
+  generateSalt: () => {
+    return crypto.randomBytes(100).toString('base64');
+  },
+  generateHashData: (data) => {
+    return crypto.createHash('sha512').update(data).digest('hex');
   },
 };
