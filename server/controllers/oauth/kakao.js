@@ -29,7 +29,7 @@ module.exports = {
       }).then((tokenData) => tokenData.data);
     } catch (err) {
       console.log(err);
-      res.status(err.response.status).end();
+      // res.status(err.response.status).end();
     }
     if (token) {
       try {
@@ -42,7 +42,7 @@ module.exports = {
         }).then((kakaoUserData) => kakaoUserData.data);
       } catch (err) {
         console.log(err);
-        res.status(err.response.status).end();
+        // res.status(err.response.status).end();
       }
     }
 
@@ -78,7 +78,7 @@ module.exports = {
         });
       } catch (err) {
         console.log(err);
-        res.status(err.response.status).end();
+        // res.status(err.response.status).end();
       }
     }
   },

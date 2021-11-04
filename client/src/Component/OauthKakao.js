@@ -35,7 +35,7 @@ const OauthKakao = () => {
         )
         .then((res) => {
           const data = res.data;
-          if (res.status === 200) {
+          if (res.status === 200 || res.status === 201) {
             dispatch(
               setUserInfo(
                 data.user_id,
