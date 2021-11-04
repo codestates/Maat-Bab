@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
+import GoogleLogin from 'react-google-login'
 function SignIn({ isSiginInModal }) {
   const history = useHistory();
   const [isErr, setIsErr] = useState(false);
@@ -13,10 +13,10 @@ function SignIn({ isSiginInModal }) {
   const dispatch = useDispatch();
   const initail = useSelector((state) => state.userReducer);
   const REDIRECT_URI = 'http://localhost:3000/kakao';
-  const KAKAO_KEY = 'd855a9d956eb43b89b0fbd2614002ee9';
+  const KAKAO_KEY = process.env.REACT_APP_KAKAO_API_KEY;
   const PATH = 'https://kauth.kakao.com/oauth/authorize';
   const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
+  const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_API_KEY
   const emailInput = (e) => {
     setEmailValue(e.target.value);
     if (!emailValue.includes('@')) {
@@ -56,6 +56,9 @@ function SignIn({ isSiginInModal }) {
   const kakaoLogin = () => {
     window.location.href = URL;
   };
+  const responseGoogle = (response) => {
+    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/google`,{data:response})
+  }
   return (
     <div>
       {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
@@ -101,7 +104,11 @@ function SignIn({ isSiginInModal }) {
                 </button>
               </li>
               <li>
-                <button className='signin__button__login__google'></button>
+                <GoogleLogin
+                 clientId={GOOGLE_KEY}
+                 onSuccess={responseGoogle}
+                 onFailure={responseGoogle}
+                 cookiePolicy={'single_host_origin'}/>
               </li>
               <li>
                 <button
