@@ -3,28 +3,22 @@ import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 function ChatBox({ selectedCard, socket, user_id, name }) {
-    // const { card_id, chat_title } = selectedCard.Card;
+    // const { card_id, chat_title } = selectedCard;
     const [writeMessage, setWriteMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    // 전체 메세지
+    const [messages, setMessages] = useState([]); // 전체 메세지
     
     useEffect(() => {
         if (selectedCard) {
             socket.emit('req_messages', { user_id, card_id: selectedCard.card_id });
-            socket.on('res_messages', (data) => {
-            // data는 [messageInfo,messageInfo,messageInfo] 입니다.
+            socket.on('res_messages', (data) => { // data는 [messageInfo,messageInfo,messageInfo]
             setMessages(data);
             });
         }
     }, [socket, selectedCard, user_id]);
 
     useEffect(() => {
-        console.log(222)
         if (selectedCard) {
-            console.log(333, selectedCard)
-            socket.on('receive_message', (data) => {
-            console.log(111,data)
-        // data는 messageInfo 입니다.
+            socket.on('receive_message', (data) => { // data는 messageInfo
             if (data[0].card_id === selectedCard.card_id) {
                 setMessages([...messages, ...data]);
             }
@@ -52,14 +46,13 @@ function ChatBox({ selectedCard, socket, user_id, name }) {
         document.querySelector('.chat__content__input').value = '';
         socket.emit('send_message', messageInfo);
         setWriteMessage('');
-        // messagesHandler([...messages, messageInfo]);
         }
     };
 
     return (
         <div className='chatbox'>
             <div className='chatroom_title'>
-            {selectedCard?.chat_title? selectedCard.chat_title : '맞밥 채팅방 '}
+            {selectedCard?.chat_title ? selectedCard?.chat_title : '맞밥 채팅방 '}
             </div>
             {!selectedCard ?
                 <div className='chat__contents'>

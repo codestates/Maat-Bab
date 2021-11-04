@@ -144,14 +144,14 @@
 }
 
 
-.chat__exit__button{
+.chat__exit__button.joined{
   width: 30px;
 
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
 
-  z-index: 500;
+  z-index: 200;
 }
 
 

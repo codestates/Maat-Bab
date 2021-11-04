@@ -45,9 +45,8 @@ function ChatPage() {
     socket.emit('leave_room', data); // data 는 selectedCard.card_id
   };
 
-  const cardClickinChatHandler = async (user_card) => {    
-    console.log('user_card: ',user_card);
-    await setSelectedCard(user_card)
+  const cardClickinChatHandler = async (card) => {    
+    await setSelectedCard(card)
   }
 
   const deleteCardModalHandler = async () => {
@@ -62,7 +61,7 @@ function ChatPage() {
     }
     leaveRoom(card_id);
     await axios.delete(`http://localhost:80/card/${user_id}`, {
-    data: { card_id },
+    data: { card_id : selectedCard.card_id },
     });
     const data = await axios
       .get(`http://localhost:80/card/${user_id}`)
@@ -84,13 +83,13 @@ function ChatPage() {
     <div className='chatpage'>
       {!user_id ? <LogInModal /> : null}
 
-      {myCardList? <List className='chatpage__list__container'
+        <List className='chatpage__list__container'
         title={'나의 맞밥 약속'}
-        myCardList={myCardList} setMyCardList={setMyCardList}
+        cardData={myCardList} setMyCardList={setMyCardList}
         selectedCard={selectedCard} setSelectedCard={setSelectedCard}
         cardClickinChatHandler={cardClickinChatHandler}
         deleteCardModalHandler={deleteCardModalHandler}
-      /> : null}
+      />
 
       {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
       /> : null}
