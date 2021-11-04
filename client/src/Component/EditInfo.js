@@ -51,6 +51,9 @@ function EditInfo() {
         `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`
       )
       .then((res) => {
+        if(res.status === 204){
+          setSumLists(foodLists)
+        }else{
         const myData = res.data;
         const selectedList = foodLists.map((food) => {
           if (
@@ -69,6 +72,7 @@ function EditInfo() {
           }
         });
         setSumLists(selectedList);
+      }
       });
     axios
       .get(
@@ -76,6 +80,15 @@ function EditInfo() {
       )
       .then((res) => {
         const myManner = res.data.etiquette;
+        if(myManner === null){
+          const arr = manner.map(el => {
+            return {
+              ...el,
+              selected: false,
+            }
+          })
+          setSumManner(arr)
+        }else{
         const selectManner = manner.map((el) => {
           if (myManner.some((ele, idx) => el.text === ele)) {
             return {
@@ -89,6 +102,7 @@ function EditInfo() {
           }
         });
         setSumManner(selectManner);
+      }
       });
   }, [foodLists, manner]);
 

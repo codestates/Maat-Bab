@@ -1,6 +1,11 @@
 const { User, Taste, User_taste } = require('../../models');
-const { generateAccessToken, sendAccessToken, generateRefreshToken, sendRefreshToken } = require('../tokenFunctions');
-const { isAuth } = require('../../functions');
+const {
+  generateAccessToken,
+  sendAccessToken,
+  generateRefreshToken,
+  sendRefreshToken,
+} = require('../tokenFunctions');
+const { isAuth, generateSalt, generateHashData } = require('../../functions');
 
 module.exports = {
   get: (req, res) => {
@@ -13,19 +18,23 @@ module.exports = {
   },
   patch: async (req, res) => {
     const userinfo = isAuth(req, res);
-    const user_id = userinfo.user_id;
 
     if (userinfo) {
+      const user_id = userinfo.user_id;
       const { name, password } = req.body;
 
       if (!name || !password) {
         return res.status(400).send('Check name and password');
       }
 
+      const salt = generateSalt();
+      const hashPassword = generateHashData(salt + password);
+
       await User.update(
         {
           name,
-          password,
+          password: hashPassword,
+          salt,
         },
         { where: { user_id } }
       )
@@ -34,6 +43,7 @@ module.exports = {
             where: { user_id },
           }).then((data) => {
             delete data.dataValues.password;
+            delete data.dataValues.salt;
             data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
             const newUserinfo = data.dataValues;
             res.clearCookie('accessToken');
@@ -88,7 +98,7 @@ module.exports = {
         include: { model: Taste },
       })
         .then((data) => {
-          if (!data.length) return res.status(404).send();
+          if (!data.length) return res.status(204).send(null);
           const tastes = data.map((user_taste) => {
             return user_taste.Taste;
           });

@@ -55,7 +55,6 @@
   margin-left: 15%;
 }
 .signin__button__login{
-  border: none;
   width: 235px;
   height: 51px;
   margin-top: 3%;
@@ -63,19 +62,7 @@
   border-radius: 20px;
   font-weight: 700;
   margin-left: 20%;
-}
-.signin__button__login__google{
-  background-color: white;
-  margin-left: 20%;
-  background-image: url('../resource/google_signin_buttons/web/2x/btn_google_signin_dark_normal_web@2x.png');
-  background-size: 100%;
-  width: 235px;
-  height: 51px;
-  margin-top: 3%;
-  border: none;
-}
-.signin__button__login__google:hover{
-  border: 2px solid black;
+  border: 0.5px solid orange;
 }
 .signin__button__login__kakao{
   margin-left: 20%;
@@ -85,9 +72,7 @@
   height: 51px;
   margin-top: 3%;
   border: none;
-}
-.signin__button__login__kakao:hover{
-  border: 2px solid black;
+  border: 0.5px solid yellow;
 }
 .signin__button__login{
   background-color: #FFA512;
@@ -97,16 +82,28 @@
   color: black;
   cursor: pointer;
 }
-.signin__button__login__google:hover,
 .signin__button__login__kakao:hover{
   color: #FFA512;
   cursor: pointer;
 }
-.signin__button__login__google{
-  background-color: #C4C4C4;
-}
 .signin__button__login__kakao{
   background-color: #FBE300;
+}
+.signin__button__google{
+  margin-top: 3%;
+  height: 53px;
+  margin-left: 20%;
+}
+.signin__button__google__login{
+  width: 235px;
+  height: 51px;
+  background-image: url(../resource/google_signin_buttons/web/2x/btn_google_signin_light_normal_web@2x.png);
+  background-size: 100%;
+  border: 0.5px solid lightgray;
+}
+.signin__button__google__login:hover{
+  background-image: url('../resource/google_signin_buttons/web/2x/btn_google_signin_dark_normal_web@2x.png');
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
@@ -124,7 +121,6 @@
     width: 60vw;
   }
   .signin__button__login,
-  .signin__button__login__google,
   .signin__button__login__kakao{
     width: 200px;
     height: 43px;
