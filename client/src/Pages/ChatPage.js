@@ -25,10 +25,8 @@ function ChatPage() {
     axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
     .then(res => {
       if (!res.data.length) {
-        console.log('res.data', res.data)
         setMyCardList(res.data);
       } else {
-        console.log('res.data2', res.data)
         res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
         setMyCardList(res.data);
       }
@@ -106,9 +104,15 @@ function ChatPage() {
         (<ChatBox className='chatpage__chat__container nonselected'
         />)
       }
-
-      <MateList className='chatpage__mate__container' />
-  
+      {selectedCard ?
+        <MateList className='chatpage__mate__container'
+          selectedCard={selectedCard}
+          my_user_id={user_id}
+        />
+        :
+        <MateList className='chatpage__mate__container nonselected'
+        />
+      }
     </div>
   );
 }

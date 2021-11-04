@@ -1,8 +1,8 @@
 import React from 'react';
-import Profile from './Profile';
+import ProfileList from './ProfileList';
 import './MateList.css';
 
-function MateList() {
+function MateList({ my_user_id, selectedCard }) {
     return (
         <div className='matelist'>
             <div className='matelist__header'>
@@ -10,7 +10,7 @@ function MateList() {
                 <div className='matelist__header__text'>카드를 클릭하여 맞밥 약속에 참여해보세요!</div>
             </div>
             <section className='profile__section'> 
-            <Profile />
+            <ProfileList />
             </section>
 
         </div>
