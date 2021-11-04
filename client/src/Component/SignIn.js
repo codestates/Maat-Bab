@@ -110,7 +110,7 @@ function SignIn({ isSiginInModal }) {
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container'>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={loginHandler}
                   className='signin__button__login'
@@ -118,7 +118,7 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li className='signin__button__google'>
+              <li className='signin__button__li'>
                 <GoogleLogin
                  clientId={GOOGLE_KEY}
                  onSuccess={responseGoogle}
@@ -129,7 +129,7 @@ function SignIn({ isSiginInModal }) {
                  )}
                  />
               </li>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={kakaoLogin}
                   className='signin__button__login__kakao'
@@ -174,7 +174,7 @@ function SignIn({ isSiginInModal }) {
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container loginModal'>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={loginHandler}
                   className='signin__button__login loginModal'
@@ -182,7 +182,7 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li className='signin__button__google'>
+              <li className='signin__button__li'>
                 <GoogleLogin
                  clientId={GOOGLE_KEY}
                  onSuccess={responseGoogle}
@@ -193,7 +193,7 @@ function SignIn({ isSiginInModal }) {
                  )}
                  />
               </li>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={kakaoLogin}
                   className='signin__button__login__kakao loginModal'

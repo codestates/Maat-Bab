@@ -84,17 +84,18 @@
   background-color: white;
   border: 3px solid #ffa512;
   border-radius: 20px;
-  font-size: 90%;
+  font-size: 80%;
   padding: 10px;
   margin: 5px 5px 10px 10px;
   width: 22%;
   font-weight: 700;
+  height: 20%;
 }
 .edit__food__seleted{
   background-color: #ffa512;
   border: 3px solid #ffa512;
   border-radius: 20px;
-  font-size: 90%;
+  font-size: 80%;
   padding: 10px;
   margin: 5px 5px 10px 10px;
   width: 22%;
@@ -197,5 +198,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
+    padding-top: 5%;
+    border: none;
   }
 }
