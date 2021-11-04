@@ -1,5 +1,5 @@
 .chatpage {
-  background-color:#fffade;
+  /* background-color:#fffade; */
   display: flex;
   /* justify-content: space-evenly; */
   width: 100%;
@@ -26,18 +26,20 @@
   }
   .chatpage > .list{
     width: 100%;
-    margin-top: 76px;
-  }
-  
-  .chatpage > .matelist {
-    width: 100%;
-    margin: 20px;
+    margin-top: 96px;
+    margin-bottom: 40px;
 
   }
 
   .chatpage > .chatbox {
     width: 100%;
-    margin: 20px;
+    margin: 40px 20px 20px 40px;
+
+  }
+
+  .chatpage > .matelist {
+    width: 100%;
+    margin: 20px 20px 60px 40px;
 
   }
 }

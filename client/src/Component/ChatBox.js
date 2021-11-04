@@ -57,8 +57,8 @@ function ChatBox({ selectedCard, socket, my_user_id, name }) {
             {!selectedCard ?
                 <div className='chat__contents'>
                     <div className='chat-body'>
-                        <ScrollToBottom className='message-body'>
-                            선택된 약속카드가 없습니다
+                        <ScrollToBottom className='loader__box__ifnull'>
+                            선택한 약속카드가 없습니다
                         </ScrollToBottom>
                     </div>
                 </div>

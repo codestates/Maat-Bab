@@ -19,7 +19,8 @@
 }
 
 .card__container.joined {
-  border: 4px solid #ff6912;
+  /* border: 4px solid #ff6912; */
+  background: linear-gradient(to top, #f87c0f, #ffa600);
 }
 
 .card__container.joined:hover {
@@ -34,7 +35,7 @@
 }
 
 .card__hover__message {
-  position:fixed;
+  position: absolute;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -58,19 +59,21 @@
   text-align: center;
   font-size: 40px;
   font-weight: 600;
+  padding-left: 10px;
 }
 .card__hover__message.joined:hover {
-  color: red !important;
+  color: white !important;
   opacity: 1;
   height: 100%;
-  z-index: 500;
+  z-index: 200;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 600;
+  padding-left: 10px;
 }
 
 .card__first__container {
@@ -182,4 +185,9 @@
   z-index: 200;
 }
 
+@media screen and (max-width: 768px) {
+  .card__hover__message {
+    width: 80%;
 
+  }
+}

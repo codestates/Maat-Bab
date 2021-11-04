@@ -36,6 +36,19 @@ h3 {
   background-color: #fefbeb;
 }
 
+.loader__box__ifnull {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #a4a0a0;
+  /* height: 100%; */
+}
+
+.message-body{
+
+}
+
 .admin-date{
   display: flex;
   justify-content: center;
@@ -67,7 +80,7 @@ h3 {
 #user1.chatbox__chat__message {
   display: flex;
   flex-direction: row-reverse;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   font-size: 20px;
   background-color: white;
   border-radius: 20px;
@@ -101,7 +114,7 @@ h3 {
 
 #user2.chatbox__chat__message {
   display: flex;
-  padding: 10px;
+  padding: 10px 15px 10px 10px;
   font-size: 20px;
   background-color: #fadb8c5b;
   border-radius: 20px;
