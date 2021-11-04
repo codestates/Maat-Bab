@@ -71,11 +71,11 @@ function ChatPage() {
       .catch((err) => {
         console.log(err)
       });
-    if (!data.length) {
-      setMyCardList(data);
-    } else {
+    if (data) {
       data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
       setMyCardList(data);
+    } else {
+      setMyCardList([])
     }
   };
 
