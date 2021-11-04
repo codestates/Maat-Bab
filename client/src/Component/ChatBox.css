@@ -35,6 +35,98 @@ h3 {
   padding: 20px;
   background-color: #fefbeb;
 }
+
+.admin-date{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #7a7979;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+.admin-message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f79902;
+  font-weight: 500;
+  padding-bottom: 20px;
+}
+
+
+#user1.chatbox__chat__container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 10px 20px 10px;
+}
+
+#user1.chatbox__chat__message {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+#user1.chatbox__chat__nameandtime {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 20px;
+}
+
+#user1.chatbox__chat__name {
+  color: black;
+  font-size: 18px;
+}
+
+#user1.chatbox__chat__time {
+  color: #7a7979;
+  padding-left: 10px;
+}
+
+
+#user2.chatbox__chat__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin: 10px;
+}
+
+#user2.chatbox__chat__message {
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #fadb8c5b;
+  border-radius: 20px;
+}
+
+#user2.chatbox__chat__nameandtime {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 20px;
+}
+
+#user2.chatbox__chat__name {
+  color: #f79902;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#user2.chatbox__chat__time {
+  color: #f79902;
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+
 .chat__send__conatiner{
   display: flex;
   justify-content: center;
@@ -72,15 +164,18 @@ h3 {
   top: -15%; */
   margin: 0px 0px 0px 20px;
   border: none;
-  background-color: #FFA512;
   border-radius: 30px;
+  background-color: #FFA512;
+  color: white;
   width: 13%;
   height: 50%;
   font-size: 20px;
   font-weight: 700;
-  color: white;
 }
+
 .chat__send__button:hover{
-  border: 2px solid black;
-  color: black;
+
+  border: 3px solid #ffA512;
+  color: #ffA512;
+  background-color: white;
 }
