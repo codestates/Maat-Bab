@@ -182,10 +182,16 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li>
-                <button className='signin__button__login__google loginModal'>
-                  <div className='google__logo'></div>구글 로그인
-                </button>
+              <li className='signin__button__google'>
+                <GoogleLogin
+                 clientId={GOOGLE_KEY}
+                 onSuccess={responseGoogle}
+                 onFailure={responseGoogle}
+                 cookiePolicy={'single_host_origin'}
+                 render={renderProps => (
+                   <button onClick={renderProps.onClick} className='signin__button__google__login'/>
+                 )}
+                 />
               </li>
               <li>
                 <button
