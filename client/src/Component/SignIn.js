@@ -57,7 +57,7 @@ function SignIn({ isSiginInModal }) {
     window.location.href = URL;
   };
   const responseGoogle = (response) => {
-    axios.post(`http://localhost:80/google`,{data:response})
+    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/google`,{data:response})
     .then(res => {
       if(res.status === 200){
         let data = res.data;
