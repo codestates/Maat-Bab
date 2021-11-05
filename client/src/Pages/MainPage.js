@@ -9,11 +9,6 @@ import { getFormatDate1 } from '../functions/module';
 
 function MainPage({ userInfo }) {
   const [curnPlace, setCurnPlace] = useState('');
-  console.log(
-    'after click pinmarker state curnPlace in MainPage is: ',
-    curnPlace
-  );
-
   const [cardData, setCardData] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -48,10 +43,6 @@ function MainPage({ userInfo }) {
     setClickedCardId(card.card_id);
     setCardClicked(true);
   };
-
-  useEffect(() => {
-    console.log(`clickedCardId is ${clickedCardId}`);
-  }, [clickedCardId]);
 
   return (
     <div className='mainpage'>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './EmailCheck.css';
-import FailModal from '../Modal/FailModal';
 import SuccessModal from '../Modal/SuccessModal';
 import axios from 'axios';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SignIn.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -11,7 +11,6 @@ function SignIn({ isSiginInModal }) {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const dispatch = useDispatch();
-  const initail = useSelector((state) => state.userReducer);
   const REDIRECT_URI = 'http://localhost:3000/kakao';
   const KAKAO_KEY = process.env.REACT_APP_KAKAO_API_KEY;
   const PATH = 'https://kauth.kakao.com/oauth/authorize';
@@ -120,14 +119,14 @@ function SignIn({ isSiginInModal }) {
               </li>
               <li className='signin__button__li'>
                 <GoogleLogin
-                 clientId={GOOGLE_KEY}
-                 onSuccess={responseGoogle}
-                 onFailure={responseGoogle}
-                 cookiePolicy={'single_host_origin'}
-                 render={renderProps => (
-                   <button onClick={renderProps.onClick} className='signin__button__google__login'/>
-                 )}
-                 />
+                  clientId={GOOGLE_KEY}
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+                  render={renderProps => (
+                    <button onClick={renderProps.onClick} className='signin__button__google__login'/>
+                  )}
+                />
               </li>
               <li className='signin__button__li'>
                 <button
@@ -184,14 +183,14 @@ function SignIn({ isSiginInModal }) {
               </li>
               <li className='signin__button__li'>
                 <GoogleLogin
-                 clientId={GOOGLE_KEY}
-                 onSuccess={responseGoogle}
-                 onFailure={responseGoogle}
-                 cookiePolicy={'single_host_origin'}
-                 render={renderProps => (
-                   <button onClick={renderProps.onClick} className='signin__button__google__login'/>
-                 )}
-                 />
+                  clientId={GOOGLE_KEY}
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+                  render={renderProps => (
+                    <button onClick={renderProps.onClick} className='signin__button__google__login'/>
+                  )}
+                />
               </li>
               <li className='signin__button__li'>
                 <button

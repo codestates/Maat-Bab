@@ -41,7 +41,7 @@ function Slider({ slides }) {
       <div className='slides__container' ref={slideRef}>
         {slides.map((slide, index) => {
           return (
-              <Slide currentSlide={currentSlide} className='slide active' index={index} text={slide.text} imgsrc={slide.image} />
+              <Slide key={index} currentSlide={currentSlide} className='slide active' index={index} text={slide.text} imgsrc={slide.image} />
           )
         })
       }

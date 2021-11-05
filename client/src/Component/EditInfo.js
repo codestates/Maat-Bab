@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './EditInfo.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { MannerData } from '../resource/MannerData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function EditInfo() {
-  const dispatch = useDispatch();
   const initial = useSelector((state) => state.userReducer);
   //리덕스 상태값
   const [passWord, setPassWord] = useState('');
@@ -57,14 +56,14 @@ function EditInfo() {
         const myData = res.data;
         const selectedList = foodLists.map((food) => {
           if (
-            myData.some((myfood, index) => food.taste_id === myfood.taste_id)
+            myData.some((myfood) => food.taste_id === myfood.taste_id)
           ) {
             return {
               ...food,
               selected: true,
             };
           } else if (
-            myData.some((myfood, index) => food.taste_id !== myfood.taste_id)
+            myData.some((myfood) => food.taste_id !== myfood.taste_id)
           ) {
             return {
               ...food,
@@ -90,12 +89,12 @@ function EditInfo() {
           setSumManner(arr)
         }else{
         const selectManner = manner.map((el) => {
-          if (myManner.some((ele, idx) => el.text === ele)) {
+          if (myManner.some((ele) => el.text === ele)) {
             return {
               ...el,
               selected: true,
             };
-          } else if (myManner.some((ele, idx) => el.text !== ele)) {
+          } else if (myManner.some((ele) => el.text !== ele)) {
             return {
               ...el,
             };
