@@ -14,7 +14,7 @@ function FoodPreference({ userInfo }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     await axios
-      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/taste`)
+      .get(`${process.env.REACT_APP_API_URL}/taste`)
       .then((res) => {
         const data = res.data;
         const list = data.map((el) => ({
@@ -47,7 +47,7 @@ function FoodPreference({ userInfo }) {
     if (foodList.length !== 0) {
       await axios
         .patch(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`,
+          `${process.env.REACT_APP_API_URL}/userinfo/taste`,
           {
             taste_id: myFoodList,
           },

@@ -72,7 +72,7 @@ function MakeMeet() {
   const makeMeetCard = () => {
     if (curPlace !== '' && roomName !== '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
@@ -90,7 +90,7 @@ function MakeMeet() {
         });
     } else if (curPlace !== '' && roomName === '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
@@ -108,7 +108,7 @@ function MakeMeet() {
         });
     } else if (curPlace === '' && roomName !== '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
