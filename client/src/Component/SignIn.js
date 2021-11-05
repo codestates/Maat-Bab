@@ -12,7 +12,7 @@ function SignIn({ isSiginInModal }) {
   const [passwordValue, setPasswordValue] = useState('');
   const dispatch = useDispatch();
   const initail = useSelector((state) => state.userReducer);
-  const REDIRECT_URI = 'http://localhost:3000/kakao';
+  const REDIRECT_URI = 'https://www.maat-bab.com/kakao';
   const KAKAO_KEY = process.env.REACT_APP_KAKAO_API_KEY;
   const PATH = 'https://kauth.kakao.com/oauth/authorize';
   const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
