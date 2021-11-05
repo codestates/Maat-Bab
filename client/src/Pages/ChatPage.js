@@ -10,7 +10,7 @@ import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
 
 const socket = io.connect(
-  `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
+  `${process.env.REACT_APP_API_URL}`
 );
 
 function ChatPage() {
@@ -24,7 +24,7 @@ function ChatPage() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
-    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
     .then(res => {
       if (!res.data.length) {
         setMyCardList(res.data);
@@ -65,11 +65,11 @@ function ChatPage() {
       setSelectedCard('');
     }
     leaveRoom(card_id);
-    await axios.delete(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/card/${user_id}`, {
     data: { card_id : selectedCard.card_id },
     });
     const data = await axios
-      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
+      .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
       .then((res) => {
         return res.data;
       })
@@ -97,7 +97,7 @@ function ChatPage() {
 
   // * matelist
   useEffect(() => {
-    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card?card_id=${selectedCard.card_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`)
       .then(res => {
         let list = res.data;
         let mates = list.map((user_card) => {

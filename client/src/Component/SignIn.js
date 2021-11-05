@@ -31,7 +31,7 @@ function SignIn({ isSiginInModal }) {
   };
   const loginHandler = () => {
     axios
-      .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/signin`, {
+      .post(`${process.env.REACT_APP_API_URL}/signin`, {
         email: emailValue,
         password: passwordValue,
       })
@@ -57,7 +57,7 @@ function SignIn({ isSiginInModal }) {
     window.location.href = URL;
   };
   const responseGoogle = (response) => {
-    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/google`,{data:response})
+    axios.post(`${process.env.REACT_APP_API_URL}/google`,{data:response})
     .then(res => {
       if(res.status === 200){
         let data = res.data;
