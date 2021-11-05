@@ -20,6 +20,7 @@ function ChatPage() {
   const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false)
+  const [mateList, setMateList] = useState([]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
@@ -95,19 +96,15 @@ function ChatPage() {
   }
 
   // * matelist
-  const [mateList, setMateList] = useState([]);
-
   useEffect(() => {
     axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card?card_id=${selectedCard.card_id}`)
       .then(res => {
-      let list = res.data;
-      let mates = list.map((user_card) => {
+        let list = res.data;
+        let mates = list.map((user_card) => {
         return user_card.User
       })
-      // mates = mateList.filter(mate => mate.user_id !== user_id)
-      // console.log('mates in useEffect: ', mates)
       setMateList(mates);
-    })
+      })
   }, [selectedCard])
 
 

@@ -45,6 +45,16 @@ h3 {
   color: #a4a0a0;
   /* height: 100%; */
 }
+.loader__box__ifnull.in__chatbox {
+  display: flex;
+  position: inherit;
+  padding: 40% 0%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #a4a0a0;
+  /* height: 100%; */
+}
 
 .message-body{
 

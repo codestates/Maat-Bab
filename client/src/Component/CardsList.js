@@ -18,12 +18,9 @@ function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickin
     } else {
         cardList = cardData;
     }
-    
-    console.log('cardList: ', cardList)
 
     return (
         <div className='cardslist'>
-
             {cardList ? cardList?.map(card => {
                     return (
                         <Card className='card__section'
@@ -38,7 +35,7 @@ function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickin
                     )
             })
                 :
-                <div className='loader__box__ifnull'> 맞밥 약속을 조회해 보세요!</div>
+                <div className='loader__box__ifnull'> 맞밥 약속을 추가해 보세요!</div>
             }
         </div>
     )
