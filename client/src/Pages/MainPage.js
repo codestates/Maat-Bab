@@ -21,8 +21,8 @@ function MainPage({ userInfo }) {
     const formatedDate = getFormatDate1(date);
     const result = await axios
       .get(
-        `http://localhost:${
-          process.env.REACT_APP_SERVER_PORT
+        `${
+          process.env.REACT_APP_API_URL
         }/card?region=${decodeURIComponent(
           region
         )}&date=${formatedDate}&restaurant_name=${decodeURIComponent(
