@@ -12,10 +12,9 @@ function SignIn({ isSiginInModal }) {
   const [passwordValue, setPasswordValue] = useState('');
   const dispatch = useDispatch();
   const initail = useSelector((state) => state.userReducer);
-  const REDIRECT_URI = 'https://www.maat-bab.com/kakao';
   const KAKAO_KEY = process.env.REACT_APP_KAKAO_API_KEY;
   const PATH = 'https://kauth.kakao.com/oauth/authorize';
-  const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const URL = `${PATH}?client_id=${KAKAO_KEY}&redirect_uri=https://www.maat-bab.com/kakao&response_type=code`;
   const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_API_KEY
   const emailInput = (e) => {
     setEmailValue(e.target.value);
@@ -25,7 +24,7 @@ function SignIn({ isSiginInModal }) {
       setIsErr(false);
     }
   };
-
+console.log(URL)
   const passwordInput = (e) => {
     setPasswordValue(e.target.value);
   };
