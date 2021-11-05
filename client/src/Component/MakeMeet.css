@@ -139,19 +139,35 @@
 }
 .makemeet__datePicker{
   all:unset;
-  padding-left: 10px;
+  margin-left: 10px;
+
+  color: #7a7a7a;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: white;
+  border: 2px solid #a4a0a0;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+
 }
-.react-datepicker__input-container{
+
+.makemeet__datePicker:hover{
+  border: 2px solid #FFA512;
+}
+/* .react-datepicker__input-container{
   border: 2px solid gray;
   border-radius: 10px;
   height: 25px;
   width: 150px;
   font-size: 15px;
-}
-.react-datepicker__input-container:hover{
+} */
+/* .react-datepicker__input-container:hover{
   border: 2px solid #FFA512;
   cursor: pointer;
-}
+} */
 .saturday{
   color: blue;
 }
