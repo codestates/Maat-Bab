@@ -28,7 +28,7 @@ const OauthKakao = () => {
     } else {
       axios
         .post(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/oauth/kakao`,
+          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/kakao`,
           {
             code: code,
           }

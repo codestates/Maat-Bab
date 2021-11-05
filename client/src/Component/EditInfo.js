@@ -226,7 +226,7 @@ function EditInfo() {
             className='edit__user__input'
             disabled='disabled'
             type='email'
-            value={initial.userInfo.email}
+            value={initial.userInfo.email ? initial.userInfo.email : '소셜로그인상태입니다'}
           ></input>
           <br />
           <span className='edit__user__input__name'>비밀번호</span>

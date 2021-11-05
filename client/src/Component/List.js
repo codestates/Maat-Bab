@@ -2,7 +2,7 @@ import React from 'react';
 import CardsList from './CardsList';
 import './List.css';
 
-function List({ title, cardData, message, cardClickinMainHandler, cardClickinChatHandler, myCardList, setMyCardList, setSelectedCard, selectedCard, deleteCardModalHandler
+function List({ title, cardData, message, cardClickinMainHandler, cardClickinChatHandler, setSelectedCard, selectedCard, deleteCardModalHandler
 }) {
     return (
         <div className='list'>
@@ -12,9 +12,9 @@ function List({ title, cardData, message, cardClickinMainHandler, cardClickinCha
             </div>
             <section className='card__list__section'>
                 <CardsList
-                    cardData={cardData} myCardList={myCardList} setMyCardList={setMyCardList} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
+                    cardData={cardData} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
                     cardClickinMainHandler={cardClickinMainHandler} cardClickinChatHandler={cardClickinChatHandler} deleteCardModalHandler={deleteCardModalHandler}
-                />
+                /> 
             </section>
         </div>
     )

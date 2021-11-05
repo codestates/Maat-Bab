@@ -16,6 +16,8 @@
   border-radius: 20px;
   text-align: center;
   z-index: 400;
+  top: 5%;
+  left: -5%;
 }
 
 .login__container.loginModal {
@@ -142,5 +144,16 @@
   position: absolute;
   margin-top: -5px;
 }
+.signin__title.loginmodal{
+  margin: 0;
+}
+.signin__link__signup.loginmodal{
+  margin: 0;
+}
 @media screen and (max-width: 768px) {
+  .modalbackdrop.loginModal{
+    left: -25%;
+    top: 2%;
+  }
+  
 }

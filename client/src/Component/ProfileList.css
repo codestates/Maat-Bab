@@ -1,0 +1,15 @@
+.profilelist {
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  border: 3px solid#ffb800;
+  border-radius: 20px;
+  margin: 0px 20px;
+  overflow-y: scroll;
+}
+.profilelist::-webkit-scrollbar{
+  display: none;
+}
+
+.profile__section {
+}

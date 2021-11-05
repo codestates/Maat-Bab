@@ -12,16 +12,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* background-color: #ffb800; */
-  /* background: linear-gradient(to bottom, #ffa512, #ffb800); */
   background: linear-gradient(to top, #ffdc6a, #ffb800);
 
   margin: 0px 15px;
   padding: 5px 10px;
-
-  /* border: 2px solid blue; */
 }
 
+.card__container.joined {
+  /* border: 4px solid #ff6912; */
+  background: linear-gradient(to top, #f87c0f, #ffa600);
+}
+
+.card__container.joined:hover {
+  filter:brightness(0.85);
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
 .card__container:hover {
   filter: opacity(0.5);
   transition: all ease-in-out 0.3s;
@@ -29,7 +35,7 @@
 }
 
 .card__hover__message {
-  position:fixed;
+  position: absolute;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -42,6 +48,7 @@
 }
 
 .card__hover__message:hover {
+  color: black;
   opacity: 1;
   height: 100%;
   z-index: 500;
@@ -52,6 +59,21 @@
   text-align: center;
   font-size: 40px;
   font-weight: 600;
+  padding-left: 10px;
+}
+.card__hover__message.joined:hover {
+  color: white !important;
+  opacity: 1;
+  height: 100%;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 600;
+  padding-left: 10px;
 }
 
 .card__first__container {
@@ -147,11 +169,25 @@
 .chat__exit__button{
   width: 30px;
 
-  color: white;
-  font-size: 20px;
+  color: grey;
+  font-size: 26px;
   font-weight: 600;
 
-  z-index: 500;
+  z-index: 200;
+}
+.chat__exit__button.joined{
+  width: 30px;
+
+  color: white;
+  font-size: 26px;
+  font-weight: 600;
+
+  z-index: 200;
 }
 
+@media screen and (max-width: 768px) {
+  .card__hover__message {
+    width: 80%;
 
+  }
+}

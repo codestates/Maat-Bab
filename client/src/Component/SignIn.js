@@ -57,7 +57,22 @@ function SignIn({ isSiginInModal }) {
     window.location.href = URL;
   };
   const responseGoogle = (response) => {
-    console.log(response)
+    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/google`,{data:response})
+    .then(res => {
+      if(res.status === 200){
+        let data = res.data;
+        dispatch(setLoginStatus(true))
+        dispatch(setUserInfo(
+          data.user_id,
+          data.email,
+          data.name,
+          data.etiqette,
+          data.oauth,
+          data.certification
+        ))
+        history.push('/main')
+      }
+    })
   }
   return (
     <div>
@@ -65,7 +80,7 @@ function SignIn({ isSiginInModal }) {
       {!isSiginInModal ? (
         <div className='login__container'>
           <div className='signin__content__container'>
-            <h1 className='signin__title'>로그인</h1>
+            <h1 className='signin__title loginModal'>로그인</h1>
             <ul className='signin__content__container__ul'>
               <li className='signin__container__li__input'>
                 <div className='signin__name'>E-mail</div>
@@ -91,11 +106,11 @@ function SignIn({ isSiginInModal }) {
                 />
               </li>
             </ul>
-            <a href='/signup' className='signin__link__signup'>
+            <a href='/signup' className='signin__link__signup loginModal'>
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container'>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={loginHandler}
                   className='signin__button__login'
@@ -103,7 +118,7 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li className='signin__button__google'>
+              <li className='signin__button__li'>
                 <GoogleLogin
                  clientId={GOOGLE_KEY}
                  onSuccess={responseGoogle}
@@ -114,7 +129,7 @@ function SignIn({ isSiginInModal }) {
                  )}
                  />
               </li>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={kakaoLogin}
                   className='signin__button__login__kakao'
@@ -127,7 +142,7 @@ function SignIn({ isSiginInModal }) {
         <div className='login__container loginModal'>
           {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
           <div className='signin__content__container loginModal'>
-            <h1 className='signin__title loginModal'>로그인</h1>
+            <h1 className='signin__title'>로그인</h1>
             <ul className='signin__content__container__ul loginModal'>
               <li className='signin__container__li__input loginModal'>
                 <div className='signin__name loginModal'>E-mail</div>
@@ -155,11 +170,11 @@ function SignIn({ isSiginInModal }) {
                 />
               </li>
             </ul>
-            <a href='/signup' className='signin__link__signup loginModal'>
+            <a href='/signup' className='signin__link__signup'>
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container loginModal'>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={loginHandler}
                   className='signin__button__login loginModal'
@@ -167,12 +182,18 @@ function SignIn({ isSiginInModal }) {
                   로그인
                 </button>
               </li>
-              <li>
-                <button className='signin__button__login__google loginModal'>
-                  <div className='google__logo'></div>구글 로그인
-                </button>
+              <li className='signin__button__li'>
+                <GoogleLogin
+                 clientId={GOOGLE_KEY}
+                 onSuccess={responseGoogle}
+                 onFailure={responseGoogle}
+                 cookiePolicy={'single_host_origin'}
+                 render={renderProps => (
+                   <button onClick={renderProps.onClick} className='signin__button__google__login'/>
+                 )}
+                 />
               </li>
-              <li>
+              <li className='signin__button__li'>
                 <button
                   onClick={kakaoLogin}
                   className='signin__button__login__kakao loginModal'
