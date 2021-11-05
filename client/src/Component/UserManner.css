@@ -93,6 +93,12 @@
   cursor: pointer;
 }
 
+.manner__custom__button {
+  font-size: 28px;
+  color: #ffa512;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .usermanner {
     height: 100vh;
