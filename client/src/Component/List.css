@@ -1,0 +1,56 @@
+.list {
+  width: 28%;
+  background-color: white;
+  margin: 0px 0px 0px 40px;
+}
+
+.list__header {
+  height: 15%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.list__header__title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffa512;
+
+}
+
+.list__header__text {
+  font-size: 18px;
+  color: #a4a0a0;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px){
+  .list {
+    width: 65%;
+    background-color: white;
+    border: 4px solid #ffa512;
+    border-radius: 20px;
+    margin-right: 0;
+    margin-bottom: 40px;
+  }
+
+  .list__header {
+    padding: 20px 0px 10px 0px;
+  }
+
+  .list__header__title {
+    padding: 5px 0px 5px 0px;
+  }
+
+  .list__header__text {
+    padding: 15px 0px 15px 0px;
+  }
+
+  .card__list__section {
+    padding: 5px 0px 15px 0px;
+  }
+
+}

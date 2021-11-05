@@ -11,26 +11,25 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         unique: true,
-        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       etiquette: {
         type: Sequelize.STRING,
       },
       oauth: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
+        type: Sequelize.STRING,
       },
       certification: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+      },
+      salt: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

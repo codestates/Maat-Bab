@@ -72,7 +72,7 @@ li.manner__input {
   width: 100%;
 }
 
-input {
+.manner__custom__input {
   background-color: white;
   border: 3px solid #d1c8c8;
   border-radius: 40px;
@@ -83,13 +83,13 @@ input {
   width: 100%;
 }
 
-input::placeholder {
+.manner__custom__input::placeholder {
   color: #d1c8c8;
   opacity: 1;
 }
 
 
-input:focus {
+.manner__custom__input:focus {
   outline: none;
   border: 3px solid #ffa512;
 }

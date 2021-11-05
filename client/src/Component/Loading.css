@@ -1,0 +1,28 @@
+.background {
+  width: 99vw;
+  height: 100vh;
+}
+.loading__background {
+  background-image: url('../resource/loading.gif');
+  background-size: 100%;
+  width: 150px;
+  height: 130px;
+  margin: 20% 0 0 40%;
+}
+.loading__name {
+  font-size: 25px;
+  margin-left: 42%;
+  font-weight: 700;
+  color: #ffa512;
+}
+@media screen and (max-width: 768px) {
+  .loading__background {
+    margin: 0;
+  }
+  .loading__name {
+    margin: 0;
+  }
+  .background {
+    padding: 45% 0 0 50%;
+  }
+}

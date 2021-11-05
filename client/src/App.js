@@ -19,7 +19,7 @@ import Footer from './Component/Footer';
 import SignIn from './Component/SignIn';
 import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
-import Oauth from './Component/Oauth'
+import OauthKakao from './Component/OauthKakao';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 
@@ -28,26 +28,33 @@ axios.defaults.withCredentials = true;
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const initial = useSelector(state => state.userReducer);
+  const initial = useSelector((state) => state.userReducer);
   const [certificationCode, setCertificationCode] = useState('');
   const [email, setEamil] = useState('');
 
   const isAuthenticated = async () => {
     try {
       await axios
-        .get('http://localhost:80/auth')
+        .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth`)
         .then((res) => {
           if (res.data) {
             console.log('res.data: ', res.data);
-            const { user_id, email, name, etiquette, oauth, certification } = res.data;
-            dispatch(setUserInfo(user_id, email, name, etiquette, oauth, certification))
+            const { user_id, email, name, etiquette, oauth, certification } =
+              res.data;
+            dispatch(
+              setUserInfo(user_id, email, name, etiquette, oauth, certification)
+            );
 
-            console.log('isAuthenticated func runned');}
+            console.log('isAuthenticated func runned');
+          }
         })
         .catch((err) => console.log('authenticate failed'));
     } catch (err) {
       console.log(err);
     }
+  };
+  const moveAbout = () => {
+    document.location.href = '/';
   };
 
   useEffect(() => {
@@ -55,15 +62,21 @@ function App() {
   }, []);
 
   const logoutHandler = () => {
-    dispatch(setLoginStatus(false))
-    dispatch(deleteUserInfo())
-
+    axios
+      .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/signout`)
+      .then((res) => {
+        if (res.status === 205) {
+          dispatch(setLoginStatus(false));
+          dispatch(deleteUserInfo());
+          moveAbout();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   const certificationCodeHandler = (code) => {
     setCertificationCode(code);
   };
-
   return (
     <BrowserRouter>
       <div className='app'>
@@ -95,27 +108,27 @@ function App() {
           </Route>
 
           <Route path='/usermanner'>
-            <UserManner userInfo={initial.userInfo}/>
+            <UserManner userInfo={initial.userInfo} />
           </Route>
 
           <Route exact path='/'>
             {initial.userInfo.certification && !initial.userInfo.etiquette ? (
               <Redirect to='/foodpreference' />
-              ) : (
+            ) : (
               <AboutPage />
             )}
           </Route>
 
           <Route path='/main'>
-            <MainPage />
+            <MainPage isLogin={initial.isLogin} userInfo={initial.userInfo} />
           </Route>
 
           <Route path='/chat'>
             <ChatPage />
           </Route>
 
-          <Route path='/oauth'>
-            <Oauth />
+          <Route path='/kakao'>
+            <OauthKakao />
           </Route>
 
           <Route path='/makemeet'>

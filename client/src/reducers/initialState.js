@@ -9,5 +9,14 @@ export const initialState =
     'taste':null,
     'oauth':false,
     'certification':false,
+  },
+  'cardInfo': {
+    'region': null,
+    'date': null,
+    'time': null,
+    'headcount': null,
+    'restaurant_name': null,
+    'chat_title': null,
+    'chat_content' : null,
   }
 }
