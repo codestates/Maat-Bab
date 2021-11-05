@@ -31,6 +31,7 @@
   height: 35%;
   border: 1px solid gray;
   color: black;
+  padding-left: 20px;
 }
 .signup__email {
   border-radius: 10px;
@@ -38,6 +39,7 @@
   height: 35%;
   border: 1px solid gray;
   color: black;
+  padding-left: 20px;
 }
 .signup__errormessage {
   color: red;
@@ -83,6 +85,7 @@
   height: 30%;
   font-size: 15px;
   font-weight: 700;
+  margin-left: 30px;
 }
 .signup__check__email:hover {
   border: 2px solid black;
