@@ -8,7 +8,6 @@ function LogInModal({SetLoginModal}) {
 
     const closeHandler = () => {
         SetLoginModal(false)
-        
     }
 
     return (

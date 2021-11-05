@@ -20,6 +20,7 @@ function ChatPage() {
   const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false)
+
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
     axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)

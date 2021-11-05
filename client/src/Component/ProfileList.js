@@ -14,7 +14,7 @@ function ProfileList({ mateList }) {
             })
                 :
         
-                <div className='loader__box__ifnull'> 맞밥 약속을 조회해 보세요!</div>
+                <div className='loader__box__ifnull'> 참여 중인 약속 카드를 클릭해 보세요!</div>
             }
         
         </div>
