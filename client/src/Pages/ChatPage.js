@@ -8,7 +8,6 @@ import axios from 'axios';
 import LogInModal from '../Modal/LogInModal';
 import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
-import { setLoginStatus } from '../actions';
 
 const socket = io.connect(
   `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
@@ -94,6 +93,23 @@ function ChatPage() {
     }
   }
 
+  // * matelist
+  const [mateList, setMateList] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card?card_id=${selectedCard.card_id}`)
+      .then(res => {
+      let list = res.data;
+      let mates = list.map((user_card) => {
+        return user_card.User
+      })
+      // mates = mateList.filter(mate => mate.user_id !== user_id)
+      // console.log('mates in useEffect: ', mates)
+      setMateList(mates);
+    })
+  }, [selectedCard])
+
+
   return (
     <div className='chatpage'>
       {settingModal()}
@@ -121,10 +137,11 @@ function ChatPage() {
         (<ChatBox className='chatpage__chat__container nonselected'
         />)
       }
-      {selectedCard ?
+      {selectedCard && mateList ?
         <MateList className='chatpage__mate__container'
           selectedCard={selectedCard}
           my_user_id={user_id}
+          mateList={mateList}
         />
         :
         <MateList className='chatpage__mate__container nonselected'

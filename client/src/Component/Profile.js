@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
 
-function Profile() {
+function Profile({ mate }) {
+  console.log('mate: ', mate);
+
+  // useEffect(() => {
+  //   mate 의 taste 가져오기
+  // }, [])
+
+  const [etiquette, setEtiquette] = useState([`추가한 테이블 매너가 없습니다 😂`]);
+
+  useEffect(() => {
+    let arrangedUserEtiquette = mate.etiquette.slice(2, mate.etiquette.length - 2);
+    arrangedUserEtiquette = arrangedUserEtiquette.split('","');
+  
+    console.log(arrangedUserEtiquette);
+  
+    setEtiquette(arrangedUserEtiquette);
+  }, [])
+
   return (
     <div className='profile'>
+
       <section className='profile__container'>
         <section className='profile__first__container'>
           <span className='profile__photo'> 👤</span>
-          <span className='profile__username'>김코딩</span>
+          <span className='profile__username'>{mate.name}</span>
         </section>
         <section className='profile__second__container'>
           <div className='profile__title'>음식 취향</div>
@@ -15,12 +33,6 @@ function Profile() {
           <div className='profile__taste__list'>
             {/* map 돌리기 */}
             <span className='profile__taste'>태국음식</span>
-            <span className='profile__taste'>할랄푸드</span>
-            <span className='profile__taste'>할랄푸드</span>
-            <span className='profile__taste'>할랄푸드</span>
-            <span className='profile__taste'>할랄푸드</span>
-            <span className='profile__taste'>할랄푸드</span>
-            <span className='profile__taste'>할랄푸드</span>
           </div>
 
         </section>
@@ -29,13 +41,10 @@ function Profile() {
 
           <div className='profile__tablemanner__list'>
             {/* map 돌리기 */}
-            <span className='profile__tablemanner'> 청결함은 기본! 식사 전 손을 씻어 주세요 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
-            <span className='profile__tablemanner'> 음식 🧼</span>
+            {etiquette ? etiquette.map(manner => <span className='profile__tablemanner'>{manner}</span>)
+              :
+              <div className='loader__box__ifnull'> 추가한 테이블 매너가 없습니다 😂</div>
+            }
           </div>
         </section>
 
