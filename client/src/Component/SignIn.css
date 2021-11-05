@@ -98,11 +98,11 @@
   background-image: url('../resource/google_signin_buttons/web/2x/btn_google_signin_dark_normal_web@2x.png');
   cursor: pointer;
 }
-
 @media screen and (max-width: 768px) {
   .signin__content__container{
     width: 100vw;
     height: 100%;
+    border-radius: 0;
   }
   .login__container{
     padding: 0;
@@ -118,8 +118,5 @@
   .signin__button__google__login{
     width: 200px;
     height: 43px;
-  }
-  .signin__content__container{
-    border-radius: 0;
   }
 }

@@ -84,10 +84,21 @@ function ChatPage() {
       setMyCardList([])
     }
   };
+  const settingModal = () => {
+    if(loginModal){
+      if(window.innerWidth > 768){
+        return <LogInModal SetLoginModal={SetLoginModal} />
+      }else{
+        return document.location.href = '/login'
+      }
+    }else{
+      return null
+    }
+  }
 
   return (
     <div className='chatpage'>
-      {loginModal ? <LogInModal SetLoginModal={SetLoginModal} /> : null}
+      {settingModal()}
 
         <List className='chatpage__list__container'
         title={'나의 맞밥 약속'}

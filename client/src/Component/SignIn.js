@@ -80,7 +80,7 @@ function SignIn({ isSiginInModal }) {
       {!isSiginInModal ? (
         <div className='login__container'>
           <div className='signin__content__container'>
-            <h1 className='signin__title'>로그인</h1>
+            <h1 className='signin__title loginModal'>로그인</h1>
             <ul className='signin__content__container__ul'>
               <li className='signin__container__li__input'>
                 <div className='signin__name'>E-mail</div>
@@ -106,7 +106,7 @@ function SignIn({ isSiginInModal }) {
                 />
               </li>
             </ul>
-            <a href='/signup' className='signin__link__signup'>
+            <a href='/signup' className='signin__link__signup loginModal'>
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container'>
@@ -142,7 +142,7 @@ function SignIn({ isSiginInModal }) {
         <div className='login__container loginModal'>
           {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
           <div className='signin__content__container loginModal'>
-            <h1 className='signin__title loginModal'>로그인</h1>
+            <h1 className='signin__title'>로그인</h1>
             <ul className='signin__content__container__ul loginModal'>
               <li className='signin__container__li__input loginModal'>
                 <div className='signin__name loginModal'>E-mail</div>
@@ -170,7 +170,7 @@ function SignIn({ isSiginInModal }) {
                 />
               </li>
             </ul>
-            <a href='/signup' className='signin__link__signup loginModal'>
+            <a href='/signup' className='signin__link__signup'>
               회원이 아니신가요?
             </a>
             <ul className='signin__button__container loginModal'>
