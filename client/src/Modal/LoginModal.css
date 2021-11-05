@@ -142,5 +142,11 @@
   position: absolute;
   margin-top: -5px;
 }
+.signin__title.loginmodal{
+  margin: 0;
+}
+.signin__link__signup.loginmodal{
+  margin: 0;
+}
 @media screen and (max-width: 768px) {
 }
