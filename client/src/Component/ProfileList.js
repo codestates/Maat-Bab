@@ -14,10 +14,13 @@ function ProfileList({ selectedCard, mateList }) {
 
     return (
         <div className='profilelist'>
-            {mateList?.map((mate) => {
-                return <Profile className='profile__section' mate={mate} />}
-            )}
-            <div className='loader__box__ifnull'> {nullText}</div>
+            {mateList ? mateList?.map((mate) => {
+                return <Profile className='profile__section' mate={mate} />
+            }
+            )
+                :
+                <div className='loader__box__ifnull'> {nullText}</div>
+            }
         </div>
     )
 }
