@@ -34,7 +34,7 @@ function EditInfo() {
     }));
     setManner(newArr);
     axios
-      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/taste`)
+      .get(`${process.env.REACT_APP_API_URL}/taste`)
       .then((res) => {
         const lists = res.data;
         const addList = lists.map((el) => ({
@@ -48,7 +48,7 @@ function EditInfo() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`
+        `${process.env.REACT_APP_API_URL}/userinfo/taste`
       )
       .then((res) => {
         if(res.status === 204){
@@ -76,7 +76,7 @@ function EditInfo() {
       });
     axios
       .get(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/etiquette`
+        `${process.env.REACT_APP_API_URL}/userinfo/etiquette`
       )
       .then((res) => {
         const myManner = res.data.etiquette;
@@ -143,7 +143,7 @@ function EditInfo() {
     } else {
       axios
         .patch(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo`,
+          `${process.env.REACT_APP_API_URL}/userinfo`,
           {
             name: nickName,
             password: passWord,
@@ -163,7 +163,7 @@ function EditInfo() {
     const filterIdx = filtered.map((el) => el.taste_id);
     axios
       .patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`,
+        `${process.env.REACT_APP_API_URL}/userinfo/taste`,
         {
           taste_id: filterIdx,
         }
@@ -182,7 +182,7 @@ function EditInfo() {
     const texts = filtered.map((el) => el.text);
     axios
       .patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/etiquette`,
+        `${process.env.REACT_APP_API_URL}/userinfo/etiquette`,
         {
           etiquette: texts,
         }

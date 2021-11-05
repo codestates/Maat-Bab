@@ -15,7 +15,7 @@ function EmailCheck({ certificationCode, email }) {
   const checkCode = async () => {
     if (value === certificationCode) {
       axios.patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/certification`,
+        `${process.env.REACT_APP_API_URL}/certification`,
         {
           email,
         }
@@ -26,7 +26,7 @@ function EmailCheck({ certificationCode, email }) {
     }
   };
   const reSend = () => {
-    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/mail`, {
+    axios.post(`${process.env.REACT_APP_API_URL}/mail`, {
       email,
       certificationCode,
     });

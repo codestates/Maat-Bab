@@ -35,7 +35,7 @@ function App() {
   const isAuthenticated = async () => {
     try {
       await axios
-        .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth`)
+        .get(`${process.env.REACT_APP_API_URL}/auth`)
         .then((res) => {
           if (res.data) {
             console.log('res.data: ', res.data);
@@ -63,7 +63,7 @@ function App() {
 
   const logoutHandler = () => {
     axios
-      .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/signout`)
+      .post(`${process.env.REACT_APP_API_URL}/signout`)
       .then((res) => {
         if (res.status === 205) {
           dispatch(setLoginStatus(false));

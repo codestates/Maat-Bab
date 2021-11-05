@@ -53,7 +53,7 @@ function UserManner({ userInfo }) {
     if (mannerList.length !== 0) {
       await axios
         .patch(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/etiquette`,
+          `${process.env.REACT_APP_API_URL}/userinfo/etiquette`,
           {
             etiquette: [...myMannerList],
           }

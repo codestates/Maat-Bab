@@ -10,7 +10,7 @@ function JoinModal({user_id, card_id}) {
         console.log('card_id: ', card_id);
         await axios
             .post(
-                `http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`,
+                `${process.env.REACT_APP_API_URL}/card/${user_id}`,
                 {card_id}
             )
             .then((res) => console.log(res.data))
