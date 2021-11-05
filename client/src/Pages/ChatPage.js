@@ -8,6 +8,7 @@ import axios from 'axios';
 import LogInModal from '../Modal/LogInModal';
 import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
+import { setLoginStatus } from '../actions';
 
 const socket = io.connect(
   `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
@@ -19,7 +20,7 @@ function ChatPage() {
   const [myCardList, setMyCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
-
+  const [loginModal, SetLoginModal] = useState(false)
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
     axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
@@ -34,6 +35,11 @@ function ChatPage() {
     .catch(err => {
       console.log(err);
     });
+    if(user_id === null){
+      SetLoginModal(true)
+    }else{
+      SetLoginModal(false)
+    }
       
   }, [])
 
@@ -76,10 +82,21 @@ function ChatPage() {
       setMyCardList([])
     }
   };
+  const settingModal = () => {
+    if(loginModal){
+      if(window.innerWidth > 768){
+        return <LogInModal SetLoginModal={SetLoginModal} />
+      }else{
+        return document.location.href = '/login'
+      }
+    }else{
+      return null
+    }
+  }
 
   return (
     <div className='chatpage'>
-      {!user_id ? <LogInModal /> : null}
+      {settingModal()}
 
         <List className='chatpage__list__container'
         title={'나의 맞밥 약속'}

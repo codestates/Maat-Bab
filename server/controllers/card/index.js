@@ -8,7 +8,18 @@ const {
 
 module.exports = {
   get: async (req, res) => {
-    const { region, date, restaurant_name } = req.query;
+    const { region, date, restaurant_name, card_id } = req.query;
+    if (card_id) {
+      const cards = await User_card.findAll({
+        where: { card_id },
+        include: User,
+      });
+      cards.forEach((user_card) => {
+        delete user_card.dataValues.User.dataValues.password;
+        delete user_card.dataValues.User.dataValues.salt;
+      });
+      return res.status(200).send(cards);
+    }
     if (!region && !date && !restaurant_name) {
       const cards = await Card.findAll();
       if (!cards.length) {

@@ -47,7 +47,7 @@
   color: red;
 }
 .signin__link__signup{
-  margin-left: 45%;
+  margin-left: 40%;
 }
 .signin__button__container{
   list-style: none;
@@ -57,20 +57,16 @@
 .signin__button__login{
   width: 235px;
   height: 51px;
-  margin-top: 3%;
   font-size: 20px;
   border-radius: 20px;
   font-weight: 700;
-  margin-left: 20%;
   border: 0.5px solid orange;
 }
 .signin__button__login__kakao{
-  margin-left: 20%;
   background-image: url('../resource/kakao_sync_login/complete/ko/kakao_login_medium_narrow.png');
   background-size: 100%;
   width: 235px;
   height: 51px;
-  margin-top: 3%;
   border: none;
   border: 0.5px solid yellow;
 }
@@ -86,13 +82,10 @@
   color: #FFA512;
   cursor: pointer;
 }
-.signin__button__login__kakao{
-  background-color: #FBE300;
-}
-.signin__button__google{
-  margin-top: 3%;
-  height: 53px;
-  margin-left: 20%;
+.signin__button__li{
+  display: flex;
+  padding-left: 20%;
+  padding-top: 2%;
 }
 .signin__button__google__login{
   width: 235px;
@@ -105,11 +98,11 @@
   background-image: url('../resource/google_signin_buttons/web/2x/btn_google_signin_dark_normal_web@2x.png');
   cursor: pointer;
 }
-
 @media screen and (max-width: 768px) {
   .signin__content__container{
     width: 100vw;
     height: 100%;
+    border-radius: 0;
   }
   .login__container{
     padding: 0;
@@ -121,11 +114,9 @@
     width: 60vw;
   }
   .signin__button__login,
-  .signin__button__login__kakao{
+  .signin__button__login__kakao,
+  .signin__button__google__login{
     width: 200px;
     height: 43px;
-  }
-  .signin__content__container{
-    border-radius: 0;
   }
 }

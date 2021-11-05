@@ -83,6 +83,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
+            document.location.href = '/main';
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
@@ -100,6 +101,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
+            document.location.href = '/main';
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
@@ -116,6 +118,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
+            document.location.href = '/main';
           } else {
             alert('잠시 후 다시 시도해주세요');
           }

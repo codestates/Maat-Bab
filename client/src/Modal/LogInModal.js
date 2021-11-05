@@ -3,11 +3,11 @@ import { useState } from 'react';
 import SignIn from '../Component/SignIn';
 import './LoginModal.css';
 
-function LogInModal() {
-    const [isSiginInModal, setSiginInModal] = useState(true);
+function LogInModal({SetLoginModal}) {
+    const [isSiginInModal, setSiginInModal] = useState(false);
 
     const closeHandler = () => {
-        // setModal('')
+        SetLoginModal(false)
     }
 
     return (
