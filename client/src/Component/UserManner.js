@@ -5,11 +5,9 @@ import UserMannerList from './UserMannerList';
 import './UserManner.css';
 import { MannerData } from '../resource/MannerData';
 
-function UserManner({ userInfo }) {
+function UserManner() {
   const history = useHistory();
   const [mannerList, setMannerList] = useState(MannerData);
-
-  const { user_id, etiquette } = userInfo;
 
   useEffect(() => {
     setMannerList(mannerList);

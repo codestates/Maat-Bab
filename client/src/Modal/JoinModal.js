@@ -6,8 +6,6 @@ import '../Modal/JoinModal.css';
 function JoinModal({user_id, card_id}) {
     const history = useHistory();
     const joinHandler = async (card_id) => {
-        console.log('join button clicked');
-        console.log('card_id: ', card_id);
         await axios
             .post(
                 `${process.env.REACT_APP_API_URL}/card/${user_id}`,
@@ -15,8 +13,6 @@ function JoinModal({user_id, card_id}) {
             )
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err));
-
-        console.log(`clicked card_id in Main: ${card_id} 번 카드 post 처리됨`);
         history.push('/chat');
     };
 
