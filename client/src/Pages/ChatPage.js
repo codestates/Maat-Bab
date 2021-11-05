@@ -8,7 +8,6 @@ import axios from 'axios';
 import LogInModal from '../Modal/LogInModal';
 import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
-import { setLoginStatus } from '../actions';
 
 const socket = io.connect(
   `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
@@ -21,15 +20,15 @@ function ChatPage() {
   const [selectedCard, setSelectedCard] = useState(''); // 선택한 카드 객체?
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false)
+  const [mateList, setMateList] = useState([]);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
     axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
     .then(res => {
       if (!res.data.length) {
-        console.log('res.data', res.data)
         setMyCardList(res.data);
       } else {
-        console.log('res.data2', res.data)
         res.data.forEach(user_card => socket.emit('join_room', user_card.card_id));
         setMyCardList(res.data);
       }
@@ -96,6 +95,19 @@ function ChatPage() {
     }
   }
 
+  // * matelist
+  useEffect(() => {
+    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card?card_id=${selectedCard.card_id}`)
+      .then(res => {
+        let list = res.data;
+        let mates = list.map((user_card) => {
+        return user_card.User
+      })
+      setMateList(mates);
+      })
+  }, [selectedCard])
+
+
   return (
     <div className='chatpage'>
       {settingModal()}
@@ -123,9 +135,16 @@ function ChatPage() {
         (<ChatBox className='chatpage__chat__container nonselected'
         />)
       }
-
-      <MateList className='chatpage__mate__container' />
-  
+      {selectedCard && mateList ?
+        <MateList className='chatpage__mate__container'
+          selectedCard={selectedCard}
+          my_user_id={user_id}
+          mateList={mateList}
+        />
+        :
+        <MateList className='chatpage__mate__container nonselected'
+        />
+      }
     </div>
   );
 }
