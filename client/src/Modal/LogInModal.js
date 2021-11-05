@@ -8,15 +8,16 @@ function LogInModal({SetLoginModal}) {
 
     const closeHandler = () => {
         SetLoginModal(false)
+        
     }
 
     return (
         <div>
-            <div className='Loginmodal__background' onClick={closeHandler}>
+            <div className='Loginmodal__background' onClick={closeHandler}></div>
             <div className='modalbackdrop loginModal'>
-                    <SignIn isSiginInModal={isSiginInModal} />
+                    <SignIn isSiginInModal={isSiginInModal} className='component__signin'/>
                     </div>
-                    </div>
+                    
         </div>
     )
 }
