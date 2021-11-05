@@ -1,4 +1,4 @@
-const { Restaurant, Card, User_card, User } = require('../../models');
+const { Restaurant, Card, User_card, User, Taste } = require('../../models');
 const {
   isAuth,
   generateJoinMessage,
@@ -12,12 +12,25 @@ module.exports = {
     if (card_id) {
       const cards = await User_card.findAll({
         where: { card_id },
-        include: User,
+        include: [
+          {
+            model: User,
+            include: Taste,
+          },
+        ],
       });
+
       cards.forEach((user_card) => {
         delete user_card.dataValues.User.dataValues.password;
         delete user_card.dataValues.User.dataValues.salt;
+        user_card.dataValues.User.dataValues.etiquette = JSON.parse(
+          user_card.dataValues.User.dataValues.etiquette
+        );
+        user_card.dataValues.User.dataValues.Tastes.forEach((taste) => {
+          delete taste.dataValues.User_taste;
+        });
       });
+
       return res.status(200).send(cards);
     }
     if (!region && !date && !restaurant_name) {
