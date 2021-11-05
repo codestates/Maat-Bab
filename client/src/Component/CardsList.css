@@ -12,6 +12,11 @@
   overflow-y: scroll;
   
 }
+
+.mainpage > .cardslist {
+  background-color: white;
+}
+
 .cardslist::-webkit-scrollbar{
   display: none;
 }
@@ -21,6 +26,7 @@
 }
 
 .loader__box__ifnull {
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;

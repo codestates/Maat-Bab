@@ -25,15 +25,11 @@ function Slider({ slides }) {
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
+    slideRef.current.style.transition = 'all 5s ease-in-out';
     // slideRef.current.style.transform = `translateY(-${currentSlide}00%)`
     setTimeout(() => {
-      if(currentSlide === 2){
-        setCurrentSlide(0)
-      }else{
-        setCurrentSlide(currentSlide + 1)
-      }
-    }, 5000);
+      nextSlide();
+    }, 5400);
   }, [currentSlide])
   
   return (

@@ -4,13 +4,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #f6f6f6;
+  background-color: #dfdede;
   bottom: 0;
   height: 60px;
 }
 
 .footer__copyright {
-  color: #c4c4c4;
+  color: #a5a5a5;
   font-size: 18px;
 }
 
@@ -21,8 +21,8 @@
 }
 
 .fa-github {
-  width: 15px;
-  color: #424040;
+  width: 20px;
+  color: #585858;
 }
 
 .footer__developer {
@@ -30,8 +30,8 @@
 }
 
 .footer__developer__github {
-  width: 20px;
-  color:#6c6c6c;
+  width: 32px;
+  color:#5c5b5b;
   padding: 5px;
 }
 
@@ -40,7 +40,7 @@
   padding: 5px;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px) {
   .footer {
     /* position: absolute; */
     width: 100%;
@@ -50,33 +50,38 @@
     align-items: center;
     background-color: #f6f6f6;
     bottom: 0;
-    height: 80px;
+    height: 66px;
   }
 
   .footer__copyright {
-    padding-top: 10px;
+    padding-top: 14px;
+    font-size: 14px;
   }
 
   .footer__developers{
-    opacity: 0;
+    display: none;
   }
 
   .fa-github {
-    width: 15px;
-    color: #424040;
+    opacity: 0;
+    /* width: 15px; */
+    /* color: #424040; */
   }
   
   .footer__developer {
-    padding: 5px;
+    opacity: 0;
+    /* padding: 5px; */
   }
   
   .footer__developer__github {
-    width: 20px;
-    color:#6c6c6c;
+    opacity: 0;
+    /* width: 20px;
+    color:#6c6c6c; */
   }
   
   .footer__developer__name {
-    color: #6c6c6c;
-    font-size: 14px;
-  }
+    opacity: 0;
+    /* color: #6c6c6c;
+    font-size: 14px; */
+  } 
 }
