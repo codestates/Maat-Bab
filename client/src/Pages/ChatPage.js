@@ -116,6 +116,7 @@ function ChatPage() {
         selectedCard={selectedCard} setSelectedCard={setSelectedCard}
         cardClickinChatHandler={cardClickinChatHandler}
         deleteCardModalHandler={deleteCardModalHandler}
+        message={'카드를 클릭하여 채팅에 참여해 보세요'}
       />
 
       {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
