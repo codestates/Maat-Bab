@@ -21,7 +21,6 @@ function SignIn({ isSiginInModal }) {
       setIsErr(false);
     }
   };
-console.log(URL)
   const passwordInput = (e) => {
     setPasswordValue(e.target.value);
   };
