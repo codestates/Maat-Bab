@@ -151,29 +151,29 @@
 .searchbar__datepicker__wrapper {
   display: flex;
   flex-direction: end;
-  /* margin-left: 20px; */
 
 }
 
 .react-datepicker__input-container {
-  /* all: unset; */
   display: flex;
-  /* margin-left: 20px; */
-
 }
 
+
 .searchbar__datepicker {
-  /* all: unset; */
   color: #7a7a7a;
   font-size: 19px;
   font-weight: 500;
   background-color: white;
-  border: 3px solid #a4a0a0;
+  border: 2px solid #a4a0a0;
   border-radius: 20px;
   cursor: pointer;
   width: 100%;
   padding: 5px 10px 5px 10px;
   text-align: center;
+}
+
+.searchbar__datepicker:hover {
+  border: 2px solid #ffa512;
 }
 
 .react-datepicker-popper {

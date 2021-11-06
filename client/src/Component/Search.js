@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Search.css';
 import DatePicker from "react-datepicker";
@@ -25,15 +25,11 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
     const placeInputHandler = (e) =>{
         setPlaceInputValue(e.target.value);
-        console.log('e.target.value: ', e.target.value)
-        console.log('curnPlace: ', curnPlace)
-        console.log('placeInputValue: ',placeInputValue)
     }
 
     const changeplace = () => {
         if (city && city !== '' && district && district !== '') {
             setSearchingPlace(placeInputValue);
-            console.log('searchingPlace: ', searchingPlace);
         } else {
             alert('지역을 선택해주세요')
         }
@@ -44,7 +40,6 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     }
     const changeregion = (event) => {
         setDistrict(event.target.value)
-        console.log(event.target.value)
         setRegion(event.target.value)
     }
 

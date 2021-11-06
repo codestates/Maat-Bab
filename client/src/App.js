@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Switch,
-  BrowserRouter,
-  Route,
-  Redirect,
-  useHistory,
-} from 'react-router-dom';
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Component/Nav';
 import AboutPage from './Pages/AboutPage';
@@ -26,7 +20,6 @@ import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const initial = useSelector((state) => state.userReducer);
   const [certificationCode, setCertificationCode] = useState('');
@@ -35,16 +28,14 @@ function App() {
   const isAuthenticated = async () => {
     try {
       await axios
-        .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth`)
+        .get(`${process.env.REACT_APP_API_URL}/auth`)
         .then((res) => {
           if (res.data) {
-            console.log('res.data: ', res.data);
             const { user_id, email, name, etiquette, oauth, certification } =
               res.data;
             dispatch(
               setUserInfo(user_id, email, name, etiquette, oauth, certification)
             );
-
             console.log('isAuthenticated func runned');
           }
         })
@@ -56,14 +47,14 @@ function App() {
   const moveAbout = () => {
     document.location.href = '/';
   };
-
+  
   useEffect(() => {
     isAuthenticated();
   }, []);
 
   const logoutHandler = () => {
     axios
-      .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/signout`)
+      .post(`${process.env.REACT_APP_API_URL}/signout`)
       .then((res) => {
         if (res.status === 205) {
           dispatch(setLoginStatus(false));

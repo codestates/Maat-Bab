@@ -18,27 +18,28 @@ function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickin
     } else {
         cardList = cardData;
     }
-    
-    console.log('cardList: ', cardList)
+
+    let nullText = '';
+    if (!cardList) {
+        nullText = '맞밥 약속을 추가해 보세요!'
+    }
 
     return (
         <div className='cardslist'>
-
-            {cardList ? cardList?.map(card => {
-                    return (
-                        <Card className='card__section'
-                            selectedCard={selectedCard}
-                            card_id={card.card_id} title={card.chat_title} region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name}
-                            
-                            myCard={card}
-                            cardClickinMainHandler={cardClickinMainHandler}
-                            cardClickinChatHandler={cardClickinChatHandler}
-                            deleteCardModalHandler={deleteCardModalHandler}
-                        />
-                    )
+            {cardList ? cardList?.map((card,idx) => {
+                return (
+                    <Card key={idx} className='card__section'
+                        selectedCard={selectedCard}
+                        card_id={card.card_id} title={card.chat_title} region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name}
+                        myCard={card}
+                        cardClickinMainHandler={cardClickinMainHandler}
+                        cardClickinChatHandler={cardClickinChatHandler}
+                        deleteCardModalHandler={deleteCardModalHandler}
+                    />
+                )
             })
                 :
-                <div className='loader__box__ifnull'> 맞밥 약속을 조회해 보세요!</div>
+                <div className='loader__box__ifnull'> {nullText}</div>
             }
         </div>
     )

@@ -8,7 +8,9 @@ function Slide({ currentSlide, className, index, text, imgsrc}) {
       <div className='slide__content__message' id={index}>
         {text}
       </div>
-      <img className='slide__content__image' id={index} src={imgsrc} alt={imgsrc}/>
+        <div className='slide__content__image__container'>
+          <img className='slide__content__image' id={index} src={imgsrc} alt={imgsrc} />
+        </div>
       </div>
       :
       null

@@ -4,6 +4,7 @@
   width: 60%;
   height: 85%;
   margin-left: 27%;
+  border: 1px solid #ffa512;
 }
 .signup__title {
   color: #ffa512;
@@ -31,6 +32,7 @@
   height: 35%;
   border: 1px solid gray;
   color: black;
+  padding-left: 20px;
 }
 .signup__email {
   border-radius: 10px;
@@ -38,6 +40,7 @@
   height: 35%;
   border: 1px solid gray;
   color: black;
+  padding-left: 20px;
 }
 .signup__errormessage {
   color: red;
@@ -83,6 +86,7 @@
   height: 30%;
   font-size: 15px;
   font-weight: 700;
+  margin-left: 30px;
 }
 .signup__check__email:hover {
   border: 2px solid black;
@@ -100,5 +104,16 @@
     height: 100%;
     width: 100%;
     margin: 0% 0 0 0;
+    border: none;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .signup__background{
+    height: 92vh;
+    padding-top: 15%;
+  }
+  .signup__check__email{
+    width: 60px;
+    font-size: 13px;
   }
 }

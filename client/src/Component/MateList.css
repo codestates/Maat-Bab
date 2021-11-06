@@ -12,7 +12,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-
 }
 
 .matelist__header__title {
@@ -25,4 +24,17 @@
   font-size: 18px;
   color: #a4a0a0;
   font-weight: 500;
+}
+
+@media screen and (max-width: 768px){
+  .chatpage > .matelist {
+    width: 65%;
+    background-color: white;
+    border: 4px solid #ffa512;
+    border-radius: 20px;
+    margin-right: 0;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    }
 }
