@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MapSearchModal from '../Modal/MapSearchModal';
 import './MakeMeet.css';
 import DatePicker from 'react-datepicker';
@@ -46,6 +46,19 @@ function MakeMeet() {
   const [countPeople, setCounPeople] = useState('0');
   const [curPlace, setCurnPlace] = useState('찾기 버튼을 눌러주세요');
   const [roomName, setRoomName] = useState('');
+  const [disabled, setDisabled] = useState('')
+
+  useEffect(() => {
+    disable()
+  }, [city, city2])
+
+  const disable = () => {
+    if(city === '' || city2 === ''){
+      setDisabled('disabled')
+    }else if(city !== '' && city2 !== ''){
+      setDisabled('')
+    }
+  }
 
   const changeFind = () => {
     if (city !== '' && city2 !== '') {
@@ -259,7 +272,7 @@ function MakeMeet() {
             ></input>
           </div>
         </div>
-        <button onClick={makeMeetCard} className='make__card__button'>
+        <button disabled={disabled} onClick={makeMeetCard} className='make__card__button'>
           만들기
         </button>
       </div>
