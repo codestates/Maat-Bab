@@ -190,6 +190,10 @@
     padding: 0;
   }
 
+  .card__title {
+    font-size: 24px;
+  }
+
   .card__region,
   .card__date {
     padding: 5px 10px;
