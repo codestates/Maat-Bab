@@ -35,3 +35,10 @@
   color: #a4a0a0;
 
 }
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+
+  .cardslist {
+    height: 600px;
+  }
+}
