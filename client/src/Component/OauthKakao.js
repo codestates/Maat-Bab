@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../Component/Loading';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoginStatus, setUserInfo } from '../actions';
-import { useHistory } from 'react-router-dom';
 
 const OauthKakao = () => {
   // 카카오에서 준 인증코드
   const code = window.location.search.substr(1).split('=')[1];
   const dispatch = useDispatch();
-  const initail = useSelector((state) => state.userReducer);
-  const history = useHistory();
 
   useEffect(() => {
     console.log(code);

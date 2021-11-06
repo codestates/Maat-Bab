@@ -2,8 +2,7 @@ import React from 'react';
 import './FoodPreferenceList.css';
 
 function FoodPrefereceList({ foodList, selectTaste }) {
-    // console.log(foodList.map(food => food.selected))
-
+    
     return (
         <div className='foodPreferenceList'>
             {foodList?.map(food => food.selected === true  ?

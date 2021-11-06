@@ -3,7 +3,6 @@ import './ProfileList.css';
 import Profile from './Profile';
 
 function ProfileList({ selectedCard, mateList }) {
-    console.log('mateList: ', mateList);
     
     let nullText = '';
     if (!selectedCard) {

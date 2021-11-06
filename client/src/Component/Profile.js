@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.css';
 
 function Profile({ mate }) {
-  console.log('mate: ', mate)
+
   return (
     <div className='profile'>
         <section className='profile__container'>
