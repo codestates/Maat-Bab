@@ -26,7 +26,7 @@
   font-weight: 500;
 }
 
-@media screen and (max-width: 768px){
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .chatpage > .matelist {
     width: 65%;
     background-color: white;
@@ -34,7 +34,19 @@
     border-radius: 20px;
     margin-right: 0;
     margin-bottom: 60px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     }
+
+  .matelist__header {
+    padding: 20px 0px 10px 0;
+  }
+
+  .matelist__header__title {
+    padding: 5px 0px 15px 0px;
+  }
+
+  .matelist__header__text {
+    padding: 5px 0px 15px 0px;
+  }
+
 }
