@@ -8,7 +8,7 @@ const {
 
 module.exports = {
   get: async (req, res) => {
-    const { region, date, restaurant_name, card_id } = req.query;
+    const { card_id, region, date, restaurant_name } = req.query;
     if (card_id) {
       const cards = await User_card.findAll({
         where: { card_id },
@@ -19,71 +19,29 @@ module.exports = {
           },
         ],
       });
-
       cards.forEach((user_card) => {
-        delete user_card.dataValues.User.dataValues.password;
-        delete user_card.dataValues.User.dataValues.salt;
-        user_card.dataValues.User.dataValues.etiquette = JSON.parse(
-          user_card.dataValues.User.dataValues.etiquette
-        );
-        user_card.dataValues.User.dataValues.Tastes.forEach((taste) => {
+        const data = user_card.dataValues.User.dataValues;
+        delete data.password;
+        delete data.salt;
+        data.etiquette = JSON.parse(data.etiquette);
+        data.Tastes.forEach((taste) => {
           delete taste.dataValues.User_taste;
         });
       });
+      return res.status(200).send(cards);
+    }
 
-      return res.status(200).send(cards);
+    let cards = await Card.findAll();
+    if (region) {
+      cards = cards.filter((card) => card.region === region);
     }
-    if (!region && !date && !restaurant_name) {
-      const cards = await Card.findAll();
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && !date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { region } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { date } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && !date && restaurant_name) {
-      const cards = await Card.findAll({ where: { restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { region, date } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && date && restaurant_name) {
-      const cards = await Card.findAll({ where: { date, restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && !date && restaurant_name) {
-      const cards = await Card.findAll({ where: { region, restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else {
-      const cards = await Card.findAll({
-        where: { region, date, restaurant_name },
-      });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
+    if (date) {
+      cards = cards.filter((card) => card.date === date);
     }
+    if (restaurant_name) {
+      cards = cards.filter((card) => card.restaurant_name === restaurant_name);
+    }
+    return res.status(200).send(cards);
   },
   post: async (req, res) => {
     const data = isAuth(req, res);
@@ -246,10 +204,6 @@ module.exports = {
         return res.status(400).send();
       }
 
-      let messages;
-      const message = generateLeaveMessage(card_id, name);
-      const dateMessage = generateDateMessage(card_id, message.date);
-
       const userList = await User_card.findAll({ where: { card_id } }).catch(
         (err) => {
           console.log(err);
@@ -275,6 +229,10 @@ module.exports = {
             { where: { card_id, user_id: otherUserinfo.user_id } }
           );
         }
+
+        let messages;
+        const message = generateLeaveMessage(card_id, name);
+        const dateMessage = generateDateMessage(card_id, message.date);
 
         let { chat_content } = await Card.findOne({ where: { card_id } });
         if (chat_content === null) {

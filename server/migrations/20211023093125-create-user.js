@@ -20,6 +20,7 @@ module.exports = {
       },
       etiquette: {
         type: Sequelize.STRING,
+        defaultValue: '[]',
       },
       oauth: {
         type: Sequelize.STRING,

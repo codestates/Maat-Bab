@@ -2,7 +2,9 @@ const {
   isAuthorized,
   checkRefeshToken,
   generateAccessToken,
+  generateRefreshToken,
   sendAccessToken,
+  sendRefreshToken,
 } = require('../controllers/tokenFunctions');
 const crypto = require('crypto');
 
@@ -74,5 +76,27 @@ module.exports = {
   },
   generateHashData: (data) => {
     return crypto.createHash('sha512').update(data).digest('hex');
+  },
+  patchToken: (res, userinfo) => {
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+    const accessToken = generateAccessToken(userinfo);
+    const refreshToken = generateRefreshToken(userinfo);
+    sendAccessToken(res, accessToken);
+    sendRefreshToken(res, refreshToken);
+  },
+  getOrSetCache: (req, key, cb) => {
+    const redisClient = req.app.get('client');
+    return new Promise((resolve, reject) => {
+      redisClient.get(key, async (err, data) => {
+        if (err) return reject(err);
+        if (data !== null) {
+          return resolve(JSON.parse(data));
+        }
+        const freshData = await cb();
+        redisClient.setex(key, 3600, JSON.stringify(freshData));
+        return resolve(freshData);
+      });
+    });
   },
 };

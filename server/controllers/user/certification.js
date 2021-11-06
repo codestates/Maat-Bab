@@ -1,4 +1,5 @@
 const { User } = require('../../models');
+const { patchToken } = require('../../functions');
 
 module.exports = {
   patch: async (req, res) => {
@@ -10,13 +11,16 @@ module.exports = {
       }
     );
 
-    const userinfo = await User.findOne({ where: { email } });
+    let userinfo = await User.findOne({ where: { email } });
     if (!userinfo) {
       return res.status(500).send();
     }
-    delete userinfo.dataValues.password;
+    userinfo = userinfo.dataValues;
+    delete userinfo.password;
+    delete userinfo.salt;
     userinfo.etiquette = JSON.parse(userinfo.etiquette);
 
+    patchToken(res, userinfo);
     return res.status(200).send(userinfo);
   },
 };

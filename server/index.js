@@ -6,6 +6,8 @@ const router = require('./routes');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { generateDateMessage } = require('./functions');
+const Redis = require('redis');
+const redisClient = Redis.createClient();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -123,5 +125,6 @@ io.on('connection', (socket) => {
 });
 
 app.set('io', io);
+app.set('client', redisClient);
 
 module.exports = app;
