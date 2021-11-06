@@ -13,3 +13,15 @@
 
 .profile__section {
 }
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+
+  .profilelist {
+    height: 600px;
+  }
+
+  .profilelist > .loader__box__ifnull {
+    font-size: 18px;
+  }
+
+}

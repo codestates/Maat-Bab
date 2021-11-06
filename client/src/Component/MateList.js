@@ -2,9 +2,9 @@ import React from 'react';
 import ProfileList from './ProfileList';
 import './MateList.css';
 
-function MateList({ my_user_id, selectedCard, mateList }) {
-    const mates = mateList?.filter(mate => {
-        return mate.user_id !== my_user_id
+function MateList({ my_user_id, selectedCard, userCardList }) {
+    const userCards = userCardList?.filter(user_card => {
+        return user_card.user_id !== my_user_id
     })
 
     return (
@@ -14,7 +14,7 @@ function MateList({ my_user_id, selectedCard, mateList }) {
                 <div className='matelist__header__text'>카드를 클릭하여 맞밥 약속에 참여해보세요!</div>
             </div>
             <section className='profilelist__section'>
-                <ProfileList mateList={mates} selectedCard={selectedCard}/>
+                <ProfileList mateList={userCards} selectedCard={selectedCard}/>
             </section>
         </div>
     )

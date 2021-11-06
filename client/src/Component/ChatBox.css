@@ -53,6 +53,7 @@ h3 {
   align-items: center;
   text-align: center;
   color: #a4a0a0;
+  background-color: #fefbeb;
   /* height: 100%; */
 }
 
@@ -171,7 +172,6 @@ h3 {
   border-radius: 15px;
   font-size: 20px;
   height: 50%;
-  /* margin: 3% 0 0 5%; */
   padding: 0px 10px 0px 10px;
   margin: 0px 0px 0px 20px;
 }
@@ -184,8 +184,6 @@ h3 {
 }
 .chat__send__button{
   position: relative;
-  /* left: 3%;
-  top: -15%; */
   margin: 0px 0px 0px 20px;
   border: none;
   border-radius: 30px;
@@ -202,4 +200,33 @@ h3 {
   border: 3px solid #ffA512;
   color: #ffA512;
   background-color: white;
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .chatbox {
+    height: 680px;
+    margin-bottom: 0;
+  }
+
+  .chatroom_title {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .chat__contents {
+    /* height: 68%; */
+  }
+
+  .chat__content__input{
+    font-size: 18px;
+    padding: 4px 10px 2px 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+  
+  }
+  .chat__send__button{
+    font-size: 18px;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
 }
