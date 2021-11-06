@@ -8,8 +8,10 @@ const {
 
 module.exports = {
   get: async (req, res) => {
-    const { card_id, region, date, restaurant_name } = req.query;
+    let { card_id, region, date, restaurant_name } = req.query;
+
     if (card_id) {
+      card_id = Number(card_id);
       const cards = await User_card.findAll({
         where: { card_id },
         include: [
