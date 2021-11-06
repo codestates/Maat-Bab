@@ -11,6 +11,8 @@ function MainPage({ userInfo }) {
   const [curnPlace, setCurnPlace] = useState('');
   const [cardData, setCardData] = useState(null);
   const [message, setMessage] = useState(null);
+  const [isCardClicked, setCardClicked] = useState(false);
+  const [clickedCardId, setClickedCardId] = useState(null);
 
   const searchCardHandler = async (region, date, restaurant_name) => {
     const formatedDate = getFormatDate1(date);
@@ -36,9 +38,6 @@ function MainPage({ userInfo }) {
     }
   };
 
-  const [isCardClicked, setCardClicked] = useState(false);
-  const [clickedCardId, setClickedCardId] = useState(null);
-
   const cardClickinMainHandler = (card) => {
     setClickedCardId(card.card_id);
     setCardClicked(true);
@@ -47,7 +46,11 @@ function MainPage({ userInfo }) {
   return (
     <div className='mainpage'>
       {isCardClicked ? (
-        <JoinModal user_id={userInfo.user_id} card_id={clickedCardId} />
+        <JoinModal
+          user_id={userInfo.user_id}
+          card_id={clickedCardId}
+          setCardClicked={setCardClicked}
+        />
       ) : null}
       <Search
         className='mainpage__search__component'
