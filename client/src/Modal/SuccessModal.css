@@ -18,6 +18,9 @@
   padding-top: 3%;
   border: 1px solid #FFA512;
 }
+.modalbackdrop.success{
+  padding-top: 20%;
+}
 .modalview__massage{
   color: #FFA512;
   font-size: 35px;
@@ -27,6 +30,10 @@
   color: gray;
   font-size: 20px;
   margin-top: 15%;
+  margin-left: 12%;
+  margin-right: 12%;
+  word-break: normal;
+  white-space: pre-line;
 }
 .modalview__button{
   background-color: white;
@@ -61,6 +68,23 @@
     margin-top: 30%;
   }
   .modalbackdrop{
-    padding: 5% 5% 0 5%;
+    /* padding: 5% 5% 0 5%; */
+    
+  }
+/* 
+  .emailcheck__background > .modalbackdrop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .emailcheck__background > .modalview {
+    padding-top: 24px;
+    margin-top: 40px;
+  } */
+
+  .emailcheck__background > .modalview__massage {
+    padding-top: 24px;
   }
 }

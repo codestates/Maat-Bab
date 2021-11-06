@@ -30,6 +30,7 @@ function EmailCheck({ certificationCode, email }) {
       certificationCode,
     });
   };
+
   return (
     <div className='emailcheck__background'>
       {modal === 'success' ? <SuccessModal /> : null}
