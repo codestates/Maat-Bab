@@ -120,3 +120,11 @@
     height: 43px;
   }
 }
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .login__container{
+    width: 50vw;
+  }
+  .signin__button__li{
+    padding: 2% 0 0 0;
+  }
+}

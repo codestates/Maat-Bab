@@ -107,3 +107,13 @@
     border: none;
   }
 }
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .signup__background{
+    height: 92vh;
+    padding-top: 15%;
+  }
+  .signup__check__email{
+    width: 60px;
+    font-size: 13px;
+  }
+}
