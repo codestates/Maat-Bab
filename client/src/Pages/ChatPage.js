@@ -97,13 +97,11 @@ function ChatPage() {
 
   // * matelist
   useEffect(() => {
+    console.log('selectedCard: ', selectedCard)
     axios.get(`${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`)
       .then(res => {
-        let list = res.data;
-        let mates = list.map((user_card) => {
-        return user_card.User
-      })
-      setMateList(mates);
+        const user_card_list = res.data;
+        setMateList(user_card_list);
       })
   }, [selectedCard])
 
@@ -139,7 +137,7 @@ function ChatPage() {
         <MateList className='chatpage__mate__container'
           selectedCard={selectedCard}
           my_user_id={user_id}
-          mateList={mateList}
+          userCardList={mateList}
         />
         :
         <MateList className='chatpage__mate__container nonselected'
