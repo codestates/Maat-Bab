@@ -5,7 +5,13 @@ const {
   generateRefreshToken,
   sendRefreshToken,
 } = require('../tokenFunctions');
-const { isAuth, generateSalt, generateHashData } = require('../../functions');
+const {
+  isAuth,
+  generateSalt,
+  generateHashData,
+  patchToken,
+  getOrSetCache,
+} = require('../../functions');
 
 module.exports = {
   get: (req, res) => {
@@ -86,28 +92,34 @@ module.exports = {
     }
   },
   taste: {
-    get: (req, res) => {
+    get: async (req, res) => {
       const userinfo = isAuth(req, res);
       if (!userinfo) {
         return res.status(401).send();
       }
 
       const { user_id } = userinfo;
-      User_taste.findAll({
-        where: { user_id },
-        include: { model: Taste },
-      })
-        .then((data) => {
-          if (!data.length) return res.status(204).send(null);
-          const tastes = data.map((user_taste) => {
-            return user_taste.Taste;
+      const data = await getOrSetCache(
+        req,
+        `userinfo/taste/${user_id}`,
+        async () => {
+          let tastes = await User_taste.findAll({
+            where: { user_id },
+            include: { model: Taste },
+          }).catch((err) => {
+            console.log(err);
+            return res.status(500).send();
           });
-          return res.status(200).send(tastes);
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).send();
-        });
+
+          tastes = tastes.map((user_taste) => {
+            return user_taste.Taste.dataValues;
+          });
+
+          return tastes;
+        }
+      );
+
+      return res.status(200).send(data);
     },
     patch: async (req, res) => {
       const userinfo = isAuth(req, res);
@@ -116,31 +128,30 @@ module.exports = {
       }
 
       const { user_id } = userinfo;
+
       await User_taste.destroy({ where: { user_id } }).catch((err) => {
         console.log(err);
         return res.status(500).send();
       });
 
-      if (!req.body.taste_id) return res.status(200).send([]);
-      const tastes = req.body.taste_id;
-      for (const taste_id of tastes) {
+      const taste_ids = req.body.taste_id;
+      if (!taste_ids.length) return res.status(200).send([]);
+
+      for (const taste_id of taste_ids) {
         await User_taste.create({ user_id, taste_id });
       }
 
-      await User_taste.findAll({
+      let tastes = await User_taste.findAll({
         where: { user_id },
         include: { model: Taste },
-      })
-        .then((data) => {
-          const tastes = data.map((user_taste) => {
-            return user_taste.Taste;
-          });
-          return res.status(200).send(tastes);
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).send();
-        });
+      });
+      tastes = tastes.map((user_taste) => {
+        return user_taste.Taste;
+      });
+      req.app
+        .get('client')
+        .setex(`userinfo/taste/${user_id}`, 3600, JSON.stringify(tastes));
+      return res.status(200).send(tastes);
     },
   },
   etiquette: {
@@ -150,16 +161,8 @@ module.exports = {
         return res.status(401).send();
       }
 
-      const { user_id } = userinfo;
-      User.findOne({ where: { user_id } })
-        .then((data) => {
-          const etiquette = JSON.parse(data.etiquette);
-          return res.status(200).send({ etiquette });
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).send();
-        });
+      const { etiquette } = userinfo;
+      return res.status(200).send({ etiquette });
     },
     patch: (req, res) => {
       const userinfo = isAuth(req, res);
@@ -168,22 +171,15 @@ module.exports = {
       }
 
       const { user_id } = userinfo;
-      let etiquette;
-      if (!req.body.etiquette) {
-        etiquette = JSON.stringify([]);
-      } else {
-        etiquette = JSON.stringify(req.body.etiquette);
-      }
-      User.update({ etiquette }, { where: { user_id } })
+      const etiquette = req.body.etiquette;
+
+      User.update(
+        { etiquette: JSON.stringify(etiquette) },
+        { where: { user_id } }
+      )
         .then((data) => {
-          etiquette = JSON.parse(etiquette);
           userinfo.etiquette = etiquette;
-          res.clearCookie('accessToken');
-          res.clearCookie('refreshToken');
-          const accessToken = generateAccessToken(userinfo);
-          const refreshToken = generateRefreshToken(userinfo);
-          sendAccessToken(res, accessToken);
-          sendRefreshToken(res, refreshToken);
+          patchToken(res, userinfo);
           return res.status(200).send({ etiquette });
         })
         .catch((err) => {

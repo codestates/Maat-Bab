@@ -1,16 +1,12 @@
 const { Taste } = require('../../models');
+const { getOrSetCache } = require('../../functions');
+
 module.exports = {
-  get: (req, res) => {
-    Taste.findAll({ order: [['taste_id']] })
-      .then((data) => {
-        if (!data.length) {
-          return res.status(404).send();
-        }
-        return res.status(200).send(data);
-      })
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).send();
-      });
+  get: async (req, res) => {
+    const data = await getOrSetCache(req, 'taste', async () => {
+      const tastes = await Taste.findAll({ order: [['taste_id']] });
+      return tastes;
+    });
+    return res.status(200).send(data);
   },
 };
