@@ -145,7 +145,7 @@ function MakeMeet() {
         />
       ) : null}
       <div className='make__content__container'>
-        <h1 className='make__card__title'>맞밥 약속 만들기</h1>
+        <div className='make__card__title'>맞밥 약속 만들기</div>
         <div className='make__card__info'>
           <div className='make__card__info__row'>
             <span className='make__card__info__item'>맞밥 지역</span>

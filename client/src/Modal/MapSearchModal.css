@@ -1,5 +1,5 @@
 .mapsearch__background{
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   z-index: 100;
   background-color: rgba(0,0,0,0.4);
@@ -17,11 +17,14 @@
   color: #FFA512;
   margin-left: 40%;
   padding-top: 2%;
+  font-size: 25px;
+  font-weight: 700;
+  width: 150px;
 }
 .modal__search__region__conatiner{
   width: 70%;
   height: 6%;
-  margin-left: 15%;
+  margin: 2% 0 0 15%;
 }
 .main__select__region__name{
   color: #FFA512;
@@ -74,10 +77,31 @@
 @media screen and (max-width: 768px){
   .modal__search__content__container{
     width: 90%;
-    margin: 0;
+    margin: 5% 5%;
   }
   .main__select__region__search{
     border: none;
     border-radius: 20px;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .modal__search__place__title{
+    font-size: 20px;
+    margin-left: 35%;
+  }
+  .main__select__region__name{
+    font-size: 15px;
+    margin: 0;
+  }
+  .main__select__region__input{
+    height: 30px;
+    width: 170px;
+    margin-left: 2%;
+  }
+  .main__select__region__search{
+    margin-left: -15%;
+  }
+  .modal__close{
+    margin-top: 10%;
   }
 }

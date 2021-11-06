@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import '../Modal/JoinModal.css';
 
-function JoinModal({user_id, card_id}) {
+function JoinModal({ user_id, card_id, setCardClicked }) {
     const history = useHistory();
     const joinHandler = async (card_id) => {
         await axios
@@ -16,8 +16,12 @@ function JoinModal({user_id, card_id}) {
         history.push('/chat');
     };
 
+    const closeJoinModalHandler = () => {
+        setCardClicked(false);
+    }
+
     return (
-        <div className='joinmodal__background'>
+        <div className='joinmodal__background' onClick={closeJoinModalHandler}>
             <div className='modalbackdrop join'>
                 <div className='modalview join'>
                     <div className='modalview__massage join'>

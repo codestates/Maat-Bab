@@ -17,3 +17,8 @@
     width: 24%;
   }
 }
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .modal__map__location.main{
+    display: none;
+  }
+}
