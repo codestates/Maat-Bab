@@ -126,7 +126,7 @@ function ChatPage() {
       {selectedCard ? (
         <ChatBox className='chatpage__chat__container'
           my_user_id={user_id}
-          name={name}
+          my_name={name}
           selectedCard={selectedCard}
           socket={socket}
           isDeleteClicked={isDeleteClicked}
