@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ selectedCard, socket, my_user_id, name }) {
+function ChatBox({ selectedCard, socket, my_user_id, my_name }) {
     // const { card_id, chat_title } = selectedCard;
     const [writeMessage, setWriteMessage] = useState('');
     const [messages, setMessages] = useState([]); // 전체 메세지
@@ -36,7 +36,7 @@ function ChatBox({ selectedCard, socket, my_user_id, name }) {
         const messageInfo = {
             card_id: selectedCard.card_id,
             user_id: my_user_id,
-            name,
+            name: my_name,
             message: writeMessage,
             date: new Date(Date.now()).toLocaleDateString(),
             time: `${new Date(Date.now()).getHours()}:${new Date(
