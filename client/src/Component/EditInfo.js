@@ -50,7 +50,7 @@ function EditInfo() {
         `${process.env.REACT_APP_API_URL}/userinfo/taste`
       )
       .then((res) => {
-        if(res.status === 204){
+        if(!res.data.length){
           setSumLists(foodLists)
         }else{
         const myData = res.data;
@@ -79,7 +79,7 @@ function EditInfo() {
       )
       .then((res) => {
         const myManner = res.data.etiquette;
-        if(myManner === null){
+        if(!myManner.length){
           const arr = manner.map(el => {
             return {
               ...el,
