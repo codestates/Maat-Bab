@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Search from '../Component/Search';
 import List from '../Component/List';
 import JoinModal from '../Modal/JoinModal';
+import LoginModal from '../Modal/LogInModal';
 import './MainPage.css';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
@@ -13,6 +14,7 @@ function MainPage({ userInfo }) {
   const [message, setMessage] = useState(null);
   const [isCardClicked, setCardClicked] = useState(false);
   const [clickedCardId, setClickedCardId] = useState(null);
+  const [loginModal, SetLoginModal] = useState(false)
 
   const searchCardHandler = async (region, date, restaurant_name) => {
     const formatedDate = getFormatDate1(date);
@@ -52,11 +54,13 @@ function MainPage({ userInfo }) {
           setCardClicked={setCardClicked}
         />
       ) : null}
+      {loginModal ? <LoginModal SetLoginModal={SetLoginModal} /> : null}
       <Search
         className='mainpage__search__component'
         searchCardHandler={searchCardHandler}
         setCurnPlace={setCurnPlace}
         curnPlace={curnPlace}
+        SetLoginModal={SetLoginModal}
       />
       <List
         className='mainpage__list__component'
