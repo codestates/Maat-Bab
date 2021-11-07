@@ -257,7 +257,7 @@ function EditInfo() {
           <input
             onChange={(e) => onchangeName(e)}
             type='text'
-            placeholder='이름'
+            placeholder={initial.userInfo.name || initial.userInfo.email || '이름'}
             className='edit__username__input'
           ></input>
         </div>
