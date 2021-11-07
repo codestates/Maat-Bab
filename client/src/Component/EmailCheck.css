@@ -1,7 +1,7 @@
 .emailcheck__background {
   background-image: url('../resource/emailconfirm.png');
   background-size: 100%;
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   margin-top: -1%;
   padding-top: 5%;
@@ -12,7 +12,7 @@
   background-color: white;
   width: 55%;
   height: 90%;
-  margin-left: 25%;
+  margin-left: 23vw;
 }
 .emailcheck__messages__cocntainer {
   height: 30%;
@@ -21,27 +21,40 @@
   text-align: center;
 }
 .emailcheck__messages__cocntainer__message1 {
-  width: 80%;
-  margin-top: 5%;
+  /* width: 80%; */
+  padding: 10px;
+  /* margin-top: 5%; */
   font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 .emailcheck__messages__cocntainer__message2 {
-  width: 90%;
+  /* width: 90%; */
   margin-top: 5%;
   color: gray;
   font-size: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 .emailcheck__title {
+  font-size: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #ffa512;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .emailcheck__button__container {
   text-align: center;
-  margin-top: 15%;
+  margin-top: 5%;
   height: 30%;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 .emailcheck__button__email__input {
   width: 100%;
@@ -60,7 +73,6 @@
 }
 .emailcheck__button__send__button {
   border: none;
-  border-radius: 20px;
   background-color: #ffac24;
   margin-top: 3%;
   width: 90%;
@@ -68,6 +80,8 @@
   font-size: 20px;
   font-weight: 700;
   box-shadow: 5px 5px 5px gray;
+  border-radius: 30px;
+
 }
 .emailcheck__button__send__button:hover {
   color: white;
@@ -85,6 +99,8 @@
   border-radius: 30px;
   font-size: 25px;
   font-weight: 700;
+  border-radius: 30px;
+
 }
 .emailcheck__send__button:hover {
   border: 2px solid black;
@@ -97,13 +113,43 @@
   }
   .emailcheck__content__container {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     margin: 0;
     border: none;
   }
 }
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+
+  .emailcheck__title {
+    font-size: 26px;
+    margin-top: 26%;
+  }
+
   .emailcheck__button__container{
     margin-top: 30%;
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+
+  .emailcheck__messages__cocntainer {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .emailcheck__messages__cocntainer__message1 {
+    margin: 0;
+    font-size: 24px;
+
+  }
+  .emailcheck__messages__cocntainer__message2{
+    font-size: 18px;
+    padding-top: 20px;
+  }
+  .emailcheck__send__button {
+    font-size: 22px;
   }
 }
