@@ -56,10 +56,10 @@ h3 {
   background-color: #fefbeb;
   /* height: 100%; */
 }
-
+/* 
 .message-body{
 
-}
+} */
 
 .admin-date{
   display: flex;
@@ -151,7 +151,6 @@ h3 {
   padding-left: 10px;
 }
 
-
 .chat__send__conatiner{
   display: flex;
   justify-content: center;
@@ -215,6 +214,55 @@ h3 {
 
   .chat__contents {
     /* height: 68%; */
+    padding: 20px 12px 16px 12px;
+  }
+  .admin-date,
+  .admin-message{
+    font-size: 14px;
+  }
+
+  #user1.chatbox__chat__container {
+    margin: 5px 5px 10px 5px;
+  }
+  
+  #user1.chatbox__chat__message {
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+  }
+  
+  #user1.chatbox__chat__nameandtime {
+    padding-left: 8px;
+  }
+  
+  #user1.chatbox__chat__name {
+    font-size: 15px;
+  }
+  
+  #user1.chatbox__chat__time {
+    padding-left: 8px;
+    font-size: 14px;
+  }
+  
+  
+  #user2.chatbox__chat__container {
+    margin: 5px 5px 10px 5px;
+  }
+  
+  #user2.chatbox__chat__message {
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+  }
+  
+  #user2.chatbox__chat__nameandtime {
+    padding-left: 10px;
+  }
+  
+  #user2.chatbox__chat__name {
+    font-size: 16px;
+  }
+  
+  #user2.chatbox__chat__time {
+    padding-left: 10px;
   }
 
   .chat__content__input{
