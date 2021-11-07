@@ -52,7 +52,7 @@ function Nav({logoutHandler}) {
                 </ul>
 
                 <a href='#' className='navigation__toggle' onClick={toggleHandler}>
-                <FontAwesomeIcon icon={faHamburger}/>
+                <FontAwesomeIcon icon={faHamburger} className='navigation__toggle__hamburger'/>
                     </a>
             </nav>
         </div>

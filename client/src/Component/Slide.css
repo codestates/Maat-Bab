@@ -38,6 +38,13 @@
   object-fit: contain;
 }
 
+.slide__content__image__container > img {
+  object-fit: contain;
+  min-width: 60%;
+  max-height: 100%;
+  width: 100%;
+}
+
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px) {
 /* @media screen and (max-width: 768px) { */
   
