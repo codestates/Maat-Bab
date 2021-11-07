@@ -13,7 +13,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 860px;
+  height: 86vh;
+  /* height: 868px; */
 }
 
 .about__button__container {
