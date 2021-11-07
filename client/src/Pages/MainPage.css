@@ -34,6 +34,7 @@
     height: 100%;
     margin-top: 0;
   }
+
   .search__component__title{
     margin:0;
   }
@@ -46,7 +47,6 @@
     width: 100%;
   }
 
-
   .mainpage > .list {
     margin-top: 12px;
   }
@@ -55,5 +55,10 @@
     all: unset;
     width: 100%;
     margin: 96px 0 40px 0;
+  }
+
+  .loader__box__ifnull {
+    font-size: 18px;
+    height: 100%;
   }
 }
