@@ -10,14 +10,15 @@
 .modalbackdrop.loginModal {
   width: 0;
   height: 0;
-  margin: 5% 0 0 25%;
-  background-color: white;
+  /* margin: 5% 0 0 25%; */
+  /* background-color: white; */
   position: fixed;
   border-radius: 20px;
   text-align: center;
   z-index: 400;
   top: 5%;
-  left: -5%;
+  /* left: -5%; */
+  border: none;
 }
 
 .login__container.loginModal {
@@ -34,6 +35,15 @@
   background-color: white;
   border-radius: 30px;
 }
+
+.signin__content__container__ul {
+  /* padding-inline-start: 0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
 .signin__title.loginModal {
   color: #ffa512;
   margin: 0;
@@ -41,13 +51,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 0px 0px 0px;
+  padding: 40px 0px 20px 0px;
 }
 .signin__content__container__ul.loginModal {
   list-style: none;
   width: 90%;
   height: 40%;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   padding-top: 10px;
 }
 .signin__name.loginModal {
@@ -80,6 +90,13 @@
 .hide.loginModal {
   display: none;
 }
+
+.signin__input.email,
+.signin__input.password {
+  padding-left: 10px;
+  font-size: 16px;
+}
+
 .signin__email__message.loginModal {
   color: red;
 }
@@ -154,6 +171,10 @@
   .modalbackdrop.loginModal{
     left: -25%;
     top: 2%;
+  }
+
+  .signin__content__container__ul {
+    /* padding-inline-start: 20px; */
   }
   
 }
