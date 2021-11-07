@@ -67,13 +67,21 @@ io.on('connection', (socket) => {
     });
 
     let messages;
-    if (chat_content === null) {
-      messages = [];
-      await socket.emit('res_messages', messages);
+
+    messages = JSON.parse(chat_content).slice(chat_content_idx);
+    if (messages[0].type === 'message') {
+      messages[0].message = `${messages[0].message.slice(
+        0,
+        -13
+      )}(나)${messages[0].message.slice(-13)}`;
     } else {
-      messages = JSON.parse(chat_content).slice(chat_content_idx);
-      await socket.emit('res_messages', messages);
+      messages[1].message = `${messages[1].message.slice(
+        0,
+        -13
+      )}(나)${messages[1].message.slice(-13)}`;
     }
+    await socket.emit('res_messages', messages);
+
     console.log(`req_messages//
     socketID : ${socket.id}
     조회한 메세지 : ${JSON.stringify(messages)}`);
