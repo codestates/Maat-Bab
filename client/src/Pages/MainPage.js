@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Search from '../Component/Search';
 import List from '../Component/List';
 import JoinModal from '../Modal/JoinModal';

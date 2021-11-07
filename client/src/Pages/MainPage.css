@@ -22,11 +22,12 @@
   width: 20%;
 }
 
-@media screen and (max-width: 768px){
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .mainpage {
     background-color:#fffade;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 
     width: 100%;
@@ -37,11 +38,11 @@
     margin:0;
   }
 
-.mainpage__search__component {
-  width: 100%;
-}
+  .mainpage__search__component {
+    width: 100%;
+  }
 
-.mainpage__list__component {
-  width: 100%;
-}
+  .mainpage__list__component {
+    width: 100%;
+  }
 }

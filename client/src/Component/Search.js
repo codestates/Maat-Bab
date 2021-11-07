@@ -72,7 +72,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
                             <span className='searchbar__region__second__container'>
                                 <input className='searchbar__restaurant__search' type='text' onChange={ placeInputHandler} value={placeInputValue} placeholder='음식점을 검색해 보세요'></input>
-                                <button className='search__icon' onClick={changeplace}><FaSearch className='search__icon' size='20' color='orange' /></button>
+                                <FaSearch className='search__icon' size='20' color='orange' onClick={changeplace}/>
                             </span>
                         </span>
                     </span>
@@ -85,7 +85,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
                 <div className='searchbar__button__container'>
                     <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate, curnPlace)}>조회하기</button>
-                    <button className='search__make__button' onClick={makeCardHandler}><FaPlusCircle className='search__makemeet__icon'/> 약속 만들기</button>
+                    <button className='search__make__button' onClick={makeCardHandler}>약속 만들기<FaPlusCircle className='search__makemeet__icon'/></button>
                 </div>
 
         </div>
