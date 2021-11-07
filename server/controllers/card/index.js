@@ -51,7 +51,7 @@ module.exports = {
       return res.status(401).send();
     }
 
-    const { user_id } = data;
+    const { user_id, name } = data;
     const {
       region,
       date,
@@ -101,6 +101,14 @@ module.exports = {
       return res.status(500).send();
     });
 
+    const message = generateJoinMessage(card_id, name);
+    const dateMessage = generateDateMessage(card_id, message.date);
+
+    await Card.update(
+      { chat_content: JSON.stringify([dateMessage, message]) },
+      { where: { card_id } }
+    );
+
     await User_card.create({
       card_id,
       user_id,
@@ -115,6 +123,7 @@ module.exports = {
       console.log(err);
       return res.status(500).send();
     });
+    card.chat_content = JSON.parse(card.chat_content);
 
     return res.status(201).send(card);
   },
@@ -135,9 +144,6 @@ module.exports = {
         return res.status(500).send();
       });
 
-      if (!cards.length) {
-        return res.status(404).send();
-      }
       return res.status(200).send(cards);
     },
     post: async (req, res) => {
@@ -163,11 +169,7 @@ module.exports = {
         return res.status(500).send();
       });
 
-      if (chat_content === null) {
-        chat_content = [];
-      } else {
-        chat_content = JSON.parse(chat_content);
-      }
+      chat_content = JSON.parse(chat_content);
       const chat_content_idx = chat_content.length;
 
       await User_card.findOrCreate({
@@ -179,11 +181,19 @@ module.exports = {
             return res.status(409).send();
           }
 
+          let messages;
           const message = generateJoinMessage(card_id, name);
-          chat_content = JSON.stringify(chat_content.concat(message));
+          if (chat_content[chat_content_idx - 1].date < message.date) {
+            const dateMessage = generateDateMessage(card_id, message.date);
+            messages = [dateMessage, message];
+            chat_content = JSON.stringify(chat_content.concat(messages));
+          } else {
+            messages = [message];
+            chat_content = JSON.stringify(chat_content.concat(messages));
+          }
 
           await Card.update({ chat_content }, { where: { card_id } });
-          req.app.get('io').to(card_id).emit('new_user', message);
+          req.app.get('io').to(card_id).emit('new_user', messages);
 
           return res.status(200).send(result);
         })
