@@ -172,7 +172,7 @@
   font-size: 26px;
   font-weight: 600;
 
-  z-index: 200;
+  z-index: 19;
 }
 .chat__exit__button.joined{
   width: 30px;
@@ -181,7 +181,7 @@
   font-size: 26px;
   font-weight: 600;
 
-  z-index: 200;
+  z-index: 19;
 }
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
