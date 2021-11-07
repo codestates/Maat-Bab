@@ -27,7 +27,7 @@
   font-weight: 500;
 }
 
-@media screen and (max-width: 768px){
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .list {
     width: 65%;
     background-color: white;
