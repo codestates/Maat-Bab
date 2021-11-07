@@ -4,15 +4,22 @@
   align-items: center;
   background-color: #ffb800;
   padding: 8px 12px;
-  height: 84px;
+  /* height: 84px; */
 }
 Nav a {
   text-decoration: none;
   color: white;
+  display: flex;
 }
+
+.navigation__toggle__hamburger{
+  color: white;
+}
+
 a:hover {
   color: black;
 }
+
 .navigation__logo {
   background-image: url('../resource/maat-bab-logo-01.png');
   background-size: 100%;
@@ -26,7 +33,7 @@ a:hover {
   justify-content: space-around;
   list-style: none;
 
-  margin-left: 126px;
+  /* margin-left: 126px; */
   font-size: 20px;
 }
 .navigation__menu__list li {
@@ -73,20 +80,21 @@ a:hover {
   font-size: 24px;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .navigation__bar {
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: flex-start;
     padding: 8px 24px;
     position: fixed;
     width: 100%;
     z-index: 20;
-    height: 64px;
+    /* height: 64px; */
   }
 
   .navigation__logo {
     margin-left: 2px;
+    padding-top: 2px;
   }
 
   .navigation__menu__list {
@@ -96,7 +104,7 @@ a:hover {
     width: 100%;
   }
   .navigation__menu__list li {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
   }
 
@@ -110,10 +118,25 @@ a:hover {
     position: absolute;
     right: 32px;
     font-size: 24px;
+    padding-top: 5px;
+  }
+
+  .navigation__toggle__hamburger{
+    color: white;
+  }
+
+  .navigation__menu__list.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .navigation__menu__list.action,
   .navigation__bar__buttons.action {
     display: flex;
+    padding-left: 0;
+    text-align: center;
   }
 }
