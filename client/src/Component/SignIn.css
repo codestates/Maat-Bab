@@ -140,4 +140,8 @@
   .signin__button__li{
     padding: 2% 0 0 0;
   }
+  .signin__email__message{
+    color: red;
+    font-size: 14px;
+  }
 }
