@@ -1,8 +1,8 @@
 
 # Maat-Bab ![8e66eca95c8d97d1](https://user-images.githubusercontent.com/81890240/140760183-bbd017d5-30cc-49a8-a9b5-6972e06e3e0d.png)
 
+![maat-bab_logo](https://user-images.githubusercontent.com/81890240/140764361-ef2991a3-3985-4cf2-92f1-4e895b4368a2.jpg)
 
-![maat-bab_logo](https://user-images.githubusercontent.com/81890240/140758280-71cce0ec-5b8b-4e86-9a26-dbdcf644b06e.png)
 
 먹고 싶은 것이 있는데 혼자 먹으러 가기 부담스러울 때, <br />
 혼자 먹으러 가기 외로울 때, <br />
