@@ -5,6 +5,7 @@ import axios from 'axios';
 import { MannerData } from '../resource/MannerData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { tasteData } from '../resource/tasteData';
 
 function EditInfo() {
   const initial = useSelector((state) => state.userReducer);
@@ -15,7 +16,8 @@ function EditInfo() {
   //비밀번호확인
   const [nickName, setNickName] = useState('');
   //유저이름
-  const [foodLists, setFoodLists] = useState([]);
+  // const [foodLists, setFoodLists] = useState([]);
+  const [foodLists, setFoodLists] = useState(tasteData);
   //음식 전체리스트
   const [sumLists, setSumLists] = useState([]);
   //음식 전체,선택 합친리스트
@@ -27,21 +29,22 @@ function EditInfo() {
   //매너추가 입력창
 
   useEffect(() => {
+    console.log('tasteslist:', initial.tasteslist)
     const newArr = manner.map((el) => ({
       ...el,
       selected: false,
     }));
     setManner(newArr);
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/taste`)
-      .then((res) => {
-        const lists = res.data;
-        const addList = lists.map((el) => ({
-          ...el,
-          selected: false,
-        }));
-        setFoodLists(addList);
-      });
+    // axios
+    //   .get(`${process.env.REACT_APP_API_URL}/taste`)
+    //   .then((res) => {
+    //     const lists = res.data;
+    //     const addList = lists.map((el) => ({
+    //       ...el,
+    //       selected: false,
+    //     }));
+    //     setFoodLists(addList);
+    //   });
   }, []);
 
   useEffect(() => {
@@ -257,7 +260,7 @@ function EditInfo() {
           <input
             onChange={(e) => onchangeName(e)}
             type='text'
-            placeholder='이름'
+            placeholder={initial.userInfo.name || initial.userInfo.email || '이름'}
             className='edit__username__input'
           ></input>
         </div>

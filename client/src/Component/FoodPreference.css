@@ -92,13 +92,13 @@ button.preference__next:hover{
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .foodPreference {
     /* background-image: url('https://i.imgur.com/9ueRwbv.png');
     z-index: 1; */
     background-color: #FFFAED;
-    height: 100vh;
-    padding: 60px 20px 60px 20px;
+    height: 100%;
+    padding: 100px 20px 40px 20px;
     display: flex;
     justify-content: center;
   }
@@ -109,7 +109,7 @@ button.preference__next:hover{
     justify-content: space-around;
     align-items: center;
   
-    padding: 20px;
+    /* padding: 20px; */
   
     width: 100%;
     height: 80vh;
@@ -123,12 +123,12 @@ button.preference__next:hover{
     color: #FFA512;
     font-size: 28px;
     font-weight: 500;
-    padding: 20px 0 20px 0;
+    padding: 32px 0 20px 0;
   }
 
   .preference__list__container {
     display: flex;
-    padding: 20px 0 20px 0;
+    padding: 0;
   }
 
   button.preference__next {
@@ -178,5 +178,11 @@ button.preference__next:hover{
   
     font-weight: 500;
     cursor: pointer;
+  }
+
+  .preference__button__container {
+    display: flex;
+    padding: 0px 0 20px 0;
+    text-align: center;
   }
 }
