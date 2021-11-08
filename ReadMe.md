@@ -1,1 +1,36 @@
 
+# Maat-Bab ![8e66eca95c8d97d1](https://user-images.githubusercontent.com/81890240/140760183-bbd017d5-30cc-49a8-a9b5-6972e06e3e0d.png)
+
+
+![maat-bab_logo](https://user-images.githubusercontent.com/81890240/140758280-71cce0ec-5b8b-4e86-9a26-dbdcf644b06e.png)
+
+먹고 싶은 것이 있는데 혼자 먹으러 가기 부담스러울 때, <br />
+혼자 먹으러 가기 외로울 때, <br />
+정다운 온기가 필요할 때 <br /><br />
+**맞밥**과 함께하세요. <br /><br />
+원하는 시간, 원하는 장소에서 식사 약속을 잡고 함께 즐거운 시간을 보낼 수 있습니다. <br />
+약속에 참여한 분들을 위한 채팅방도 제공해드려요. <br /><br />
+> 당신의 식사 메이트,<br /> 맞밥입니다.<br />
+
+## 사용된 기술
+### Front
+react <br />
+redux <br />
+amazone s3 <br />
+### Back
+node js <br />
+express <br />
+sequelize <br />
+mysql <br />
+amazone ec2 <br />
+amazone rds <br />
+amazone routh53 <br />
+
+## Architecture
+
+## 개발자 인원
+  | 김지영 | Backend |
+  | --- | --- |
+  | 양지영 | Frontend |
+  | 이종석 | Backend |
+  | 이선웅 | Frontend |
