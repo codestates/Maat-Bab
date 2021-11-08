@@ -128,4 +128,8 @@
   .modal__close{
     margin-top: 10%;
   }
+  .modal__map__container{
+    margin: 2%;
+    width: 96%;
+  }
 }
