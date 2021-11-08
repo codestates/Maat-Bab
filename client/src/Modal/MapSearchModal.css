@@ -45,15 +45,17 @@
   color: black;
 }
 .main__select__region__search{
-  background-color: white;
+  background-color: lightgray;
   font-size: 17px;
   margin-left: -50px;
   border: none;
   border-radius: 20px;
+  width: 8%;
+  height: 80%;
 }
 .main__select__region__search:hover{
-  background-color: black;
-  color: white;
+  color: #FFA512;
+  cursor: pointer;
 }
 .main__select__region__input:focus{
   border: 2px solid #FFA512;
@@ -127,5 +129,9 @@
   }
   .modal__close{
     margin-top: 10%;
+  }
+  .modal__map__container{
+    margin: 2%;
+    width: 96%;
   }
 }

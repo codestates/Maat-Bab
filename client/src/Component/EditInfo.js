@@ -29,22 +29,12 @@ function EditInfo() {
   //매너추가 입력창
 
   useEffect(() => {
-    console.log('tasteslist:', initial.tasteslist)
     const newArr = manner.map((el) => ({
       ...el,
       selected: false,
     }));
     setManner(newArr);
-    // axios
-    //   .get(`${process.env.REACT_APP_API_URL}/taste`)
-    //   .then((res) => {
-    //     const lists = res.data;
-    //     const addList = lists.map((el) => ({
-    //       ...el,
-    //       selected: false,
-    //     }));
-    //     setFoodLists(addList);
-    //   });
+    console.log(manner)
   }, []);
 
   useEffect(() => {
@@ -83,13 +73,7 @@ function EditInfo() {
       .then((res) => {
         const myManner = res.data.etiquette;
         if(!myManner.length){
-          const arr = manner.map(el => {
-            return {
-              ...el,
-              selected: false,
-            }
-          })
-          setSumManner(arr)
+          setSumManner(manner)
         }else{
         const selectManner = manner.map((el) => {
           if (myManner.some((ele) => el.text === ele)) {

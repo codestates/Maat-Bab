@@ -1,28 +1,14 @@
 import React, { useEffect } from 'react';
 import './KakaoMap.css';
 
-const { kakao } = window;
+
 
 const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
 
-  useEffect(() => {
-    const container = document.getElementById('myMap');
-    const options = {
-    center: new kakao.maps.LatLng(37.566826, 126.9786567),
-    level: 2
-    };
-    const map = new kakao.maps.Map(container, options);
-    const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(district, function (result, status) {
-      if (status === kakao.maps.services.Status.OK) { // 정상적으로 검색 완료 시
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        map.setCenter(coords); // 지도의 중심을 결과값으로 받은 위치로 이동
-      }
-    })
-  }, []);
+  const { kakao } = window;
 
   useEffect(() => {
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
+    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
     const options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
@@ -30,7 +16,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
     }
     const map = new kakao.maps.Map(container, options);
     const ps = new kakao.maps.services.Places(); 
-    ps.keywordSearch(district + searchingPlace, placesSearchCB); // 주변 포함 검색
+    ps.keywordSearch(district + searchingPlace,placesSearchCB); // 주변 포함 검색
 
     function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {

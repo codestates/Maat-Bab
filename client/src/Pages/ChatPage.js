@@ -26,12 +26,9 @@ function ChatPage() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
       .then((res) => {
-        console.log(1111111111);
         if (!res.data.length) {
-          console.log(2222222);
           setMyCardList(res.data);
         } else {
-          console.log(333333333);
           res.data.forEach((user_card) =>
             socket.emit('join_room', user_card.card_id)
           );
@@ -39,7 +36,6 @@ function ChatPage() {
         }
       })
       .catch((err) => {
-        console.log(44444444444);
         console.log(err);
       });
     if (user_id === null) {
