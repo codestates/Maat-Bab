@@ -79,7 +79,66 @@ a:hover {
   right: 32px;
   font-size: 24px;
 }
+@media screen and (max-width: 768px){
+  .navigation__bar {
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-start;
+    padding: 8px 24px;
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+    /* height: 64px; */
+  }
 
+  .navigation__logo {
+    margin-left: 2px;
+    padding-top: 2px;
+  }
+
+  .navigation__menu__list {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .navigation__menu__list li {
+    /* width: 100%; */
+    text-align: center;
+  }
+
+  .navigation__bar__buttons {
+    display: none;
+    justify-content: center;
+    width: 100%;
+  }
+  .navigation__toggle {
+    display: block;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    padding-top: 5px;
+  }
+
+  .navigation__toggle__hamburger{
+    color: white;
+  }
+
+  .navigation__menu__list.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navigation__menu__list.action,
+  .navigation__bar__buttons.action {
+    display: flex;
+    padding-left: 0;
+    text-align: center;
+  }
+}
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .navigation__bar {
     flex-direction: column;
