@@ -22,26 +22,26 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
         for (let i = 0; i < data.length; i++) {
-          displayMarker(data[i])
+          // displayMarker(data[i])
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
         }
         map.setBounds(bounds)
       }
     }
 
-  function displayMarker(place) { // 장소 마커(핀) 기능
-    let marker = new kakao.maps.Marker({
-      map: map,
-      position: new kakao.maps.LatLng(place.y, place.x),
-    })
-    // 마커에 클릭이벤트
-    kakao.maps.event.addListener(marker, 'click', function () {
-    // 마커를 클릭하면 장소명이 표출됨(infowindow)
-      infowindow.setContent('<div style="padding:5px;font-size:12px;font-weight: 700;">' + place.place_name + '</div>')
-      infowindow.open(map, marker)
-      setCurnPlace(place.place_name); // 핀 클릭 시 현재 장소 값으로 저장
-    })
-  }
+  // function displayMarker(place) { // 장소 마커(핀) 기능
+  //   let marker = new kakao.maps.Marker({
+  //     map: map,
+  //     position: new kakao.maps.LatLng(place.y, place.x),
+  //   })
+  //   // 마커에 클릭이벤트
+  //   kakao.maps.event.addListener(marker, 'click', function () {
+  //   // 마커를 클릭하면 장소명이 표출됨(infowindow)
+  //     infowindow.setContent('<div style="padding:5px;font-size:12px;font-weight: 700;">' + place.place_name + '</div>')
+  //     infowindow.open(map, marker)
+  //     setCurnPlace(place.place_name); // 핀 클릭 시 현재 장소 값으로 저장
+  //   })
+  // }
 },[district, searchingPlace])
 
   return (
