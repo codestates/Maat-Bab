@@ -6,9 +6,9 @@ import './KakaoMap.css';
 const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
 
   const { kakao } = window;
-  
+
   useEffect(() => {
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
+    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
     const options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
