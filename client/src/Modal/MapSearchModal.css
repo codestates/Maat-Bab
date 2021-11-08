@@ -10,48 +10,64 @@
   width: 80%;
   height: 80%;
   background-color: white;
-  margin: 3% 0 0 10%;
+  margin: 5% 0 0 10%;
   border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .modal__search__place__title{
   color: #FFA512;
-  margin-left: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   
-  padding-top: 20px;
-  font-size: 25px;
+  padding-top: 18px;
+  padding-bottom: 22px;
+  font-size: 28px;
   font-weight: 700;
-  width: 150px;
 }
 .modal__search__region__conatiner{
   width: 70%;
   height: 6%;
-  margin: 2% 0 0 15%;
+  /* margin: 2% 0 0 15%; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .main__select__region__name{
   color: #FFA512;
   font-size: 25px;
   font-weight: 700;
-  margin-left: 10%;
+  /* margin-left: 10%; */
 }
 .main__select__region__input{
   border-radius: 20px;
-  width: 40%;
-  height: 90%;
-  margin-left: 20%;
-  color: black;
+  width: 300px;
+  /* height: 90%; */
+  /* margin-left: 10%; */
+  color: rgb(94, 93, 93);
+  border: 2px solid #a4a0a0;
+  font-size: 16px;
+  /* display: flex; */
+  justify-content: center;
+  padding: 10px 5px;
+
 }
 .main__select__region__search{
-  background-color: lightgray;
+  all: unset;
+  width: 26px;
+  margin-left: -40px;
+  /* background-color: lightgray;
   font-size: 17px;
   margin-left: -50px;
   border: none;
   border-radius: 20px;
   width: 8%;
-  height: 80%;
+  height: 80%; */
 }
 .main__select__region__search:hover{
   color: #FFA512;
@@ -62,18 +78,24 @@
   outline: none;
 }
 .modal__map__container{
-  border: 1px solid black;
+  border: 1px solid #a4a0a0;
+  border-radius: 20px;
   width: 80%;
   height: 70%;
-  margin: 3% 0 0 10%;
+  /* margin: 3% 0 0 10%; */
+  margin: 20px;
 }
+
+#myMap {
+  border-radius: 20px;
+}
+
 .modal__close{
   background-color: #FFA512;
   border: none;
   border-radius: 20px;
   width: 20%;
   height: 5%;
-  margin: 0.5% 0 0 40%;
   font-size: 20px;
   font-weight: 700;
 }
@@ -96,6 +118,11 @@
   .modal__search__content__container{
     top: 2%;
     margin-top: 68px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .modal__search__region__container {
@@ -116,22 +143,37 @@
     padding-bottom: 24px;
   }
   .main__select__region__name{
-    font-size: 15px;
+    font-size: 16px;
     margin: 0;
+    padding-left: 20px;
+    padding-right: 5px;
   }
   .main__select__region__input{
     height: 30px;
-    width: 170px;
+    width: 160px;
     margin-left: 2%;
+    font-size: 14px;
+    padding-left: 10px;
   }
   .main__select__region__search{
     margin-left: -15%;
   }
+
+  .modal__search__region__conatiner {
+    width: 100%;
+    margin: 0;
+  }
+
   .modal__close{
-    margin-top: 10%;
+    /* margin-top: 10%; */
   }
   .modal__map__container{
     margin: 2%;
     width: 96%;
   }
+
+  .mapsearch__background > .svg-inline--fa {
+    height: 16px;
+  }
+
 }
