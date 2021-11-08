@@ -8,7 +8,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
   const { kakao } = window;
 
   useEffect(() => {
-    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
+    // let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
     const options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
@@ -16,18 +16,18 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
     }
     const map = new kakao.maps.Map(container, options);
     const ps = new kakao.maps.services.Places(); 
-    ps.keywordSearch(district + searchingPlace, placesSearchCB); // 주변 포함 검색
+    ps.keywordSearch(district + searchingPlace); // 주변 포함 검색  placesSearchCB
 
-    function placesSearchCB(data, status, pagination) {
-      if (status === kakao.maps.services.Status.OK) {
-        let bounds = new kakao.maps.LatLngBounds();
-        for (let i = 0; i < data.length; i++) {
-          // displayMarker(data[i])
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
-        }
-        map.setBounds(bounds)
-      }
-    }
+    // function placesSearchCB(data, status, pagination) {
+    //   if (status === kakao.maps.services.Status.OK) {
+    //     let bounds = new kakao.maps.LatLngBounds();
+    //     for (let i = 0; i < data.length; i++) {
+    //       displayMarker(data[i])
+    //       bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
+    //     }
+    //     map.setBounds(bounds)
+    //   }
+    // }
 
   // function displayMarker(place) { // 장소 마커(핀) 기능
   //   let marker = new kakao.maps.Marker({
