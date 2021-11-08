@@ -42,7 +42,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
       setCurnPlace(place.place_name); // 핀 클릭 시 현재 장소 값으로 저장
     })
   }
-},[district, searchingPlace])
+},[district, searchingPlace,district,searchingPlace,kakao.maps.InfoWindow,kakao.maps.LatLng,kakao.maps.LatLngBounds,kakao.maps.Map,kakao.maps.Marker,kakao.maps.event,kakao.maps.services.Places,kakao.maps.services.Status.OK,setCurnPlace])
 
   return (
     <div id='myMap' style={{
