@@ -49,7 +49,6 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
         width: '100%', 
         height: '100%'
     }}>
-      잘나오고있나?
       <div className='modal__map__location main'>{city} ▶︎ {district}</div>
     </div>
   );
