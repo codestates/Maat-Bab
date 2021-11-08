@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import './KakaoMap.css';
 
-const { kakao } = window;
+
 
 const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
 
+  const { kakao } = window;
+  
   useEffect(() => {
     var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
