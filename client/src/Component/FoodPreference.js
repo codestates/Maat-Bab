@@ -3,25 +3,25 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FoodPreferenceList from './FoodPreferenceList';
 import './FoodPreference.css';
+import { tasteData } from '../resource/tasteData';
 
 function FoodPreference() {
   const history = useHistory();
-  const [foodList, setFoodList] = useState([]);
-  // const initial = useSelector(state => state.userReducer);
+  const [foodList, setFoodList] = useState(tasteData);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    await axios
-      .get(`${process.env.REACT_APP_API_URL}/taste`)
-      .then((res) => {
-        const data = res.data;
-        const list = data.map((el) => ({
-          ...el,
-          selected: false,
-        }));
-        setFoodList(list);
-      });
-  }, []);
+  // useEffect(async () => {
+  //   await axios
+  //     .get(`${process.env.REACT_APP_API_URL}/taste`)
+  //     .then((res) => {
+  //       const data = res.data;
+  //       const list = data.map((el) => ({
+  //         ...el,
+  //         selected: false,
+  //       }));
+  //       setFoodList(list);
+  //     });
+  // }, []);
 
   const selectTaste = (id) => {
     const newList = foodList.map((food) => {

@@ -8,11 +8,12 @@ import { FaSearch } from "react-icons/fa";
 import KakaoMap from '../Component/KakaoMap';
 import { regionData } from '../resource/regionData';
 import { FaPlusCircle } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
-
-function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
+function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
     const history = useHistory();
-    
+    const initial = useSelector((state) => state.userReducer);
+
     const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
     
@@ -44,7 +45,11 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     }
 
     const makeCardHandler = () => {
-        history.push('/makemeet')
+        if (initial.isLogin) {
+            history.push('/makemeet')
+        } else {
+            SetLoginModal(true)
+        }
     }
 
     return (

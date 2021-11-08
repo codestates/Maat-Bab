@@ -67,7 +67,8 @@ function UserManner() {
     <div className='usermanner'>
       <div className='tablemanner_container'>
         <div className='tablemanner_title'>
-          지향하는 테이블 매너를 선택해 주세요
+          {`지향하는 테이블 매너를
+          선택해 주세요`}
         </div>
         <div className='tablemanner__list__container'>
           <UserMannerList

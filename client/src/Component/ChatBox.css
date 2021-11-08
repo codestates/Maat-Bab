@@ -172,7 +172,7 @@ h3 {
   font-size: 20px;
   height: 50%;
   padding: 0px 10px 0px 10px;
-  margin: 0px 0px 0px 20px;
+  margin: 0px 0px 0px 24px;
 }
 .chat__content__input:focus{
   outline: none;
@@ -183,20 +183,21 @@ h3 {
 }
 .chat__send__button{
   position: relative;
-  margin: 0px 0px 0px 20px;
-  border: none;
+  margin: 0px 14px 0px 20px;
+  border: 2px solid #ffA512;
   border-radius: 30px;
   background-color: #FFA512;
   color: white;
-  width: 13%;
+  width: 14%;
   height: 50%;
   font-size: 20px;
   font-weight: 700;
 }
 
 .chat__send__button:hover{
-
-  border: 3px solid #ffA512;
+  font-size: 18px;
+  font-weight: 800;
+  border: 2px solid #ffA512;
   color: #ffA512;
   background-color: white;
 }
@@ -274,7 +275,7 @@ h3 {
   }
   .chat__send__button{
     font-size: 18px;
-    margin-left: 5px;
+    margin-left: 4px;
     margin-right: 10px;
   }
 }
