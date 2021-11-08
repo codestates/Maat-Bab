@@ -83,13 +83,7 @@ function EditInfo() {
       .then((res) => {
         const myManner = res.data.etiquette;
         if(!myManner.length){
-          const arr = manner.map(el => {
-            return {
-              ...el,
-              selected: false,
-            }
-          })
-          setSumManner(arr)
+          setSumManner(manner)
         }else{
         const selectManner = manner.map((el) => {
           if (myManner.some((ele) => el.text === ele)) {

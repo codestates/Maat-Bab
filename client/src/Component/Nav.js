@@ -12,16 +12,16 @@ function Nav({logoutHandler}) {
     const [toggle, setToggle] = useState(false)
 
     const MoveAbout = () => {
-        history.push('/')
+        document.location.href = '/'
     }
     const MoveEditInfo = () => {
-        history.push('/editinfo')
+        document.location.href = '/editinfo'
     }
     const MoveSignUp = () => {
-        history.push('/signup')
+        document.location.href = '/signup'
     }
     const MoveLogin = () => {
-        history.push('/login')
+        document.location.href = '/login'
     }
     const toggleHandler = () => {
         setToggle(!toggle)
