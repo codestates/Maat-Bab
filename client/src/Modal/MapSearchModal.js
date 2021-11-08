@@ -20,7 +20,7 @@ function MapSearchModal({changeFind, city, city2, setCurnPlace}) {
     return (
         <div className='mapsearch__background'>
             <div className='modal__search__content__container'>
-                <h1 className='modal__search__place__title'>맞밥 지역 검색</h1>
+                <div className='modal__search__place__title'>맞밥 지역 검색</div>
                 <div className='modal__search__region__conatiner'>
                     <span className='main__select__region__name'>맞밥 지역</span>
                     <input placeholder='검색어를 입력하세요' onChange={(e) => changeValue(e)} className='main__select__region__input'type='text'></input>

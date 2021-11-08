@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MapSearchModal from '../Modal/MapSearchModal';
 import './MakeMeet.css';
 import DatePicker from 'react-datepicker';
@@ -8,36 +8,9 @@ import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 import { ko } from 'date-fns/esm/locale';
+import { regionData } from '../resource/regionData';
 
 function MakeMeet() {
-  const region = [
-    '강남구',
-    '강동구',
-    '강북구',
-    '강서구',
-    '관악구',
-    '광진구',
-    '구로구',
-    '금천구',
-    '노원구',
-    '도봉구',
-    '동대문구',
-    '동작구',
-    '마포구',
-    '서대문구',
-    '서초구',
-    '성동구',
-    '성북구',
-    '송파구',
-    '양천구',
-    '영등포구',
-    '용산구',
-    '은평구',
-    '종로구',
-    '중구',
-    '중랑구',
-  ];
-
   const [startDate, setStartDate] = useState(new Date());
   const [isFind, setIsFind] = useState(false);
   const [time, setTime] = useState('');
@@ -46,6 +19,18 @@ function MakeMeet() {
   const [countPeople, setCounPeople] = useState('0');
   const [curPlace, setCurnPlace] = useState('찾기 버튼을 눌러주세요');
   const [roomName, setRoomName] = useState('');
+  const [disabled, setDisabled] = useState('disabled');
+
+  useEffect(() => {
+    disable()
+  }, [city, city2, curPlace, roomName])
+
+  const disable = () => {
+    if ((city !== '' && city2 !== '') &&
+      ((curPlace !== '찾기 버튼을 눌러주세요' && curPlace !== '') || roomName !== '')) {
+      setDisabled('')
+    }
+  }
 
   const changeFind = () => {
     if (city !== '' && city2 !== '') {
@@ -70,9 +55,9 @@ function MakeMeet() {
     setRoomName(event.target.value);
   };
   const makeMeetCard = () => {
-    if (curPlace !== '' && roomName !== '') {
+    if (curPlace !== '' && curPlace == '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
@@ -88,9 +73,9 @@ function MakeMeet() {
             alert('잠시 후 다시 시도해주세요');
           }
         });
-    } else if (curPlace !== '' && roomName === '') {
+    } else if (curPlace !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
@@ -108,7 +93,7 @@ function MakeMeet() {
         });
     } else if (curPlace === '' && roomName !== '') {
       axios
-        .post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card`, {
+        .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
           date: getFormatDate1(startDate),
           time: time,
@@ -145,7 +130,7 @@ function MakeMeet() {
         />
       ) : null}
       <div className='make__content__container'>
-        <h1 className='make__card__title'>맞밥 약속 만들기</h1>
+        <div className='make__card__title'>맞밥 약속 만들기</div>
         <div className='make__card__info'>
           <div className='make__card__info__row'>
             <span className='make__card__info__item'>맞밥 지역</span>
@@ -163,7 +148,7 @@ function MakeMeet() {
               className='make__card__info__region__district'
             >
               <option value=''>지역구</option>
-              {region.map((el, idx) => {
+              {regionData.map((el, idx) => {
                 return (
                   <option key={idx} value={el}>
                     {el}
@@ -259,7 +244,7 @@ function MakeMeet() {
             ></input>
           </div>
         </div>
-        <button onClick={makeMeetCard} className='make__card__button'>
+        <button disabled={disabled} onClick={makeMeetCard} className='make__card__button'>
           만들기
         </button>
       </div>

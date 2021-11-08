@@ -76,7 +76,7 @@ li.manner__input {
   background-color: white;
   border: 3px solid #d1c8c8;
   border-radius: 40px;
-  color: #d1c8c8;
+  color: #4b4a4a;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   margin: 5px 5px 10px 10px;
@@ -105,28 +105,28 @@ li.manner__input {
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .userMannerList {
     display: flex;
     flex-direction: column;
-    padding: 10px 5px 10px 5px;
+    padding: 0;
   }
   
   ul.userMannerList {
   }
   
   li.manner {
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px;
     margin: 5px 5px 10px 10px;
-    
+    border: 2px solid #a4a0a0;
   }
   
   li.manner:hover {
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px;
     margin: 5px 5px 10px 10px;
-    
+    border: 2px solid #a4a0a0;
   }
   
   li.selected {
@@ -134,5 +134,11 @@ li.manner__input {
     padding: 10px;
     margin: 5px 5px 10px 10px;
     
+  }
+
+  .manner__custom__input{
+    font-size: 16px;
+    border: 2px solid #d1c8c8;
+
   }
 }

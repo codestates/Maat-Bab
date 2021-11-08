@@ -3,20 +3,21 @@ const { generateSalt, generateHashData } = require('../../functions');
 
 module.exports = {
   post: (req, res) => {
-    const { email, password, name } = req.body;
+    let { email, password, name } = req.body;
     if (!email || !password || !name) {
       return res.status(400).send();
     }
     const salt = generateSalt();
-    const hashPassword = generateHashData(salt + password);
+    password = generateHashData(salt + password);
+
     User.findOrCreate({
       where: { email },
       defaults: {
         email,
-        password: hashPassword,
+        password,
         salt,
         name,
-        etiquette: null,
+        etiquette: '[]',
         oauth: null,
         certification: false,
       },
@@ -27,6 +28,7 @@ module.exports = {
         }
         delete result.dataValues.password;
         delete result.dataValues.salt;
+        result.dataValues.etiquette = JSON.parse(result.dataValues.etiquette);
         return res.status(201).send(result);
       })
       .catch((err) => {

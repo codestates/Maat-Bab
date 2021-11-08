@@ -3,7 +3,6 @@ import './ProfileList.css';
 import Profile from './Profile';
 
 function ProfileList({ selectedCard, mateList }) {
-    console.log('mateList: ', mateList);
     
     let nullText = '';
     if (!selectedCard) {
@@ -15,7 +14,7 @@ function ProfileList({ selectedCard, mateList }) {
     return (
         <div className='profilelist'>
             {mateList ? mateList?.map((mate) => {
-                return <Profile className='profile__section' mate={mate} />
+                return <Profile className='profile__section' mate={mate.User} />
             }
             )
                 :

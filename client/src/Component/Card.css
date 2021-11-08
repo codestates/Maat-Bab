@@ -85,6 +85,7 @@
 
 .card__title {
   color: white;
+  font-size: 28px;
   font-weight: 800;
   margin: 5px 15px;
 }
@@ -117,7 +118,7 @@
   display: flex;
   font-size: 19px;
   font-weight: 500;
-  color: #424040;
+  color: #4e4d4d;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -130,7 +131,6 @@
   display: flex;
   width: 100%;
   padding: 5px 0px;
-
 }
 
 .card__time {
@@ -165,7 +165,6 @@
   margin: 5px 10px;
 }
 
-
 .chat__exit__button{
   width: 30px;
 
@@ -173,7 +172,7 @@
   font-size: 26px;
   font-weight: 600;
 
-  z-index: 200;
+  z-index: 19;
 }
 .chat__exit__button.joined{
   width: 30px;
@@ -182,12 +181,28 @@
   font-size: 26px;
   font-weight: 600;
 
-  z-index: 200;
+  z-index: 19;
 }
 
-@media screen and (max-width: 768px) {
-  .card__hover__message {
-    width: 80%;
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
 
+  .card__second__container {
+    padding: 0;
+  }
+
+  .card__title {
+    font-size: 24px;
+  }
+
+  .card__region,
+  .card__date {
+    padding: 5px 10px;
+    margin: 5px 5px;
+    font-size: 18px;
+  }
+
+  .card__hover__message {
+    width: 76%;
+    height: 160px;
   }
 }

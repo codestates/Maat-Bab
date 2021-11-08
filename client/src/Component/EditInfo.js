@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './EditInfo.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { MannerData } from '../resource/MannerData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { tasteData } from '../resource/tasteData';
 
 function EditInfo() {
-  const dispatch = useDispatch();
   const initial = useSelector((state) => state.userReducer);
   //리덕스 상태값
   const [passWord, setPassWord] = useState('');
@@ -16,7 +16,8 @@ function EditInfo() {
   //비밀번호확인
   const [nickName, setNickName] = useState('');
   //유저이름
-  const [foodLists, setFoodLists] = useState([]);
+  // const [foodLists, setFoodLists] = useState([]);
+  const [foodLists, setFoodLists] = useState(tasteData);
   //음식 전체리스트
   const [sumLists, setSumLists] = useState([]);
   //음식 전체,선택 합친리스트
@@ -28,43 +29,44 @@ function EditInfo() {
   //매너추가 입력창
 
   useEffect(() => {
+    console.log('tasteslist:', initial.tasteslist)
     const newArr = manner.map((el) => ({
       ...el,
       selected: false,
     }));
     setManner(newArr);
-    axios
-      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/taste`)
-      .then((res) => {
-        const lists = res.data;
-        const addList = lists.map((el) => ({
-          ...el,
-          selected: false,
-        }));
-        setFoodLists(addList);
-      });
+    // axios
+    //   .get(`${process.env.REACT_APP_API_URL}/taste`)
+    //   .then((res) => {
+    //     const lists = res.data;
+    //     const addList = lists.map((el) => ({
+    //       ...el,
+    //       selected: false,
+    //     }));
+    //     setFoodLists(addList);
+    //   });
   }, []);
 
   useEffect(() => {
     axios
       .get(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`
+        `${process.env.REACT_APP_API_URL}/userinfo/taste`
       )
       .then((res) => {
-        if(res.status === 204){
+        if(!res.data.length){
           setSumLists(foodLists)
         }else{
         const myData = res.data;
         const selectedList = foodLists.map((food) => {
           if (
-            myData.some((myfood, index) => food.taste_id === myfood.taste_id)
+            myData.some((myfood) => food.taste_id === myfood.taste_id)
           ) {
             return {
               ...food,
               selected: true,
             };
           } else if (
-            myData.some((myfood, index) => food.taste_id !== myfood.taste_id)
+            myData.some((myfood) => food.taste_id !== myfood.taste_id)
           ) {
             return {
               ...food,
@@ -76,11 +78,11 @@ function EditInfo() {
       });
     axios
       .get(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/etiquette`
+        `${process.env.REACT_APP_API_URL}/userinfo/etiquette`
       )
       .then((res) => {
         const myManner = res.data.etiquette;
-        if(myManner === null){
+        if(!myManner.length){
           const arr = manner.map(el => {
             return {
               ...el,
@@ -90,12 +92,12 @@ function EditInfo() {
           setSumManner(arr)
         }else{
         const selectManner = manner.map((el) => {
-          if (myManner.some((ele, idx) => el.text === ele)) {
+          if (myManner.some((ele) => el.text === ele)) {
             return {
               ...el,
               selected: true,
             };
-          } else if (myManner.some((ele, idx) => el.text !== ele)) {
+          } else if (myManner.some((ele) => el.text !== ele)) {
             return {
               ...el,
             };
@@ -143,7 +145,7 @@ function EditInfo() {
     } else {
       axios
         .patch(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo`,
+          `${process.env.REACT_APP_API_URL}/userinfo`,
           {
             name: nickName,
             password: passWord,
@@ -163,7 +165,7 @@ function EditInfo() {
     const filterIdx = filtered.map((el) => el.taste_id);
     axios
       .patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/taste`,
+        `${process.env.REACT_APP_API_URL}/userinfo/taste`,
         {
           taste_id: filterIdx,
         }
@@ -182,7 +184,7 @@ function EditInfo() {
     const texts = filtered.map((el) => el.text);
     axios
       .patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/userinfo/etiquette`,
+        `${process.env.REACT_APP_API_URL}/userinfo/etiquette`,
         {
           etiquette: texts,
         }
@@ -258,7 +260,7 @@ function EditInfo() {
           <input
             onChange={(e) => onchangeName(e)}
             type='text'
-            placeholder='이름'
+            placeholder={initial.userInfo.name || initial.userInfo.email || '이름'}
             className='edit__username__input'
           ></input>
         </div>

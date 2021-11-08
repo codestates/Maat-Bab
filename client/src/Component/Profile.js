@@ -2,7 +2,6 @@ import React from 'react';
 import './Profile.css';
 
 function Profile({ mate }) {
-  console.log('mate: ', mate)
   return (
     <div className='profile'>
         <section className='profile__container'>
@@ -14,8 +13,8 @@ function Profile({ mate }) {
           <div className='profile__title'>음식 취향</div>
           
           <div className='profile__taste__list'>
-            {mate.Taste ? mate.Taste.map(taste => {
-              return <span className='profile__taste'>{taste}</span> 
+            {mate.Tastes ? mate.Tastes.map(taste => {
+              return <span className='profile__taste'>{taste.name}</span> 
             })
               :
               <div className='loader__box__ifnull'> 추가한 음식 취향이 없습니다 😂</div>

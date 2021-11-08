@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SignUp.css';
 import axios from 'axios';
@@ -56,7 +56,7 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
       alert('중복검사를 먼저 해주세요');
     } else {
       let res = await axios.post(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/signup`,
+        `${process.env.REACT_APP_API_URL}/signup`,
         {
           email: email,
           name: userName,
@@ -66,7 +66,7 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
       if (res.status === 201) {
         const certificationCode = generateCertificationCode();
         axios.post(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/mail`,
+          `${process.env.REACT_APP_API_URL}/mail`,
           {
             email,
             certificationCode,
@@ -85,7 +85,7 @@ function SignUp({ email, setEamil, certificationCodeHandler }) {
     } else {
       axios
         .post(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/same-email`,
+          `${process.env.REACT_APP_API_URL}/same-email`,
           {
             email: email,
           }

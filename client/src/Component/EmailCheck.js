@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './EmailCheck.css';
-import FailModal from '../Modal/FailModal';
 import SuccessModal from '../Modal/SuccessModal';
 import axios from 'axios';
 
@@ -15,7 +14,7 @@ function EmailCheck({ certificationCode, email }) {
   const checkCode = async () => {
     if (value === certificationCode) {
       axios.patch(
-        `http://localhost:${process.env.REACT_APP_SERVER_PORT}/certification`,
+        `${process.env.REACT_APP_API_URL}/certification`,
         {
           email,
         }
@@ -26,11 +25,12 @@ function EmailCheck({ certificationCode, email }) {
     }
   };
   const reSend = () => {
-    axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/mail`, {
+    axios.post(`${process.env.REACT_APP_API_URL}/mail`, {
       email,
       certificationCode,
     });
   };
+
   return (
     <div className='emailcheck__background'>
       {modal === 'success' ? <SuccessModal /> : null}
@@ -41,9 +41,9 @@ function EmailCheck({ certificationCode, email }) {
             회원님은 임시 가입 상태입니다
           </li>
           <li className='emailcheck__messages__cocntainer__message2'>
-            가입하신 이메일로 인증 메일이 발송되었습니다.
+            가입하신 이메일로 인증 메일이 발송되었습니다
             <br />
-            메일을 확인해주세요 :)
+            메일을 확인해주세요
           </li>
         </ul>
         <div className='emailcheck__button__container'>

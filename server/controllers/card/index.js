@@ -8,8 +8,10 @@ const {
 
 module.exports = {
   get: async (req, res) => {
-    const { region, date, restaurant_name, card_id } = req.query;
+    let { card_id, region, date, restaurant_name } = req.query;
+
     if (card_id) {
+      card_id = Number(card_id);
       const cards = await User_card.findAll({
         where: { card_id },
         include: [
@@ -19,71 +21,29 @@ module.exports = {
           },
         ],
       });
-
       cards.forEach((user_card) => {
-        delete user_card.dataValues.User.dataValues.password;
-        delete user_card.dataValues.User.dataValues.salt;
-        user_card.dataValues.User.dataValues.etiquette = JSON.parse(
-          user_card.dataValues.User.dataValues.etiquette
-        );
-        user_card.dataValues.User.dataValues.Tastes.forEach((taste) => {
+        const data = user_card.dataValues.User.dataValues;
+        delete data.password;
+        delete data.salt;
+        data.etiquette = JSON.parse(data.etiquette);
+        data.Tastes.forEach((taste) => {
           delete taste.dataValues.User_taste;
         });
       });
+      return res.status(200).send(cards);
+    }
 
-      return res.status(200).send(cards);
+    let cards = await Card.findAll();
+    if (region) {
+      cards = cards.filter((card) => card.region === region);
     }
-    if (!region && !date && !restaurant_name) {
-      const cards = await Card.findAll();
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && !date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { region } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { date } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && !date && restaurant_name) {
-      const cards = await Card.findAll({ where: { restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && date && !restaurant_name) {
-      const cards = await Card.findAll({ where: { region, date } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (!region && date && restaurant_name) {
-      const cards = await Card.findAll({ where: { date, restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else if (region && !date && restaurant_name) {
-      const cards = await Card.findAll({ where: { region, restaurant_name } });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
-    } else {
-      const cards = await Card.findAll({
-        where: { region, date, restaurant_name },
-      });
-      if (!cards.length) {
-        return res.status(404).send();
-      }
-      return res.status(200).send(cards);
+    if (date) {
+      cards = cards.filter((card) => card.date === date);
     }
+    if (restaurant_name) {
+      cards = cards.filter((card) => card.restaurant_name === restaurant_name);
+    }
+    return res.status(200).send(cards);
   },
   post: async (req, res) => {
     const data = isAuth(req, res);
@@ -91,7 +51,7 @@ module.exports = {
       return res.status(401).send();
     }
 
-    const { user_id } = data;
+    const { user_id, name } = data;
     const {
       region,
       date,
@@ -141,6 +101,14 @@ module.exports = {
       return res.status(500).send();
     });
 
+    const message = generateJoinMessage(card_id, name);
+    const dateMessage = generateDateMessage(card_id, message.date);
+
+    await Card.update(
+      { chat_content: JSON.stringify([dateMessage, message]) },
+      { where: { card_id } }
+    );
+
     await User_card.create({
       card_id,
       user_id,
@@ -155,6 +123,7 @@ module.exports = {
       console.log(err);
       return res.status(500).send();
     });
+    card.chat_content = JSON.parse(card.chat_content);
 
     return res.status(201).send(card);
   },
@@ -175,9 +144,6 @@ module.exports = {
         return res.status(500).send();
       });
 
-      if (!cards.length) {
-        return res.status(404).send();
-      }
       return res.status(200).send(cards);
     },
     post: async (req, res) => {
@@ -203,11 +169,7 @@ module.exports = {
         return res.status(500).send();
       });
 
-      if (chat_content === null) {
-        chat_content = [];
-      } else {
-        chat_content = JSON.parse(chat_content);
-      }
+      chat_content = JSON.parse(chat_content);
       const chat_content_idx = chat_content.length;
 
       await User_card.findOrCreate({
@@ -219,11 +181,19 @@ module.exports = {
             return res.status(409).send();
           }
 
+          let messages;
           const message = generateJoinMessage(card_id, name);
-          chat_content = JSON.stringify(chat_content.concat(message));
+          if (chat_content[chat_content_idx - 1].date < message.date) {
+            const dateMessage = generateDateMessage(card_id, message.date);
+            messages = [dateMessage, message];
+            chat_content = JSON.stringify(chat_content.concat(messages));
+          } else {
+            messages = [message];
+            chat_content = JSON.stringify(chat_content.concat(messages));
+          }
 
           await Card.update({ chat_content }, { where: { card_id } });
-          req.app.get('io').to(card_id).emit('new_user', message);
+          req.app.get('io').to(card_id).emit('new_user', messages);
 
           return res.status(200).send(result);
         })
@@ -245,10 +215,6 @@ module.exports = {
       if (!card_id) {
         return res.status(400).send();
       }
-
-      let messages;
-      const message = generateLeaveMessage(card_id, name);
-      const dateMessage = generateDateMessage(card_id, message.date);
 
       const userList = await User_card.findAll({ where: { card_id } }).catch(
         (err) => {
@@ -275,6 +241,10 @@ module.exports = {
             { where: { card_id, user_id: otherUserinfo.user_id } }
           );
         }
+
+        let messages;
+        const message = generateLeaveMessage(card_id, name);
+        const dateMessage = generateDateMessage(card_id, message.date);
 
         let { chat_content } = await Card.findOne({ where: { card_id } });
         if (chat_content === null) {

@@ -10,7 +10,7 @@ import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
 
 const socket = io.connect(
-  `http://localhost:${process.env.REACT_APP_SERVER_PORT}`
+  `${process.env.REACT_APP_API_URL}`
 );
 
 function ChatPage() {
@@ -24,7 +24,7 @@ function ChatPage() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps  
   useEffect(() => {
-    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
     .then(res => {
       if (!res.data.length) {
         setMyCardList(res.data);
@@ -65,11 +65,11 @@ function ChatPage() {
       setSelectedCard('');
     }
     leaveRoom(card_id);
-    await axios.delete(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/card/${user_id}`, {
     data: { card_id : selectedCard.card_id },
     });
     const data = await axios
-      .get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card/${user_id}`)
+      .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
       .then((res) => {
         return res.data;
       })
@@ -97,13 +97,11 @@ function ChatPage() {
 
   // * matelist
   useEffect(() => {
-    axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/card?card_id=${selectedCard.card_id}`)
+    console.log('selectedCard: ', selectedCard)
+    axios.get(`${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`)
       .then(res => {
-        let list = res.data;
-        let mates = list.map((user_card) => {
-        return user_card.User
-      })
-      setMateList(mates);
+        const user_card_list = res.data;
+        setMateList(user_card_list);
       })
   }, [selectedCard])
 
@@ -118,6 +116,7 @@ function ChatPage() {
         selectedCard={selectedCard} setSelectedCard={setSelectedCard}
         cardClickinChatHandler={cardClickinChatHandler}
         deleteCardModalHandler={deleteCardModalHandler}
+        message={'카드를 클릭하여 채팅에 참여해 보세요'}
       />
 
       {isDeleteClicked ? <ExitModal card_id={selectedCard?.card_id} chat_title={selectedCard?.Card.chat_title} setIsDeleteClicked={setIsDeleteClicked} deleteCardHandler={deleteCardHandler}
@@ -126,7 +125,7 @@ function ChatPage() {
       {selectedCard ? (
         <ChatBox className='chatpage__chat__container'
           my_user_id={user_id}
-          name={name}
+          my_name={name}
           selectedCard={selectedCard}
           socket={socket}
           isDeleteClicked={isDeleteClicked}
@@ -139,7 +138,7 @@ function ChatPage() {
         <MateList className='chatpage__mate__container'
           selectedCard={selectedCard}
           my_user_id={user_id}
-          mateList={mateList}
+          userCardList={mateList}
         />
         :
         <MateList className='chatpage__mate__container nonselected'

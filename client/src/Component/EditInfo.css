@@ -44,7 +44,7 @@
 .edit__username__input{
   width: 50%;
   height: 20%;
-  border-radius: 15px;
+  border-radius: 20px;
   margin-top: 0.5%;
   padding: 0;
   font-size: 15px;
@@ -200,5 +200,39 @@
     margin: 0;
     padding-top: 5%;
     border: none;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .edit__content{
+    padding: 15% 2% 0 2%;
+  }
+  .edit__user__input{
+    margin-left: 11%;
+    width: 60%;
+  }
+  .edit__password__input{
+    margin-left: 9%;
+    width: 60%;
+  }
+  .edit__password__check__input{
+    margin-left: 1%;
+    width: 60%;
+  }
+  .edit__username__input{
+    width: 60%;
+  }
+  .edit__food__seleted,
+  .edit__food{
+    width: 28%;
+    font-size: 13px;
+  }
+  .edit__manner__selected,
+  .edit__manner{
+    width: 90%;
+    margin-left: 5%;
+    font-size: 15px;
+  }
+  .edit__custom__add{
+    width: 20%;
   }
 }

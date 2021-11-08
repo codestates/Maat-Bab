@@ -1,28 +1,27 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Search from '../Component/Search';
 import List from '../Component/List';
 import JoinModal from '../Modal/JoinModal';
+import LoginModal from '../Modal/LogInModal';
 import './MainPage.css';
 import axios from 'axios';
 import { getFormatDate1 } from '../functions/module';
 
 function MainPage({ userInfo }) {
   const [curnPlace, setCurnPlace] = useState('');
-  console.log(
-    'after click pinmarker state curnPlace in MainPage is: ',
-    curnPlace
-  );
-
   const [cardData, setCardData] = useState(null);
   const [message, setMessage] = useState(null);
+  const [isCardClicked, setCardClicked] = useState(false);
+  const [clickedCardId, setClickedCardId] = useState(null);
+  const [loginModal, SetLoginModal] = useState(false)
 
   const searchCardHandler = async (region, date, restaurant_name) => {
     const formatedDate = getFormatDate1(date);
     const result = await axios
       .get(
-        `http://localhost:${
-          process.env.REACT_APP_SERVER_PORT
+        `${
+          process.env.REACT_APP_API_URL
         }/card?region=${decodeURIComponent(
           region
         )}&date=${formatedDate}&restaurant_name=${decodeURIComponent(
@@ -41,28 +40,27 @@ function MainPage({ userInfo }) {
     }
   };
 
-  const [isCardClicked, setCardClicked] = useState(false);
-  const [clickedCardId, setClickedCardId] = useState(null);
-
   const cardClickinMainHandler = (card) => {
     setClickedCardId(card.card_id);
     setCardClicked(true);
   };
 
-  useEffect(() => {
-    console.log(`clickedCardId is ${clickedCardId}`);
-  }, [clickedCardId]);
-
   return (
     <div className='mainpage'>
       {isCardClicked ? (
-        <JoinModal user_id={userInfo.user_id} card_id={clickedCardId} />
+        <JoinModal
+          user_id={userInfo.user_id}
+          card_id={clickedCardId}
+          setCardClicked={setCardClicked}
+        />
       ) : null}
+      {loginModal ? <LoginModal SetLoginModal={SetLoginModal} /> : null}
       <Search
         className='mainpage__search__component'
         searchCardHandler={searchCardHandler}
         setCurnPlace={setCurnPlace}
         curnPlace={curnPlace}
+        SetLoginModal={SetLoginModal}
       />
       <List
         className='mainpage__list__component'

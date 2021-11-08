@@ -1,8 +1,97 @@
 .successmodal__background{
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   z-index: 100;
   background-color: rgba(0,0,0,0.4);
   position: fixed;
   top: 0;
+}
+.modalbackdrop{
+  position: fixed;
+  width: 40%;
+  left: 30%;
+  height: 50%;
+  top: 25%;
+  border-radius: 20px;
+  background-color: white;
+  text-align: center;
+  padding-top: 3%;
+  border: 1px solid #FFA512;
+}
+.modalbackdrop.success{
+  padding-top: 6%;
+}
+.modalview__massage{
+  color: #FFA512;
+  font-size: 35px;
+  font-weight: 700;
+}
+.modalview__count__message{
+  color: gray;
+  font-size: 20px;
+  margin-top: 15%;
+  margin-left: 12%;
+  margin-right: 12%;
+  word-break: normal;
+  white-space: pre-line;
+}
+.modalview__button{
+  background-color: white;
+  border: 1px solid black;
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 15%;
+  
+}
+.modalview__button:hover{
+  background-color: #FFA512;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px){
+  .modalbackdrop{
+    width: 70%;
+    left: 15%;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .modalview__massage{
+    font-size: 20px;
+  }
+  .modalview__count__message{
+    font-size: 15px;
+    margin-top: 30%;
+  }
+  .modalview__count__message.success{
+    margin: 32% 10% 0% 10%;
+
+  }
+  .modalview__button{
+    margin-top: 30%;
+  }
+  .modalbackdrop{
+    /* padding: 5% 5% 0 5%; */ 
+  }
+
+  .modalview.success{
+    padding-top: 18%;
+  }
+/* 
+  .emailcheck__background > .modalbackdrop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .emailcheck__background > .modalview {
+    padding-top: 24px;
+    margin-top: 40px;
+  } */
+
+  .emailcheck__background > .modalview__massage {
+    padding-top: 24px;
+  }
 }

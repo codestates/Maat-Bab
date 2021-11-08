@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Search.css';
 import DatePicker from "react-datepicker";
@@ -8,11 +8,12 @@ import { FaSearch } from "react-icons/fa";
 import KakaoMap from '../Component/KakaoMap';
 import { regionData } from '../resource/regionData';
 import { FaPlusCircle } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
-
-function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
+function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
     const history = useHistory();
-    
+    const initial = useSelector((state) => state.userReducer);
+
     const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
     
@@ -25,15 +26,11 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
     const placeInputHandler = (e) =>{
         setPlaceInputValue(e.target.value);
-        console.log('e.target.value: ', e.target.value)
-        console.log('curnPlace: ', curnPlace)
-        console.log('placeInputValue: ',placeInputValue)
     }
 
     const changeplace = () => {
         if (city && city !== '' && district && district !== '') {
             setSearchingPlace(placeInputValue);
-            console.log('searchingPlace: ', searchingPlace);
         } else {
             alert('지역을 선택해주세요')
         }
@@ -44,12 +41,15 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
     }
     const changeregion = (event) => {
         setDistrict(event.target.value)
-        console.log(event.target.value)
         setRegion(event.target.value)
     }
 
     const makeCardHandler = () => {
-        history.push('/makemeet')
+        if (initial.isLogin) {
+            history.push('/makemeet')
+        } else {
+            SetLoginModal(true)
+        }
     }
 
     return (
@@ -77,7 +77,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
                             <span className='searchbar__region__second__container'>
                                 <input className='searchbar__restaurant__search' type='text' onChange={ placeInputHandler} value={placeInputValue} placeholder='음식점을 검색해 보세요'></input>
-                                <button className='search__icon' onClick={changeplace}><FaSearch className='search__icon' size='20' color='orange' /></button>
+                                <FaSearch className='search__icon' size='20' color='orange' onClick={changeplace}/>
                             </span>
                         </span>
                     </span>
@@ -90,7 +90,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace }) {
 
                 <div className='searchbar__button__container'>
                     <button className='search__card__button' onClick={() => searchCardHandler(searchingRegion, searchingDate, curnPlace)}>조회하기</button>
-                    <button className='search__make__button' onClick={makeCardHandler}><FaPlusCircle className='search__makemeet__icon'/> 약속 만들기</button>
+                    <button className='search__make__button' onClick={makeCardHandler}>약속 만들기<FaPlusCircle className='search__makemeet__icon'/></button>
                 </div>
 
         </div>

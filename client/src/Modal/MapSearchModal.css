@@ -1,5 +1,5 @@
 .mapsearch__background{
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   z-index: 100;
   background-color: rgba(0,0,0,0.4);
@@ -8,20 +8,28 @@
 }
 .modal__search__content__container{
   width: 80%;
-  height: 90%;
+  height: 80%;
   background-color: white;
   margin: 3% 0 0 10%;
   border-radius: 20px;
 }
 .modal__search__place__title{
   color: #FFA512;
-  margin-left: 40%;
-  padding-top: 2%;
+  margin-left: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  padding-top: 20px;
+  font-size: 25px;
+  font-weight: 700;
+  width: 150px;
 }
 .modal__search__region__conatiner{
   width: 70%;
   height: 6%;
-  margin-left: 15%;
+  margin: 2% 0 0 15%;
 }
 .main__select__region__name{
   color: #FFA512;
@@ -74,10 +82,50 @@
 @media screen and (max-width: 768px){
   .modal__search__content__container{
     width: 90%;
-    margin: 0;
+    margin: 5% 5%;
   }
   .main__select__region__search{
     border: none;
     border-radius: 20px;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+
+  .modal__search__content__container{
+    top: 2%;
+    margin-top: 68px;
+  }
+
+  .modal__search__region__container {
+    display: flex;
+    padding: 0px 10px;
+    justify-content: space-around;
+    margin:0;
+  }
+
+  .modal__search__place__title{
+    font-size: 20px;
+    /* margin-left: 35%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding-bottom: 24px;
+  }
+  .main__select__region__name{
+    font-size: 15px;
+    margin: 0;
+  }
+  .main__select__region__input{
+    height: 30px;
+    width: 170px;
+    margin-left: 2%;
+  }
+  .main__select__region__search{
+    margin-left: -15%;
+  }
+  .modal__close{
+    margin-top: 10%;
   }
 }
