@@ -29,22 +29,12 @@ function EditInfo() {
   //매너추가 입력창
 
   useEffect(() => {
-    console.log('tasteslist:', initial.tasteslist)
     const newArr = manner.map((el) => ({
       ...el,
       selected: false,
     }));
     setManner(newArr);
-    // axios
-    //   .get(`${process.env.REACT_APP_API_URL}/taste`)
-    //   .then((res) => {
-    //     const lists = res.data;
-    //     const addList = lists.map((el) => ({
-    //       ...el,
-    //       selected: false,
-    //     }));
-    //     setFoodLists(addList);
-    //   });
+    console.log(manner)
   }, []);
 
   useEffect(() => {
