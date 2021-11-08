@@ -16,7 +16,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
     }
     const map = new kakao.maps.Map(container, options);
     const ps = new kakao.maps.services.Places(); 
-    ps.keywordSearch(district + searchingPlace); // 주변 포함 검색  placesSearchCB
+    ps.keywordSearch(district + searchingPlace,placesSearchCB); // 주변 포함 검색
 
     function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {
