@@ -55,7 +55,7 @@ function MakeMeet() {
     setRoomName(event.target.value);
   };
   const makeMeetCard = () => {
-    if (curPlace !== '' && curPlace == '찾기 버튼을 눌러주세요' && roomName !== '') {
+    if (curPlace !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
