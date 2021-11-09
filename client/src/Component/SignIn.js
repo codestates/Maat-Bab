@@ -54,7 +54,7 @@ function SignIn({ isSiginInModal }) {
   const responseGoogle = (response) => {
     axios.post(`${process.env.REACT_APP_API_URL}/google`,{data:response})
     .then(res => {
-      if(res.status === 200){
+      if(res.status === 200 || res.status === 201){
         let data = res.data;
         dispatch(setLoginStatus(true))
         dispatch(setUserInfo(
@@ -68,6 +68,9 @@ function SignIn({ isSiginInModal }) {
         history.push('/main')
       }
     })
+  }
+  const onFailed = (err) => {
+    console.log(err)
   }
   return (
     <div>
@@ -117,7 +120,7 @@ function SignIn({ isSiginInModal }) {
                 <GoogleLogin
                   clientId={GOOGLE_KEY}
                   onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
+                  onFailure={onFailed}
                   cookiePolicy={'single_host_origin'}
                   render={renderProps => (
                     <button onClick={renderProps.onClick} className='signin__button__google__login'/>
@@ -181,7 +184,7 @@ function SignIn({ isSiginInModal }) {
                 <GoogleLogin
                   clientId={GOOGLE_KEY}
                   onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
+                  onFailure={onFailed}
                   cookiePolicy={'single_host_origin'}
                   render={renderProps => (
                     <button onClick={renderProps.onClick} className='signin__button__google__login'/>
