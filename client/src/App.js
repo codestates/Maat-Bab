@@ -15,7 +15,7 @@ import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
 import OauthKakao from './Component/OauthKakao';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoginStatus, deleteUserInfo, setUserInfo } from './actions';
+import { setLoginStatus,setUserInfo } from './actions';
 
 axios.defaults.withCredentials = true;
 
@@ -58,7 +58,7 @@ function App() {
       .then((res) => {
         if (res.status === 205) {
           dispatch(setLoginStatus(false));
-          dispatch(deleteUserInfo());
+          dispatch(setUserInfo(null,null,null,null,null,null));
           moveAbout();
         }
       })
