@@ -3,7 +3,7 @@ import './Card.css';
 import { MdExitToApp } from 'react-icons/md';
 
 function Card({
-    card_id, title, region, date, time, headCount,
+    card_id, title, region, date, time, headCount, current_headcount,
     myCard, selectedCard,
     cardClickinMainHandler, cardClickinChatHandler, deleteCardModalHandler }) {
 
@@ -33,7 +33,7 @@ function Card({
             </div>
             <div className='card__third__container'>
             <span className='card__time'>{time}</span>
-            <span className='card__headcount'>{headCount}명</span>
+                    <span className='card__headcount'>{current_headcount} / {headCount} 명</span>
             </div>
                 {isJoined() ? <div className='card__hover__message joined' onClick={() => deleteCardModalHandler(myCard)}>나가기</div>
                     :

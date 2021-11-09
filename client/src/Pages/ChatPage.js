@@ -26,8 +26,8 @@ function ChatPage() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
       .then((res) => {
-        if (!res.data.length) {
-          setMyCardList(res.data);
+        if (!res.data) {
+          setMyCardList(null);
         } else {
           res.data.forEach((user_card) =>
             socket.emit('join_room', user_card.card_id)
@@ -80,7 +80,7 @@ function ChatPage() {
       data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
       setMyCardList(data);
     } else {
-      setMyCardList([]);
+      setMyCardList(null);
     }
   };
   const settingModal = () => {

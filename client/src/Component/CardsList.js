@@ -3,7 +3,6 @@ import Card from './Card';
 import './CardsList.css';
 
 function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickinChatHandler, deleteCardModalHandler }) {
-
     const isMyCard = cardData?.find(card => card.Card);
 
     let cardList = [];
@@ -21,16 +20,21 @@ function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickin
 
     let nullText = '';
     if (!cardList) {
-        nullText = '맞밥 약속을 추가해 보세요!'
+        nullText= '맞밥 약속을 조회해 보세요'
+    } 
+    else if (cardList && !cardList.length) {
+        nullText = '맞밥 약속을 추가해 보세요'
     }
 
     return (
         <div className='cardslist'>
-            {cardList ? cardList?.map((card,idx) => {
+            {cardList && cardList.length ? cardList?.map((card,idx) => {
                 return (
                     <Card key={idx} className='card__section'
                         selectedCard={selectedCard}
-                        card_id={card.card_id} title={card.chat_title} region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount} restaurant={card.restaurant_name}
+                        card_id={card.card_id} title={card.chat_title} region={card.region} date={card.date.slice(0, 10)} time={card.time} headCount={card.headcount}
+                        current_headcount={card.current_headcount}
+                        restaurant={card.restaurant_name}
                         myCard={card}
                         cardClickinMainHandler={cardClickinMainHandler}
                         cardClickinChatHandler={cardClickinChatHandler}
