@@ -244,9 +244,11 @@ function MakeMeet() {
             ></input>
           </div>
         </div>
+        <div className='make__card__button__conatiner'>
         <button disabled={disabled} onClick={makeMeetCard} className='make__card__button'>
           만들기
-        </button>
+          </button>
+          </div>
       </div>
     </div>
   );
