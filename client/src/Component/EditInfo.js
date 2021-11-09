@@ -34,7 +34,6 @@ function EditInfo() {
       selected: false,
     }));
     setManner(newArr);
-    console.log(manner)
   }, []);
 
   useEffect(() => {

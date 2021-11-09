@@ -14,8 +14,8 @@ function MakeMeet() {
   const [startDate, setStartDate] = useState(new Date());
   const [isFind, setIsFind] = useState(false);
   const [time, setTime] = useState('');
-  const [city, setCity] = useState('서울특별시');
-  const [city2, setCity2] = useState('용산구');
+  const [city, setCity] = useState('');
+  const [city2, setCity2] = useState('');
   const [countPeople, setCounPeople] = useState('0');
   const [curPlace, setCurnPlace] = useState('찾기 버튼을 눌러주세요');
   const [roomName, setRoomName] = useState('');
