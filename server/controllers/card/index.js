@@ -4,7 +4,6 @@ const {
   generateJoinMessage,
   generateLeaveMessage,
   generateDateMessage,
-  getOrSetCache,
 } = require('../../functions');
 
 module.exports = {
@@ -154,9 +153,14 @@ module.exports = {
         return res.status(500).send();
       });
 
-      cards.forEach((card) => {
-        card.Card.chat_content = JSON.parse(card.Card.chat_content);
-      });
+      for (const user_card of cards) {
+        user_card.Card.chat_content = JSON.parse(user_card.Card.chat_content);
+        const userList = await User_card.findAll({
+          where: { card_id: user_card.card_id },
+        });
+        user_card.dataValues.Card.dataValues.current_headcount =
+          userList.length;
+      }
 
       return res.status(200).send(cards);
     },
