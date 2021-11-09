@@ -166,11 +166,12 @@
   cursor: pointer;
 }
 .edit__custom__manner__input{
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 1px solid #555353;
+  border-radius: 14px;
   width: 60%;
   height: 80%;
-  font-size: 15px;
+  font-size: 16px;
+  padding-left: 10px;
 }
 .edit__custom__manner__input:focus{
   border: 2px solid #FFA512;
@@ -234,5 +235,9 @@
   }
   .edit__custom__add{
     width: 20%;
+  }
+
+  .edit__button__done {
+    font-size: 18px;
   }
 }
