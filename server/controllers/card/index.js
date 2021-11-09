@@ -8,6 +8,7 @@ const {
 
 module.exports = {
   get: async (req, res) => {
+    // current_headcount
     let { card_id, region, date, restaurant_name } = req.query;
 
     if (card_id) {
@@ -138,6 +139,7 @@ module.exports = {
   },
   user_id: {
     get: async (req, res) => {
+      // current_headcount
       if (!isAuth(req, res)) {
         return res.status(401).send();
       }
