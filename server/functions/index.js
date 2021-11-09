@@ -12,10 +12,10 @@ module.exports = {
   isAuth: (req, res) => {
     let userinfo = isAuthorized(req);
     if (!userinfo) {
-      res.clearCookie('accessToken');
+      res.clearCookie('accessToken', { domain: 'maat-bab.com', path: '/' });
       userinfo = checkRefeshToken(req);
       if (!userinfo) {
-        res.clearCookie('refreshToken');
+        res.clearCookie('refreshToken', { domain: 'maat-bab.com', path: '/' });
         return null;
       }
       delete userinfo.iat;
@@ -78,8 +78,8 @@ module.exports = {
     return crypto.createHash('sha512').update(data).digest('hex');
   },
   patchToken: (res, userinfo) => {
-    res.clearCookie('accessToken');
-    res.clearCookie('refreshToken');
+    res.clearCookie('accessToken', { domain: 'maat-bab.com', path: '/' });
+    res.clearCookie('refreshToken', { domain: 'maat-bab.com', path: '/' });
     const accessToken = generateAccessToken(userinfo);
     const refreshToken = generateRefreshToken(userinfo);
     sendAccessToken(res, accessToken);

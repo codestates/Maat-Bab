@@ -52,8 +52,14 @@ module.exports = {
             delete data.dataValues.salt;
             data.dataValues.etiquette = JSON.parse(data.dataValues.etiquette);
             const newUserinfo = data.dataValues;
-            res.clearCookie('accessToken');
-            res.clearCookie('refreshToken');
+            res.clearCookie('accessToken', {
+              domain: 'maat-bab.com',
+              path: '/',
+            });
+            res.clearCookie('refreshToken', {
+              domain: 'maat-bab.com',
+              path: '/',
+            });
             const accessToken = generateAccessToken(newUserinfo);
             const refreshToken = generateRefreshToken(newUserinfo);
             generateAccessToken(newUserinfo);
@@ -79,8 +85,11 @@ module.exports = {
         where: { user_id },
       })
         .then((data) => {
-          res.clearCookie('accessToken');
-          res.clearCookie('refreshToken');
+          res.clearCookie('accessToken', { domain: 'maat-bab.com', path: '/' });
+          res.clearCookie('refreshToken', {
+            domain: 'maat-bab.com',
+            path: '/',
+          });
           return res.status(205).send(userinfo);
         })
         .catch((err) => {
