@@ -73,20 +73,29 @@ function EditInfo() {
         const myManner = res.data.etiquette;
         if(!myManner.length){
           setSumManner(manner)
-        }else{
-        const selectManner = manner.map((el) => {
-          if (myManner.some((ele) => el.text === ele)) {
-            return {
-              ...el,
-              selected: true,
-            };
-          } else if (myManner.some((ele) => el.text !== ele)) {
-            return {
-              ...el,
-            };
-          }
-        });
-        setSumManner(selectManner);
+        } else {
+          
+          setSumManner(myManner.map((manner, idx) => {
+            return ({
+              manner_id: idx,
+              text: manner,
+              selected: true
+            })
+          }))
+        // const selectManner = manner.map((el) => {
+        //   if (myManner.some((ele) => el.text === ele)) {
+        //     return {
+        //       ...el,
+        //       selected: true,
+        //     };
+        //   } else if (myManner.some((ele) => el.text !== ele)) {
+        //     return {
+        //       ...el,
+        //     };
+        //   }
+        // });
+        
+        // setSumManner(selectManner);
       }
       });
   }, [foodLists, manner]);
@@ -182,10 +191,17 @@ function EditInfo() {
   };
 
   const addMannerBtn = () => {
-    setManner([
-      ...manner,
-      { manner_id: manner.length, text: addManner, selected: true },
-    ]);
+    if (addManner !== null &&
+      addManner !== '' &&
+      addManner !== '추가할 식사 예절을 입력해 주세요' &&
+      addManner.length > 1) {
+      if (sumManner.every(manner => manner.text !== addManner)) {
+        setSumManner([
+          ...sumManner,
+          { manner_id: manner.length, text: addManner, selected: true },
+        ]);
+      }
+    }
     document.querySelector('.edit__custom__manner__input').value = '';
   };
   const onchangePwd = (e) => {

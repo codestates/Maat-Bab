@@ -130,8 +130,8 @@
   height: 20%;
   text-align: center;
   overflow-y: scroll;
-  flex-wrap: wrap;
-  display: flex;
+  /* flex-wrap: wrap; */
+  /* display: flex; */
 }
 .edit__tablemanner__box::-webkit-scrollbar{
   display: none;
