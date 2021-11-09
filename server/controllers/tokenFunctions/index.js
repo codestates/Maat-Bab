@@ -12,12 +12,16 @@ module.exports = {
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
+      sameSite: 'none',
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
   },
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
+      sameSite: 'none',
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
   },
