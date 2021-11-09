@@ -198,4 +198,7 @@ a:hover {
     padding-left: 0;
     text-align: center;
   }
+  .navigation__button {
+    font-size: 14px;
+  }
 }
