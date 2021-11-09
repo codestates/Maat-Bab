@@ -16,7 +16,6 @@ function EditInfo() {
   //비밀번호확인
   const [nickName, setNickName] = useState('');
   //유저이름
-  // const [foodLists, setFoodLists] = useState([]);
   const [foodLists, setFoodLists] = useState(tasteData);
   //음식 전체리스트
   const [sumLists, setSumLists] = useState([]);
@@ -73,20 +72,14 @@ function EditInfo() {
         const myManner = res.data.etiquette;
         if(!myManner.length){
           setSumManner(manner)
-        }else{
-        const selectManner = manner.map((el) => {
-          if (myManner.some((ele) => el.text === ele)) {
-            return {
-              ...el,
-              selected: true,
-            };
-          } else if (myManner.some((ele) => el.text !== ele)) {
-            return {
-              ...el,
-            };
-          }
-        });
-        setSumManner(selectManner);
+        } else {         
+          setSumManner(myManner.map((manner, idx) => {
+            return ({
+              manner_id: idx,
+              text: manner,
+              selected: true
+            })
+          }))
       }
       });
   }, [foodLists, manner]);
@@ -182,10 +175,17 @@ function EditInfo() {
   };
 
   const addMannerBtn = () => {
-    setManner([
-      ...manner,
-      { manner_id: manner.length, text: addManner, selected: true },
-    ]);
+    if (addManner !== null &&
+      addManner !== '' &&
+      addManner !== '추가할 식사 예절을 입력해 주세요' &&
+      addManner.length > 1) {
+      if (sumManner.every(manner => manner.text !== addManner)) {
+        setSumManner([
+          ...sumManner,
+          { manner_id: manner.length, text: addManner, selected: true },
+        ]);
+      }
+    }
     document.querySelector('.edit__custom__manner__input').value = '';
   };
   const onchangePwd = (e) => {
@@ -303,10 +303,10 @@ function EditInfo() {
         </div>
         <div className='edit__add__button'>
           <input
-            onChange={(e) => onchangeAddManner(e)}
-            placeholder='추가할 예절을 입력해주세요'
-            type='text'
             className='edit__custom__manner__input'
+            onChange={(e) => onchangeAddManner(e)}
+            placeholder={manner[Math.floor(Math.random() * manner.length)].text}
+            type='text'
           ></input>
           <button onClick={addMannerBtn} className='edit__custom__add'>
             <FontAwesomeIcon icon={faPlus} />
