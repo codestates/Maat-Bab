@@ -25,7 +25,7 @@ function MapSearchModal({changeFind, city, city2, setCurnPlace}) {
                     <span className='main__select__region__name'>장소 검색</span>
                     <span className='main__select__region__second__row'>
                     <input placeholder='검색어를 입력하세요' onChange={(e) => changeValue(e)} className='main__select__region__input' type='text'></input>
-                    <button onClick={changeplace} className='main__select__region__search'><FontAwesomeIcon className= 'search__icon' size='20' color='orange' icon={faSearchLocation} /></button>
+                    <button onClick={changeplace} className='main__select__region__search'><FontAwesomeIcon className= 'search__icon' width='24' height='24' viewBox= "0 125 125 125" color='orange' icon={faSearchLocation} /></button>
                     </span>
                 </div>
                 <div className='modal__map__container'>
