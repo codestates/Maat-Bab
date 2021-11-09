@@ -18,7 +18,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
     const [searchingDate, setSearchingDate] = useState(new Date());
     
     const [city, setCity] = useState('서울특별시')
-    const [district, setDistrict] = useState('')
+    const [district, setDistrict] = useState('용산구')
 
     const [placeInputValue, setPlaceInputValue] = useState('')
     const [searchingPlace, setSearchingPlace] = useState('')
