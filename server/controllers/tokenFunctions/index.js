@@ -11,8 +11,6 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, {
-      domain: '.maat-bab.com',
-      path: '/',
       httpOnly: true,
       sameSite: 'none',
       secure: true,
@@ -21,8 +19,6 @@ module.exports = {
   },
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
-      domain: '.maat-bab.com',
-      path: '/',
       httpOnly: true,
       sameSite: 'none',
       secure: true,
