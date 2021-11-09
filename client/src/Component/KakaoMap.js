@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import './KakaoMap.css';
 
-
+const { kakao } = window;
 
 const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
 
-  const { kakao } = window;
+  
 
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
@@ -42,7 +42,7 @@ const KakaoMap = ({city, district, searchingPlace, setCurnPlace}) => {
       setCurnPlace(place.place_name); // 핀 클릭 시 현재 장소 값으로 저장
     })
   }
-},[district, searchingPlace])
+},[district,searchingPlace,setCurnPlace])
 
   return (
     <div id='myMap' style={{
