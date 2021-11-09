@@ -37,7 +37,7 @@ h3 {
   background-color: #fefbeb;
 }
 
-.loader__box__ifnull {
+.chatbox > .loader__box__ifnull {
   display: flex;
   justify-content: center;
   align-items: center;

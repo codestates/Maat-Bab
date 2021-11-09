@@ -17,26 +17,29 @@ function MainPage({ userInfo }) {
   const [loginModal, SetLoginModal] = useState(false)
 
   const searchCardHandler = async (region, date, restaurant_name) => {
-    const formatedDate = getFormatDate1(date);
-    const result = await axios
-      .get(
-        `${
-          process.env.REACT_APP_API_URL
-        }/card?region=${decodeURIComponent(
-          region
-        )}&date=${formatedDate}&restaurant_name=${decodeURIComponent(
-          restaurant_name
-        )}`
-      )
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => console.log(err));
-    if (result) {
-      setCardData(result);
+    if (region !== '') {
+      const formatedDate = getFormatDate1(date);
+      const result = await axios
+        .get(
+          `${process.env.REACT_APP_API_URL
+          }/card?region=${decodeURIComponent(
+            region
+          )}&date=${formatedDate}&restaurant_name=${decodeURIComponent(
+            restaurant_name
+          )}`
+        )
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => console.log(err));
+      if (result.length) {
+        setCardData(result);
+      } else {
+        setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
+        setCardData(null);
+      }
     } else {
-      setMessage('조회된 약속이 없습니다. 맞밥 약속을 직접 만들어 보세요!');
-      setCardData(null);
+      alert('지역 및 날짜를 선택해주세요')
     }
   };
 
