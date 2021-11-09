@@ -17,7 +17,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
     const [searchingRegion, setRegion] = useState('')
     const [searchingDate, setSearchingDate] = useState(new Date());
     
-    const [city, setCity] = useState('')
+    const [city, setCity] = useState('서울특별시')
     const [district, setDistrict] = useState('')
 
     const [placeInputValue, setPlaceInputValue] = useState('')
@@ -64,7 +64,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
                         <span className='searchbar__region__container'>
                             <span className='searchbar__region__first__container'>
                                 <select onChange={(e) => changecity(e)} name='city1' className='search__select__region__city'>
-                                    <option value='서울특별시'>지역선택</option>
+                                    <option value=''>지역선택</option>
                                     <option value='서울특별시'>서울특별시</option>
                                     </select>
                                     <select onChange={(e) => changeregion(e)} name='district' className='search__select__region__district'>
