@@ -35,9 +35,14 @@ module.exports = {
     }
 
     let cards = await Card.findAll();
-    cards.forEach((card) => {
-      card.chat_content = JSON.parse(card.chat_content);
-    });
+    for (const card of cards) {
+      delete card.dataValues.chat_content;
+      const userList = await User_card.findAll({
+        where: { card_id: card.card_id },
+      });
+      card.dataValues.current_headcount = userList.length;
+    }
+
     if (region) {
       cards = cards.filter((card) => card.region === region);
     }
@@ -128,19 +133,7 @@ module.exports = {
       console.log(err);
       return res.status(500).send();
     });
-    card.chat_content = JSON.parse(card.chat_content);
-
-    const cards = await User_card.findAll({
-      where: { user_id },
-      include: { model: Card },
-    }).catch((err) => {
-      console.log(err);
-      return res.status(500).send();
-    });
-    cards.forEach((user_card) => {
-      delete user_card.dataValues.Card.dataValues.chat_content;
-    });
-    req.app.get('client').setex(`card/${user_id}`, 3600, JSON.stringify(cards));
+    delete card.dataValues.chat_content;
 
     return res.status(201).send(card);
   },
@@ -153,21 +146,19 @@ module.exports = {
       let { user_id } = req.params;
       user_id = Number(user_id);
 
-      const data = await getOrSetCache(req, `card/${user_id}`, async () => {
-        const cards = await User_card.findAll({
-          where: { user_id },
-          include: { model: Card },
-        }).catch((err) => {
-          console.log(err);
-          return res.status(500).send();
-        });
-        cards.forEach((user_card) => {
-          delete user_card.dataValues.Card.dataValues.chat_content;
-        });
-        return cards;
+      const cards = await User_card.findAll({
+        where: { user_id },
+        include: { model: Card },
+      }).catch((err) => {
+        console.log(err);
+        return res.status(500).send();
       });
 
-      return res.status(200).send(data);
+      cards.forEach((card) => {
+        card.Card.chat_content = JSON.parse(card.Card.chat_content);
+      });
+
+      return res.status(200).send(cards);
     },
     post: async (req, res) => {
       const data = isAuth(req, res);
@@ -184,13 +175,18 @@ module.exports = {
         return res.status(400).send();
       }
 
-      let { chat_content } = await Card.findOne({
-        attributes: ['chat_content'],
+      let { chat_content, headcount } = await Card.findOne({
+        attributes: ['chat_content', 'headcount'],
         where: { card_id },
       }).catch((err) => {
         console.log(err);
         return res.status(500).send();
       });
+
+      const userList = await User_card.findAll({ where: { card_id } });
+      if (headcount === userList.length) {
+        return res.status(204).send();
+      }
 
       chat_content = JSON.parse(chat_content);
       const chat_content_idx = chat_content.length;
@@ -217,20 +213,6 @@ module.exports = {
 
           await Card.update({ chat_content }, { where: { card_id } });
           req.app.get('io').to(card_id).emit('new_user', messages);
-
-          const cards = await User_card.findAll({
-            where: { user_id },
-            include: { model: Card },
-          }).catch((err) => {
-            console.log(err);
-            return res.status(500).send();
-          });
-          cards.forEach((user_card) => {
-            delete user_card.dataValues.Card.dataValues.chat_content;
-          });
-          req.app
-            .get('client')
-            .setex(`card/${user_id}`, 3600, JSON.stringify(cards));
 
           return res.status(200).send(result);
         })
@@ -315,20 +297,6 @@ module.exports = {
       const user_card = userList.filter((user_card) => {
         return user_card.user_id === user_id;
       })[0];
-
-      const cards = await User_card.findAll({
-        where: { user_id },
-        include: { model: Card },
-      }).catch((err) => {
-        console.log(err);
-        return res.status(500).send();
-      });
-      cards.forEach((user_card) => {
-        delete user_card.dataValues.Card.dataValues.chat_content;
-      });
-      req.app
-        .get('client')
-        .setex(`card/${user_id}`, 3600, JSON.stringify(cards));
 
       return res.status(205).send(user_card);
     },
