@@ -4,6 +4,9 @@
   padding-top: 5%;
 }
 .make__content__container{
+  display: flex;
+  flex-direction: column;
+
   width: 60%;
   height: 90%;
   border: 2px solid #FF7A00;
@@ -36,16 +39,25 @@
   font-weight: 700;
   margin-left: 20%;
 }
+.make__card__button__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .make__card__button{
   border: none;
   border-radius: 30px;
   background-color: #FFAC24;
   font-size: 25px;
   font-weight: 700;
-  width: 20%;
-  height: 8%;
-  margin: 0% 40%;
-  /* margin: 3% 0 0 32%; */
+
+  width: 120px;
+  height: 40px;
+
+  padding: 0;
+  position: relative;
+  left: 43%;
 }
 .make__card__button:hover{
   background-color: #FF7A00;
@@ -173,18 +185,25 @@
   color: red;
 }
 .make__card__button:disabled{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
   border: none;
   border-radius: 30px;
   background-color: lightgray;
+
   font-size: 25px;
   font-weight: 700;
-  width: 20%;
-  height: 8%;
-  margin: 3% 0 0 32%;
-  padding: 0;
   color: gray;
-  text-align: center;
-  margin: 0% 40%;
+
+  width: 120px;
+  height: 40px;
+
+  padding: 0;
+  position: relative;
+  left: 43%;
 }
 
 @media screen and (max-width: 768px){
@@ -222,6 +241,7 @@
     padding-top: 12px;
     padding-bottom: 30px;
     margin-left: 0;
+    margin-top: 0;
   }
   .makemeet__datePicker{
     width: 130px;
@@ -262,7 +282,7 @@
   }
   .make__card__info__time{
     height: 34px;
-    font-size: 16px;
+    font-size: 15px;
     width: 15%;
   }
   .make__card__info__headcount{
@@ -293,19 +313,41 @@
 
   }
   .make__card__button:disabled {
-    width: 120px;
-    height: 40px;
-    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    width: 100px;
+    height: 32px;
+    font-size: 20px;
+
+    position: absolute;
+    left: 38%;
+    margin-top: 12px;
   }
 
   .make__card__button{
-    width: 120px;
-    height: 40px;
-    font-size: 24px;
-    /* margin-left: 30%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    width: 100px;
+    height: 32px;
+    font-size: 20px;
+    
+    position: absolute;
+    left: 38%;
+    margin-top: 12px;
+  }
+
+  .make__card__button__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0 20px 0;
   }
 }
