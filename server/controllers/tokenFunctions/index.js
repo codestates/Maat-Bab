@@ -10,10 +10,20 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '7d' });
   },
   sendAccessToken: (res, accessToken) => {
-    res.cookie('accessToken', accessToken, { httpOnly: true });
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    });
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie('refreshToken', refreshToken, { httpOnly: true });
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    });
   },
   isAuthorized: (req) => {
     const accessToken = req.cookies.accessToken;
