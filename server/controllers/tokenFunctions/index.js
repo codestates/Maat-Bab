@@ -12,16 +12,16 @@ module.exports = {
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
-      domain: '.maat-bab-client.s3-website.ap-northeast-2.amazonaws.com',
       sameSite: 'none',
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
   },
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      domain: '.maat-bab-client.s3-website.ap-northeast-2.amazonaws.com',
       sameSite: 'none',
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
   },
