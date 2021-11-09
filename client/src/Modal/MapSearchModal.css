@@ -176,7 +176,11 @@
     height: 400px;
   } */
 
-  /* .mapsearch__background > .svg-inline--fa.fa-w-16 {
-    width: 10em !important;
-  } */
+  .mapsearch__background > .search__icon {
+    padding: 0;
+    /* padding: 5px 10px 0 0; */
+  }
+  .mapsearch__background > .svg-inline--fa.fa-w-16 {
+    width: 0 !important;
+  }
 }
