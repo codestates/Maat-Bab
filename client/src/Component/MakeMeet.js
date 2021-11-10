@@ -58,7 +58,7 @@ function MakeMeet() {
     document.location.href = '/main'
   }
   const makeMeetCard = () => {
-    if (curPlace !== '찾기 버튼을 눌러주세요' && roomName !== '') {
+    if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
@@ -77,7 +77,7 @@ function MakeMeet() {
           }
         })
         .catch((err) => console.log(err));
-    } else if (curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
+    } else if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
@@ -96,7 +96,7 @@ function MakeMeet() {
           }
         })
         .catch((err) => console.log(err));
-    } else if (curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
+    } else if (city2 !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
