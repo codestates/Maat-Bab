@@ -143,6 +143,7 @@ function ChatPage() {
           selectedCard={selectedCard}
           socket={socket}
           isDeleteClicked={isDeleteClicked}
+          setMyCardList={setMyCardList}
         />
       ) : (
         <ChatBox className='chatpage__chat__container nonselected' />

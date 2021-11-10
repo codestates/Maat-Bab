@@ -58,7 +58,7 @@ function MakeMeet() {
     document.location.href = '/main'
   }
   const makeMeetCard = () => {
-    if (curPlace !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
+    if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
@@ -75,8 +75,9 @@ function MakeMeet() {
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
-        });
-    } else if (curPlace !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
+        })
+        .catch((err) => console.log(err));
+    } else if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
@@ -93,8 +94,9 @@ function MakeMeet() {
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
-        });
-    } else if (curPlace === '' && roomName !== '') {
+        })
+        .catch((err) => console.log(err));
+    } else if (city2 !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
           region: city2,
@@ -110,7 +112,8 @@ function MakeMeet() {
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
-        });
+        })
+        .catch((err) => console.log(err));
     }
   };
   const getDayName = (date) => {
@@ -223,6 +226,8 @@ function MakeMeet() {
             >
               <option value=''>인원 수</option>
               <option value='2'>2명</option>
+              <option value='3'>3명</option>
+              <option value='4'>4명</option>
             </select>
           </div>
           <div className='make__card__info__row'>
