@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 import './SuccessModal.css';
-import {useHistory } from 'react-router-dom';
-
 function SuccessModal() {
-    const history = useHistory()
 
     const pathLogin = () => {
-        history.push('/login')
+        document.location.href = '/login'
     }
     useEffect(() => {
         window.setTimeout(pathLogin,5000)
