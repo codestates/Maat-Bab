@@ -59,6 +59,11 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setCheckMessages,ch
       setWriteMessage('');
     }
   };
+  const enterKey = (e) => {
+    if(e.key === 'Enter'){
+      sendMessage()
+    }
+  }
 
   return (
     <div className='chatbox'>
@@ -251,6 +256,7 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setCheckMessages,ch
       )}
       <div className='chat__send__conatiner'>
         <input
+          onKeyPress={(e) => enterKey(e)}
           onChange={(e) => setWriteMessage(e.target.value)}
           className='chat__content__input'
           placeholder='메세지를 입력하세요 💬'

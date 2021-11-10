@@ -74,6 +74,11 @@ function SignIn({ isSiginInModal }) {
   const onFailed = (err) => {
     console.log(err)
   }
+  const enterLogin = (e) => {
+    if(e.key === 'Enter'){
+      loginHandler()
+    }
+  }
   return (
     <div>
       {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
@@ -99,6 +104,7 @@ function SignIn({ isSiginInModal }) {
               <li className='signin__container__li__input'>
                 <div className='signin__name'>비밀번호</div>
                 <input
+                  onKeyPress={(e) => enterLogin(e)}
                   className='signin__input password'
                   placeholder='비밀번호를 입력해주세요'
                   type='password'

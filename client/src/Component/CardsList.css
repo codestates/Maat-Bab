@@ -1,12 +1,10 @@
-.cardslist {
+.cardslist__background {
   display: flex;
   flex-direction: column;
   height: 650px;
   border: 3px solid#ffb800;
   border-radius: 20px;
-  margin: 0px 20px;
   overflow-y: scroll;
-  
   background-color: white;
 }
 
@@ -14,7 +12,7 @@
   background-color: white;
 }
 
-.cardslist::-webkit-scrollbar{
+.cardslist__background::-webkit-scrollbar{
   display: none;
 }
 
