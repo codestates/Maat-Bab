@@ -13,8 +13,8 @@ function ProfileList({ selectedCard, mateList }) {
 
     return (
         <div className='profilelist'>
-            {mateList ? mateList?.map((mate) => {
-                return <Profile className='profile__section' mate={mate.User} />
+            {mateList ? mateList?.map((mate, index) => {
+                return <Profile key={index} className='profile__section' mate={mate.User} />
             }
             )
                 :
