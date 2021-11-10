@@ -11,22 +11,22 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, {
-      domain: 'maat-bab.com',
-      path: '/',
+      // domain: 'maat-bab.com',
+      // path: '/',
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24,
+      // sameSite: 'none',
+      // secure: true,
+      // maxAge: 1000 * 60 * 60 * 24,
     });
   },
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
-      domain: 'maat-bab.com',
-      path: '/',
+      // domain: 'maat-bab.com',
+      // path: '/',
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24,
+      // sameSite: 'none',
+      // secure: true,
+      // maxAge: 1000 * 60 * 60 * 24,
     });
   },
   isAuthorized: (req) => {
