@@ -1,6 +1,8 @@
 import React from 'react';
 import './Card.css';
 import { MdExitToApp } from 'react-icons/md';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 
 function Card({
     card_id, title, region, date, time, headCount, current_headcount,
@@ -34,6 +36,7 @@ function Card({
             <div className='card__third__container'>
             <span className='card__time'>{time}</span>
                     <span className='card__headcount'>{current_headcount} / {headCount} 명</span>
+                    <span className='card__bell__icon'><FontAwesomeIcon icon={faBell} /></span>
             </div>
                 {isJoined() ? <div className='card__hover__message joined' onClick={() => deleteCardModalHandler(myCard)}>나가기</div>
                     :
