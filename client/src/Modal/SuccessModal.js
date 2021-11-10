@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 import './SuccessModal.css';
-import {useHistory } from 'react-router-dom';
-
 function SuccessModal() {
-    const history = useHistory()
 
     const pathLogin = () => {
-        history.push('/login')
+        document.location.href = '/login'
     }
     useEffect(() => {
         window.setTimeout(pathLogin,5000)
@@ -20,7 +17,7 @@ function SuccessModal() {
                     <div className='modalview__count__message success'>5초후에 자동으로
                         로그인 화면으로 이동합니다</div>
                     <button className='modalview__button success'
-                        // onClick={pathLogin}
+                        onClick={pathLogin}
                     >로그인</button>
                 </div>
             </div>
