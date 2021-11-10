@@ -26,8 +26,6 @@ amazone ec2 <br />
 amazone rds <br />
 amazone routh53 <br />
 
-## Architecture
-
 ## 개발자 인원
   | 김지영 | Backend |
   | --- | --- |
