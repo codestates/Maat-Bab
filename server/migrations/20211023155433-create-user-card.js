@@ -24,6 +24,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      check_message: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

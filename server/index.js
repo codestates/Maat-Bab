@@ -118,12 +118,19 @@ io.on('connection', (socket) => {
       );
     }
 
+    User_card.update({ check_message: false }, { where: { card_id } });
+
     await io.to(card_id).emit('receive_message', messages);
     console.log(`send_message//
     socketID : ${socket.id},
     userID : ${user_id},
     ${name}님이 ${card_id}번 카드방으로 ${time}시간대에 메세지를 보냈습니다.
     message : ${message}`);
+  });
+
+  socket.on('check_message', (data) => {
+    const { card_id, user_id } = data;
+    User_card.update({ check_message: true }, { where: { card_id, user_id } });
   });
 
   socket.on('disconnect', () => {
