@@ -226,6 +226,8 @@ function MakeMeet() {
             >
               <option value=''>인원 수</option>
               <option value='2'>2명</option>
+              <option value='3'>3명</option>
+              <option value='4'>4명</option>
             </select>
           </div>
           <div className='make__card__info__row'>

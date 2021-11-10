@@ -11,9 +11,13 @@ function JoinModal({ user_id, card_id, setCardClicked }) {
                 `${process.env.REACT_APP_API_URL}/card/${user_id}`,
                 {card_id}
             )
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
-        history.push('/chat');
+            .then((res) => {
+                if (res.status === 204) {
+                    alert('인원이 다 찼습니다😅 다른 약속을 찾아봐 주세요!')
+                } else if (res.status === 201) {
+                    history.push('/chat');
+                }
+            })
     };
 
     const closeJoinModalHandler = () => {

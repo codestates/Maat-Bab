@@ -165,7 +165,16 @@
 
   margin: 5px 10px;
 }
-
+.card__bell__icon{
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 0 10px 30px;
+  font-size: 35px;
+  color: #392f31;
+}
+/* #392f31 */
 .chat__exit__button{
   width: 30px;
 
