@@ -14,7 +14,7 @@ function JoinModal({ user_id, card_id, setCardClicked }) {
             .then((res) => {
                 if (res.status === 204) {
                     alert('인원이 다 찼습니다😅 다른 약속을 찾아봐 주세요!')
-                } else if (res.status === 201) {
+                } else if (res.status === 200) {
                     history.push('/chat');
                 }
             })
