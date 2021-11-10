@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ selectedCard, socket, my_user_id, my_name }) {
+function ChatBox({ selectedCard, socket, my_user_id, my_name,setMyCardList }) {
   // const { card_id, chat_title } = selectedCard;
   const [writeMessage, setWriteMessage] = useState('');
   const [messages, setMessages] = useState([]); // 전체 메세지
@@ -26,6 +26,9 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name }) {
         // data는 messageInfo
         if (data[0].card_id === selectedCard.card_id) {
           setMessages([...messages, ...data]);
+        }else{
+          //요청보내서 확인하고
+          //setMyCardList()Boolean값 변경
         }
       });
       socket.on('new_user', (data) => {
