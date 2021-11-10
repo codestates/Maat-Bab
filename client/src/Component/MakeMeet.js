@@ -54,6 +54,9 @@ function MakeMeet() {
   const changeroomname = (event) => {
     setRoomName(event.target.value);
   };
+  const pathMain = () => {
+    document.location.href = '/main'
+  }
   const makeMeetCard = () => {
     if (curPlace !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
@@ -68,7 +71,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
-            document.location.href = '/main';
+            pathMain()
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
@@ -86,7 +89,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
-            document.location.href = '/main';
+            pathMain()
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
@@ -103,7 +106,7 @@ function MakeMeet() {
         .then((res) => {
           if (res.status === 201) {
             alert('카드가 생성되었습니다');
-            document.location.href = '/main';
+            pathMain()
           } else {
             alert('잠시 후 다시 시도해주세요');
           }
