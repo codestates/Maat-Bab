@@ -22,24 +22,35 @@
   z-index: 500;
 }
 .modalview__massage.exit {
-  font-size: 34px;
+  font-size: 30px;
   color: #FFA512;
   font-weight: 700;
-  margin-top: 6%;
+  margin-top: 36px;
+  margin-bottom: 40px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 .modalview__count__message.exit {
-  color: #C4C4C4;
-  font-size: 26px;
+  color: #9f9f9f;
+  font-size: 22px;
   font-weight: 700;
-  margin-top: 8%;
+  /* margin-top: 8%; */
+  margin: 0;
+  padding: 10px 0 10px 0;
 }
-.modalview__button.exit {
-  background-color: white;
-  border: 3px solid #FFB800;
-  border-radius: 40px;
-  color: #ffb800;
+.modalview__count__message.exit.host {
+  color: rgb(250, 62, 62);
+  font-size: 22px;
+  font-weight: 600;
+}
 
-  font-size: 24px;
+.modalview__button.exit {
+  background-color: #FFB800;
+  border: 3px solid white;
+  border-radius: 40px;
+  color: white;
+
+  font-size: 22px;
   font-weight: 800;
   
   transition: all ease-in-out 0.1s;
@@ -47,11 +58,19 @@
   z-index: inherit;
 
   padding: 10px;
-  margin: 94px 5px 0px 5px;
+  margin-top: 40px;
+  /* margin: 94px 5px 0px 5px; */
   
-  width: 180px;
-  height: 80px;
+  width: 140px;
+  height: 60px;
   
+}
+
+.modalview__button.exit.host {
+  background-color: white;
+  border: 3px solid #FFB800;
+  border-radius: 40px;
+  color: #ffb800;
 }
 
 .modalview__button.exit:hover {
@@ -89,39 +108,48 @@
     z-index: 500;
   }
   .modalview__massage.exit {
-    font-size: 22px;
+    font-size: 20px;
     color: #FFA512;
     font-weight: 700;
     margin-top: 10%;
+    margin-bottom: 26px;
     padding-left: 5px;
   }
   .modalview__count__message.exit {
     color: #C4C4C4;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    margin-top: 10%;
+    /* margin-top: 10%; */
     white-space: pre-line;
-    padding: 15px 10px 5px 10px;
+    padding: 10px 20px 10px 20px;
+  }
+
+  .modalview__count__message.exit.host {
+    font-size: 16px;
   }
   .modalview__button.exit {
-    background-color: white;
-    border: 3px solid #FFB800;
-    border-radius: 40px;
-    color: #ffb800;
-  
-    font-size: 22px;
+
+    font-size: 18px;
     font-weight: 800;
     
     transition: all ease-in-out 0.1s;
     
     z-index: inherit;
   
-    padding: 10px;
-    margin: 40px 5px 0px 5px;
-    
-    width: 120px;
-    height: 52px;
+    /* padding: 10px; */
+    /* margin: 40px 5px 0px 5px; */
+    margin:0;
+    padding:0;
+    margin: 34px 5px 10px 5px;
+    width: 100px;
+    height: 36px;
+    border: 2px solid #ffb800;
     
   }
-  
+  .modalview__button.exit.host {
+    background-color: white;
+    border: 2px solid #FFB800;
+    border-radius: 40px;
+    color: #ffb800;
+  }
 }
