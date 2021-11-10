@@ -19,6 +19,7 @@ function ChatPage() {
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false);
   const [mateList, setMateList] = useState([]);
+  const [checkMessages,setCheckMessages] = useState([])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -29,6 +30,13 @@ function ChatPage() {
         if (!res.data) {
           setMyCardList(null);
         } else {
+          let check = res.data.map((el) => {
+            return {
+              card_id:el.card_id,
+              check_message:el.check_message,
+            }
+          })
+          setCheckMessages(check)
           res.data.forEach((user_card) =>
             socket.emit('join_room', user_card.card_id)
           );
@@ -143,7 +151,8 @@ function ChatPage() {
           selectedCard={selectedCard}
           socket={socket}
           isDeleteClicked={isDeleteClicked}
-          setMyCardList={setMyCardList}
+          setCheckMessages={setCheckMessages}
+          checkMessages={checkMessages}
         />
       ) : (
         <ChatBox className='chatpage__chat__container nonselected' />
