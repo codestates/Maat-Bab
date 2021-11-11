@@ -60,7 +60,7 @@ function Search({ searchCardHandler, setCurnPlace, curnPlace, SetLoginModal }) {
                 <div className='searchbar__region__date'>
                 
                     <span className='searchbar__region'>
-                        <span className='searchbar__title region'>맞밥 지역</span>
+                        <span className='searchbar__title__region'>맞밥 지역</span>
                         <span className='searchbar__region__container'>
                             <span className='searchbar__region__first__container'>
                                 <select onChange={(e) => changecity(e)} name='city1' className='search__select__region__city'>
