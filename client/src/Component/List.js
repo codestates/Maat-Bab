@@ -24,6 +24,9 @@ function List({
                 <CardsList
                     cardData={cardData} selectedCard={selectedCard} setSelectedCard={setSelectedCard}
                     cardClickinMainHandler={cardClickinMainHandler} cardClickinChatHandler={cardClickinChatHandler} deleteCardModalHandler={deleteCardModalHandler}
+                    check_messages={
+                                check_messages === null ? check_messages : check_messages
+                              }
                 /> 
             </section>
         </div>
