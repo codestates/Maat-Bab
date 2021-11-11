@@ -18,9 +18,11 @@ function ChatPage() {
   const [loginModal, SetLoginModal] = useState(false);
   const [mateList, setMateList] = useState([]);
   const [messages, setMessages] = useState([]); // 전체 메세지
+  const [check_messages, setCheck_messages] = useState(null);
   const socketRef = useRef();
   const selectedCard_id = useRef();
   const selectedCard_message = useRef();
+  const check_messagesRef = useRef();
 
   useEffect(() => {
     socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`);
@@ -30,10 +32,19 @@ function ChatPage() {
         if (!res.data) {
           setMyCardList(null);
         } else {
-          res.data.forEach((user_card) =>
-            socketRef.current.emit('join_room', user_card.card_id)
-          );
+          console.log(res.data);
+          const checkMessages = [];
+          res.data.forEach((user_card) => {
+            socketRef.current.emit('join_room', user_card.card_id);
+            checkMessages.push({
+              card_id: user_card.card_id,
+              user_id,
+              check_message: user_card.check_message,
+            });
+          });
           setMyCardList(res.data);
+          setCheck_messages(checkMessages);
+          check_messagesRef.current = checkMessages;
         }
       })
       .catch((err) => {
@@ -59,6 +70,7 @@ function ChatPage() {
         setMessages(data);
       });
 
+      // * matelist
       axios
         .get(
           `${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`
@@ -79,6 +91,28 @@ function ChatPage() {
           ...selectedCard_message.current,
           ...data,
         ];
+        // check_message
+        for (const check_message of check_messagesRef.current) {
+          if (check_message.card_id === selectedCard_id.current) {
+            check_message.check_message = true;
+            socketRef.current.emit('check_message', {
+              card_id: check_message.card_id,
+              user_id: check_message.user_id,
+            });
+          }
+        }
+        setCheck_messages(check_messagesRef.current.slice());
+      } else {
+        // check_message
+        check_messagesRef.current = check_messagesRef.current.map(
+          (check_message) => {
+            if (check_message.card_id === data[0].card_id) {
+              check_message.check_message = false;
+            }
+            return check_message;
+          }
+        );
+        setCheck_messages(check_messagesRef.current.slice());
       }
     });
     socketRef.current.on('new_user', (data) => {
@@ -100,6 +134,16 @@ function ChatPage() {
   const cardClickinChatHandler = async (card) => {
     selectedCard_id.current = card.card_id;
     await setSelectedCard(card);
+    for (const check_message of check_messagesRef.current) {
+      if (check_message.card_id === card.card_id) {
+        check_message.check_message = true;
+        await socketRef.current.emit('check_message', {
+          card_id: check_message.card_id,
+          user_id: check_message.user_id,
+        });
+      }
+    }
+    await setCheck_messages(check_messagesRef.current.slice());
   };
 
   const messageSendHandler = (messageInfo) => {
@@ -186,14 +230,6 @@ function ChatPage() {
     }
   };
 
-  // // * matelist
-  // useEffect(() => {
-  //   if (selectedCard) {
-  //     // console.log('selectedCard: ', selectedCard);
-
-  //   }
-  // }, [selectedCard]);
-
   return (
     <div className='chatpage'>
       {settingModal()}
@@ -208,6 +244,9 @@ function ChatPage() {
         cardClickinChatHandler={cardClickinChatHandler}
         deleteCardModalHandler={deleteCardModalHandler}
         message={'카드를 클릭하여 채팅에 참여해 보세요'}
+        check_messages={
+          check_messages === null ? check_messages : check_messages
+        }
       />
 
       {isDeleteClicked ? (

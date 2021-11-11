@@ -2,8 +2,18 @@ import React from 'react';
 import CardsList from './CardsList';
 import './List.css';
 
-function List({ title, cardData, message, cardClickinMainHandler, cardClickinChatHandler, setSelectedCard, selectedCard, deleteCardModalHandler
+function List({
+  title,
+  cardData,
+  check_messages,
+  message,
+  cardClickinMainHandler,
+  cardClickinChatHandler,
+  setSelectedCard,
+  selectedCard,
+  deleteCardModalHandler,
 }) {
+
     return (
         <div className='list__background'>
             <div className='list__header'>
@@ -20,4 +30,4 @@ function List({ title, cardData, message, cardClickinMainHandler, cardClickinCha
     )
 }
 
-export default List
+export default List;
