@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import List from '../Component/List';
 import ChatBox from '../Component/ChatBox';
 import MateList from '../Component/MateList';
@@ -9,8 +9,6 @@ import LogInModal from '../Modal/LogInModal';
 import ExitModal from '../Modal/ExitModal';
 import io from 'socket.io-client';
 
-let socket;
-
 function ChatPage() {
   const initial = useSelector((state) => state.userReducer);
   const { user_id, name } = initial.userInfo;
@@ -19,25 +17,21 @@ function ChatPage() {
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false);
   const [mateList, setMateList] = useState([]);
-  const [checkMessages,setCheckMessages] = useState([])
+  const [messages, setMessages] = useState([]); // 전체 메세지
+  const socketRef = useRef();
+  const selectedCard_id = useRef();
+  const selectedCard_message = useRef();
 
   useEffect(() => {
-    socket = io.connect(`${process.env.REACT_APP_API_URL}`);
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`);
     axios
       .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
       .then((res) => {
         if (!res.data) {
           setMyCardList(null);
         } else {
-          let check = res.data.map((el) => {
-            return {
-              card_id:el.card_id,
-              check_message:el.check_message,
-            }
-          })
-          setCheckMessages(check)
           res.data.forEach((user_card) =>
-            socket.emit('join_room', user_card.card_id)
+            socketRef.current.emit('join_room', user_card.card_id)
           );
           setMyCardList(res.data);
         }
@@ -53,17 +47,63 @@ function ChatPage() {
   }, [user_id]);
 
   useEffect(() => {
-    console.log('re-render')
-  }, [myCardList])
+    if (socketRef.current && selectedCard.card_id) {
+      console.log(selectedCard_id.current, selectedCard.card_id);
+      socketRef.current.emit('req_messages', {
+        user_id: user_id,
+        card_id: selectedCard.card_id,
+      });
+      socketRef.current.on('res_messages', (data) => {
+        // data는 [messageInfo,messageInfo,messageInfo]
+        selectedCard_message.current = data;
+        setMessages(data);
+      });
+
+      axios
+        .get(
+          `${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`
+        )
+        .then((res) => {
+          const user_card_list = res.data;
+          setMateList(user_card_list);
+        });
+    }
+  }, [user_id, selectedCard]);
+
+  useEffect(() => {
+    socketRef.current.on('receive_message', (data) => {
+      // data는 messageInfo
+      if (data[0].card_id === selectedCard_id.current) {
+        setMessages([...selectedCard_message.current, ...data]);
+        selectedCard_message.current = [
+          ...selectedCard_message.current,
+          ...data,
+        ];
+      }
+    });
+    socketRef.current.on('new_user', (data) => {
+      if (data[0].card_id === selectedCard_id.current) {
+        setMessages([...selectedCard_message.current, ...data]);
+        selectedCard_message.current = [
+          ...selectedCard_message.current,
+          ...data,
+        ];
+      }
+    });
+  }, []);
 
   // * chatbox
   const leaveRoom = (data) => {
-    socket.emit('leave_room', data); // data 는 selectedCard.card_id
+    socketRef.current.emit('leave_room', data); // data 는 selectedCard.card_id
   };
 
   const cardClickinChatHandler = async (card) => {
+    selectedCard_id.current = card.card_id;
     await setSelectedCard(card);
-    console.log(card);
+  };
+
+  const messageSendHandler = (messageInfo) => {
+    socketRef.current.emit('send_message', messageInfo);
   };
 
   const deleteCardModalHandler = async () => {
@@ -74,6 +114,7 @@ function ChatPage() {
     setIsDeleteClicked(false);
 
     if (selectedCard?.card_id === card_id) {
+      selectedCard_id.current = null;
       setSelectedCard('');
     }
     leaveRoom(card_id);
@@ -89,7 +130,9 @@ function ChatPage() {
         console.log(err);
       });
     if (data) {
-      data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
+      data.forEach((user_card) =>
+        socketRef.current.emit('join_room', user_card.card_id)
+      );
       setMyCardList(data);
     } else {
       setMyCardList(null);
@@ -97,7 +140,6 @@ function ChatPage() {
   };
 
   const hostDeleteCardHandler = async (card_id) => {
-  
     setIsDeleteClicked(false);
 
     if (selectedCard?.card_id === card_id) {
@@ -106,26 +148,31 @@ function ChatPage() {
 
     for (let i = 0; i < mateList.length; i++) {
       await leaveRoom(card_id);
-      await axios.delete(`${process.env.REACT_APP_API_URL}/card/${mateList[i].user_id}`, {
-        data: { card_id: selectedCard.card_id },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/card/${mateList[i].user_id}`,
+        {
+          data: { card_id: selectedCard.card_id },
+        }
+      );
     }
 
     const data = await axios
-        .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      if (data) {
-        data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
-        setMyCardList(data);
-      } else {
-        setMyCardList(null);
-      }
-  }
+      .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (data) {
+      data.forEach((user_card) =>
+        socketRef.current.emit('join_room', user_card.card_id)
+      );
+      setMyCardList(data);
+    } else {
+      setMyCardList(null);
+    }
+  };
 
   const settingModal = () => {
     if (loginModal) {
@@ -139,22 +186,13 @@ function ChatPage() {
     }
   };
 
-  // * matelist
-  useEffect(() => {
-    if (selectedCard) {
-      console.log('selectedCard: ', selectedCard);
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`
-        )
-        .then((res) => {
-          console.log(res.data)
-          const user_card_list = res.data;
-          setMateList(user_card_list);
-          console.log('mateList: ', mateList);
-        });
-    }
-  }, [selectedCard]);
+  // // * matelist
+  // useEffect(() => {
+  //   if (selectedCard) {
+  //     // console.log('selectedCard: ', selectedCard);
+
+  //   }
+  // }, [selectedCard]);
 
   return (
     <div className='chatpage'>
@@ -189,10 +227,9 @@ function ChatPage() {
           my_user_id={user_id}
           my_name={name}
           selectedCard={selectedCard}
-          socket={socket}
           isDeleteClicked={isDeleteClicked}
-          setCheckMessages={setCheckMessages}
-          checkMessages={checkMessages}
+          messages={messages}
+          messageSendHandler={messageSendHandler}
         />
       ) : (
         <ChatBox className='chatpage__chat__container nonselected' />
