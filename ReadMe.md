@@ -19,7 +19,7 @@ Redux <br />
 AWS s3 <br />
 AWS cloudfront <br />
 AWS CodeBuild, CodePipeline <br />
-soket_Client <br />
+socket_Client <br />
 axios <br />
 react-router-dom <br />
 
@@ -32,7 +32,7 @@ AWS ec2 <br />
 AWS rds <br />
 AWS route53 <br />
 AWS CodeDeploy, CodePipeline <br />
-soket_io <br />
+socket_io <br />
 
 ## 개발자 인원
   | 김지영 | Backend |
