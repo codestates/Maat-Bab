@@ -17,6 +17,9 @@
 react <br />
 redux <br />
 amazone s3 <br />
+soket_Client <br />
+axios <br />
+
 ### Back
 node js <br />
 express <br />
@@ -25,6 +28,7 @@ mysql <br />
 amazone ec2 <br />
 amazone rds <br />
 amazone routh53 <br />
+soket_io <br />
 
 ## 개발자 인원
   | 김지영 | Backend |
