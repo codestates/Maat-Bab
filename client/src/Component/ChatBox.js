@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ selectedCard, socket, my_user_id, my_name,setMyCardList }) {
+function ChatBox({ selectedCard, socket, my_user_id, my_name,setCheckMessages,checkMessages}) {
   // const { card_id, chat_title } = selectedCard;
   const [writeMessage, setWriteMessage] = useState('');
   const [messages, setMessages] = useState([]); // 전체 메세지
@@ -26,6 +26,9 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setMyCardList }) {
         // data는 messageInfo
         if (data[0].card_id === selectedCard.card_id) {
           setMessages([...messages, ...data]);
+          socket.emit('check_message',{card_id:selectedCard.card_id, user_id:my_user_id})
+          let check_message = Object.assign(checkMessages, [{card_id:selectedCard.card_id,check_messages:true}])
+          setCheckMessages(check_message)
         }else{
           //요청보내서 확인하고
           //setMyCardList()Boolean값 변경
@@ -56,6 +59,11 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setMyCardList }) {
       setWriteMessage('');
     }
   };
+  const enterKey = (e) => {
+    if(e.key === 'Enter'){
+      sendMessage()
+    }
+  }
 
   return (
     <div className='chatbox'>
@@ -248,6 +256,7 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setMyCardList }) {
       )}
       <div className='chat__send__conatiner'>
         <input
+          onKeyPress={(e) => enterKey(e)}
           onChange={(e) => setWriteMessage(e.target.value)}
           className='chat__content__input'
           placeholder='메세지를 입력하세요 💬'

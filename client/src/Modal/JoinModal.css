@@ -7,9 +7,7 @@
   top: 0;
 }
 .modalbackdrop.join {
-  /* width: 51%; */
   height: 50%;
-  /* margin: 10% 0 0 25%; */
   background-color: white;
   position: fixed;
   border-radius: 20px; 
@@ -29,38 +27,29 @@
 }
 .modalview__count__message.join {
   color: #C4C4C4;
-  font-size: 26px;
+  font-size: 23px;
   font-weight: 700;
   white-space: nowrap;
-  margin: 0;
-  margin-top: 12%;
+  margin: 12% 0 0 0;
 }
-.modalview__button.join {
+.modalview__button__join {
   background-color: white;
   border: 3px solid #FFB800;
   border-radius: 40px;
   color: #ffb800;
-
   font-size: 24px;
   font-weight: 800;
-  
   transition: all ease-in-out 0.1s;
-  
   z-index: inherit;
-
-  padding: 10px;
-  margin: 94px 5px 0px 5px;
-  
   width: 180px;
   height: 80px;
-  
+  margin-top: 5%;
 }
 
-.modalview__button.join:hover {
+.modalview__button__join:hover {
   background-color: #FFB800;
   border: 3px solid white;
   color: white;
-
   cursor: pointer;
 }
 

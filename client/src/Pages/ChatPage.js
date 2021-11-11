@@ -19,8 +19,8 @@ function ChatPage() {
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [loginModal, SetLoginModal] = useState(false);
   const [mateList, setMateList] = useState([]);
+  const [checkMessages,setCheckMessages] = useState([])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     socket = io.connect(`${process.env.REACT_APP_API_URL}`);
     axios
@@ -29,6 +29,13 @@ function ChatPage() {
         if (!res.data) {
           setMyCardList(null);
         } else {
+          let check = res.data.map((el) => {
+            return {
+              card_id:el.card_id,
+              check_message:el.check_message,
+            }
+          })
+          setCheckMessages(check)
           res.data.forEach((user_card) =>
             socket.emit('join_room', user_card.card_id)
           );
@@ -45,6 +52,10 @@ function ChatPage() {
     }
   }, [user_id]);
 
+  useEffect(() => {
+    console.log('re-render')
+  }, [myCardList])
+
   // * chatbox
   const leaveRoom = (data) => {
     socket.emit('leave_room', data); // data 는 selectedCard.card_id
@@ -52,6 +63,7 @@ function ChatPage() {
 
   const cardClickinChatHandler = async (card) => {
     await setSelectedCard(card);
+    console.log(card);
   };
 
   const deleteCardModalHandler = async () => {
@@ -83,6 +95,38 @@ function ChatPage() {
       setMyCardList(null);
     }
   };
+
+  const hostDeleteCardHandler = async (card_id) => {
+  
+    setIsDeleteClicked(false);
+
+    if (selectedCard?.card_id === card_id) {
+      setSelectedCard('');
+    }
+
+    for (let i = 0; i < mateList.length; i++) {
+      await leaveRoom(card_id);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/card/${mateList[i].user_id}`, {
+        data: { card_id: selectedCard.card_id },
+      });
+    }
+
+    const data = await axios
+        .get(`${process.env.REACT_APP_API_URL}/card/${user_id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      if (data) {
+        data.forEach((user_card) => socket.emit('join_room', user_card.card_id));
+        setMyCardList(data);
+      } else {
+        setMyCardList(null);
+      }
+  }
+
   const settingModal = () => {
     if (loginModal) {
       if (window.innerWidth > 768) {
@@ -104,8 +148,10 @@ function ChatPage() {
           `${process.env.REACT_APP_API_URL}/card?card_id=${selectedCard.card_id}`
         )
         .then((res) => {
+          console.log(res.data)
           const user_card_list = res.data;
           setMateList(user_card_list);
+          console.log('mateList: ', mateList);
         });
     }
   }, [selectedCard]);
@@ -132,6 +178,8 @@ function ChatPage() {
           chat_title={selectedCard?.Card.chat_title}
           setIsDeleteClicked={setIsDeleteClicked}
           deleteCardHandler={deleteCardHandler}
+          hostDeleteCardHandler={hostDeleteCardHandler}
+          isHost={selectedCard.host}
         />
       ) : null}
 
@@ -143,7 +191,8 @@ function ChatPage() {
           selectedCard={selectedCard}
           socket={socket}
           isDeleteClicked={isDeleteClicked}
-          setMyCardList={setMyCardList}
+          setCheckMessages={setCheckMessages}
+          checkMessages={checkMessages}
         />
       ) : (
         <ChatBox className='chatpage__chat__container nonselected' />
