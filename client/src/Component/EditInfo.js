@@ -26,6 +26,7 @@ function EditInfo() {
   //매너 전체,선택 합친리스트
   const [addManner, setAddManner] = useState('');
   //매너추가 입력창
+  const [isSocial, setSocial] = useState('')
 
   useEffect(() => {
     const newArr = manner.map((el) => ({
@@ -33,6 +34,9 @@ function EditInfo() {
       selected: false,
     }));
     setManner(newArr);
+    if(initial.userInfo.oauth){
+      setSocial('disabled')
+    }
   }, []);
 
   useEffect(() => {
@@ -70,7 +74,7 @@ function EditInfo() {
       )
       .then((res) => {
         const myManner = res.data.etiquette;
-        if(!myManner.length){
+        if(myManner === null){
           setSumManner(manner)
         } else {         
           setSumManner(myManner.map((manner, idx) => {
@@ -214,19 +218,21 @@ function EditInfo() {
             value={initial.userInfo.email ? initial.userInfo.email : '소셜로그인상태입니다'}
           ></input>
           <br />
-          <span className='edit__user__input__name'>비밀번호</span>
+          <span className={`edit__user__input__name`}>비밀번호</span>
           <input
-            placeholder='비밀번호'
+            disabled={isSocial}
+            placeholder={isSocial === ''? '비밀번호' : '소셜로그인상태입니다'}
             onChange={(e) => onchangePwd(e)}
-            className='edit__password__input'
+            className={`edit__password__input ${isSocial === ''? null :'gray'}`}
             type='password'
           ></input>
           <br />
-          <span className='edit__user__input__name'>비밀번호 확인</span>
+          <span className={`edit__user__input__name`}>비밀번호 확인</span>
           <input
-            placeholder='비밀번호 확인'
+            disabled={isSocial}
+            placeholder={isSocial === ''? '비밀번호 확인' : '소셜로그인상태입니다'}
             onChange={(e) => onchangePwdCk(e)}
-            className='edit__password__check__input'
+            className={`edit__password__check__input ${isSocial === ''? null :'gray'}`}
             type='password'
           ></input>
           <div
