@@ -17,12 +17,11 @@
 
 .searchbar {
   display: flex;
-  width: 90%;
+  width: 100%;
   padding: 5px 10px 5px 10px;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin: 0px 0px 0px 60px;
 }
 
 .searchbar__title {
@@ -34,30 +33,34 @@
   font-weight: 800;
   color:#ffa512;
   width: 120px;
-  padding: 5px;
+}
+.searchbar__title__region{
+  display: flex;
+  width: 18%;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFa512;
 }
 
 .searchbar__region__date {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  font-size: 19px;
-
   width: 100%;
 }
 
 .searchbar__region__first__container {
   display: flex;
   justify-content: space-around;
-  padding: 5px;
 }
 
 .searchbar__region__second__container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 5px;
+  height: 100%;
+  width: 50%;
 }
 
 .search__select__region__city {
@@ -109,13 +112,10 @@
   border: 2px solid #a4a0a0;
   border-radius: 20px;
   font-size: 17px;
-  width: 120%;
-  height: 25px;
-  padding: 5px 5px 5px 15px;
-  /* margin: 0px 10px 0px 20px; */
-  margin-right: -15%;
-
+  width: 100%;
+  height: 90%;
   text-align: start;
+  padding-left: 5px;
 }
 .searchbar__restaurant__search:focus{
   border: 2px solid #ffa512;
@@ -125,7 +125,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 28px;
+  width: 25px;
+  height: 100%;
+  margin-left: -15%;
 }
 
 .searchbar__region {
@@ -141,7 +143,8 @@
 .searchbar__date {
   display: flex;
   justify-content: space-around;
-  margin: 0px 0px 0px 20px;
+  width: 25%;
+  align-items: center;
 }
 
 .searchbar__datepicker__wrapper {
