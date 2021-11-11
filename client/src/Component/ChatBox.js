@@ -1,46 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ChatBox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-function ChatBox({ selectedCard, socket, my_user_id, my_name,setCheckMessages,checkMessages}) {
+function ChatBox({
+  selectedCard,
+  my_user_id,
+  my_name,
+  messages,
+  messageSendHandler,
+}) {
   // const { card_id, chat_title } = selectedCard;
   const [writeMessage, setWriteMessage] = useState('');
-  const [messages, setMessages] = useState([]); // 전체 메세지
-
-  useEffect(() => {
-    if (selectedCard) {
-      socket.emit('req_messages', {
-        user_id: my_user_id,
-        card_id: selectedCard.card_id,
-      });
-      socket.on('res_messages', (data) => {
-        // data는 [messageInfo,messageInfo,messageInfo]
-        setMessages(data);
-      });
-    }
-  }, [socket, selectedCard, my_user_id]);
-
-  useEffect(() => {
-    if (selectedCard) {
-      socket.on('receive_message', (data) => {
-        // data는 messageInfo
-        if (data[0].card_id === selectedCard.card_id) {
-          setMessages([...messages, ...data]);
-          socket.emit('check_message',{card_id:selectedCard.card_id, user_id:my_user_id})
-          let check_message = Object.assign(checkMessages, [{card_id:selectedCard.card_id,check_messages:true}])
-          setCheckMessages(check_message)
-        }else{
-          //요청보내서 확인하고
-          //setMyCardList()Boolean값 변경
-        }
-      });
-      socket.on('new_user', (data) => {
-        if (data[0].card_id === selectedCard.card_id) {
-          setMessages([...messages, ...data]);
-        }
-      });
-    }
-  }, [socket, messages, selectedCard]);
 
   const sendMessage = () => {
     if (writeMessage !== '') {
@@ -55,7 +25,7 @@ function ChatBox({ selectedCard, socket, my_user_id, my_name,setCheckMessages,ch
         ).getMinutes()}`,
       };
       document.querySelector('.chat__content__input').value = '';
-      socket.emit('send_message', messageInfo);
+      messageSendHandler(messageInfo);
       setWriteMessage('');
     }
   };
