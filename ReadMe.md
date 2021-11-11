@@ -14,9 +14,11 @@
 
 ## 사용된 기술
 ### Front
-react <br />
-redux <br />
-amazone s3 <br />
+ReactJS <br />
+Redux <br />
+AWS s3 <br />
+AWS cloudfront <br />
+AWS CodeBuild, CodePipeline <br />
 soket_Client <br />
 axios <br />
 react-router-dom <br />
@@ -26,9 +28,10 @@ node js <br />
 express <br />
 sequelize <br />
 mysql <br />
-amazone ec2 <br />
-amazone rds <br />
-amazone routh53 <br />
+AWS ec2 <br />
+AWS rds <br />
+AWS route53 <br />
+AWS CodeDeploy, CodePipeline <br />
 soket_io <br />
 
 ## 개발자 인원
