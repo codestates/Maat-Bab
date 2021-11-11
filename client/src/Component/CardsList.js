@@ -27,7 +27,7 @@ function CardsList({ cardData, selectedCard, cardClickinMainHandler, cardClickin
     }
 
     return (
-        <div className='cardslist'>
+        <div className='cardslist__background'>
             {cardList && cardList.length ? cardList?.map((card,idx) => {
                 return (
                     <Card key={idx} className='card__section'

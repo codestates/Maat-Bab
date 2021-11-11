@@ -30,6 +30,9 @@
 .edit__user__input__name{
   color: gray;
 }
+.gray{
+  background-color: lightgray;
+}
 .edit__user__input{
   width: 50%;
   height: 20%;

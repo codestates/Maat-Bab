@@ -29,6 +29,11 @@ function ChatBox({
       setWriteMessage('');
     }
   };
+  const enterKey = (e) => {
+    if(e.key === 'Enter'){
+      sendMessage()
+    }
+  }
 
   return (
     <div className='chatbox'>
@@ -221,6 +226,7 @@ function ChatBox({
       )}
       <div className='chat__send__conatiner'>
         <input
+          onKeyPress={(e) => enterKey(e)}
           onChange={(e) => setWriteMessage(e.target.value)}
           className='chat__content__input'
           placeholder='메세지를 입력하세요 💬'

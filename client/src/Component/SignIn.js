@@ -47,6 +47,8 @@ function SignIn({ isSiginInModal }) {
           history.push('/main');
         }else if(res.status === 400){
           alert('아이디 또는 비밀번호를 확인해주세요')
+        }else if(res.status === 404){
+          alert('아이디를 확인해주세요')
         }
       });
   };
@@ -74,6 +76,11 @@ function SignIn({ isSiginInModal }) {
   const onFailed = (err) => {
     console.log(err)
   }
+  const enterLogin = (e) => {
+    if(e.key === 'Enter'){
+      loginHandler()
+    }
+  }
   return (
     <div>
       {/* <div className= {isSiginInModal ? 'login__container loginModal' : 'login__container'} > */}
@@ -99,6 +106,7 @@ function SignIn({ isSiginInModal }) {
               <li className='signin__container__li__input'>
                 <div className='signin__name'>비밀번호</div>
                 <input
+                  onKeyPress={(e) => enterLogin(e)}
                   className='signin__input password'
                   placeholder='비밀번호를 입력해주세요'
                   type='password'
