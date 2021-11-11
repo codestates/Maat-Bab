@@ -19,6 +19,7 @@ redux <br />
 amazone s3 <br />
 soket_Client <br />
 axios <br />
+react-router-dom <br />
 
 ### Back
 node js <br />
