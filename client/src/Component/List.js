@@ -5,7 +5,7 @@ import './List.css';
 function List({ title, cardData, message, cardClickinMainHandler, cardClickinChatHandler, setSelectedCard, selectedCard, deleteCardModalHandler
 }) {
     return (
-        <div className='list__backgorund'>
+        <div className='list__background'>
             <div className='list__header'>
                 <div className='list__header__title'>{title} 🍴</div>
                 <div className='list__header__text'>{message}</div>
