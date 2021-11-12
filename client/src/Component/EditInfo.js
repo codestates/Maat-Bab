@@ -245,7 +245,7 @@ function EditInfo() {
             비밀번호가 일치하지 않습니다.
           </div>
           <br />
-          <span className='edit__user__input__name'>UserName</span>
+          <span className='edit__user__input__name'>사용자 이름</span>
           <input
             onChange={(e) => onchangeName(e)}
             type='text'
@@ -254,7 +254,7 @@ function EditInfo() {
           ></input>
         </div>
         <button onClick={infoCorrection} className='edit__button__done'>
-          수정
+          수정완료
         </button>
         <div className='edit__title__content'>음식 취향</div>
         <div className='edit__preferece__box'>
@@ -281,9 +281,9 @@ function EditInfo() {
           })}
         </div>
         <button onClick={foodCorrection} className='edit__button__done'>
-          선택완료
+        수정완료
         </button>
-        <div className='edit__title__content'>식사 예절</div>
+        <div className='edit__title__content'>테이블 매너</div>
         <div className='edit__tablemanner__box'>
           {sumManner.map((el) => {
             if (el.selected === false) {
@@ -319,7 +319,7 @@ function EditInfo() {
           </button>
         </div>
         <button onClick={mannerCorrection} className='edit__button__done'>
-          선택완료
+          수정완료
         </button>
       </div>
     </div>
