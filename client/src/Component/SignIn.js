@@ -46,7 +46,18 @@ function SignIn({ isSiginInModal }) {
           );
           document.location.href = '/'
         }
-      });
+      })
+      .catch(err => {
+        if(err.response.status === 400){
+          alert('이메일 또는 비밀번호를 입력해 주세요')
+        }else if(err.response.status === 403){
+          alert('비밀번호를 다시 입력해 주세요')
+        }else if(err.response.status === 404){
+          alert('존재하지 않는 이메일입니다')
+        }else{
+          console.log(err)
+        }
+      })
   };
   const kakaoLogin = () => {
     window.location.href = URL;
