@@ -31,7 +31,7 @@ function Card({
 
   const isOnBell = (card_id) => {
     if (check_messages !== null) {
-      return check_messages.filter(
+      return check_messages?.filter(
         (check_message) => check_message.card_id === card_id
       )[0].check_message;
     }
@@ -69,15 +69,17 @@ function Card({
           <span className='card__headcount'>
             {current_headcount} / {headCount} 명
           </span>
-          {isOnBell(card_id) ? (
-            <span className='card__bell__icon'>
-              <FontAwesomeIcon icon={faBell} />
-            </span>
-          ) : (
-            <span className='card__bell__icon bell__false__color'>
-              <FontAwesomeIcon icon={faBell} />
-            </span>
-          )}
+          {cardClickinChatHandler ? (
+            isOnBell(card_id) ? (
+              <span className='card__bell__icon__span'>
+                <FontAwesomeIcon className='card__bell__icon' icon={faBell} />
+                </span>
+            ) : (
+              <span className='card__bell__icon__span'>
+                <FontAwesomeIcon className='card__bell__icon bell__false__color' icon={faBell} />
+                </span>
+            )
+        ) : null }
         </div>
         {isJoined() ? (
           <div

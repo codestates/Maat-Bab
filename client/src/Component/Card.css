@@ -158,18 +158,26 @@
 
   margin: 5px 10px;
 }
+
+.card__bell__icon__span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px 0px 40px;
+}
+
 .card__bell__icon {
   /* border: 1px solid black; */
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 0 0 0 20%;
-  font-size: 35px;
-  color: #392f31;
+  font-size: 32px;
+  /* color: #392f31; */
 }
 /* #392f31 */
 .bell__false__color {
-  color: aqua;
+  all: unset;
+  font-size: 34px;
+  color: rgb(247, 47, 124);
+  transition: all ease-in-out 1s;
+  transform: scale(1.04);
 }
 .chat__exit__button {
   width: 30px;

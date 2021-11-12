@@ -104,7 +104,7 @@ function ChatPage() {
         setCheck_messages(check_messagesRef.current.slice());
       } else {
         // check_message
-        check_messagesRef.current = check_messagesRef.current.map(
+        check_messagesRef.current = check_messagesRef.current?.map(
           (check_message) => {
             if (check_message.card_id === data[0].card_id) {
               check_message.check_message = false;
