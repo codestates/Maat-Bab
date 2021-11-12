@@ -1,5 +1,5 @@
 .search {
-  width: 72%;
+  width: 100%;
   /* display:flex; */
   flex-direction: column;
   justify-content: center;
@@ -18,22 +18,12 @@
 .searchbar {
   display: flex;
   width: 100%;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 0;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 
-.searchbar__title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 800;
-  color:#ffa512;
-  width: 120px;
-}
 .searchbar__title__region{
   display: flex;
   width: 18%;
@@ -45,7 +35,7 @@
 
 .searchbar__region__date {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   width: 100%;
 }
@@ -57,7 +47,6 @@
 
 .searchbar__region__second__container {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   height: 100%;
   width: 50%;
@@ -82,10 +71,8 @@
   font-weight: 700;
   overflow-y: auto;
   height: 40px;
-
   padding: 2px 4px 2px 4px;
-  margin: 0px 5px 0px 5px;
-
+  margin: 0 5px 0 0;
   text-align: center;
 }
 
@@ -96,10 +83,8 @@
   font-weight: 700;
   overflow-y: auto;
   height: 40px;
-
   padding: 2px 4px 2px 4px;
   margin: 0px 5px 0px 5px;
-
   text-align: center;
   border: 2px solid #ffa512;
 
@@ -115,7 +100,6 @@
   width: 100%;
   height: 90%;
   text-align: start;
-  padding-left: 5px;
 }
 .searchbar__restaurant__search:focus{
   border: 2px solid #ffa512;
@@ -123,9 +107,7 @@
 
 .search__icon {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
+  width: 12%;
   height: 100%;
   margin-left: -15%;
   z-index: 100;
@@ -137,16 +119,17 @@
 .searchbar__region {
   width: 75%;
   display: flex;
-  justify-content: space-around;
 }
 
 .searchbar__region__container {
   display: flex;
+  width: 79%;
+  /* border: 1px solid black; */
 }
 
 .searchbar__date {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   width: 25%;
   align-items: center;
 }
@@ -283,7 +266,34 @@
   width: 20%;
   height: 30px;
 }
-
+@media screen and (max-width: 768px){
+  .searchbar__title__region{
+    display: none;
+  }
+  .search{
+    width: 100%;
+  }
+  .searchbar{
+    flex-direction: column;
+  }
+  .searchbar__region__container{
+    /* border: 1px solid black; */
+    width: 100%;
+  }
+  .searchbar__region__second__container{
+    margin-left: 3%;
+  }
+  .searchbar__region__container{
+    margin-left: 10%;
+  }
+  .searchbar__button__container{
+    margin-top: 3%;
+    width: 60%;
+  }
+  .searchmap{
+    margin-left: 5%;
+  }
+}
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .search {
     display: flex;
