@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Search from '../Component/Search';
 import List from '../Component/List';
@@ -42,6 +42,10 @@ function MainPage({ userInfo }) {
       alert('지역 및 날짜를 선택해주세요')
     }
   };
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/card`)
+    .then((res) => setCardData(res.data))
+  },[])
 
   const cardClickinMainHandler = (card) => {
     setClickedCardId(card.card_id);
