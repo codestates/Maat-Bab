@@ -1,10 +1,5 @@
 const { User } = require('../../models');
-const {
-  generateAccessToken,
-  generateRefreshToken,
-  sendAccessToken,
-  sendRefreshToken,
-} = require('../tokenFunctions');
+const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../tokenFunctions');
 const { generateHashData } = require('../../functions');
 
 module.exports = {
@@ -12,7 +7,7 @@ module.exports = {
     const [reqEmail, reqPassword] = [req.body.email, req.body.password];
 
     if (!reqEmail || !reqPassword) {
-      return res.status(400).send('Check password and name');
+      return res.status(400).end();
     }
 
     User.findOne({
@@ -20,14 +15,14 @@ module.exports = {
     })
       .then((data) => {
         if (!data) {
-          return res.status(404).send('No exists');
+          return res.status(404).end();
         }
 
         const { password, salt } = data;
         const hashPassword = generateHashData(salt + reqPassword);
 
         if (hashPassword !== password) {
-          return res.status(422).send('Failed to login');
+          return res.status(403).end();
         }
 
         delete data.dataValues.password;
@@ -45,7 +40,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log(err);
-        return res.status(500).send('Internal Server Error');
+        return res.status(500).end();
       });
   },
 };
