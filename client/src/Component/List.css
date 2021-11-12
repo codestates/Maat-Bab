@@ -33,6 +33,20 @@
   color: #a4a0a0;
   font-weight: 500;
 }
+@media screen and (max-width: 768px){
+  .list__header__title{
+    display: none;
+  }
+  .card__list__section{
+    width: 90%;
+    margin-left: 10%;
+  }
+  .list__background{
+    display: flex;
+    width: 90%;
+    padding-top: 5%;
+  }
+}
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .list {
