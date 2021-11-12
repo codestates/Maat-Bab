@@ -35,11 +35,14 @@
 }
 @media screen and (max-width: 768px){
   .list__header__title{
-    display: none;
+    /* display: none; */
+  }
+  .list__header__text {
+    padding: 1% 0 1% 0;
   }
   .card__list__section{
-    width: 90%;
-    margin-left: 10%;
+    /* width: 80%; */
+  
   }
   .list__background{
     display: flex;

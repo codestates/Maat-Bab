@@ -218,4 +218,8 @@
     width: 76%;
     height: 160px;
   }
+
+  .card__headcount {
+    margin: 5px 5px 5px 5px;
+  }
 }

@@ -16,6 +16,59 @@
   margin: 0px 40px 0px 40px;
 }
 
+@media screen and (max-width: 768px){
+  .chatpage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 10%;
+  }
+  .chatpage > .list__background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 60px;
+  }
+
+  .chatpage > .card__list__section {
+    margin-left: 0;
+    /* margin: 0 10% 0 0; */
+  }
+
+  /* .chatpage > .list{
+    all: unset;
+    width: 100%;
+  }
+
+  .chatpage > .list {
+    margin-bottom: 40px;
+  }
+
+  .chatpage > .chatbox {
+    width: 100%;
+    padding: 20px 40px 20px 40px;
+  }
+
+  .loader__box__ifnull.in__chatbox {
+    background-color: #fefbeb;
+    padding-top: 72%;
+    font-size: 18px;
+  }
+
+  .chatpage > .matelist {
+    border: none;
+    width: 100%;
+    margin: 0;
+    padding: 20px 40px 20px 40px;
+
+  } */
+
+}
+
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
   .chatpage {
     display: flex;
