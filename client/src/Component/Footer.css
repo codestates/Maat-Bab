@@ -40,6 +40,25 @@
   padding: 5px;
 }
 
+@media screen and (max-width: 768px){
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer__copyright {
+    padding-top: 1%;
+  }
+  .footer__developers,
+  .footer__developer,
+  .footer__developer__github,
+  .footer__developer__name {
+    opacity: 0;
+    height: 0;
+    position: relative;
+    font-size: 1px;
+  }
+}
+
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px) {
   .footer {
     /* position: absolute; */
@@ -54,7 +73,6 @@
   }
 
   .footer__copyright {
-    padding-top: 14px;
     font-size: 14px;
   }
 
