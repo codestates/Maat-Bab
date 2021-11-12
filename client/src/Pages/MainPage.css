@@ -58,6 +58,11 @@
     margin-top: 12px;
     /* margin-right: 40px; */
   }
+  
+  .mainpage > .list__background {
+    all: unset;
+    margin-bottom: 5%;
+  }
 
   .list{
     all: unset;
