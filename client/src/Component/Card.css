@@ -40,7 +40,7 @@
   opacity: 0;
   /* margin-top: -10%; */
   height: 200px;
-  width: 350px;
+  width: 100%;
 
   /* height: 100%; */
 }
@@ -109,6 +109,8 @@
   /* width: 38%; */
   margin: 10px 10px;
   justify-content: center;
+  white-space: pre-line;
+  word-break: normal;
 }
 
 .card__date {
@@ -119,8 +121,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 3px 0 0 20%;
-  margin: 5px 10px;
+  padding: 0 0 0 5%;
+  /* margin: 5px 10px; */
 }
 
 .card__third__container {

@@ -61,7 +61,8 @@ function Card({
           ) : null}
         </div>
         <div className='card__second__container'>
-          <span className='card__region'>서울시 {region}</span>
+          <span className='card__region'>서울시
+            {region}</span>
           <span className='card__date'>{date}</span>
         </div>
         <div className='card__third__container'>
