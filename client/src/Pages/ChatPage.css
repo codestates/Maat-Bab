@@ -24,6 +24,16 @@
     margin-top: 0;
     margin-bottom: 10%;
   }
+
+  .chatpage > .chatbox {
+    all: unset;
+    margin-bottom: 40px;
+  }
+
+  .chatpage > .matelist {
+    all: unset;
+  }
+
   .chatpage > .list__background {
     display: flex;
     flex-direction: column;
@@ -36,6 +46,7 @@
 
   .chatpage > .card__list__section {
     margin-left: 0;
+    width: 80%;
     /* margin: 0 10% 0 0; */
   }
 
@@ -84,7 +95,8 @@
   }
 
   .chatpage > .chatbox {
-    width: 100%;
+    all: unset;
+    /* width: 100%; */
   }
 
   .loader__box__ifnull.in__chatbox {
