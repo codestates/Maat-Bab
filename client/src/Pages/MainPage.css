@@ -23,9 +23,10 @@
 }
 @media screen and (max-width: 768px){
   .mainpage{
-    padding-top: 5%;
+    padding-top: 10%;
     flex-direction: column;
-    height: 200vh;
+    height: 100%;
+    padding-bottom: 10%;
   }
 }
 
