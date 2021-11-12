@@ -24,8 +24,8 @@ function App() {
   const initial = useSelector((state) => state.userReducer);
   const [certificationCode, setCertificationCode] = useState('');
   const [email, setEamil] = useState('');
-
   const isAuthenticated = async () => {
+    if(initial.isLogin){
     try {
       await axios
         .get(`${process.env.REACT_APP_API_URL}/auth`)
@@ -43,6 +43,7 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+  }
   };
   const moveAbout = () => {
     document.location.href = '/';
