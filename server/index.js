@@ -21,9 +21,7 @@ app.use(
 app.use('/', router);
 
 const PORT = process.env.PORT || 80;
-server.listen(PORT, () =>
-  console.log(`Dev-Child server is running at ${PORT} port`)
-);
+server.listen(PORT, () => console.log(`Dev-Child server is running at ${PORT} port`));
 
 // socket.io
 const { Server } = require('socket.io');
@@ -99,10 +97,7 @@ io.on('connection', (socket) => {
     if (chat_content === null) {
       messages = [dateMessage, data];
 
-      await Card.update(
-        { chat_content: JSON.stringify(messages) },
-        { where: { card_id } }
-      );
+      await Card.update({ chat_content: JSON.stringify(messages) }, { where: { card_id } });
     } else {
       chat_content = JSON.parse(chat_content);
 
@@ -112,10 +107,7 @@ io.on('connection', (socket) => {
         messages = [data];
       }
 
-      await Card.update(
-        { chat_content: JSON.stringify([...chat_content, ...messages]) },
-        { where: { card_id } }
-      );
+      await Card.update({ chat_content: JSON.stringify([...chat_content, ...messages]) }, { where: { card_id } });
     }
 
     User_card.update({ check_message: false }, { where: { card_id } });

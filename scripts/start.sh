@@ -16,5 +16,7 @@ export DATABASE_PRODUCTION_PORT=$(aws ssm get-parameters --region ap-northeast-2
 export KAKAO_clientID=$(aws ssm get-parameters --region ap-northeast-2 --names KAKAO_clientID --query Parameters[0].Value | sed 's/"//g')
 export KAKAO_clientSecret=$(aws ssm get-parameters --region ap-northeast-2 --names KAKAO_clientSecret --query Parameters[0].Value | sed 's/"//g')
 export KAKAO_redirectUri=$(aws ssm get-parameters --region ap-northeast-2 --names KAKAO_redirectUri --query Parameters[0].Value | sed 's/"//g')
+export NODEMAILER_USER=$(aws ssm get-parameters --region ap-northeast-2 --names NODEMAILER_USER --query Parameters[0].Value | sed 's/"//g')
+export NODEMAILER_PASS=$(aws ssm get-parameters --region ap-northeast-2 --names NODEMAILER_PASS --query Parameters[0].Value | sed 's/"//g')
 
 authbind --deep pm2 start index.js
