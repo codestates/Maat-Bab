@@ -1,7 +1,14 @@
-.list__backgorund {
+.list__background {
   width: 28%;
-  /* background-color: white; */
-  /* margin: 0px 0px 0px 40px; */
+}
+
+.mainpage > .list__background {
+  margin: 0px 40px 0px 0px;
+
+}
+
+.chatpage > .list__background {
+  margin: 0px 40px 0px 40px;
 }
 
 .list__header {

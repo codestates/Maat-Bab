@@ -6,6 +6,8 @@
   border-radius: 20px;
   overflow-y: scroll;
   background-color: white;
+  width: 100%;
+  position: relative;
 }
 
 .mainpage > .cardslist {
@@ -14,6 +16,10 @@
 
 .cardslist__background::-webkit-scrollbar{
   display: none;
+}
+
+.card__list__section{
+  overflow: auto;  
 }
 
 .card__section {
