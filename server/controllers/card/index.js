@@ -80,7 +80,7 @@ module.exports = {
         where: { restaurant_name },
         defaults: {
           restaurant_name,
-          visit: 0,
+          visit: 1,
         },
       })
         .then(([result, created]) => {
@@ -112,12 +112,15 @@ module.exports = {
     });
 
     const message = generateJoinMessage(card_id, name);
-    const dateMessage = generateDateMessage(card_id, message.date);
+    const dateMessage = generateDateMessage(card_id);
 
     await Card.update(
       { chat_content: JSON.stringify([dateMessage, message]) },
       { where: { card_id } }
-    );
+    ).catch((err) => {
+      console.log(err);
+      return res.status(500).send();
+    });
 
     await User_card.create({
       card_id,
@@ -209,7 +212,7 @@ module.exports = {
           let messages;
           const message = generateJoinMessage(card_id, name);
           if (chat_content[chat_content_idx - 1].date < message.date) {
-            const dateMessage = generateDateMessage(card_id, message.date);
+            const dateMessage = generateDateMessage(card_id);
             messages = [dateMessage, message];
             chat_content = JSON.stringify(chat_content.concat(messages));
           } else {
@@ -269,7 +272,7 @@ module.exports = {
 
         let messages;
         const message = generateLeaveMessage(card_id, name);
-        const dateMessage = generateDateMessage(card_id, message.date);
+        const dateMessage = generateDateMessage(card_id);
 
         let { chat_content } = await Card.findOne({ where: { card_id } });
         if (chat_content === null) {
