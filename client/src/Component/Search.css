@@ -31,6 +31,7 @@
   font-size: 24px;
   font-weight: 700;
   color: #FFa512;
+  margin-left: 5%;
 }
 
 .searchbar__region__date {
@@ -98,8 +99,9 @@
   border-radius: 20px;
   font-size: 17px;
   width: 100%;
-  height: 90%;
+  /* height: 90%; */
   text-align: start;
+  padding: 3% 0 3% 5%;
 }
 .searchbar__restaurant__search:focus{
   border: 2px solid #ffa512;
