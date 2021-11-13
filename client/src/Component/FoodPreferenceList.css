@@ -2,7 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   /* justify-content: center; */
-  padding: 20px 20px 40px 40px;
+  /* padding: 20px 20px 40px 40px; */
+  padding: 1%;
+  justify-content: center;
 }
 
 .preference__food {
@@ -34,6 +36,17 @@
   padding: 10px;
   margin: 5px 5px 10px 10px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+  .foodPreferenceList {
+    padding: 1%;
+    justify-content: center;
+  }
+  .preference__list__container {
+    padding: 0;
+
+  }
 }
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
