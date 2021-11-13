@@ -30,10 +30,10 @@ function ChatBox({
     }
   };
   const enterKey = (e) => {
-    if(e.key === 'Enter'){
-      sendMessage()
+    if (e.key === 'Enter') {
+      sendMessage();
     }
-  }
+  };
 
   return (
     <div className='chatbox'>
@@ -55,23 +55,20 @@ function ChatBox({
           <div className='chat-body'>
             <ScrollToBottom className='message-body'>
               {messages.map((messageInfo, idx) => {
-                const { user_id, type, name, message, date, time } =
-                  messageInfo;
+                let { user_id, type, name, message, date, time } = messageInfo;
+                date = String(date);
                 if (idx === 0) {
                   // 페이지네이션 대비
                   // 첫 요소에 날짜가 없을 때
-                  const dateArr = date.split('.');
                   if (user_id === 0) {
                     // 관리자 메세지
                     if (type === 'message') {
                       return (
                         <div>
-                          <div className='admin-date'>{`${
-                            dateArr[0]
-                          }년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
+                          <div className='admin-date'>{`${date.slice(
                             0,
-                            3
-                          )}일`}</div>
+                            4
+                          )}년${date.slice(4, 6)}월${date.slice(6, 8)}일`}</div>
                           <div className='admin-message'>{message}</div>
                         </div>
                       );
@@ -86,12 +83,10 @@ function ChatBox({
 
                   if (user_id === my_user_id) {
                     <div>
-                      <div className='admin-date'>{`${
-                        dateArr[0]
-                      }년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
+                      <div className='admin-date'>{`${date.slice(
                         0,
-                        3
-                      )}일`}</div>
+                        4
+                      )}년${date.slice(4, 6)}월${date.slice(6, 8)}일`}</div>
                       <div id='user1' className='chatbox__chat__container'>
                         <div id='user1' className='chatbox__chat__message'>
                           {message}
@@ -130,12 +125,10 @@ function ChatBox({
 
                   return (
                     <div>
-                      <div className='admin-date'>{`${
-                        dateArr[0]
-                      }년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
+                      <div className='admin-date'>{`${date.slice(
                         0,
-                        3
-                      )}일`}</div>
+                        4
+                      )}년${date.slice(4, 6)}월${date.slice(6, 8)}일`}</div>
                       <div id='user2' className='chatbox__chat__container'>
                         <div id='user2' className='chatbox__chat__message'>
                           {message}
