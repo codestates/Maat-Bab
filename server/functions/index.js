@@ -29,21 +29,19 @@ module.exports = {
     return userinfo;
   },
   generateDateMessage: (card_id) => {
-    const date = new Date(Date.now()).toLocaleDateString();
-    const dateArr = date.split('.');
+    const date = new Date(Date.now());
+    console.log('date', date);
+    const dateArr = date.toLocaleDateString().split('.');
+    console.log('dateArr', dateArr);
     const message = {
       card_id,
       user_id: 0,
       type: 'date',
-      message: `${dateArr[0]}년${dateArr[1].slice(0, 3)}월${dateArr[2].slice(
-        0,
-        3
-      )}일`,
-      date,
-      time: `${new Date(Date.now()).getHours()}:${new Date(
-        Date.now()
-      ).getMinutes()}`,
+      message: `${dateArr[0]}년${dateArr[1]}월${dateArr[2]}일`,
+      date: date.toLocaleDateString(),
+      time: `${date.getHours()}:${date.getMinutes()}`,
     };
+    console.log('message', message);
     return message;
   },
   generateJoinMessage: (card_id, name) => {
