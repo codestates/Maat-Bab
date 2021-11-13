@@ -35,36 +35,45 @@ module.exports = {
       month: 'long',
       day: 'numeric',
     });
+    const date = Number(
+      '' + today.getFullYear() + (today.getMonth() + 1) + today.getDate()
+    );
     const message = {
       card_id,
       user_id: 0,
       type: 'date',
       message: todayMessage,
-      date: today.getTime(),
+      date,
       time: `${today.getHours()}:${today.getMinutes()}`,
     };
     return message;
   },
   generateJoinMessage: (card_id, name) => {
     const today = new Date(Date.now());
+    const date = Number(
+      '' + today.getFullYear() + (today.getMonth() + 1) + today.getDate()
+    );
     const message = {
       card_id,
       user_id: 0,
       type: 'message',
       message: `${name}님이 방에 참여하셨습니다`,
-      date: today.getTime(),
+      date,
       time: `${today.getHours()}:${today.getMinutes()}`,
     };
     return message;
   },
   generateLeaveMessage: (card_id, name) => {
     const today = new Date(Date.now());
+    const date = Number(
+      '' + today.getFullYear() + (today.getMonth() + 1) + today.getDate()
+    );
     const message = {
       card_id,
       user_id: 0,
       type: 'message',
       message: `${name}님이 방을 나가셨습니다`,
-      date: today.getTime(),
+      date,
       time: `${today.getHours()}:${today.getMinutes()}`,
     };
     return message;
