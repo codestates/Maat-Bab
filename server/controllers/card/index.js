@@ -113,8 +113,6 @@ module.exports = {
 
     const message = generateJoinMessage(card_id, name);
     const dateMessage = generateDateMessage(card_id);
-    console.log('message', message);
-    console.log('dateMessage', dateMessage);
 
     await Card.update(
       { chat_content: JSON.stringify([dateMessage, message]) },

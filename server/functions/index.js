@@ -29,44 +29,43 @@ module.exports = {
     return userinfo;
   },
   generateDateMessage: (card_id) => {
-    const date = new Date(Date.now());
-    console.log('date', date);
-    const dateArr = date.toLocaleDateString().split('.');
-    console.log('dateArr', dateArr);
+    const today = new Date(Date.now());
+    const todayMessage = today.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
     const message = {
       card_id,
       user_id: 0,
       type: 'date',
-      message: `${dateArr[0]}년${dateArr[1]}월${dateArr[2]}일`,
-      date: date.toLocaleDateString(),
-      time: `${date.getHours()}:${date.getMinutes()}`,
+      message: todayMessage,
+      date: today.getTime(),
+      time: `${today.getHours()}:${today.getMinutes()}`,
     };
-    console.log('message', message);
     return message;
   },
   generateJoinMessage: (card_id, name) => {
+    const today = new Date(Date.now());
     const message = {
       card_id,
       user_id: 0,
       type: 'message',
       message: `${name}님이 방에 참여하셨습니다`,
-      date: new Date(Date.now()).toLocaleDateString(),
-      time: `${new Date(Date.now()).getHours()}:${new Date(
-        Date.now()
-      ).getMinutes()}`,
+      date: today.getTime(),
+      time: `${today.getHours()}:${today.getMinutes()}`,
     };
     return message;
   },
   generateLeaveMessage: (card_id, name) => {
+    const today = new Date(Date.now());
     const message = {
       card_id,
       user_id: 0,
       type: 'message',
       message: `${name}님이 방을 나가셨습니다`,
-      date: new Date(Date.now()).toLocaleDateString(),
-      time: `${new Date(Date.now()).getHours()}:${new Date(
-        Date.now()
-      ).getMinutes()}`,
+      date: today.getTime(),
+      time: `${today.getHours()}:${today.getMinutes()}`,
     };
     return message;
   },
