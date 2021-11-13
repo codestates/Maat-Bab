@@ -28,7 +28,8 @@ module.exports = {
     delete userinfo.exp;
     return userinfo;
   },
-  generateDateMessage: (card_id, date) => {
+  generateDateMessage: (card_id) => {
+    const date = new Date(Date.now()).toLocaleDateString();
     const dateArr = date.split('.');
     const message = {
       card_id,
@@ -38,7 +39,7 @@ module.exports = {
         0,
         3
       )}일`,
-      date: new Date(Date.now()).toLocaleDateString(),
+      date,
       time: `${new Date(Date.now()).getHours()}:${new Date(
         Date.now()
       ).getMinutes()}`,
