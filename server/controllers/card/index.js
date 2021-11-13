@@ -274,7 +274,6 @@ module.exports = {
         let messages;
         const message = generateLeaveMessage(card_id, name);
         const dateMessage = generateDateMessage(card_id);
-        console.log(message, dateMessage);
 
         let { chat_content } = await Card.findOne({ where: { card_id } });
         if (chat_content === null) {
