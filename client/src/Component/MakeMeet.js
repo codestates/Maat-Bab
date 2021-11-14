@@ -57,6 +57,9 @@ function MakeMeet() {
   const pathChat = () => {
     document.location.href = '/chat'
   }
+  const pathLogin = () => {
+    document.location.href = '/login'
+  }
   const makeMeetCard = () => {
     if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
@@ -76,7 +79,13 @@ function MakeMeet() {
             alert('잠시 후 다시 시도해주세요');
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if(err.response.status === 401){
+            pathLogin()
+          }else{
+            console.log(err)
+          }
+        });
     } else if (city2 !== '' && curPlace !== '찾기 버튼을 눌러주세요' && roomName === '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
@@ -95,7 +104,13 @@ function MakeMeet() {
             alert('잠시 후 다시 시도해주세요');
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if(err.response.status === 401){
+            pathLogin()
+          }else{
+            console.log(err)
+          }
+        });
     } else if (city2 !== '' && curPlace === '찾기 버튼을 눌러주세요' && roomName !== '') {
       axios
         .post(`${process.env.REACT_APP_API_URL}/card`, {
@@ -113,7 +128,13 @@ function MakeMeet() {
             alert('잠시 후 다시 시도해주세요');
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if(err.response.status === 401){
+            pathLogin()
+          }else{
+            console.log(err)
+          }
+        });
     }
   };
   const getDayName = (date) => {
