@@ -50,6 +50,12 @@
     /* margin: 0 10% 0 0; */
   }
 
+  .loader__box__ifnull.in__chatbox {
+    background-color: #fefbeb;
+    padding-top: 72%;
+    font-size: 18px;
+  }
+
   /* .chatpage > .list{
     all: unset;
     width: 100%;
@@ -62,12 +68,6 @@
   .chatpage > .chatbox {
     width: 100%;
     padding: 20px 40px 20px 40px;
-  }
-
-  .loader__box__ifnull.in__chatbox {
-    background-color: #fefbeb;
-    padding-top: 72%;
-    font-size: 18px;
   }
 
   .chatpage > .matelist {
@@ -101,7 +101,7 @@
 
   .loader__box__ifnull.in__chatbox {
     background-color: #fefbeb;
-    padding-top: 72%;
+    padding-top: 58%;
     font-size: 18px;
   }
 

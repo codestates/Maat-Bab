@@ -33,7 +33,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
+  min-width: 313px;
   height: 100%;
   font-size: 22px;
   font-weight: 600;
@@ -43,6 +43,9 @@
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 479px){
 
+  .cardslist__background {
+    max-width: 313.88px;
+  }
   .cardslist {
     height: 600px;
     background-color: white;
