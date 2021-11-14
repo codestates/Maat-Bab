@@ -104,7 +104,7 @@ function App() {
           </Route>
 
           <Route exact path='/'>
-            {initial.userInfo.certification && initial.userInfo.etiquette === null ? (
+            {initial.userInfo.certification && !initial.userInfo.etiquette?.length ? (
               <Redirect to='/foodpreference' />
             ) : (
               <AboutPage />
