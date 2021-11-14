@@ -16,7 +16,7 @@
   border-radius: 20px;
   text-align: center;
   z-index: 400;
-  top: 5%;
+  top: 2%;
   left: 25%;
   border: none;
 }
@@ -177,4 +177,14 @@
     /* padding-inline-start: 20px; */
   }
   
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 479px) {
+  .modalbackdrop.loginModal{
+    left: 0;
+    top: 5%;
+  }
+  .Loginmodal__background{
+    width: 0;
+  }
 }
