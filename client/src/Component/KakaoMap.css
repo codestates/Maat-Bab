@@ -1,0 +1,23 @@
+.modal__map__location.main{
+  z-index: 200;
+  font-size: 20px;
+  background-color: #FFB800;
+  border-radius: 20px;
+  color: white;
+  top: 5%;
+  width:19%;
+  text-align: center;
+  left: 5%;
+}
+@media screen and (max-width: 768px){
+  .modal__map__location.main{
+    font-size: 15px;
+    width: 20%;
+    padding-top: 1%;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .modal__map__location.main{
+    display: none;
+  }
+}

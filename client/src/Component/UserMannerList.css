@@ -1,0 +1,148 @@
+.userMannerList {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+}
+
+ul.userMannerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0 2% 0 2%;
+}
+
+li {
+  list-style: none;
+}
+
+li.manner {
+  background-color: white;
+  border: 3px solid #a4a0a0;
+  border-radius: 40px;
+  color: #a4a0a0;
+  font-size: 20px;
+  /* padding: 10px 20px 10px 20px; */
+  /* margin: 5px 5px 10px 10px; */
+  padding: 2% 0 2% 4%;
+  margin: 1%;
+  width: 100%;
+}
+
+li.manner:hover {
+  background-color: white;
+  border: 3px solid #ffb800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 2% 0 2% 4%;
+  margin: 1%;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected {
+  background-color: #ffa512;
+  border: 4px solid #ffb800;
+  border-radius: 40px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 2% 0 2% 4%;
+  margin: 1%;
+  width: 100%;
+  cursor: pointer;
+}
+
+li.selected:hover {
+  cursor: pointer;
+}
+
+li.manner__input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.manner__custom__input {
+  background-color: white;
+  border: 3px solid #d1c8c8;
+  border-radius: 40px;
+  color: #4b4a4a;
+  font-size: 20px;
+  padding: 2% 0 2% 4%;
+  margin: 1%;
+  width: 100%;
+}
+
+.manner__custom__input::placeholder {
+  color: #d1c8c8;
+  opacity: 1;
+}
+
+
+.manner__custom__input:focus {
+  outline: none;
+  border: 3px solid #ffa512;
+}
+
+.manner__add__button {
+  font-size: 30px;
+  color: #c4c4c4;
+}
+
+.manner__add__button:hover {
+  transition: all 0.2s ease-in-out;
+  color: #ffa512;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+  .userMannerList {
+    padding: 0;
+    margin: 0;
+  }
+  ul.userMannerList {
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .userMannerList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  li.manner {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    border: 2px solid #a4a0a0;
+  }
+  
+  li.manner:hover {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    border: 2px solid #ffb800;
+  }
+  
+  li.manner.selected {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 5px 10px 10px;
+    border: 2px solid #ffb800;
+  }
+
+  .manner__custom__input{
+    font-size: 16px;
+    border: 2px solid #d1c8c8;
+
+  }
+}

@@ -1,0 +1,413 @@
+.search {
+  width: 100%;
+  /* display:flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__component__title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #FFa512;
+  font-size: 30px;
+  padding: 0px 5px 0px 5px;
+}  
+
+.searchbar {
+  display: flex;
+  width: 100%;
+  padding: 5px 10px 5px 0;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.searchbar__title__region{
+  display: flex;
+  width: 18%;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFa512;
+  margin-left: 5%;
+}
+
+.searchbar__region__date {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 100%;
+}
+
+.searchbar__region__first__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchbar__region__second__container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+}
+
+.search__select__region__city {
+  /* all: unset; */
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  height: 40px;
+
+  padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+  
+  text-align: center;
+}
+
+.search__select__region__district {
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-y: auto;
+  height: 40px;
+  padding: 2px 4px 2px 4px;
+  margin: 0 5px 0 0;
+  text-align: center;
+}
+
+.search__select__region__city:focus,
+.search__select__region__district:focus {
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-y: auto;
+  height: 40px;
+  padding: 2px 4px 2px 4px;
+  margin: 0px 5px 0px 5px;
+  text-align: center;
+  border: 2px solid #ffa512;
+
+}
+
+.searchbar__restaurant__search {
+  /* all: unset !important; */
+  all: unset;
+  background-color: white;
+  border: 2px solid #a4a0a0;
+  border-radius: 20px;
+  font-size: 17px;
+  width: 100%;
+  /* height: 90%; */
+  text-align: start;
+  padding: 3% 0 3% 5%;
+}
+.searchbar__restaurant__search:focus{
+  border: 2px solid #ffa512;
+}
+
+.search__icon {
+  display: flex;
+  width: 12%;
+  height: 100%;
+  margin-left: -15%;
+  z-index: 10;
+}
+.search__icon:hover{
+  cursor: pointer;
+}
+
+.searchbar__region {
+  width: 75%;
+  display: flex;
+}
+
+.searchbar__region__container {
+  display: flex;
+  width: 79%;
+  /* border: 1px solid black; */
+}
+
+.searchbar__date {
+  display: flex;
+  /* justify-content: space-around; */
+  width: 25%;
+  align-items: center;
+}
+
+.searchbar__datepicker__wrapper {
+  display: flex;
+  flex-direction: end;
+
+}
+
+.react-datepicker__input-container {
+  display: flex;
+}
+
+
+.searchbar__datepicker {
+  color: #7a7a7a;
+  font-size: 19px;
+  font-weight: 500;
+  background-color: white;
+  border: 2px solid #a4a0a0;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+}
+
+.searchbar__datepicker:hover {
+  border: 2px solid #ffa512;
+}
+
+.react-datepicker-popper {
+  z-index: 300 !important
+}
+
+.search__makemeet__icon {
+  font-size: 26px;
+  color: #ffa512;
+}
+
+.searchbar__button__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search__card__button:hover {
+  background-color: white;
+  border: 3px solid white;
+  color: #FFB800;
+  transition: all ease-in-out 0.1s;
+}
+.search__card__button {
+
+  background-color: #FFB800;
+  border: 3px solid white;
+
+  border-radius: 20px;
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 0px 5px;
+  
+  width: 124px;
+
+  cursor: pointer;
+}
+
+.search__make__button:hover {
+  background-color: #FFB800;
+  border: 3px solid #FFB800;
+  transition: all ease-in-out 0.1s;
+  color: white;
+}
+.search__make__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align:center;
+  background-color: white;
+  border: 3px solid #FFB800;
+
+  border-radius: 20px;
+  color: #ffa512;
+  font-size: 21px;
+  font-weight: 800;
+
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 0px 5px;
+
+  width: 160px;
+
+  cursor: pointer;
+}
+
+.searchmap {
+  width: 90%;
+  height: 600px;
+  background-color: #FFB800;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 20px 0px 0px 60px;
+}
+
+.main__search__kakaomap {
+  /* width: 100%;
+  height: 100%; */
+  width: 80%;
+  height: 650px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.modal__map__location.main {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: inherit;
+  top: 10%;
+  left: 10%;
+  z-index: 200;
+  font-size: 20px;
+  font-weight: 800;
+  background-color: #FFB800;
+  border-radius: 20px;
+  color: white;
+  width: 20%;
+  height: 30px;
+}
+@media screen and (max-width: 768px){
+  .searchbar__title__region{
+    display: none;
+  }
+  .search{
+    width: 100%;
+  }
+  .searchbar{
+    flex-direction: column;
+  }
+  .searchbar__region__container{
+    /* border: 1px solid black; */
+    width: 100%;
+  }
+  .searchbar__region__second__container{
+    margin-left: 3%;
+  }
+  .searchbar__region__container{
+    margin-left: 10%;
+  }
+  .searchbar__button__container{
+    margin-top: 3%;
+    width: 60%;
+  }
+  .searchmap{
+    margin-left: 5%;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .search {
+    display: flex;
+    width: 100%;
+    padding-top: 56px;
+    margin-bottom: 40px;
+  }
+
+  .search__component__title {
+    color: #FFa512;
+    font-size: 30px;
+    padding: 20px 0px 15px 10px;
+  } 
+  
+  .searchbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;    
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .searchbar__title {
+    padding: 0;
+    margin: 0;
+  }
+
+  .searchbar__region__date {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .searchbar__region__container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+  
+  .searchmap {
+    display: flex;
+    width: 100%;
+    height: 440px;
+    margin: 0px;
+    padding: 20px;
+  }
+
+  .search__card__button {
+    font-size: 18px;
+    width: 120px;
+  }
+
+  .search__make__button {
+    font-size: 18px;
+    width: 140px;
+  }
+  
+  .searchbar__datepicker {
+    width: 100%;
+  }
+
+  .searchbar__title.region,
+  .searchbar__title.title__date {
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    font-size: 18px;
+  }
+
+  .searchbar__region {
+    margin: 0;
+    width: 100%;
+  }
+  .searchbar__date{
+    width: 50%;
+    margin: 0;
+  }
+
+  .searchbar__datepicker__wrapper {
+    width: 100%;
+  }
+
+  .searchbar__region__first__container {
+    width: 100%;
+  }
+
+  .searchbar__region__second__container {
+    padding: 0;
+    margin: 1% 0 2% 0;
+    width: 100%;
+  }
+
+  .searchbar__restaurant__search {
+    margin-right: -12%;
+    margin-left: 10%;
+    height: 25px;
+    width: 80%;
+  }
+
+  .search__icon {
+    width: 10%;
+    margin: 0;
+  }
+  .searchbar__button__container {
+    margin-top: 10px;
+    width: 80%;
+  }
+
+
+}

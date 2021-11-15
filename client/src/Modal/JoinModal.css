@@ -1,0 +1,123 @@
+.joinmodal__background {
+  width: 100vw;
+  height: 100vh;
+  z-index: 300;
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  top: 0;
+}
+.modalbackdrop.join {
+  height: 50%;
+  background-color: white;
+  position: fixed;
+  border-radius: 20px; 
+  text-align: center;
+  z-index: 400;
+}
+.modalview.join {
+  height: 80%;
+  /* margin-top: 10%; */
+  z-index: 500;
+}
+.modalview__massage.join {
+  font-size: 34px;
+  color: #FFA512;
+  font-weight: 700;
+  margin-top: 6%;
+}
+.modalview__count__message.join {
+  color: #C4C4C4;
+  font-size: 23px;
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 12% 0 0 0;
+}
+.modalview__button__join {
+  background-color: white;
+  border: 3px solid #FFB800;
+  border-radius: 40px;
+  color: #ffb800;
+  font-size: 24px;
+  font-weight: 800;
+  transition: all ease-in-out 0.1s;
+  z-index: inherit;
+  width: 180px;
+  height: 80px;
+  margin-top: 5%;
+}
+
+.modalview__button__join:hover {
+  background-color: #FFB800;
+  border: 3px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+  .joinmodal__background {
+    width: 100vw;
+    height: 100vh;
+    z-index: 300;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    margin:0;
+    padding:0;
+  }
+  .modalbackdrop.join {
+    width: 80%;
+    height: 48%;
+    margin-left: -5%;
+    /* margin: 30% 10% 0 20%; */
+    background-color: white;
+    position: fixed;
+    border-radius: 20px; 
+    text-align: center;
+    z-index: 400;
+  }
+  .modalview.join {
+    height: 80%;
+    /* margin: 20% 10% 0% 10%; */
+    padding: 20px 10px 0px 10px;
+    z-index: 500;
+  }
+  .modalview__massage.join {
+    font-size: 22px;
+    color: #FFA512;
+    font-weight: 700;
+    margin-top: 12%;
+    padding-left: 5px;
+  }
+  .modalview__count__message.join {
+    color: #C4C4C4;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10%;
+    margin-left: 0;
+    margin-right: 0;
+    white-space: pre-line;
+    padding: 15px 5px 5px 5px;
+  }
+
+  .modalview__button.join {
+    background-color: white;
+    border: 3px solid #FFB800;
+    border-radius: 40px;
+    color: #ffb800;
+  
+    font-size: 22px;
+    font-weight: 800;
+    
+    transition: all ease-in-out 0.1s;
+    
+    z-index: inherit;
+  
+    padding: 10px;
+    margin: 40px 5px 0px 5px;
+    
+    width: 120px;
+    height: 52px;
+    
+  }
+  
+}

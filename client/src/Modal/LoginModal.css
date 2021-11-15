@@ -1,0 +1,190 @@
+.Loginmodal__background {
+  width: 100vw;
+  height: 100vh;
+  z-index: 300;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+}
+
+.modalbackdrop.loginModal {
+  width: 0;
+  height: 0;
+  /* margin: 5% 0 0 25%; */
+  /* background-color: white; */
+  position: fixed;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 400;
+  top: 2%;
+  left: 25%;
+  border: none;
+}
+
+.login__container.loginModal {
+  height: 0;
+  width: 0;
+  padding: 0;
+}
+
+.signin__content__container.loginModal {
+  width: 60vw;
+  height: 85vh;
+  border: 1px solid #ffa512;
+  align-items: center;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.signin__content__container__ul {
+  /* padding-inline-start: 0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
+.signin__title.loginModal {
+  color: #ffa512;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 0px 20px 0px;
+}
+.signin__content__container__ul.loginModal {
+  list-style: none;
+  width: 90%;
+  height: 40%;
+  /* margin-left: 5%; */
+  padding-top: 10px;
+}
+.signin__name.loginModal {
+  font-weight: 500;
+  font-size: 30px;
+  color: gray;
+  margin-top: 5%;
+}
+.signin__input.loginModal {
+  width: 40vw;
+  height: 5vh;
+  border-radius: 10px;
+  margin-top: 3%;
+  border: 1px solid gray;
+  color: gray;
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 10px;
+  margin-right: 5px;
+}
+.signin__input.loginModal :focus {
+  outline: none;
+  border: 2px solid #ffa512;
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
+  padding-left: 10px;
+  margin-right: 5px;
+}
+.hide.loginModal {
+  display: none;
+}
+
+.signin__input.email,
+.signin__input.password {
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.signin__email__message.loginModal {
+  color: red;
+}
+.signin__link__signup.loginModal {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffa512;
+  font-size: 24px;
+  font-weight: 600;
+}
+.signin__button__container.loginModal {
+  list-style: none;
+  width: 70%;
+  margin-left: 12%;
+}
+.signin__button__login.loginModal,
+.signin__button__login__google.loginModal,
+.signin__button__login__kakao.loginModal {
+  border: none;
+  width: 40vw;
+  height: 5vh;
+  margin-top: 3%;
+  font-size: 20px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.signin__button__login.loginModal {
+  background-color: #ffa512;
+  color: white;
+}
+.signin__button__login.loginModal :hover {
+  color: black;
+  cursor: pointer;
+}
+.signin__button__login__google.loginModal :hover,
+.signin__button__login__kakao.loginModal :hover {
+  color: #ffa512;
+  cursor: pointer;
+}
+.signin__button__login__google.loginModal {
+  background-color: #c4c4c4;
+}
+.signin__button__login__kakao.loginModal {
+  background-color: #fbe300;
+}
+.kakao__logo.loginModal {
+  background-image: url('../resource/kakaotalk-logo.png');
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-top: -5px;
+}
+.google__logo.loginModal {
+  background-image: url('../resource/google-logo.png');
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-top: -5px;
+}
+.signin__title.loginmodal{
+  margin: 0;
+}
+.signin__link__signup.loginmodal{
+  margin: 0;
+}
+@media screen and (max-width: 768px) {
+  .modalbackdrop.loginModal{
+    left: -25%;
+    top: 2%;
+  }
+
+  .signin__content__container__ul {
+    /* padding-inline-start: 20px; */
+  }
+  
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 479px) {
+  .modalbackdrop.loginModal{
+    left: 0;
+    top: 5%;
+  }
+  .Loginmodal__background{
+    width: 0;
+  }
+}

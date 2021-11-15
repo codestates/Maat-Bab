@@ -1,0 +1,105 @@
+.footer {
+  /* position: absolute; */
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #dfdede;
+  bottom: 0;
+  height: 60px;
+}
+
+.footer__copyright {
+  color: #a5a5a5;
+  font-size: 18px;
+}
+
+.footer__developers {
+  display: flex;
+  padding: 10px;
+  
+}
+
+.fa-github {
+  width: 20px;
+  color: #585858;
+}
+
+.footer__developer {
+  padding: 5px;
+}
+
+.footer__developer__github {
+  width: 32px;
+  color:#5c5b5b;
+  padding: 5px;
+}
+
+.footer__developer__name {
+  color: #6c6c6c;
+  padding: 5px;
+}
+
+@media screen and (max-width: 768px){
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer__copyright {
+    padding-top: 1%;
+  }
+  .footer__developers,
+  .footer__developer,
+  .footer__developer__github,
+  .footer__developer__name {
+    opacity: 0;
+    height: 0;
+    position: relative;
+    font-size: 1px;
+  }
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px) {
+  .footer {
+    /* position: absolute; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f6f6f6;
+    bottom: 0;
+    height: 66px;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+  }
+
+  .footer__developers{
+    display: none;
+  }
+
+  .fa-github {
+    opacity: 0;
+    /* width: 15px; */
+    /* color: #424040; */
+  }
+  
+  .footer__developer {
+    opacity: 0;
+    /* padding: 5px; */
+  }
+  
+  .footer__developer__github {
+    opacity: 0;
+    /* width: 20px;
+    color:#6c6c6c; */
+  }
+  
+  .footer__developer__name {
+    opacity: 0;
+    /* color: #6c6c6c;
+    font-size: 14px; */
+  } 
+}

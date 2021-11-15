@@ -1,0 +1,54 @@
+.cardslist__background {
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  border: 3px solid#ffb800;
+  border-radius: 20px;
+  overflow-y: scroll;
+  background-color: white;
+  width: 100%;
+  position: relative;
+}
+
+.mainpage > .cardslist {
+  background-color: white;
+}
+
+.cardslist__background::-webkit-scrollbar{
+  display: none;
+}
+
+.card__list__section{
+  overflow: auto;  
+}
+
+.card__section {
+  background: linear-gradient(to bottom, #ffa512, #ffb800);
+}
+
+.loader__box__ifnull {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 313px;
+  height: 100%;
+  font-size: 22px;
+  font-weight: 600;
+  color: #a4a0a0;
+
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 479px){
+
+  .cardslist__background {
+    max-width: 313.88px;
+  }
+  .cardslist {
+    height: 600px;
+    background-color: white;
+  }
+
+}
