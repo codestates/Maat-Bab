@@ -15,7 +15,7 @@ import SignUp from './Component/SignUp';
 import EmailCheck from './Component/EmailCheck';
 import OauthKakao from './Component/OauthKakao';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoginStatus,setUserInfo } from './actions';
+import { setLoginStatus,setUserInfo,deleteUserInfo } from './actions';
 
 axios.defaults.withCredentials = true;
 
@@ -52,14 +52,13 @@ function App() {
   useEffect(() => {
     isAuthenticated();
   }, []);
-
   const logoutHandler = () => {
     axios
       .post(`${process.env.REACT_APP_API_URL}/signout`)
       .then((res) => {
         if (res.status === 205) {
           dispatch(setLoginStatus(false));
-          dispatch(setUserInfo(null,null,null,null,null,null));
+          dispatch(deleteUserInfo())
           moveAbout();
         }
       })
