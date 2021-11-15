@@ -20,7 +20,6 @@
 <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/AWS-S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"> <br />
-<img src="https://img.shields.io/badge/AWS-CodeBuild-4db6ac?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/AWS-CloudFront-8d57eb?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/AWS-CodePipeline-4c70f1?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <br />
 
