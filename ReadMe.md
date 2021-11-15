@@ -34,6 +34,7 @@
 <img src="https://img.shields.io/badge/AWS-Route53-925bf0?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/AWS-CodePipeline-4c70f1?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white"> <br />
+<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white"> <br />
 
 ### Communicate
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"> <br />
